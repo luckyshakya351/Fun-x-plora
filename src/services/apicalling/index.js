@@ -63,7 +63,6 @@ export const get_user_data_fn = async (dispatch) => {
         },
       }
     );
-    console.log(response, "This is response");
     if (response?.data?.error === "200") {
       dispatch(aviator_login_data_fn(JSON.stringify(response?.data?.data)));
       // localStorage.setItem(

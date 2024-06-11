@@ -51,7 +51,6 @@ const MainPage = () => {
           },
         }
       );
-      console.log(response, "This is response");
      
 
       if (response?.data?.error === "200") {

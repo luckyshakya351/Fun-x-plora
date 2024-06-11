@@ -634,7 +634,7 @@ function Dashboard() {
               >
                 Winning information
               </Typography>
-              {winnner_data.slice(3, 10)?.map((i, index) => {
+              {winnner_data?.slice(3, 10)?.map((i, index) => {
                 return (
                   <Stack
                     key={index}
@@ -780,7 +780,7 @@ function Dashboard() {
               >
                 TRX Winning information
               </Typography>
-              {winnner_data.slice(3, 10)?.map((i, index) => {
+              {winnner_data?.slice(3, 10)?.map((i, index) => {
                 return (
                   <Stack
                     key={index}
