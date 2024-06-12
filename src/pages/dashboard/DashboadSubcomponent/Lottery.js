@@ -1,4 +1,4 @@
-import { Box, Typography, hexToRgb } from "@mui/material";
+import { Box, Button, Stack, Typography, hexToRgb } from "@mui/material";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
@@ -22,7 +22,13 @@ import pr6 from "../../../assets/images/6.png";
 import pr7 from "../../../assets/images/7.png";
 import pr8 from "../../../assets/images/8.png";
 import pr9 from "../../../assets/images/9.png";
+import wingo from "../../../assets/images/win1/wingo.png";
+import k3 from "../../../assets/images/win1/k3.png";
+import d5 from "../../../assets/images/win1/d5.png";
+import trx from "../../../assets/images/win1/trx.png";
+import daman from "../../../assets/images/win1/daman-lottery_background.png";
 import toast from "react-hot-toast";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 
@@ -32,73 +38,28 @@ const Lottery = () => {
   return (
     <Box sx={{ transition: '0.3s !important' }}>
       <Box sx={style.root}>
-        <Box sx={style.roottwo} component={NavLink} to={"/win"}>
-          <Box sx={{ background: 'white', width: "100%", height: "100%", borderRadius: '10px', backgroundImage: `url(${kind})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
-            <Box sx={{ width: "100%", height: "100%", position: 'relative', }}>
-              <Box sx={style.titleBox}>
-                <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Typography variant="body1" color="initial" className="gametitle">
-                    <Box component='img' style={{ width: '130px', height: '36px' }} src='https://see.fontimg.com/api/renderfont4/OVGwe/eyJyIjoiZnMiLCJoIjo2MSwidyI6MTI1MCwiZnMiOjQ5LCJmZ2MiOiIjRjVGMkYyIiwiYmdjIjoiIzAwMDAwMCIsInQiOjF9/V2luZ28/sportypo-reguler.png' />
-                  </Typography>
-                </Box>
-              </Box>
-              <Box component='img' src={frame} sx={{
-                width: '100%', height: '25%', position: 'absolute', zIndex: '100', top: '76%', opacity: '1', width: '40%', right: '-1px', borderRadius: '0px 0px 13px 0px',
-              }}></Box>
-            </Box>
+        <Stack direction='row' justifyContent='space-between' sx={{ width: '100%', flexWrap: 'wrap' }}>
+          <Box component={NavLink} to={"/win"} sx={{ width: '49%', mt: 1, minHeight: '25vh', borderRadius: '10px', position: 'relative', padding: '30px 0px', backgroundImage: `url(${daman})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
+            <Typography variant="body1" sx={{ textAlign: 'center', fontSize: '23px', fontWeight: '600', color: 'white' }}>Win Go</Typography>
+            <Box component='img' src={wingo} sx={{ width: '130px', height: '130px', margin: 'auto' }}></Box>
+            <Button className="Gobtn">Go  <ArrowForwardIosIcon ml={1} /></Button>
           </Box>
-        </Box>
-        <Box sx={style.roottwo} component={NavLink} onClick={() => toast("Comming Soon !")}>
-          <Box sx={{ background: 'white', width: "100%", height: "100%", borderRadius: '10px', backgroundImage: `url(${kind})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
-            <Box sx={{ width: "100%", height: "100%", position: 'relative', }}>
-
-              <Box sx={style.titleBox}>
-                <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Typography variant="body1" color="initial" className="gametitle">
-                    <Box component='img' style={{ width: '110px', height: '25px' }} src='https://see.fontimg.com/api/renderfont4/lg83d/eyJyIjoiZnMiLCJoIjo2MSwidyI6MTI1MCwiZnMiOjQ5LCJmZ2MiOiIjRjVGMkYyIiwiYmdjIjoiIzAwMDAwMCIsInQiOjF9/SzMgTG90dGVyeQ/omega-flight-italic.png' />
-                  </Typography>
-                </Box>
-              </Box>
-              <Box component='img' src={frame} sx={{
-                width: '100%', height: '25%', position: 'absolute', zIndex: '100', top: '76%', opacity: '1', width: '40%', right: '-1px', borderRadius: '0px 0px 13px 0px',
-              }}></Box>
-            </Box>
+          <Box component={NavLink} onClick={() => toast("Comming Soon !")} sx={{ width: '49%', mt: 1, minHeight: '25vh', borderRadius: '10px', position: 'relative', padding: '30px 0px', backgroundImage: `url(${daman})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
+            <Typography variant="body1" sx={{ textAlign: 'center', fontSize: '23px', fontWeight: '600', color: 'white' }}>K3 Lottery</Typography>
+            <Box component='img' src={k3} sx={{ width: '130px', height: '130px', margin: 'auto' }}></Box>
+            <Button className="Gobtn">Go  <ArrowForwardIosIcon ml={1} /></Button>
           </Box>
-        </Box>
-        <Box sx={style.roottwo} component={NavLink} onClick={() => toast("Comming Soon !")}>
-          <Box sx={{ background: 'white', width: "100%", height: "100%", borderRadius: '10px', backgroundImage: `url(${kind})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
-            <Box sx={{ width: "100%", height: "100%", position: 'relative', }}>
-
-              <Box sx={style.titleBox}>
-                <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Typography variant="body1" color="initial" className="gametitle">
-                    <Box component='img' style={{ width: '110px', height: '25px' }} src='https://see.fontimg.com/api/renderfont4/ZV5gz/eyJyIjoiZnMiLCJoIjo2MSwidyI6MTI1MCwiZnMiOjQ5LCJmZ2MiOiIjRjVGMkYyIiwiYmdjIjoiIzAwMDAwMCIsInQiOjF9/NWQgTG90dGVyeQ/azn-unified-oblique.png' />
-                  </Typography>
-                </Box>
-              </Box>
-              <Box component='img' src={frame} sx={{
-                width: '100%', height: '25%', position: 'absolute', zIndex: '100', top: '76%', opacity: '1', width: '40%', right: '-1px', borderRadius: '0px 0px 13px 0px',
-              }}></Box>
-            </Box>
+          <Box component={NavLink} onClick={() => toast("Comming Soon !")} sx={{ width: '49%', mt: 1, minHeight: '25vh', borderRadius: '10px', position: 'relative', padding: '30px 0px', backgroundImage: `url(${daman})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
+            <Typography variant="body1" sx={{ textAlign: 'center', fontSize: '23px', fontWeight: '600', color: 'white' }}>5D Lottery</Typography>
+            <Box component='img' src={d5} sx={{ width: '130px', height: '130px', margin: 'auto' }}></Box>
+            <Button className="Gobtn">Go  <ArrowForwardIosIcon ml={1} /></Button>
           </Box>
-        </Box>
-        <Box sx={style.roottwo} component={NavLink} to={"/trx"}>
-          <Box sx={{ background: 'white', width: "100%", height: "100%", borderRadius: '10px', backgroundImage: `url(${kind})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
-            <Box sx={{ width: "100%", height: "100%", position: 'relative', }}>
-
-              <Box sx={style.titleBox}>
-                <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Typography variant="body1" color="initial" className="gametitle">
-                    <Box component='img' style={{ width: '110px', height: '20px' }} src='https://see.fontimg.com/api/renderfont4/3zn93/eyJyIjoiZnMiLCJoIjo2MSwidyI6MTI1MCwiZnMiOjQ5LCJmZ2MiOiIjRjVGMkYyIiwiYmdjIjoiIzAwMDAwMCIsInQiOjF9/VFJYIFdJTg/pilot-command.png' />
-                  </Typography>
-                </Box>
-              </Box>
-              <Box component='img' src={frame} sx={{
-                width: '100%', height: '25%', position: 'absolute', zIndex: '100', top: '76%', opacity: '1', width: '40%', right: '-1px', borderRadius: '0px 0px 13px 0px',
-              }}></Box>
-            </Box>
+          <Box component={NavLink} to={"/trx"} sx={{ width: '49%', mt: 1, minHeight: '25vh', borderRadius: '10px', position: 'relative', padding: '30px 0px', backgroundImage: `url(${daman})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' }}>
+            <Typography variant="body1" sx={{ textAlign: 'center', fontSize: '23px', fontWeight: '600', color: 'white' }}>TRX</Typography>
+            <Box component='img' src={trx} sx={{ width: '130px', height: '130px', margin: 'auto' }}></Box>
+            <Button className="Gobtn">Go  <ArrowForwardIosIcon ml={1} /></Button>
           </Box>
-        </Box>
+        </Stack>
       </Box>
     </Box>
   );
@@ -108,10 +69,7 @@ export default Lottery;
 
 const style = {
   root: {
-    width: "95%",
-    marginLeft: "2.5%",
-    background: zubgwhite,
-    boxShadow: zubgshadow,
+    width: "100%",
     marginTop: "20px",
     padding: "1px 10px 10px 10px",
     borderRadius: "10px",
@@ -120,16 +78,7 @@ const style = {
     alignItems: 'center',
     justifyContent: 'space-between'
   },
-  roottwo: {
-    width: "49%",
-    height: "14vh",
-    borderRadius: "10px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    mt: '10px',
-    position: 'relative;'
-  },
+
 
   titleBox: {
     width: "100%",
@@ -140,18 +89,6 @@ const style = {
     borderRadius: '10px'
   },
 
-  imgtwo: { width: "100%", height: "100%", borderRadius: "0px 10px 10px 0px", filter: 'brightness(0.5)', },
-  imgone: { width: "100%", height: "100%", borderRadius: "0px 0px 0px 10px" },
-  textone: { color: 'white', fontSize: "11px" },
-  texttow: { color: "white", fontSize: "10px", mr: "5px" },
-  btmbox: {
-    width: "100%",
-    height: "45%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    textAlign: "center",
-  },
 };
 
 

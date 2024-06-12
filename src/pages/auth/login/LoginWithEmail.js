@@ -160,11 +160,12 @@ function LoginWithEmail() {
             onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
           />
           <br />
-          {fk.touched.email && fk.errors.email && (
-            <div className="error">{fk.errors.email}</div>
-          )}
+
         </Box>
       </Box>
+      {fk.touched.email && fk.errors.email && (
+        <div className="error">{fk.errors.email}</div>
+      )}
       <Box mt={3}>
         <FormControl fullWidth>
           <Box sx={{ ...style.flexcenterstart, mb: 1, }}>
@@ -196,10 +197,11 @@ function LoginWithEmail() {
               </InputAdornment>
             }
           />
-          {fk.touched.pass && fk.errors.pass && (
-            <div className="error">{fk.errors.pass}</div>
-          )}
+
         </FormControl>
+        {fk.touched.pass && fk.errors.pass && (
+          <div className="error">{fk.errors.pass}</div>
+        )}
       </Box>
       <Box mt={1}>
         <FormControl fullWidth>
@@ -221,14 +223,14 @@ function LoginWithEmail() {
       </Box>
       <Stack >
         <NavLink to='/' >
-          <Button className='goldbtn' onClick={fk.handleSubmit}>Log in</Button>
+          <Button className='goldbtn' onClick={fk.handleSubmit} >Log in</Button>
         </NavLink>
         <NavLink to='/register'>
           <Button className='goldborderbtn'>Register</Button>
         </NavLink>
       </Stack>
       <CustomCircularProgress isLoading={loding} />
-    </Box>
+    </Box >
   );
 }
 

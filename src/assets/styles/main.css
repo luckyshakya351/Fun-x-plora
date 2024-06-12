@@ -1539,3 +1539,17 @@ img {
 td {
   align-content: baseline !important;
 }
+
+.Gobtn {
+  color: white !important;
+  border: 2px solid white !important;
+  padding: 0 !important;
+  border-radius: 22px !important;
+  float: right !important;
+  margin-right: 20px !important;
+}
+
+.Gobtn>svg {
+  font-size: 15px !important;
+  margin-left: 5px !important;
+}
