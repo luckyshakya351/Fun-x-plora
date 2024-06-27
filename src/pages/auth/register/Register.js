@@ -31,7 +31,7 @@ import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import CryptoJS from "crypto-js";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/logored.jpg";
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailReadOutlined';
@@ -466,7 +466,7 @@ const style = {
     },
   },
   icon: { color: zubgtext },
-  logocss: { width: '100%', height: '40px', my: 2 },
+  logocss: { width: '120px', margin: 'auto' },
   flexcoloumcenter: {
     display: 'flex',
     flexDirection: 'column',

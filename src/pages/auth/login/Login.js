@@ -17,7 +17,7 @@ import CryptoJS from 'crypto-js';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/logored.jpg";
 import LoginWithEmail from '../login/LoginWithEmail'
 import LoginWithMobile from '../login/LoginWithMobile'
 import { zubgtext } from '../../../Shared/color';
@@ -139,7 +139,7 @@ export default Login;
 
 const style = {
   authheader: { background: zubgtext, py: 1, },
-  logocss: { width: '100%', height: '40px', my: 2 },
+  logocss: { width: '120px', margin: 'auto', },
   flagcss: { width: '30px' },
   icon: { fontSize: "18px", color: 'white' },
   authform: { width: '100%' },
