@@ -181,7 +181,7 @@ export const routes = [
         component: <RobateRetio />
     },
     {
-        path: "/promotion/customerLine/",
+        path: "/customerLine/",
         component: <CustomerLine />
     },
     {

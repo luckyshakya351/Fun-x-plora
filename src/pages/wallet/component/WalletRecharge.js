@@ -271,7 +271,7 @@ function WalletRecharge() {
           width: "95%",
           margin: "auto",
           mt: "20px",
-          background: zubgwhite,
+          background: '#ff00001f',
           borderRadius: "10px",
           mb: 5,
         }}
@@ -723,7 +723,7 @@ function WalletRecharge() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: zubgwhite,
+              background: '#ff00001f',
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 2,

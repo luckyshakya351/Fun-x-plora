@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import Footer from "./component/Footer/Footer";
 import { useEffect } from "react";
+import Header from "./component/Header.js/Header";
 
 function Layout(props) {
-  const { header = true, footer = true, children } = props;
+  const { header = false, footer = true, children } = props;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
@@ -19,6 +20,11 @@ function Layout(props) {
         // Other styles for the container
       }}
     >
+      {header && (
+        <Box>
+          <Header />
+        </Box>
+      )}
       {children}
       {footer && (
         <Box>

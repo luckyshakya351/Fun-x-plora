@@ -15,7 +15,7 @@ const Original = () => {
   return (
     <Box>
       <Box sx={style.root}>
-        <Box sx={style.roottwo} component={NavLink} to={"/cricket"}>
+        <Box sx={style.roottwo} >
           <Box sx={{ width: "70%", height: "100%", position: 'relative' }}>
             <Box sx={{
               position: 'absolute', top: 0, left: '0', width: '100%', height: '100%', borderRadius: '10px 0px 0px 10px',

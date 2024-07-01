@@ -11,7 +11,7 @@ import { useQuery, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import { lightgreen, zubgback, zubgshadow, zubgtext } from "../../Shared/color";
 import logo from "../../assets/images/logo.png";
 import { default as Timeactive, default as Timeinactive } from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
@@ -72,26 +72,11 @@ function Win() {
 
 
   return (
-    <Layout footer={false}>
+    <Layout header={true}>
       <Container sx={styles.root}>
         <Box sx={{ position: 'relative', overflow: 'hidden' }}>
           <Box className="wingosx"></Box>
           <Box sx={{ padding: 2, position: 'relative' }}>
-            <Stack direction='row' alignItems='center' justifyContent='center'>
-              <Box sx={{ width: '30%' }}>
-                <KeyboardArrowLeftOutlinedIcon
-                  className=" !cursor-pointer"
-                  sx={{ color: 'white', width: "30%" }}
-                  onClick={() => navigate(-1)}
-                />
-              </Box>
-              <Box sx={{ width: '40%' }}>
-                <Box component="img" src={logo} sx={{ width: "100%", height: '24px' }}></Box>
-              </Box>
-              <Box sx={{ width: '30%' }}>
-              </Box>
-            </Stack>
-
             <Box sx={{ padding: '25px 10px', background: '#fff', borderRadius: '20px', my: 2, display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <Box display='flex' alignItems='center' ml={5}>
                 <Typography variant="body1" color="initial" className="b-val" sx={{ color: zubgtext }}>
@@ -101,7 +86,7 @@ function Win() {
                     0
                   )?.toFixed(2)}
                 </Typography>
-                <CachedOutlinedIcon sx={{ ml: 3, color: 'gray' }} />
+                <CachedOutlinedIcon sx={{ ml: 3, color: lightgreen }} />
               </Box>
               <Box display='flex' alignItems='center' mr={5}>
                 <WalletOutlinedIcon sx={{ mr: 1, color: 'gray' }} />
@@ -110,18 +95,18 @@ function Win() {
                 </Typography>
               </Box>
               <Box display='flex' alignItems='center' justifyContent='space-between' sx={{ width: '100%' }}>
-                <Button variant="text" color="primary" className="yellowbtn" onClick={() => navigate("/Withdrawal")}>
-                  Withdraw
-                </Button>
-                <Button variant="text" color="primary" className="redbtn" onClick={() => navigate("/wallet/Recharge")}>
+                <Button variant="text" color="primary" className="greenbtn" onClick={() => navigate("/wallet/Recharge")}>
                   Deposit
+                </Button>
+                <Button variant="text" color="primary" className="redbtn" onClick={() => navigate("/Withdrawal")}>
+                  Withdraw
                 </Button>
               </Box>
             </Box>
           </Box>
           <Box
             sx={{
-              background: '#fff',
+              background: 'linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important',
               boxShadow: zubgshadow,
               width: "95%",
               marginLeft: "2.5%",
@@ -203,7 +188,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback },
+  root: { background: zubgback, mt: '74px' },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

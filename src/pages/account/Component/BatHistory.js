@@ -17,7 +17,7 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { lightblue, lightgreen, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import colorpr from "../../../assets/images/colorpr (2).png";
 import Lottery from "../../../assets/images/lottery.png";
 import Layout from "../../../component/Layout/Layout";
@@ -175,7 +175,7 @@ function BatHistorys() {
                     width: "70px",
                     height: "55px",
                     borderRadius: "10px",
-                    background: zubgtext,
+                    background: lightgreen,
                     color: "white",
                     marginLeft: "20px",
                   }}
@@ -194,7 +194,7 @@ function BatHistorys() {
               select
               value={selectedGameOption}
               onChange={(e) => setselectedGameOption(e.target.value)}
-              sx={{ "&>div": { background: '#e3e3e393', color: zubgtext } }}
+              sx={{ "&>div": { background: lightblue, color: zubgtext } }}
             >
               {selectionOption.map((i) => {
                 return <MenuItem value={i}>{i}</MenuItem>;

@@ -23,7 +23,7 @@ import {
   zubgwhite,
 } from "../../Shared/color";
 import withdrow from "../../assets/images/withdraw.png";
-import rechargeIcon from "../../assets/images/deposit (2).png";
+import rechargeIcon from "../../assets/images/deposit.png";
 import wdhistory from "../../assets/images/list.png";
 import deposite from "../../assets/images/manuscript.png";
 import wallet from "../../assets/images/wallet (5).png";

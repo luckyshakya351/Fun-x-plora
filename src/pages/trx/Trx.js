@@ -71,26 +71,11 @@ function Win() {
   }, [dummycounter]);
 
   return (
-    <Layout footer={false}>
+    <Layout header={true} footer={false}>
       <Container sx={styles.root}>
         <Box sx={{ position: 'relative', overflow: 'hidden' }}>
           <Box className="wingosx"></Box>
           <Box sx={{ padding: 2, position: 'relative' }}>
-            <Stack direction='row' alignItems='center' justifyContent='center'>
-              <Box sx={{ width: '30%' }}>
-                <KeyboardArrowLeftOutlinedIcon
-                  className=" !cursor-pointer"
-                  sx={{ color: 'white', width: "30%" }}
-                  onClick={() => navigate(-1)}
-                />
-              </Box>
-              <Box sx={{ width: '40%' }}>
-                <Box component="img" src={logo} sx={{ width: "100%", height: '24px' }}></Box>
-              </Box>
-              <Box sx={{ width: '30%' }}>
-              </Box>
-            </Stack>
-
             <Box sx={{ padding: '25px 10px', background: '#fff', borderRadius: '20px', my: 2, display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <Box display='flex' alignItems='center' ml={5}>
                 <Typography variant="body1" color="initial" className="b-val" sx={{ color: zubgtext }}>
@@ -109,11 +94,11 @@ function Win() {
                 </Typography>
               </Box>
               <Box display='flex' alignItems='center' justifyContent='space-between' sx={{ width: '100%' }}>
+                <Button variant="text" color="primary" className="greenbtn" onClick={() => navigate("/wallet/Recharge")}>
+                  Deposit
+                </Button>
                 <Button variant="text" color="primary" className="yellowbtn" onClick={() => navigate("/Withdrawal")}>
                   Withdraw
-                </Button>
-                <Button variant="text" color="primary" className="redbtn" onClick={() => navigate("/wallet/Recharge")}>
-                  Deposit
                 </Button>
               </Box>
             </Box>
@@ -121,7 +106,7 @@ function Win() {
 
           <Box
             sx={{
-              background: '#fff',
+              background: 'linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important',
               boxShadow: zubgshadow,
               width: "95%",
               marginLeft: "2.5%",
@@ -201,7 +186,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback },
+  root: { background: zubgback, mt: '74px' },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

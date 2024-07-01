@@ -2,7 +2,7 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import FitbitIcon from "@mui/icons-material/Fitbit";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import bgms from "../../assets/images/bgms1.png";
+import bgms from "../../assets/images/bgms2.jpg";
 import {
   Avatar,
   Box,
@@ -34,6 +34,8 @@ import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
   gray,
+  lightgreen,
+  lightyellow,
   zubgback,
   zubgbackgrad,
   zubggray,
@@ -47,7 +49,7 @@ import one from "../../assets/images/1.jpg";
 import two from "../../assets/images/2.jpg";
 import three from "../../assets/images/123.png";
 import cash from "../../assets/images/money.png";
-import deposit from "../../assets/images/security-box.png";
+import deposit from "../../assets/images/deposit.png";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 import position2 from "../../assets/images/positio2.png";
 import logo from "../../assets/images/fevicon.jpg";
@@ -84,6 +86,7 @@ import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
 import { Opacity } from "@mui/icons-material";
+import { lightGreen } from "@mui/material/colors";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -401,7 +404,7 @@ function Dashboard() {
               justifyContent: "space-between",
               width: "95%",
               marginLeft: "2.5%",
-              background: zubgwhite,
+              background: lightyellow,
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mt: "20px",
@@ -409,12 +412,12 @@ function Dashboard() {
             }}
           >
             <Box sx={{ width: "10%" }}>
-              <CampaignOutlinedIcon sx={{ color: zubgtext }} />
+              <CampaignOutlinedIcon sx={{ color: 'black' }} />
             </Box>
             <Box
               sx={{
                 width: "90%",
-                "&>p": { fontSize: "13px", color: zubgtext },
+                "&>p": { fontSize: "13px", color: 'black' },
               }}
             >
               <Typography variant="body1">
@@ -432,7 +435,7 @@ function Dashboard() {
                 alignItems: "center",
               }}
             >
-              <Box className="serv-item cursor-pointer">
+              <Box className="serv-item2 cursor-pointer">
                 <Box
                   component="img"
                   src={deposit}
@@ -445,7 +448,7 @@ function Dashboard() {
                 variant="body1"
                 color="initial"
                 className="db-header"
-                sx={{ color: zubgtext, textAlign: "center" }}
+                sx={{ color: `${lightgreen} !important`, textAlign: "center" }}
               >
                 Deposit
               </Typography>
@@ -466,7 +469,7 @@ function Dashboard() {
                 variant="body1"
                 color="initial"
                 className="b-valp"
-                sx={{ color: zubgtext }}
+                sx={{ color: lightgreen }}
               >
                 Available Balance
               </Typography>
@@ -581,7 +584,7 @@ function Dashboard() {
                       backgroundImage: `url(${bgms})`,
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "100% 100%",
-                      padding: "5px 15px 30px 15px",
+                      padding: "15px 15px 15px 15px",
                       borderRadius: "7px 7px 0px 0px !important",
                     }}
                     className="cursor-pointer   flex flex-col items-center justify-center"
@@ -591,8 +594,8 @@ function Dashboard() {
                   <p
                     className="!text-sm font-bold"
                     style={{
-                      color: "white",
-                      background: zubgtext,
+                      color: "black",
+                      background: lightyellow,
                       width: "100%",
                       textAlign: "center",
                       padding: "5px 0px",
@@ -929,7 +932,7 @@ const styles = {
   },
   depositWithdrawIcon: { width: "30px", height: "30px" },
   referralLinkContainer: {
-    background: zubgwhite,
+    background: 'black',
     boxShadow: zubgshadow,
     padding: "15px 15px",
     borderRadius: "5px",
@@ -938,7 +941,7 @@ const styles = {
     marginLeft: "2.5%",
   },
   referralLinkTitle: {
-    color: zubgtext,
+    color: lightyellow,
     fontSize: "14px",
     fontWeight: "500 !important",
     mb: 1,
@@ -951,7 +954,7 @@ const styles = {
     borderRadius: "5px",
     "&>div>input": { color: zubgtext },
   },
-  referralLinkButton: { marginLeft: 2, background: zubgmid },
+  referralLinkButton: { marginLeft: 2, background: zubgtext },
   socialButtonsContainer: {
     alignItems: "center",
     justifyContent: "space-between",
@@ -962,15 +965,16 @@ const styles = {
     color: "white !important",
     textTransform: "capitalize",
     fontWeight: "400",
-    background: zubgtext,
-    "&:hover": { background: zubgtext },
+    background: '#1A8AD5',
+    "&:hover": { background: '#1A8AD5' },
   },
   supportButton: {
     fontSize: "14px",
     color: "white !important",
     textTransform: "capitalize",
     fontWeight: "400",
-    background: zubgmid,
+    background: '#1A8AD5',
+    "&:hover": { background: '#1A8AD5' },
   },
   socialButtonIcon: {
     margin: "auto",

@@ -135,7 +135,7 @@ function Account() {
               {(
                 Number(
                   Number(result?.winning_wallet || 0) +
-                    Number(result?.wallet || 0)
+                  Number(result?.wallet || 0)
                 ) || 0
               )?.toFixed(0)}
             </Typography>
@@ -424,7 +424,7 @@ function Account() {
                 logo: user2,
               },
               {
-                to: "/promotion/customerLine/",
+                to: "/customerLine/",
                 name: "Customer service",
                 logo: customer,
               },
@@ -470,13 +470,7 @@ function Account() {
           }}
         >
           <Button
-            sx={{
-              background: zubgtext,
-              width: "100%",
-              color: "white",
-              borderRadius: "10px",
-              padding: 1.5,
-            }}
+            className="goldborderbtn"
             onClick={() => {
               localStorage.clear();
               navigate("/");

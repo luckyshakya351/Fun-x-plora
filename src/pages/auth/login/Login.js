@@ -20,7 +20,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logored.jpg";
 import LoginWithEmail from '../login/LoginWithEmail'
 import LoginWithMobile from '../login/LoginWithMobile'
-import { zubgtext } from '../../../Shared/color';
+import { lightblue, lightyellow, zubgtext } from '../../../Shared/color';
+import { Style } from '@mui/icons-material';
 
 
 function Login() {
@@ -87,20 +88,20 @@ function Login() {
 
         <Box sx={style.authform} component='form'>
           <Box sx={{ width: "100%" }}>
-            <Tabs value={value} onChange={handleChange} sx={{ width: "100%" }}>
-              <Tab value="two" sx={{ width: "50% !important" }} label={
+            <Tabs value={value} onChange={handleChange} sx={{ width: "100%", }}>
+              <Tab value="two" sx={{ width: "50% !important", }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
-                  <PhoneAndroidIcon sx={{ color: value === 'two' ? 'red' : 'gray', }} />
+                  <PhoneAndroidIcon sx={{ color: value === 'two' ? lightblue : lightyellow, }} />
 
-                  <Typography variant="body1" sx={{ color: value === 'two' ? 'red' : 'gray', fontSize: '14px', }}>Log in with phone</Typography>
+                  <Typography variant="body1" sx={{ color: value === 'two' ? lightblue : lightyellow, fontSize: '14px', }}>Log in with phone</Typography>
                 </Box>
               }
               />
 
               <Tab value="one" sx={{ width: "50% !important" }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
-                  <MarkEmailReadIcon sx={{ color: value === 'one' ? 'red' : 'gray', }} />
-                  <Typography variant="body1" sx={{ color: value === 'one' ? 'red' : 'gray', fontSize: '14px', }}>Log in with email</Typography>
+                  <MarkEmailReadIcon sx={{ color: value === 'one' ? lightblue : lightyellow, }} />
+                  <Typography variant="body1" sx={{ color: value === 'one' ? lightblue : lightyellow, fontSize: '14px', }}>Log in with email</Typography>
                 </Box>
               }
               />
@@ -119,16 +120,6 @@ function Login() {
             )
           }
         </Box>
-        <Box sx={{ ...style.loginfooter, ...style.flexbetween, }}>
-          <Box sx={{ ...style.flexcoloumcenter, }} onClick={() => navigate("/forget-password")}>
-            <NoEncryptionIcon sx={style.footericon} />
-            <Typography variant="body2" >Forgot password</Typography>
-          </Box>
-          <Box sx={{ ...style.flexcoloumcenter, }}>
-            <SupportAgentIcon sx={style.footericon} />
-            <Typography variant="body2" >Customer Service</Typography>
-          </Box>
-        </Box>
       </Box>
 
     </Container>
@@ -143,7 +134,7 @@ const style = {
   flagcss: { width: '30px' },
   icon: { fontSize: "18px", color: 'white' },
   authform: { width: '100%' },
-  tabs: { width: "100%", '&>p': { textTransform: 'none', } },
+  tabs: { width: "100%", '&>p': { textTransform: 'none', }, },
   checkbox: {
     mt: 1, '&>span>svg': { color: 'red' }
   },
