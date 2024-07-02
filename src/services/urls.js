@@ -5,7 +5,7 @@ export const baseUrl = "https://admin.funxplora.com";
 // export const fron_end_main_domain = "https://sunlottery.fun";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const domain = "https://sun-lottery-timer-tlhr.onrender.com/";
+export const domain = "https://funxplora-timer.onrender.com/";
 
 
 export const support_mail = ''

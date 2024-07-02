@@ -352,7 +352,7 @@ function TeamData() {
             </Accordion >
           </Box >
         }
-        {
+        {/* {
           <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
             <Accordion className="!rounded-lg">
               <AccordionSummary
@@ -1023,7 +1023,7 @@ function TeamData() {
               </AccordionDetails >
             </Accordion >
           </Box >
-        }
+        } */}
       </Container >
     </Layout >
   );
