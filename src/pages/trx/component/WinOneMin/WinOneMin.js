@@ -73,7 +73,7 @@ function WinOneMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: zubgwhite,
+                      color: 'white !important',
                     }}
                   >
                     {String(fk?.values?.show_this_one_min_time)
@@ -90,7 +90,7 @@ function WinOneMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: zubgwhite,
+                      color: 'white !important',
                     }}
                   >
                     {String(fk?.values?.show_this_one_min_time)
