@@ -74,7 +74,7 @@ function WinThreeMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: zubgwhite,
+                      color: 'white !important',
                     }}
 
                   >
@@ -91,7 +91,7 @@ function WinThreeMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: zubgwhite,
+                      color: 'white !important',
                     }}
 
                   >
