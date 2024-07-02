@@ -53,7 +53,9 @@ function AddBankDetails() {
       fd.append("mobile", fk.values.mobile);
       fd.append("bank_name", fk.values.bank_name);
       fd.append("name", fk.values.name);
-      fd.append("ifsc_code", fk.values.ifsc);
+      const capitalizedIFSC = fk.values.ifsc.toUpperCase();
+      fd.append("ifsc_code", capitalizedIFSC);
+      // fd.append("ifsc_code", fk.values.ifsc);
       fd.append("account_number", fk.values.account_number);
       fd.append("user_id", user_id);
 
