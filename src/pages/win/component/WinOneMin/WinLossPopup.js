@@ -23,9 +23,7 @@ const WinLossPopup = ({ gid }) => {
       );
     const firstId =  response?.data?.data?.[0]?.gamesno
     const winAmnt =  response?.data?.data?.filter((i)=>i?.gamesno === firstId)?.reduce((a,b)=>a+Number(b?.win || 0),0) || 0
-    const amntAmnt =  response?.data?.data?.filter((i)=>i?.gamesno === firstId)?.reduce((a,b)=>a+Number(b?.amount || 0),0) || 0
-
-    
+    const amntAmnt =  response?.data?.data?.filter((i)=>i?.gamesno === firstId)?.reduce((a,b)=>a+Number(b?.amount || 0),0) || 0 
      if(winAmnt){
       setstatus({
         status: "1",
