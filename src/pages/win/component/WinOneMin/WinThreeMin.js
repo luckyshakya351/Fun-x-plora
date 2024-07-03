@@ -93,7 +93,6 @@ function WinThreeMin({ gid }) {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-
                     }}
 
                   >

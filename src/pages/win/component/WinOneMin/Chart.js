@@ -4,8 +4,7 @@ import axios from "axios";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
-import CustomCircularProgress from "../../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgtext } from "../../../../Shared/color";
+import { zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import { endpoint } from "../../../../services/urls";
 

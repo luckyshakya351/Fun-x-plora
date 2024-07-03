@@ -1,18 +1,18 @@
+import { Star } from "@mui/icons-material";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import { Box, Container, Typography } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubggray, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { zubgback, zubggray, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import { MypromotionDataFn } from "../../../services/apicalling";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { rupees } from "../../../services/urls";
-import { Star } from "@mui/icons-material";
 function TeamData() {
   const { isLoading, data } = useQuery(
     ["promotion_data"],
@@ -88,7 +88,7 @@ function TeamData() {
               <AccordionDetails sx={{ background: zubgwhite, boxShadow: zubgshadow, color: "white" }}>
                 <Box >
                   <Box sx={style.accordian}>
-                    <div style={{ color: 'white', borderBottom: '2px solid red', padding: '10px', borderBottom: '2px solid red', padding: '10px', }} className="!grid !grid-cols-3    ">
+                    <div style={{ color: 'white', borderBottom: '2px solid red', padding: '10px', }} className="!grid !grid-cols-3    ">
                       <span>S.No.</span>
                       <span>User Id</span>
                       <span className="">Name</span>
@@ -96,7 +96,7 @@ function TeamData() {
                     <div className="h-[2px] w-full "></div>
                     {result?.level_1?.map((i, index) => {
                       return (
-                        <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
+                        <div style={{  background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                           <span>{index + 1}</span>
                           <span className=" ">
                             {i?.id || "No data found"}
@@ -139,13 +139,13 @@ function TeamData() {
                     <div style={{
                       color: 'white', borderBottom: '2px solid red', padding: '10px',
                     }} className="!grid !grid-cols-3    ">
-                      < span > S.No.</span>
+                      <span> S.No.</span>
                       <span>User Id</span>
                       <span className="">Name</span>
                     </div>
                     {result?.level_2?.map((i, index) => {
                       return (
-                        <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
+                        <div style={{ background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                           <span>{index + 1}</span>
                           <span>{i?.id}</span>
                           <span className=" ">
@@ -156,9 +156,9 @@ function TeamData() {
                     })}
                   </Box>
                 </Box>
-              </AccordionDetails >
-            </Accordion >
-          </Box >
+              </AccordionDetails>
+            </Accordion>
+          </Box>
         }
         {
           <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
@@ -186,14 +186,14 @@ function TeamData() {
                     <div style={{
                       color: 'white', borderBottom: '2px solid red', padding: '10px',
                     }} className="!grid !grid-cols-3    ">
-                      < span > S.No.</span>
+                      <span> S.No.</span>
                       <span>User Id</span>
                       <span className="">Name</span>
                     </div>
                     <div className="h-[2px] w-full "></div>
                     {result?.level_3?.map((i, index) => {
                       return (
-                        <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
+                        <div style={{ background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                           <span>{index + 1}</span>
                           <span>{i?.id}</span>
                           <span className=" ">
@@ -204,9 +204,9 @@ function TeamData() {
                     })}
                   </Box>
                 </Box>
-              </AccordionDetails >
-            </Accordion >
-          </Box >
+              </AccordionDetails>
+            </Accordion>
+          </Box>
         }
         {
           <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
@@ -234,14 +234,14 @@ function TeamData() {
                     <div style={{
                       color: 'white', borderBottom: '2px solid red', padding: '10px',
                     }} className="!grid !grid-cols-3    ">
-                      < span > S.No.</span>
+                      <span> S.No.</span>
                       <span>User Id</span>
                       <span className="">Name</span>
                     </div>
                     <div className="h-[2px] w-full "></div>
                     {result?.level_4?.map((i, index) => {
                       return (
-                        <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
+                        <div style={{background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                           <span>{index + 1}</span>
                           <span>{i?.id}</span>
                           <span className=" ">
@@ -252,9 +252,9 @@ function TeamData() {
                     })}
                   </Box>
                 </Box>
-              </AccordionDetails >
-            </Accordion >
-          </Box >
+              </AccordionDetails>
+            </Accordion>
+          </Box>
         }
         {
           <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
@@ -282,14 +282,14 @@ function TeamData() {
                     <div style={{
                       color: 'white', borderBottom: '2px solid red', padding: '10px',
                     }} className="!grid !grid-cols-3    ">
-                      < span > S.No.</span>
+                      <span> S.No.</span>
                       <span>User Id</span>
                       <span className="">Name</span>
                     </div>
                     <div className="h-[2px] w-full "></div>
                     {result?.level_5?.map((i, index) => {
                       return (
-                        <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
+                        <div style={{  background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                           <span>{index + 1}</span>
                           <span>{i?.id}</span>
                           <span className=" ">
@@ -300,9 +300,9 @@ function TeamData() {
                     })}
                   </Box>
                 </Box>
-              </AccordionDetails >
-            </Accordion >
-          </Box >
+              </AccordionDetails>
+            </Accordion>
+          </Box>
         }
         {
           <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
@@ -330,14 +330,14 @@ function TeamData() {
                     <div style={{
                       color: 'white', borderBottom: '2px solid red', padding: '10px',
                     }} className="!grid !grid-cols-3    ">
-                      < span > S.No.</span>
+                      <span> S.No.</span>
                       <span>User Id</span>
                       <span className="">Name</span>
                     </div>
                     <div className="h-[2px] w-full "></div>
                     {result?.level_6?.map((i, index) => {
                       return (
-                        <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
+                        <div style={{background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                           <span>{index + 1}</span>
                           <span>{i?.id}</span>
                           <span className=" ">
@@ -348,9 +348,9 @@ function TeamData() {
                     })}
                   </Box>
                 </Box>
-              </AccordionDetails >
-            </Accordion >
-          </Box >
+              </AccordionDetails>
+            </Accordion>
+          </Box>
         }
         {/* {
           <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
@@ -1024,8 +1024,8 @@ function TeamData() {
             </Accordion >
           </Box >
         } */}
-      </Container >
-    </Layout >
+      </Container>
+    </Layout>
   );
 }
 
