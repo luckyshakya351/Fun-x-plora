@@ -14,7 +14,6 @@ const WinLossPopup = ({ gid }) => {
   const [status, setstatus] = useState("");
   const [newstatus, setstatusNew] = useState("");
 
-
   const MyHistoryFn = async () => {
     setloding(true);
     try {

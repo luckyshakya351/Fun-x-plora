@@ -12,15 +12,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
 function MainPageOFIncome() {
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
 
   const data_array = [
     {
       to: "/account/income-main/registration-bonus",
-      name: "Registration Bonus",
+      name: "Sponsor Income",
       logo: (
         <CurrencyExchangeIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -48,16 +44,16 @@ function MainPageOFIncome() {
         />
       ),
     },
-    {
-      to: "/account/income-main/daily-cash-back-bonus",
-      name: "Daily Cashback Bonus",
-      logo: (
-        <LocalConvenienceStoreIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
+    // {
+    //   to: "/account/income-main/daily-cash-back-bonus",
+    //   name: "Daily Cashback Bonus",
+    //   logo: (
+    //     <LocalConvenienceStoreIcon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
     {
       to: "/account/income-main/daily-salary-bonus",
       name: "Daily Salary Bonus",
@@ -78,26 +74,26 @@ function MainPageOFIncome() {
         />
       ),
     },
-    {
-      to: "/account/income-main/team-trading-bonus",
-      name: "Team Trading  Bonus",
-      logo: (
-        <CardGiftcardIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
-    {
-      to: "/account/income-main/team-reward-bonus",
-      name: "Team Reward Bonus",
-      logo: (
-        <Diversity2Icon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
+    // {
+    //   to: "/account/income-main/team-trading-bonus",
+    //   name: "Team Trading  Bonus",
+    //   logo: (
+    //     <CardGiftcardIcon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
+    // {
+    //   to: "/account/income-main/team-reward-bonus",
+    //   name: "Team Reward Bonus",
+    //   logo: (
+    //     <Diversity2Icon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
   ];
   return (
     <Layout>
