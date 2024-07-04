@@ -103,7 +103,6 @@ function Dashboard() {
   const [poicy, setpoicy] = React.useState(false);
   const [type_of_game, settype_of_game] = React.useState("");
   // const login_data = localStorage.getItem("logindata");
-  const user_id = value && JSON.parse(value).UserID;
   const [winnner_data, setwinnerdata] = useState([]);
   const [openbannerurl, setopenbannerurl] = useState("");
   const [loding, setloding] = useState(false);
@@ -111,7 +110,8 @@ function Dashboard() {
 
   useQuery(["promotion_data"], () => MypromotionDataFn(), {
     refetchOnMount: false,
-    refetchOnReconnect: true,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus:false
   });
 
   useEffect(() => {
@@ -145,7 +145,8 @@ function Dashboard() {
 
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
-    refetchOnReconnect: true,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus:false
   });
 
   const newdata = data?.data?.data || 0;
@@ -155,7 +156,8 @@ function Dashboard() {
     data: allWithdrawlCashData,
   } = useQuery(["allWithdrawlCashUser"], () => allWithdrawlCashUserFn(), {
     refetchOnMount: false,
-    refetchOnReconnect: true,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus:false
   });
 
   const allWithdrawl_CashData = allWithdrawlCashData?.data?.data || [];
@@ -252,7 +254,7 @@ function Dashboard() {
     !aviator_login_data && get_user_data_fn(dispatch);
   }, []);
 
-  console.log(openbannerurl);
+  console.log(winnner_data);
 
   const game_data = [
     {
@@ -778,7 +780,7 @@ function Dashboard() {
               >
                 TRX Winning information
               </Typography>
-              {winnner_data?.slice(3, 10)?.map((i, index) => {
+              {winnner_data?.slice(0, 10)?.map((i, index) => {
                 return (
                   <Stack
                     key={index}

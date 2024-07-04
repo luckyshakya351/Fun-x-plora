@@ -18,12 +18,12 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-  <SocketProvider>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <App />
-          <Toaster
+    <SocketProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <App />
+            <Toaster
               toastOptions={{
                 className: "",
                 style: {
@@ -37,9 +37,9 @@ root.render(
               }}
               limit={1}
             />
-        </ThemeProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
     </SocketProvider>
   </Provider>
 );
