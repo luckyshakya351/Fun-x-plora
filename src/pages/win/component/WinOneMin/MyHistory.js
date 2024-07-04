@@ -90,7 +90,7 @@ const MyHistory = ({ gid }) => {
                       expandIcon={<ArrowDownwardIcon sx={{ color: zubgtext }} />}
                       aria-controls="panel1-content"
                       id="panel1-header"
-                      sx={{ background: zubgback, color: zubgtext }}
+                      sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
                     >
                       <div className="!w-full !flex !justify-between">
                         <p style={{ color: zubgtext, fontWeight: 700, fontSize: '13px' }}>{i?.gamesno}</p>
@@ -122,7 +122,7 @@ const MyHistory = ({ gid }) => {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails
-                      sx={{ background: zubgback, color: zubgtext }}
+                      sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
                     >
                       <p className={`!text-green-400 !font-semibold !text-lg`}>
                         Period Detail
@@ -255,7 +255,7 @@ const MyHistory = ({ gid }) => {
                   expandIcon={<ArrowDownwardIcon sx={{ color: zubgtext, }} />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: zubgback, color: zubgtext, }}
+                  sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
                 >
                   <div className="!w-full !flex !justify-between">
                     <p style={{ color: zubgtext, }}>{i?.gamesno}</p>
@@ -286,7 +286,7 @@ const MyHistory = ({ gid }) => {
                     </span>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: zubgback, color: zubgtext, }}>
+                <AccordionDetails sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}>
                   <p className={`!text-green-400 !font-semibold !text-lg`}>
                     Period Detail
                   </p>

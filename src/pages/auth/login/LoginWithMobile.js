@@ -25,7 +25,7 @@ import CryptoJS from 'crypto-js';
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginMobileSchemaValidaton } from "../../../Shared/Validation";
-import { zubgmid, zubgtext } from "../../../Shared/color";
+import { lightblue, zubgmid, zubgtext } from "../../../Shared/color";
 import { endpoint } from "../../../services/urls";
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
@@ -138,7 +138,7 @@ function LoginWithMobile() {
       <Box mt={2}>
         <FormControl fullWidth>
           <Box sx={{ ...style.flexcenterstart, my: 1, }}>
-            <PhoneAndroidIcon sx={style.icon} /> <Typography variant="body1" ml={1}> Phone number</Typography>
+            <PhoneAndroidIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Phone number</Typography>
           </Box>
           <Box sx={{ ...style.flexbetween, }}>
             <Select
@@ -176,7 +176,7 @@ function LoginWithMobile() {
       <Box mt={3}>
         <FormControl fullWidth>
           <Box sx={{ ...style.flexcenterstart, mb: 1, }}>
-            <HttpsOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1}> Password</Typography>
+            <HttpsOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Password</Typography>
           </Box>
           <OutlinedInput
             id="pass"
@@ -196,9 +196,9 @@ function LoginWithMobile() {
                   edge="end"
                 >
                   {showPassword ? (
-                    <VisibilityOff sx={{ color: zubgmid }} />
+                    <VisibilityOff sx={{ color: lightblue }} />
                   ) : (
-                    <Visibility sx={{ color: zubgmid }} />
+                    <Visibility sx={{ color: lightblue }} />
                   )}
                 </IconButton>
               </InputAdornment>
@@ -252,7 +252,7 @@ const style = {
   },
   normalinput: {
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
+    backgroundColor: '#fff',
     '&>div': {
       border: 'none',
       borderRadius: '10px',
@@ -262,7 +262,7 @@ const style = {
     '&>div': {
       border: 'none',
       borderRadius: '10px',
-      color: 'red'
+      color: lightblue
     },
     '&>div>input': {
       padding: '10px !important'
@@ -281,24 +281,24 @@ const style = {
   },
   passwordinput: {
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
-    '&>input': { padding: '10px', color: 'red' },
+    backgroundColor: '#fff',
+    '&>input': { padding: '10px', color: lightblue },
     '&>fieldset': { border: 'none' },
     // '&>div>button>svg': { padding: '10px', color: 'red' },
     // '&>div>button': { padding: '0px', },
     '&>:hover': {
-      backgroundColor: '#ffe5e5', borderRadius: '10px 0px 0px 10px'
+      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
     },
   },
   icon: { color: zubgtext },
   selectinput: {
     width: '18%',
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
+    backgroundColor: '#fff',
     '&>div': {
       border: 'none',
       borderRadius: '10px',
-      color: zubgtext,
+      color: lightblue,
       padding: '10px 0px 10px 5px !important'
     },
     '&>fieldset': {

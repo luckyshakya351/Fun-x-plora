@@ -65,10 +65,9 @@ function WinOneMin({ gid }) {
                 >
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
-                      fontWeight: 700,
                       width: 150,
+                      height: 220,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -77,15 +76,16 @@ function WinOneMin({ gid }) {
                     }}
 
                   >
-                    {String(fk?.values?.show_this_one_min_time)
-                      ?.padStart(2, "0")
-                      ?.substring(0, 1)}
+                    <Typography variant="body1" sx={{ color: 'white', fontSize: 150, fontWeight: 800, }}>
+                      {String(fk?.values?.show_this_one_min_time)
+                        ?.padStart(2, "0")
+                        ?.substring(0, 1)}
+                    </Typography>
                   </div>
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
-                      fontWeight: 700,
+                      height: 220,
                       width: 150,
                       display: "flex",
                       alignItems: "center",
@@ -94,9 +94,11 @@ function WinOneMin({ gid }) {
                       color: 'white !important',
                     }}
                   >
-                    {String(fk?.values?.show_this_one_min_time)
-                      ?.padStart(2, "0")
-                      ?.substring(1, 2)}
+                    <Typography variant="body1" sx={{ color: 'white', fontSize: 150, fontWeight: 800, }}>
+                      {String(fk?.values?.show_this_one_min_time)
+                        ?.padStart(2, "0")
+                        ?.substring(1, 2)}
+                    </Typography>
                   </div>
                 </div>
               </div>
@@ -140,7 +142,7 @@ function WinOneMin({ gid }) {
               </Button>
             </Box>
             {/* pridictcolor */}
-            <Box sx={{ padding: '10px', background: zubgwhite, borderRadius: '10px' }}>
+            <Box sx={{ padding: '10px', background: '#fff', borderRadius: '10px' }}>
               <Box
                 sx={{
                   display: "flex",
@@ -213,16 +215,16 @@ function WinOneMin({ gid }) {
                 5X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                10X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                20X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                50X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                100X
               </IconButton>
             </Box>
 
@@ -251,7 +253,7 @@ function WinOneMin({ gid }) {
 
               {/* small close */}
             </div>
-          </Box>
+          </Box >
         );
       }, [fk])}
 
@@ -259,7 +261,7 @@ function WinOneMin({ gid }) {
         {React.useMemo(() => {
           return (
             <>
-              <Box sx={{ background: zubgwhite, borderRadius: "10px" }}>
+              <Box sx={{ background: '#fff', borderRadius: "10px" }}>
                 <Stack direction="row">
                   <Box
                     component={NavLink}
@@ -303,15 +305,17 @@ function WinOneMin({ gid }) {
         {TabTwo === 2 && <Chart gid={gid} />}
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
-      {apply_bit_dialog_box && (
-        <ApplyBetDialogBox
-          apply_bit_dialog_box={apply_bit_dialog_box}
-          setapply_bit_dialog_box={setapply_bit_dialog_box}
-          type={dialog_type}
-          gid={gid}
-        />
-      )}
-    </Box>
+      {
+        apply_bit_dialog_box && (
+          <ApplyBetDialogBox
+            apply_bit_dialog_box={apply_bit_dialog_box}
+            setapply_bit_dialog_box={setapply_bit_dialog_box}
+            type={dialog_type}
+            gid={gid}
+          />
+        )
+      }
+    </Box >
   );
 }
 

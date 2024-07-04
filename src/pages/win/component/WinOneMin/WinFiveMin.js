@@ -65,9 +65,7 @@ function WinFiveMin({ gid }) {
                 >
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
-                      fontWeight: 700,
                       width: 150,
                       display: "flex",
                       alignItems: "center",
@@ -76,14 +74,14 @@ function WinFiveMin({ gid }) {
                       color: 'white !important',
                     }}
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
-                      ?.substring(0, 1)}
+                    <Typography variant="body1" sx={{ color: 'white', fontSize: 150, fontWeight: 800, }}>
+                      {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
+                        ?.substring(0, 1)}
+                    </Typography>
                   </div>
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
-                      fontWeight: 700,
                       width: 150,
                       display: "flex",
                       alignItems: "center",
@@ -92,8 +90,10 @@ function WinFiveMin({ gid }) {
                       background: zubgtext,
                     }}
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
-                      ?.substring(1, 2)}
+                    <Typography variant="body1" sx={{ color: 'white', fontSize: 150, fontWeight: 800, }}>
+                      {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
+                        ?.substring(1, 2)}
+                    </Typography>
                   </div>
                 </div>
               </div>
@@ -137,7 +137,7 @@ function WinFiveMin({ gid }) {
               </Button>
             </Box>
             {/* pridictcolor */}
-            <Box sx={{ padding: '10px', background: zubgwhite, borderRadius: '10px' }}>
+            <Box sx={{ padding: '10px', background: '#fff', borderRadius: '10px' }}>
               <Box
                 sx={{
                   display: "flex",
@@ -210,18 +210,19 @@ function WinFiveMin({ gid }) {
                 5X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                10X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                20X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                50X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                100X
               </IconButton>
             </Box>
+
             <div className="!w-full !grid grid-cols-2 gap-2 !mt-2">
               <Button
                 sx={{ py: "10px" }}
@@ -255,7 +256,7 @@ function WinFiveMin({ gid }) {
         {React.useMemo(() => {
           return (
             <>
-              <Box sx={{ background: zubgback, borderRadius: "10px" }}>
+              <Box sx={{ background: '#fff', borderRadius: "10px" }}>
                 <Stack direction="row">
                   <Box
                     component={NavLink}

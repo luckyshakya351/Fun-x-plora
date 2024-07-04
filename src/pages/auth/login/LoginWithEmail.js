@@ -19,15 +19,14 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 // import * as uuid from "uuid";
-import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { LoginEmailSchemaValidaton } from "../../../Shared/Validation";
-import { zubgmid, zubgtext } from "../../../Shared/color";
-import { endpoint } from "../../../services/urls";
-import { storeCookies } from "../../../Shared/CookieStorage";
-import MarkunreadIcon from '@mui/icons-material/Markunread';
-import CryptoJS from "crypto-js";
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
+import CryptoJS from "crypto-js";
+import { storeCookies } from "../../../Shared/CookieStorage";
+import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
+import { LoginEmailSchemaValidaton } from "../../../Shared/Validation";
+import { lightblue, zubgtext } from "../../../Shared/color";
+import { endpoint } from "../../../services/urls";
 
 
 function LoginWithEmail() {
@@ -144,7 +143,7 @@ function LoginWithEmail() {
     >
       <Box mt={2}>
         <Box sx={{ ...style.flexcenterstart, my: 1, }}>
-          <MarkEmailReadOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'gray' }}>Email </Typography>
+          <MarkEmailReadOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Email </Typography>
         </Box>
         <Box sx={{ ...style.flexbetween, }}>
 
@@ -169,7 +168,7 @@ function LoginWithEmail() {
       <Box mt={3}>
         <FormControl fullWidth>
           <Box sx={{ ...style.flexcenterstart, mb: 1, }}>
-            <HttpsOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1}> Password</Typography>
+            <HttpsOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Password</Typography>
           </Box>
           <OutlinedInput
             id="pass"
@@ -189,9 +188,9 @@ function LoginWithEmail() {
                   edge="end"
                 >
                   {showPassword ? (
-                    <VisibilityOff sx={{ color: 'red', fontSize: "25px !important" }} />
+                    <VisibilityOff sx={{ color: lightblue, fontSize: "25px !important" }} />
                   ) : (
-                    <Visibility sx={{ color: 'red', fontSize: "25px !important" }} />
+                    <Visibility sx={{ color: lightblue, fontSize: "25px !important" }} />
                   )}
                 </IconButton>
               </InputAdornment>
@@ -243,17 +242,18 @@ const style = {
   },
   normalinput: {
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
+    backgroundColor: '#fff',
+    '&>input': { color: `${lightblue} !important` },
     '&>div': {
       border: 'none',
       borderRadius: '10px',
-      color: 'red',
+      color: lightblue,
 
     },
     '&>div': {
       border: 'none',
       borderRadius: '10px',
-      color: 'red'
+      color: `${lightblue} !important`
     },
     '&>div>input': {
       padding: '10px !important'
@@ -272,14 +272,14 @@ const style = {
   },
   passwordinput: {
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
-    '&>input': { padding: '10px', color: 'red' },
+    backgroundColor: '#fff',
+    '&>input': { padding: '10px', color: lightblue },
     '&>fieldset': { border: 'none' },
     // '&>div>button>svg': { padding: '10px', color: 'red' },
     // '&>div>button': { padding: '0px', },
     '&>:hover': {
-      backgroundColor: '#ffe5e5', borderRadius: '10px 0px 0px 10px'
+      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
     },
   },
-  icon: { color: zubgtext },
+  icon: { color: 'red' },
 }

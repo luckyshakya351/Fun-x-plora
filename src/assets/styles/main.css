@@ -5,8 +5,8 @@
 }
 
 :root{
-  --lightblue:#446FFF;
-   --lightgreen : #19d939;
+  --lightblue:#6CB4EE;
+   --lightgreen : #8BE68B;
 --lightyellow : #FFC300;
 }
 
@@ -236,7 +236,7 @@ img {
 .serv-item {
   width: 45px;
   height: 45px;
-  border: 1px solid red !important;
+  border: 3px solid red !important;
   padding: 5px;
   box-sizing: border-box;
   border-radius: 5px;
@@ -247,7 +247,7 @@ img {
 .serv-item2 {
   width: 45px;
   height: 45px;
-  border: 1px solid var(--lightgreen) !important;
+  border: 3px solid var(--lightgreen) !important;
   padding: 5px;
   box-sizing: border-box;
   border-radius: 5px;
@@ -632,7 +632,7 @@ background-color: var(--lightyellow) !important;
   margin-left: 2.5%;
   background-color: #ffffff !important;
   border-radius: 10px;
-  padding: 10px !important;
+  padding: 10px  5px !important;
   margin-bottom: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -661,6 +661,10 @@ background-color: var(--lightyellow) !important;
 }
 
 
+
+.wintable>tbody {
+  background: #ffffff;
+}
 
 .Wincircle {
   width: 20px;
@@ -791,6 +795,7 @@ background-color: var(--lightyellow) !important;
   align-items: center !important;
   justify-content: center !important;
   font-size: 12px !important;
+  color: var(--lightyellow);
 }
 
 .AccordionBox {
@@ -1212,7 +1217,7 @@ background-color: var(--lightyellow) !important;
   }
 
   .trx-bet-size>p {
-    background: gray;
+    background: white;
     padding: 2px 5px;
     border-radius: 5px;
   }
@@ -1268,21 +1273,21 @@ background-color: var(--lightyellow) !important;
 
 
 .withdrawalfield>div>input {
-  background-color: #dcdcdc92 !important;
+  background-color: #fff !important;
   border-radius: 10px;
   border: 1px solid #ff82823d;
 }
 
 .withdrawalfield>div>input.MuiInputBase-input {
-  color: #E71D1E !important;
+  color: var(--lightblue) !important;
 }
 
 .withdrawalfield>div>input.MuiInputBase-input::placeholder {
-  color: #E71D1E !important;
+  color: var(--lightblue) !important;
 }
 
 .withdrawalfield>div>input::placeholder {
-  color: #E71D1E;
+  color: var(--lightblue);
 }
 
 .withdrawalfield>div>fieldset {
@@ -1557,8 +1562,8 @@ background-color: var(--lightyellow) !important;
   width: 35px !important;
   padding: 6px 10px !important;
   border-radius: 5px !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
 }
 
 td {

@@ -1,8 +1,7 @@
+import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import FitbitIcon from "@mui/icons-material/Fitbit";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import bgms from "../../assets/images/bgms2.jpg";
 import {
   Avatar,
   Box,
@@ -37,32 +36,28 @@ import {
   lightgreen,
   lightyellow,
   zubgback,
-  zubgbackgrad,
-  zubggray,
   zubgmid,
   zubgshadow,
-  zubgtext,
-  zubgwhite,
+  zubgtext
 } from "../../Shared/color";
+import anand from "../../assets/anand.jpg";
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import one from "../../assets/images/1.jpg";
-import two from "../../assets/images/2.jpg";
 import three from "../../assets/images/123.png";
-import cash from "../../assets/images/money.png";
+import two from "../../assets/images/2.jpg";
+import winp4 from "../../assets/images/GOTI.png";
+import bgms from "../../assets/images/bgms2.jpg";
 import deposit from "../../assets/images/deposit.png";
-import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
+import logo from "../../assets/images/logotred.png";
+import cash from "../../assets/images/money.png";
+import stage from "../../assets/images/pod2.png";
 import position2 from "../../assets/images/positio2.png";
-import logo from "../../assets/images/fevicon.jpg";
 import position3 from "../../assets/images/position3.png";
 import position1 from "../../assets/images/positoin1.png";
-import stage from "../../assets/images/pod2.png";
-import winp4 from "../../assets/images/GOTI.png";
 import sajid from "../../assets/sajid.jpg";
-import anand from "../../assets/anand.jpg";
-import trximg from "../../assets/trx.png";
 import tanveer from "../../assets/tanveer.PNG";
+import trximg from "../../assets/trx.png";
 import Layout from "../../component/Layout/Layout";
-import gmbg from "../../assets/images/gmbg.jpg";
 import {
   please_reconnect_the_serverFun,
   waitingAviatorFun,
@@ -77,16 +72,13 @@ import {
 import {
   endpoint,
   fron_end_main_domain,
-  rupees,
   support_mail,
-  telegram_url,
+  telegram_url
 } from "../../services/urls";
 import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
-import { Opacity } from "@mui/icons-material";
-import { lightGreen } from "@mui/material/colors";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -264,7 +256,7 @@ function Dashboard() {
 
   const game_data = [
     {
-      name: "Lottery",
+      name: "Wingo",
       img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_202401100619315n2k.png",
     },
     {
@@ -306,7 +298,7 @@ function Dashboard() {
                 className="flex items-center gap-2"
                 style={{ color: zubgtext }}
               >
-                <Box component="img" src={logo} sx={{ width: "30px", height: '27px' }}></Box>
+                <Box component="img" src={logo} sx={{ width: "60px", height: '35px' }}></Box>
               </div>
               <div className="flex gap-1 items-center cursor-pointer">
                 <CloudDownloadIcon sx={{ color: zubgtext }} />
@@ -610,7 +602,7 @@ function Dashboard() {
           </div>
           <Box id="games">
             <div id="game_lottery">
-              {type_of_game === "Lottery" && <Lottery />}
+              {type_of_game === "Wingo" && <Lottery />}
             </div>
             <div id="game_original">
               {type_of_game === "Aviator" && <Original />}
@@ -698,12 +690,15 @@ function Dashboard() {
               borderRadius: "10px",
               mt: "20px",
               mb: "20px",
-              height: "40vh",
+              height: "30vh",
               backgroundImage: `url(${stage})`,
               backgroundSize: "100% 100%",
               position: "relative",
             }}
           >
+            <Box sx={{ position: 'absolute', top: '49%', left: '40%', }}>
+              <Box component='img' src={logo} sx={{ width: '80px' }}></Box>
+            </Box>
             <Box sx={styles.winner1}>
               <Box
                 component="img"
@@ -1134,8 +1129,8 @@ const styles = {
   },
   winner1: {
     position: "absolute",
-    left: "42%",
-    top: "31%",
+    left: "41%",
+    top: "5%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -1144,7 +1139,7 @@ const styles = {
   winner2: {
     position: "absolute",
     left: "17%",
-    bottom: "32%",
+    bottom: "52%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -1153,7 +1148,7 @@ const styles = {
   winner3: {
     position: "absolute",
     right: "18%",
-    bottom: "28%",
+    bottom: "49%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

@@ -6,6 +6,7 @@ import backbtn from "../../../../assets/images/backBtn.png"
 import music from "../../../../assets/images/music.png"
 import musicoff from "../../../../assets/images/musicoff.png"
 import logo from '../../../../assets/images/logored.png'
+import { lightblue } from '../../../../Shared/color'
 
 
 function Header() {
@@ -24,7 +25,7 @@ function Header() {
           zIndex: 1000,
           width: "100%",
           padding: '10px',
-          background: 'red'
+          background: lightblue
         }}
       >
         <Box sx={{ width: '33%' }}>

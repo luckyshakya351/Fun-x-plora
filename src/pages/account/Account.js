@@ -41,8 +41,9 @@ import notification from "../../assets/images/notification (1).png";
 import notification1 from "../../assets/images/notification.png";
 import user2 from "../../assets/images/password (1).png";
 import Rank from "../../assets/images/rank.png";
-import namer from "../../assets/images/namer.png";
-import balance from "../../assets/images/send.png";
+import namer from "../../assets/images/vip.png";
+import balance from "../../assets/images/logotwhite.png";
+import balance1 from "../../assets/images/atm.png";
 import setting from "../../assets/images/settings (1).png";
 import trans from "../../assets/images/translate.png";
 import s from "../../assets/images/wallet (1).png";
@@ -410,7 +411,7 @@ function Account() {
               {
                 to: "/account/income-main",
                 name: "Income",
-                logo: balance,
+                logo: balance1,
               },
               { to: "/SettingCenter", name: "Setting", logo: setting },
               {
@@ -560,7 +561,7 @@ const style = {
     marginRight: "10px",
   },
   cachedIcon: { color: "white" },
-  cardImage: { width: "50px" },
+  cardImage: { width: "70px" },
   cardNumber: { fontSize: "14px", color: "white", marginLeft: "10px" },
   actionContainer: {
     borderRadius: "10px",

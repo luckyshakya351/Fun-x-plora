@@ -99,7 +99,7 @@ const GameHistory = ({ gid }) => {
             {visibleRows?.map((i) => {
               return (
                 <TableRow>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px' }}>
+                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: '1px solid rgb(255 0 0)' }}>
                     <span
                       style={{ color: zubgtext, fontWeight: 700, fontSize: '13px' }}
                     >
@@ -107,7 +107,7 @@ const GameHistory = ({ gid }) => {
                     </span>
 
                   </TableCell>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px' }}>
+                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: '1px solid rgb(255 0 0)' }}>
                     <span
                       className={`
                 ${(i?.number === "0" &&
@@ -136,15 +136,15 @@ const GameHistory = ({ gid }) => {
                       {i?.number}
                     </span>
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px' }}
+                  <TableCell sx={{ padding: ' 10px 5px', fontSize: '12px', fontWeight: '700', borderBottom: '1px solid rgb(255 0 0)' }}
                     className={`${Number(i?.number) <= 4
                       ? "!bg-gradient-to-l !from-[#FE63FF] !to-violet-400"
                       : "!bg-gradient-to-l !from-[#FE63FF] !to-green-400"
-                      }  transparentColor !font-extrabold `}
+                      }  transparentColor `}
                   >
                     {Number(i?.number) <= 4 ? "SMALL" : "BIG"}
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', }}>
+                  <TableCell sx={{ padding: ' 10px 5px', borderBottom: '1px solid rgb(255 0 0)' }}>
                     {i?.number === "0" || i?.number === "5" ? (
                       <div className="!flex !gap-1">
                         <div

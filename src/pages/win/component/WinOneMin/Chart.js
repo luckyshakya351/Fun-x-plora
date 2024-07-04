@@ -111,9 +111,9 @@ const Chart = ({ gid }) => {
             return (
               <Box
                 sx={{
-                  background: zubgback,
-                  padding: "10px",
-                  borderBottom: "1px solid white",
+                  background: '#fff',
+                  padding: "10px 0px",
+                  borderBottom: "1px solid red",
                 }}
               >
                 <div className="flex justify-between">
@@ -123,13 +123,13 @@ const Chart = ({ gid }) => {
                     {i?.gamesno}
                   </span>
                   {/* // main box of chart form 0 to 9 */}
-                  <Box className="flex items-center justify-between !w-[80%]  lg:!w-[70%]">
+                  <Box className="flex items-center justify-between !w-[70%]"  >
                     {/* /// 0   //// */}
                     <div id={`zero${indexi}`} className="z-20">
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "0"
                           ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -141,7 +141,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "1"
                           ? "!bg-[#4bef98] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -153,7 +153,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "2"
                           ? "!bg-[#f1494c] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -165,7 +165,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "3"
                           ? "!bg-[#46eb93] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -177,7 +177,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "4"
                           ? "!bg-[#ed4b4e] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -189,7 +189,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "5"
                           ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -201,7 +201,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "6"
                           ? "!bg-[#f54b4e] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -213,7 +213,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "7"
                           ? "!bg-[#4af499] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -225,7 +225,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "8"
                           ? "!bg-[#eb494c] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -237,7 +237,7 @@ const Chart = ({ gid }) => {
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "9"
                           ? "!bg-[#4cf199] !text-white"
-                          : "!bg-white !text-black"
+                          : "!bg-white "
                           }`}
                       >
                         {" "}
@@ -255,7 +255,7 @@ const Chart = ({ gid }) => {
               </Box>
             );
           })}
-        </div>
+        </div >
         <div className=" h-[100%] w-[100%] absolute flex justify-end">
           <div className="!w-[80%] lg:!w-[70%]" id="parent">
             <svg
@@ -282,7 +282,7 @@ const Chart = ({ gid }) => {
             </svg>
           </div>
         </div>
-      </div>
+      </div >
       <Box className="paginationTable">
         <TablePagination
           sx={{
@@ -300,7 +300,7 @@ const Chart = ({ gid }) => {
         />
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading} /> */}
-    </Box>
+    </Box >
   );
 };
 

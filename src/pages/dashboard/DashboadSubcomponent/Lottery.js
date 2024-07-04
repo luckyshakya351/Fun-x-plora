@@ -36,7 +36,7 @@ function Lottery() {
       <Box sx={{ mt: 3 }}>
         <Stack direction='row' alignItems='center'>
           <Typography variant="body1" mr={1}>      <CasinoIcon /></Typography>
-          <Typography variant="h6" sx={style.headertitle}> Lottery</Typography>
+          <Typography variant="h6" sx={style.headertitle}> Wingo</Typography>
         </Stack>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width: '95%', margin: 'auto', }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', ...style.gamemenubox }}>
@@ -53,7 +53,7 @@ function Lottery() {
                 <Typography variant="body2" sx={{ fontSize: '14px', color: 'black', fontWeight: '600' }} >98456.66</Typography>
               </Box>
               <Box sx={{}}>
-                <Typography variant="body2" sx={{ fontSize: '11px', }} >Through the platform Win Go Hash lottery seed as the result of the lottery
+                <Typography variant="body2" sx={{ fontSize: '11px', }} >Through the platform Win Go Hash Games seed as the result of the Games
                 </Typography>
               </Box>
             </Box>
@@ -91,7 +91,7 @@ function Lottery() {
                 <Typography variant="body2" sx={{ fontSize: '14px', color: 'black', fontWeight: '600' }} >98456.66</Typography>
               </Box>
               <Box sx={{}}>
-                <Typography variant="body2" sx={{ fontSize: '11px', }} >5 numbers are used as the result of the lottery, and the palying methods are flexible and diverse
+                <Typography variant="body2" sx={{ fontSize: '11px', }} >5 numbers are used as the result of the Games, and the palying methods are flexible and diverse
 
                 </Typography>
               </Box>
@@ -111,7 +111,7 @@ function Lottery() {
                 <Typography variant="body2" sx={{ fontSize: '14px', color: 'black', fontWeight: '600' }} >98456.66</Typography>
               </Box>
               <Box sx={{}}>
-                <Typography variant="body2" sx={{ fontSize: '11px', }} >By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                <Typography variant="body2" sx={{ fontSize: '11px', }} >By obtaining the real-time hash value of the TRX blockchain as the result of the Games
                 </Typography>
               </Box>
             </Box>
@@ -141,7 +141,7 @@ const style = {
     "&>div>p": { fontSize: "12px", fontWeight: 400, color: "white" },
   },
   gameheading: { fontSize: "20px", fontWeight: 700, color: "white" },
-  gamemenubox: { padding: '8px 5px', background: '#ff18184f', mt: 2, borderRadius: '10px', width: '100%' },
+  gamemenubox: { padding: '8px 5px', background: lightblue, mt: 2, borderRadius: '10px', width: '100%' },
   gameimgbox: { width: '25%', borderRadius: '10px', height: '16vh' },
   gameimg: { width: '100%', borderRadius: '10px', height: '100%', objectFit: 'cover' },
   gamenamebox: { width: '70%', },

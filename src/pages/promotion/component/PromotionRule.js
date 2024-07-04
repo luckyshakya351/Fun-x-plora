@@ -217,7 +217,7 @@ const style = {
   levalBox: {
     px: '0px', background: zubgmid, display: 'flex !important', alignItems: 'center', justifyContent: 'space-between',
     '&>div': {
-      fontSize: '12px', color: 'white !important', textAlign: 'center', border: '1px solid #292929', width: '25%', height: '45px',
+      fontSize: '12px', color: 'white !important', textAlign: 'center', border: '1px solid #fff', width: '25%', height: '45px',
       display: 'flex', alignItems: 'center', justifyContent: 'center'
     },
     '&>div>img': { width: '50%', height: '35px' },

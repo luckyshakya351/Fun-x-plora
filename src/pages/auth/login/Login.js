@@ -1,14 +1,8 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailReadOutlined';
-import NoEncryptionIcon from '@mui/icons-material/NoEncryption';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import {
   Box,
-  Button,
-  Checkbox,
   Container,
-  FormControlLabel,
   Tab,
   Tabs,
   Typography
@@ -17,11 +11,10 @@ import CryptoJS from 'crypto-js';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../../../assets/images/logored.jpg";
-import LoginWithEmail from '../login/LoginWithEmail'
-import LoginWithMobile from '../login/LoginWithMobile'
-import { lightblue, lightyellow, zubgtext } from '../../../Shared/color';
-import { Style } from '@mui/icons-material';
+import { lightblue, lightyellow } from '../../../Shared/color';
+import logo from "../../../assets/images/logowhite.jpg";
+import LoginWithEmail from '../login/LoginWithEmail';
+import LoginWithMobile from '../login/LoginWithMobile';
 
 
 function Login() {
@@ -63,7 +56,7 @@ function Login() {
             <Box component={NavLink} sx={{ width: '20%' }}>
 
             </Box>
-            <Box sx={{ width: '60%' }}>
+            <Box sx={{ width: '60%', py: 1 }}>
               <Box component='img' src={logo} sx={style.logocss}></Box>
             </Box>
             <Box component={NavLink} sx={{ width: '20%' }}>
@@ -129,7 +122,7 @@ function Login() {
 export default Login;
 
 const style = {
-  authheader: { background: zubgtext, py: 1, },
+  authheader: { background: lightblue, py: 1, },
   logocss: { width: '120px', margin: 'auto', },
   flagcss: { width: '30px' },
   icon: { fontSize: "18px", color: 'white' },

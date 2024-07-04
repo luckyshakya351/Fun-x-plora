@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import React from "react";
-import { zubgbackgrad } from "../../Shared/color";
+import { lightblue, zubgbackgrad } from "../../Shared/color";
 
 const Notification = ({ handleClosepolicy }) => {
   return (
@@ -48,7 +48,7 @@ const Notification = ({ handleClosepolicy }) => {
       <div className="w-full mt-5 ">
         <Button
           onClick={() => handleClosepolicy()}
-          style={{ width: "100%", background: zubgbackgrad }}
+          style={{ width: "100%", background: lightblue, color: 'white' }}
           variant="contained"
         >
           Confirm

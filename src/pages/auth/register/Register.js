@@ -1,3 +1,9 @@
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import MarkEmailReadIcon from '@mui/icons-material/MarkEmailReadOutlined';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import PhonelinkLockIcon from '@mui/icons-material/PhonelinkLock';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
@@ -17,6 +23,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -25,18 +32,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
-import { zubgbackgrad, zubgtext } from "../../../Shared/color";
-import poster from "../../../assets/images/poster3.jpg";
+import { lightblue, zubgtext } from "../../../Shared/color";
+import logo from "../../../assets/images/logowhite.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
-import CryptoJS from "crypto-js";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import logo from "../../../assets/images/logored.jpg";
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid'
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import MarkEmailReadIcon from '@mui/icons-material/MarkEmailReadOutlined';
-import PhonelinkLockIcon from '@mui/icons-material/PhonelinkLock';
-import ReceiptIcon from '@mui/icons-material/Receipt';
 
 
 
@@ -174,7 +173,7 @@ function Register() {
         >
           <Box sx={style.flexbetween}>
             <Box component={NavLink} sx={{ width: '20%' }}>
-              <ArrowBackIosIcon sx={style.icon} />
+              {/* <ArrowBackIosIcon sx={style.icon} /> */}
             </Box>
             <Box sx={{ width: '60%' }}>
               <Box component='img' src={logo} sx={style.logocss}></Box>
@@ -209,7 +208,7 @@ function Register() {
         <Box mt={0}>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mb: 1 }}>
-              <PersonOutlineIcon sx={style.icon} /> <Typography variant="body1" ml={1}>Name</Typography>
+              <PersonOutlineIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Name</Typography>
             </Box>
             <TextField
               id="name"
@@ -232,7 +231,7 @@ function Register() {
 
         <FormControl fullWidth>
           <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-            <PhoneAndroidIcon sx={style.icon} /> <Typography variant="body1" ml={1}> Phone number</Typography>
+            <PhoneAndroidIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Phone number</Typography>
           </Box>
           <Box sx={{ ...style.flexbetween, }}>
             <Select
@@ -265,7 +264,7 @@ function Register() {
         <Box >
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <MarkEmailReadIcon sx={style.icon} /> <Typography variant="body1" ml={1}>E-mail</Typography>
+              <MarkEmailReadIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>E-mail</Typography>
             </Box>
             <TextField
               id="fullWidth"
@@ -285,7 +284,7 @@ function Register() {
         <Box mt={2}>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <PhonelinkLockIcon sx={style.icon} /> <Typography variant="body1" ml={1}>Set password</Typography>
+              <PhonelinkLockIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Set password</Typography>
             </Box>
             <OutlinedInput
               placeholder="Enter password"
@@ -320,7 +319,7 @@ function Register() {
         <Box mt={2}>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <PhonelinkLockIcon sx={style.icon} /> <Typography variant="body1" ml={1}>Confirm password</Typography>
+              <PhonelinkLockIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Confirm password</Typography>
             </Box>
             <OutlinedInput
               sx={{ ...style.passwordinput, }}
@@ -360,7 +359,7 @@ function Register() {
           <FormControl fullWidth>
 
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <ReceiptIcon sx={style.icon} /> <Typography variant="body1" ml={1}>Referral Code</Typography>
+              <ReceiptIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Referral Code</Typography>
             </Box>
             <TextField
               id="referral_code"
@@ -420,14 +419,14 @@ export default Register;
 
 
 const style = {
-  authheader: { background: zubgtext, py: 1, },
+  authheader: { background: lightblue, py: 1, },
   flexcenterstart: {
     display: 'flex',
     alignItems: 'center',
   },
   normalinput: {
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
+    backgroundColor: '#fff',
     '&>div': {
       border: 'none',
       borderRadius: '10px',
@@ -437,7 +436,7 @@ const style = {
     '&>div': {
       border: 'none',
       borderRadius: '10px',
-      color: 'red'
+      color: lightblue
     },
     '&>div>input': {
       padding: '10px !important'
@@ -456,13 +455,13 @@ const style = {
   },
   passwordinput: {
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
-    '&>input': { padding: '10px', color: 'red' },
+    backgroundColor: '#fff',
+    '&>input': { padding: '10px', color: lightblue },
     '&>fieldset': { border: 'none' },
     // '&>div>button>svg': { padding: '10px', color: 'red' },
     // '&>div>button': { padding: '0px', },
     '&>:hover': {
-      backgroundColor: '#ffe5e5', borderRadius: '10px 0px 0px 10px'
+      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
     },
   },
   icon: { color: zubgtext },
@@ -478,11 +477,11 @@ const style = {
   selectinput: {
     width: '18%',
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
+    backgroundColor: '#fff',
     '&>div': {
       border: 'none',
       borderRadius: '10px',
-      color: zubgtext,
+      color: lightblue,
       padding: '10px 0px 10px 5px !important'
     },
     '&>fieldset': {
@@ -494,11 +493,11 @@ const style = {
   },
   passwordinput: {
     borderRadius: '10px',
-    backgroundColor: '#ffe5e5',
-    '&>input': { padding: '10px', color: 'red' },
+    backgroundColor: '#fff',
+    '&>input': { padding: '10px', color: lightblue },
     '&>fieldset': { border: 'none' },
     '&>:hover': {
-      backgroundColor: '#ffe5e5', borderRadius: '10px 0px 0px 10px'
+      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
     },
   },
 }
