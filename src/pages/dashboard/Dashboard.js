@@ -38,7 +38,7 @@ import {
   zubgback,
   zubgmid,
   zubgshadow,
-  zubgtext
+  zubgtext,
 } from "../../Shared/color";
 import anand from "../../assets/anand.jpg";
 import aviator_game_image from "../../assets/aviator_game_image.png";
@@ -73,7 +73,7 @@ import {
   endpoint,
   fron_end_main_domain,
   support_mail,
-  telegram_url
+  telegram_url,
 } from "../../services/urls";
 import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
@@ -111,7 +111,7 @@ function Dashboard() {
   useQuery(["promotion_data"], () => MypromotionDataFn(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
-    refetchOnWindowFocus:false
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
@@ -146,7 +146,7 @@ function Dashboard() {
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
-    refetchOnWindowFocus:false
+    refetchOnWindowFocus: false,
   });
 
   const newdata = data?.data?.data || 0;
@@ -157,7 +157,7 @@ function Dashboard() {
   } = useQuery(["allWithdrawlCashUser"], () => allWithdrawlCashUserFn(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
-    refetchOnWindowFocus:false
+    refetchOnWindowFocus: false,
   });
 
   const allWithdrawl_CashData = allWithdrawlCashData?.data?.data || [];
@@ -300,7 +300,11 @@ function Dashboard() {
                 className="flex items-center gap-2"
                 style={{ color: zubgtext }}
               >
-                <Box component="img" src={logo} sx={{ width: "60px", height: '35px' }}></Box>
+                <Box
+                  component="img"
+                  src={logo}
+                  sx={{ width: "60px", height: "35px" }}
+                ></Box>
               </div>
               <div className="flex gap-1 items-center cursor-pointer">
                 <CloudDownloadIcon sx={{ color: zubgtext }} />
@@ -406,12 +410,12 @@ function Dashboard() {
             }}
           >
             <Box sx={{ width: "10%" }}>
-              <CampaignOutlinedIcon sx={{ color: 'black' }} />
+              <CampaignOutlinedIcon sx={{ color: "black" }} />
             </Box>
             <Box
               sx={{
                 width: "90%",
-                "&>p": { fontSize: "13px", color: 'black' },
+                "&>p": { fontSize: "13px", color: "black" },
               }}
             >
               <Typography variant="body1">
@@ -565,11 +569,10 @@ function Dashboard() {
                       if (
                         i.name === "Slots" ||
                         i.name === "Popular" ||
-                        i.name === "Casino"
-                        ||
+                        i.name === "Casino" ||
                         i.name === "Aviator"
                       )
-                        return toast("Comming Soon !");
+                        return toast("Comming Soon !", { id: 1 });
                       scrollToSection("games");
                       settype_of_game(i?.name);
                     }}
@@ -645,25 +648,26 @@ function Dashboard() {
                           Math.floor(Math.random() * 5) + 1 === 1
                             ? "https://mui.com/static/images/avatar/4.jpg"
                             : Math.floor(Math.random() * 5) + 1 === 2
-                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                              : Math.floor(Math.random() * 5) + 1 === 3
-                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                                : Math.floor(Math.random() * 5) + 1 === 4
-                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                                  : ""
+                            ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+                            : Math.floor(Math.random() * 5) + 1 === 3
+                            ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+                            : Math.floor(Math.random() * 5) + 1 === 4
+                            ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+                            : ""
                         } // Close the src attribute here
-                        className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                          }`}
+                        className={`capitalize ${
+                          i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
+                        }`}
                       >
                         {i?.email?.split("@")[0]?.substring(0, 1)}
                       </Avatar>
                       <Typography variant="body1">
                         {i?.email
                           ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
+                            "**" +
+                            (i.email.split("@")[0].length > 2
+                              ? i.email.split("@")[0].substring(2, 4)
+                              : "")
                           : "**"}
                       </Typography>
                     </Stack>
@@ -698,8 +702,8 @@ function Dashboard() {
               position: "relative",
             }}
           >
-            <Box sx={{ position: 'absolute', top: '49%', left: '40%', }}>
-              <Box component='img' src={logo} sx={{ width: '80px' }}></Box>
+            <Box sx={{ position: "absolute", top: "49%", left: "40%" }}>
+              <Box component="img" src={logo} sx={{ width: "80px" }}></Box>
             </Box>
             <Box sx={styles.winner1}>
               <Box
@@ -761,7 +765,6 @@ function Dashboard() {
           </Box>
           {/* stage Podium end */}
 
-
           {loding ? (
             <div className="w-[100%] flex justify-center">
               <CircularProgress className="!text-#E71D1E" />
@@ -794,25 +797,26 @@ function Dashboard() {
                           Math.floor(Math.random() * 5) + 1 === 1
                             ? "https://mui.com/static/images/avatar/4.jpg"
                             : Math.floor(Math.random() * 5) + 1 === 2
-                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                              : Math.floor(Math.random() * 5) + 1 === 3
-                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                                : Math.floor(Math.random() * 5) + 1 === 4
-                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                                  : ""
+                            ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+                            : Math.floor(Math.random() * 5) + 1 === 3
+                            ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+                            : Math.floor(Math.random() * 5) + 1 === 4
+                            ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+                            : ""
                         } // Close the src attribute here
-                        className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                          }`}
+                        className={`capitalize ${
+                          i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
+                        }`}
                       >
                         {i?.email?.split("@")[0]?.substring(0, 1)}
                       </Avatar>
                       <Typography variant="body1">
                         {i?.email
                           ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
+                            "**" +
+                            (i.email.split("@")[0].length > 2
+                              ? i.email.split("@")[0].substring(2, 4)
+                              : "")
                           : "**"}
                       </Typography>
                     </Stack>
@@ -863,8 +867,7 @@ function Dashboard() {
                 />
               </div>
               <DialogContent style={{ background: zubgback }}>
-                {!openbannerurl ||
-                  openbannerurl === "" ? (
+                {!openbannerurl || openbannerurl === "" ? (
                   <Notification handleClosepolicy={handleClosepolicy} />
                 ) : (
                   <img src={openbannerurl} className="w-[100%] h-[100%]" />
@@ -929,7 +932,7 @@ const styles = {
   },
   depositWithdrawIcon: { width: "30px", height: "30px" },
   referralLinkContainer: {
-    background: 'black',
+    background: "black",
     boxShadow: zubgshadow,
     padding: "15px 15px",
     borderRadius: "5px",
@@ -962,16 +965,16 @@ const styles = {
     color: "white !important",
     textTransform: "capitalize",
     fontWeight: "400",
-    background: '#1A8AD5',
-    "&:hover": { background: '#1A8AD5' },
+    background: "#1A8AD5",
+    "&:hover": { background: "#1A8AD5" },
   },
   supportButton: {
     fontSize: "14px",
     color: "white !important",
     textTransform: "capitalize",
     fontWeight: "400",
-    background: '#1A8AD5',
-    "&:hover": { background: '#1A8AD5' },
+    background: "#1A8AD5",
+    "&:hover": { background: "#1A8AD5" },
   },
   socialButtonIcon: {
     margin: "auto",
@@ -1097,8 +1100,8 @@ const styles = {
       height: "50px",
       borderRadius: "10px",
       marginRight: "5px",
-      background: '#ff8080',
-      objectFit: 'cover',
+      background: "#ff8080",
+      objectFit: "cover",
     },
     "&>div>p:nth-child(1)": {
       color: zubgtext,
