@@ -4,13 +4,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import WalletIcon from '@mui/icons-material/Wallet';
 import { Box, Stack, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import homeact from '../../../../assets/images/home (3).png';
-import home from '../../../../assets/images/home (2).png';
-import puzzleact from '../../../../assets/images/activity.png';
-import puzzle from '../../../../assets/images/activity (1).png';
-import { lightgreen, zubgtext } from "../../../../Shared/color";
 import { default as promotion, default as promotionact } from '../../../../assets/images/fevicon.jpg';
 import tabBarBg from '../../../../assets/images/tabBarBg-301df93c.png';
+import { lightgreen, zubgtext } from "../../../../Shared/color";
 
 
 function Footer() {
