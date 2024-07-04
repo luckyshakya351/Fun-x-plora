@@ -1,21 +1,16 @@
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency';
+import ExtensionIcon from '@mui/icons-material/Extension';
+import HomeIcon from '@mui/icons-material/Home';
+import WalletIcon from '@mui/icons-material/Wallet';
 import { Box, Stack, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import homeact from '../../../../assets/images/home (3).png';
 import home from '../../../../assets/images/home (2).png';
-import promotionact from '../../../../assets/images/diamond (4).png';
-import promotion from '../../../../assets/images/diamond (4).png';
 import puzzleact from '../../../../assets/images/activity.png';
 import puzzle from '../../../../assets/images/activity (1).png';
+import { lightgreen, zubgtext } from "../../../../Shared/color";
+import { default as promotion, default as promotionact } from '../../../../assets/images/fevicon.jpg';
 import tabBarBg from '../../../../assets/images/tabBarBg-301df93c.png';
-import useract from '../../../../assets/images/user (6).png';
-import user from '../../../../assets/images/user (7).png';
-import walletact from '../../../../assets/images/wallet (5).png';
-import wallet from '../../../../assets/images/wallet (4).png';
-import { lightgrelightgreen, en, zubgback, zubgmid, zubgtext, lightgreen } from "../../../../Shared/color";
-import HomeIcon from '@mui/icons-material/Home';
-import ExtensionIcon from '@mui/icons-material/Extension';
-import WalletIcon from '@mui/icons-material/Wallet';
-import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency';
 
 
 function Footer() {
@@ -33,9 +28,9 @@ function Footer() {
       <Box sx={style.root}>
         <Stack direction="row" sx={style.stack}>
           <Box sx={style.nav} onClick={() => navigate("/dashboard")}>
-            {location.pathname == "/dashboard" && <HomeIcon sx={{ color: 'red' }} />}
+            {location.pathname === "/dashboard" && <HomeIcon sx={{ color: 'red' }} />}
             {location.pathname !== "/dashboard" && <HomeIcon sx={{ color: lightgreen }} />}
-            {location.pathname == "/dashboard" && <Typography variant="body1" sx={style.text}>
+            {location.pathname === "/dashboard" && <Typography variant="body1" sx={style.text}>
               Home
             </Typography>
             }
@@ -46,7 +41,7 @@ function Footer() {
 
           </Box>
           <Box sx={style.nav} onClick={() => navigate("/activity")}>
-            {location.pathname == "/activity" && <ExtensionIcon sx={{ color: 'red' }} />}
+            {location.pathname === "/activity" && <ExtensionIcon sx={{ color: 'red' }} />}
             {location.pathname !== "/activity" && <ExtensionIcon sx={{ color: lightgreen }} />}
             {location.pathname == "/activity" && <Typography variant="body1" sx={style.text}>
               Activity
@@ -72,7 +67,7 @@ function Footer() {
                 top: ' -62px',
                 left: '12px',
               }}>
-                {location.pathname == "/promotion" && <Box component='img' src={promotionact} width={35} />}
+                {location.pathname === "/promotion" && <Box component='img' src={promotionact} width={35} />}
                 {location.pathname !== "/promotion" && <Box component='img' src={promotion} width={35} />}
               </Box>
             </Box>
@@ -81,9 +76,9 @@ function Footer() {
             </Typography>
           </Box>
           <Box onClick={() => navigate("/wallet")} sx={style.nav}>
-            {location.pathname == "/wallet" && <WalletIcon sx={{ color: 'red' }} />}
+            {location.pathname === "/wallet" && <WalletIcon sx={{ color: 'red' }} />}
             {location.pathname !== "/wallet" && <WalletIcon sx={{ color: lightgreen }} />}
-            {location.pathname == "/wallet" && <Typography variant="body1" sx={style.text}>
+            {location.pathname === "/wallet" && <Typography variant="body1" sx={style.text}>
               Wallet
             </Typography>
             }
@@ -93,9 +88,9 @@ function Footer() {
             }
           </Box>
           <Box sx={style.nav} onClick={() => navigate("/account")}>
-            {location.pathname == "/account" && <ContactEmergencyIcon sx={{ color: 'red' }} />}
+            {location.pathname === "/account" && <ContactEmergencyIcon sx={{ color: 'red' }} />}
             {location.pathname !== "/account" && <ContactEmergencyIcon sx={{ color: lightgreen }} />}
-            {location.pathname == "/account" && <Typography variant="body1" sx={style.text}>
+            {location.pathname === "/account" && <Typography variant="body1" sx={style.text}>
               Account
             </Typography>
             }

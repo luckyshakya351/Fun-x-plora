@@ -1,5 +1,10 @@
+import LayoutAviator from "../GamePage/Layout";
+import MainPage from "../GamePage/MainPage";
+import PlayGame from "../GamePage/PlayGame";
 import Test from "../pages/Test";
 import Account from "../pages/account/Account";
+import AddBankDetails from "../pages/account/Component/AddBankDetails";
+import AddedBankDetailList from "../pages/account/Component/AddedBankDetailList";
 import BatHistorys from "../pages/account/Component/BatHistory";
 import Feedback from "../pages/account/Component/Feedback";
 import GameNotification from "../pages/account/Component/GameNotification";
@@ -13,47 +18,34 @@ import SettingCenter from "../pages/account/Component/SettingCenter";
 import Activity from "../pages/activity/Activity";
 import Register from "../pages/auth/register/Register";
 import Dashboard from "../pages/dashboard/Dashboard";
+import FundRequest from "../pages/dashboard/FundRequest";
 import Withdrawl from "../pages/dashboard/Withdrawl";
+import MainPageOFIncome from "../pages/income/MainPageOFIncome";
+import DailyCashBackBonus from "../pages/income/incomeSubSection/DailyCashBackBonus";
+import DailySalaryBonus from "../pages/income/incomeSubSection/DailySalaryBonus";
+import DepositBonus from "../pages/income/incomeSubSection/DepositBonus";
+import ReferralBonus from "../pages/income/incomeSubSection/ReferralBonus";
+import RegistrationBonus from "../pages/income/incomeSubSection/RegistrationBonus";
+import SelfTradingBonus from "../pages/income/incomeSubSection/SelfTradingBonus";
+import TeamRewardBonus from "../pages/income/incomeSubSection/TeamRewardBonus";
+import TeamTradingBonus from "../pages/income/incomeSubSection/TeamTradingBonus";
 import Promotion from "../pages/promotion/Promotion";
+import CustomerLine from "../pages/promotion/component/CustomerLine";
 import Invitaton from "../pages/promotion/component/Invitaton";
 import PromotionRule from "../pages/promotion/component/PromotionRule";
+import RobateRetio from "../pages/promotion/component/RebateRatio";
 import Subordinate from "../pages/promotion/component/Subordinate";
+import TeamData from "../pages/promotion/component/TeamData";
 import TeamReports from "../pages/promotion/component/TeamReport";
 import Trx from "../pages/trx/Trx";
+import TronScanPage from "../pages/trx/component/TronScanPage";
 import Wallet from "../pages/wallet/Wallet";
 import DepositeHistory from "../pages/wallet/component/DepositeHistory";
+import QRScreen from "../pages/wallet/component/QRScreen";
 import WalletRecharge from "../pages/wallet/component/WalletRecharge";
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
 import Win from "../pages/win/win";
-import RobateRetio from "../pages/promotion/component/RebateRatio";
-import FundRequest from "../pages/dashboard/FundRequest";
-import CustomerLine from "../pages/promotion/component/CustomerLine";
-import MainPage from "../GamePage/MainPage";
-import LayoutAviator from "../GamePage/Layout";
-import PlayGame from "../GamePage/PlayGame";
-import CricketUserprofile from "../cricket/profile/CricketUserprofile";
-import CricketDepositHistory from "../cricket/transactionHistory/CricketDepositHistory";
-import CricketWithdrawlHistory from "../cricket/transactionHistory/CricketWithdrawlHistory";
-import DepositCash from "../cricket/transacton/DepositCash";
-import WithdrawlCash from "../cricket/transacton/WithdrawlCash";
-import CricketWalletFundDepositForm from "../cricket/transacton/CricketWalletFundDepositForm";
-import CricketRegistrationForm from "../cricket/cricketauth/CricketRegistrationForm";
-import Cricket from "../cricket/Dashboard/Cricket";
-import MainPageOFIncome from "../pages/income/MainPageOFIncome";
-import RegistrationBonus from "../pages/income/incomeSubSection/RegistrationBonus";
-import DepositBonus from "../pages/income/incomeSubSection/DepositBonus";
-import ReferralBonus from "../pages/income/incomeSubSection/ReferralBonus";
-import DailyCashBackBonus from "../pages/income/incomeSubSection/DailyCashBackBonus";
-import DailySalaryBonus from "../pages/income/incomeSubSection/DailySalaryBonus";
-import SelfTradingBonus from "../pages/income/incomeSubSection/SelfTradingBonus";
-import TeamTradingBonus from "../pages/income/incomeSubSection/TeamTradingBonus";
-import TeamRewardBonus from "../pages/income/incomeSubSection/TeamRewardBonus";
-import AddBankDetails from "../pages/account/Component/AddBankDetails";
-import AddedBankDetailList from "../pages/account/Component/AddedBankDetailList";
-import QRScreen from "../pages/wallet/component/QRScreen";
-import TeamData from "../pages/promotion/component/TeamData";
-import TronScanPage from "../pages/trx/component/TronScanPage";
 
 export const routes = [
     {
@@ -199,38 +191,6 @@ export const routes = [
     {
         path: "/account/:id",
         component: <LayoutAviator component={<Account />} />
-    },
-    {
-        path: "/cricket/user-profile",
-        component: <CricketUserprofile />
-    },
-    {
-        path: "/cricket/deposit-history",
-        component: <CricketDepositHistory />
-    },
-    {
-        path: "/cricket/withdrawl-history",
-        component: <CricketWithdrawlHistory />
-    },
-    {
-        path: "/cricket/depositCash",
-        component: <DepositCash />
-    },
-    {
-        path: "/cricket/withdrawlCash",
-        component: <WithdrawlCash />
-    },
-    {
-        path: "/cricket/fund-deposit-request-form",
-        component: <CricketWalletFundDepositForm />
-    },
-    {
-        path: "/cricket/registration",
-        component: <CricketRegistrationForm />
-    },
-    {
-        path: "/cricket",
-        component: <Cricket />
     },
     {
         path: "/account/income-main",
