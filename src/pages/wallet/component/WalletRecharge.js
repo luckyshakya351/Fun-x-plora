@@ -15,7 +15,6 @@ import {
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
-import moment from "moment";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,7 +38,7 @@ import balance from "../../../assets/images/send.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
-import { endpoint, rupees } from "../../../services/urls";
+import { endpoint } from "../../../services/urls";
 
 function WalletRecharge() {
   const [t_id, setT_id] = React.useState();
@@ -139,15 +138,15 @@ function WalletRecharge() {
       fd.append("Name", user_name);
       fd.append("TransactionID", transaction_id);
 
-      return toast("We are upgrading for smooth and fast payin please wait...");
+      // return toast("We are upgrading for smooth and fast payin please wait...");
 
-      // paymentRequest(fd, fk.values.amount);
-      // fk.setFieldValue("all_data", {
-      //   t_id: fd.get("TransactionID") || "",
-      //   amount: fk.values.amount,
-      //   date: new Date(),
-      // });
-      // localStorage.removeItem("amount_set");
+      paymentRequest(fd, fk.values.amount);
+      fk.setFieldValue("all_data", {
+        t_id: fd.get("TransactionID") || "",
+        amount: fk.values.amount,
+        date: new Date(),
+      });
+      localStorage.removeItem("amount_set");
     },
   });
 
@@ -177,7 +176,7 @@ function WalletRecharge() {
     }
     try {
       const res = await axios.post(`${endpoint.payment_request}`, fdata);
-      const qr_url = res?.data?.data && JSON.parse(res?.data?.data)?.payment_link || "";
+      const qr_url = res?.data?.data && JSON.parse(res?.data?.data)?.upi_deep_link || "";
       // const qr_url = JSON.parse(res?.data?.data) || "";
       console.log(res);
       if (qr_url) {
@@ -191,67 +190,67 @@ function WalletRecharge() {
     setloding(false);
   }
 
-  React.useEffect(() => {
-    let x = true;
-    if (deposit_req_data) {
-      let min = 1;
-      let sec = 59;
-      const interval = setInterval(() => {
-        set_show_time(`${min}_${sec}`);
-        if (x) {
-          startGetTimeForCallBack();
-          x = false;
-        }
-        sec--;
+  // React.useEffect(() => {
+  //   let x = true;
+  //   if (deposit_req_data) {
+  //     let min = 1;
+  //     let sec = 59;
+  //     const interval = setInterval(() => {
+  //       set_show_time(`${min}_${sec}`);
+  //       if (x) {
+  //         startGetTimeForCallBack();
+  //         x = false;
+  //       }
+  //       sec--;
 
-        if (sec < 0) {
-          sec = 59;
-          min--;
+  //       if (sec < 0) {
+  //         sec = 59;
+  //         min--;
 
-          if (min < 0) {
-            sec = 59;
-            min = 1;
-            stopPrintingHello();
-            clearInterval(interval);
-            setDeposit_req_data();
-            set_show_time("0_0");
-            setloding(false);
-          }
-        }
-      }, 1000);
-    }
-  }, [deposit_req_data]);
+  //         if (min < 0) {
+  //           sec = 59;
+  //           min = 1;
+  //           stopPrintingHello();
+  //           clearInterval(interval);
+  //           setDeposit_req_data();
+  //           set_show_time("0_0");
+  //           setloding(false);
+  //         }
+  //       }
+  //     }, 1000);
+  //   }
+  // }, [deposit_req_data]);
 
-  async function printHello() {
-    try {
-      const res = await axios.get(
-        `${endpoint.recharge_call_bakc}?userid=${user_id}&transectionid=${t_id}`
-      );
-      console.log(res, "Api response");
-      if (res?.data?.payment_status !== "Pending") {
-        setTimeout(() => {
-          setDeposit_req_data();
-          set_show_time("0_0");
-          setloding(false);
-          stopPrintingHello();
-        }, 2000);
-      }
-      if (res?.data?.msg === "Successfully Data Found") {
-        setCallBackResponse(res?.data);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  // async function printHello() {
+  //   try {
+  //     const res = await axios.get(
+  //       `${endpoint.recharge_call_bakc}?userid=${user_id}&transectionid=${t_id}`
+  //     );
+  //     console.log(res, "Api response");
+  //     if (res?.data?.payment_status !== "Pending") {
+  //       setTimeout(() => {
+  //         setDeposit_req_data();
+  //         set_show_time("0_0");
+  //         setloding(false);
+  //         stopPrintingHello();
+  //       }, 2000);
+  //     }
+  //     if (res?.data?.msg === "Successfully Data Found") {
+  //       setCallBackResponse(res?.data);
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
-  function startGetTimeForCallBack() {
-    intervalId = setInterval(printHello, 20000);
-  }
+  // function startGetTimeForCallBack() {
+  //   intervalId = setInterval(printHello, 20000);
+  // }
 
-  // Function to stop the interval
-  function stopPrintingHello() {
-    clearInterval(intervalId); // Clear the interval using its ID
-  }
+  // // Function to stop the interval
+  // function stopPrintingHello() {
+  //   clearInterval(intervalId); // Clear the interval using its ID
+  // }
 
   const audio = React.useMemo(() => {
     return (
@@ -757,11 +756,11 @@ function WalletRecharge() {
               {fk.touched.amount && fk.errors.amount && (
                 <div className="error">{fk.errors.amount}</div>
               )}
-              {!deposit_req_data ? (
+              {/* {!deposit_req_data ? ( */}
                 <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
                   Deposit
                 </Button>
-              ) : (
+              {/* ) : (
                 <div style={style.paytmbtntwo} className="mt-5">
                   <div className="flex w-full justify-between items-center">
                     <span style={{ color: "white" }}>
@@ -805,7 +804,7 @@ function WalletRecharge() {
                     </span>
                   </div>
                 </div>
-              )}
+              )} */}
             </Stack>
           </Box>
           {rechargeInstruction}
