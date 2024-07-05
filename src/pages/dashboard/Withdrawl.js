@@ -85,7 +85,6 @@ function Withdrawl() {
   React.useEffect(() => {
     walletamountFn();
   }, []);
-
   const { isLoading, data } = useQuery(
     ["bank_list_details"],
     () => BankListDetails(),

@@ -6,7 +6,7 @@ import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
@@ -23,11 +23,12 @@ import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun } from "../../../../redux/slices/counterSlice";
+import { dummycounterFun, net_wallet_amount_function } from "../../../../redux/slices/counterSlice";
 import { changeImages } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
 import { zubgmid } from "../../../../Shared/color";
+import { walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -147,6 +148,17 @@ const TwoMinCountDown = ({ fk }) => {
       console.error("Error during play:", error);
     }
   };
+  const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
+    refetchOnMount: false,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: false,
+  });
+
+
+  React.useEffect(()=>{
+    dispatch(net_wallet_amount_function(data?.data?.data))
+  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
+
 
   return (
     <Box className="countdownbg" sx={{ background: zubgmid, }}>

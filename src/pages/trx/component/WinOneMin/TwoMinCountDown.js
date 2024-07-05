@@ -16,6 +16,7 @@ import Policy from "../policy/Policy";
 import ShowImages from "./ShowImages";
 import {
   dummycounterFun,
+  net_wallet_amount_function,
   trx_game_image_index_function,
   updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
@@ -23,6 +24,7 @@ import axios from "axios";
 import { endpoint } from "../../../../services/urls";
 import toast from "react-hot-toast";
 import { zubgmid, zubgtext } from "../../../../Shared/color";
+import { walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -106,6 +108,20 @@ const TwoMinCountDown = ({ fk }) => {
     };
   }, []);
 
+  const { isLoading: amount_loder, data } = useQuery(
+    ["walletamount"],
+    () => walletamount(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  React.useEffect(() => {
+    dispatch(net_wallet_amount_function(data?.data?.data));
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
+
   const { isLoading, data: game_history } = useQuery(
     ["trx_gamehistory"],
     () => GameHistoryFn(),
@@ -176,10 +192,7 @@ const TwoMinCountDown = ({ fk }) => {
   };
 
   return (
-    <Box
-      className="countdownbgtrx"
-      sx={{ background: zubgtext }}
-    >
+    <Box className="countdownbgtrx" sx={{ background: zubgtext }}>
       {React.useMemo(() => {
         return (
           <>

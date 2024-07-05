@@ -1,3 +1,4 @@
+import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
@@ -10,33 +11,28 @@ import {
 import * as React from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery } from "react-query";
-import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
   zubgback,
-  zubgbackgrad,
   zubggray,
-  zubgmid,
-  zubgshadow,
-  zubgtext,
-  zubgwhite,
+  zubgtext
 } from "../../Shared/color";
-import withdrow from "../../assets/images/withdraw.png";
+import bgms from "../../assets/images/bgs.jpg";
 import rechargeIcon from "../../assets/images/deposit.png";
 import wdhistory from "../../assets/images/list.png";
 import deposite from "../../assets/images/manuscript.png";
 import wallet from "../../assets/images/wallet (5).png";
-import bgms1 from "../../assets/images/playgame.jpg";
-import bgms from "../../assets/images/bgs.jpg";
+import withdrow from "../../assets/images/withdraw.png";
+import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { MyProfileDataFn } from "../../services/apicalling";
-import CloseIcon from "@mui/icons-material/Close";
-import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 
 function Wallet() {
-  const isMediumScreen = useMediaQuery({ minWidth: 800 });
-  const navigate = useNavigate();
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
+  );  const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =
     React.useState(false);
   const { isLoading, data } = useQuery(["myprofile"], () => MyProfileDataFn(), {
@@ -44,151 +40,6 @@ function Wallet() {
     refetchOnReconnect: true,
   });
   const result = data?.data?.data;
-
-  // const main_wallet = {
-  //   series: [(
-  //     Number(result?.bonus || 0)
-  //   )?.toFixed(0) || 0],
-  //   options: {
-  //     chart: {
-  //       height: 250,
-  //       type: "radialBar",
-  //       toolbar: {
-  //         show: false,
-  //       },
-  //     },
-  //     plotOptions: {
-  //       radialBar: {
-  //         stroke: {
-  //           color: '#E71D1E',
-  //           strokeWidth: 15,
-  //           lineCap: 'round',
-  //         },
-  //         fill: {
-  //           colors: ['#E71D1E'],
-  //         },
-  //         startAngle: 0,
-  //         endAngle: 365,
-  //         hollow: {
-  //           margin: 0,
-  //           size: "70%",
-  //           background: zubgback,
-  //           image: undefined,
-  //           imageOffsetX: 0,
-  //           imageOffsetY: 0,
-  //           position: "front",
-  //           dropShadow: {
-  //             enabled: true,
-  //             top: 3,
-  //             left: 0,
-  //             blur: 4,
-  //             opacity: 0.24,
-  //           },
-  //         },
-  //         track: {
-  //           background: "#fff",
-  //           strokeWidth: "67%",
-  //           margin: 0, // margin is in pixels
-  //         },
-
-  //         dataLabels: {
-  //           show: true,
-  //           name: {
-  //             offsetY: -10,
-  //             show: true,
-  //             color: zubgtext,
-  //             fontSize: "17px",
-  //           },
-  //           value: {
-  //             formatter: function (val) {
-  //               return parseInt(val);
-  //             },
-  //             color: zubgtext,
-  //             fontSize: "36px",
-  //             show: true,
-  //           },
-  //         },
-  //       },
-  //     },
-  //     labels: ["Bonus"],
-  //   },
-  // };
-
-  // const third_party_wallet = {
-  //   series: [(
-  //     Number(
-  //       Number(result?.winning_wallet || 0)
-  //     ) || 0
-  //   )?.toFixed(0)],
-  //   options: {
-  //     chart: {
-  //       height: 250,
-  //       type: "radialBar",
-  //       toolbar: {
-  //         show: false,
-  //       },
-  //     },
-  //     plotOptions: {
-  //       radialBar: {
-  //         startAngle: -135,
-  //         endAngle: 225,
-  //         hollow: {
-  //           margin: 0,
-  //           size: "70%",
-  //           background: zubgmid,
-  //           image: undefined,
-  //           imageOffsetX: 0,
-  //           imageOffsetY: 0,
-  //           position: "front",
-  //           dropShadow: {
-  //             enabled: true,
-  //             top: 3,
-  //             left: 0,
-  //             blur: 4,
-  //             opacity: 0.24,
-  //           },
-  //         },
-  //         track: {
-  //           background: "#fff",
-  //           strokeWidth: "67%",
-  //           margin: 0, // margin is in pixels
-  //         },
-
-  //         dataLabels: {
-  //           show: true,
-  //           name: {
-  //             offsetY: -10,
-  //             show: true,
-  //             color: "white",
-  //             fontSize: "17px",
-  //           },
-  //           value: {
-  //             formatter: function (val) {
-  //               return parseInt(val);
-  //             },
-  //             color: "white",
-  //             fontSize: "36px",
-  //             show: true,
-  //           },
-  //         },
-  //       },
-  //     },
-  //     fill: {
-  //       type: "gradient",
-  //       gradient: {
-  //         type: "horizontal",
-  //         background: zubgbackgrad,
-  //         inverseColors: true,
-
-  //         stops: [0, 100],
-  //       },
-  //     },
-  //     stroke: {
-  //       lineCap: "round",
-  //     },
-  //     labels: ["Amount"],
-  //   },
-  // };
 
   const series = [Number(result?.bonus || 0)?.toFixed(2) || 0];
   const series2 = [
@@ -279,12 +130,9 @@ function Wallet() {
               <Box component="img" src={wallet} width={50}></Box>
               <Typography variant="h2" color="initial" sx={{ color: zubgtext }}>
                 ₹{" "}
-                {(
-                  Number(
-                    Number(result?.winning_wallet || 0) +
-                    Number(result?.wallet || 0)
-                  ) || 0
-                )?.toFixed(0)}
+                {Number(
+                  Number(net_wallet_amount?.wallet || 0) + Number(net_wallet_amount?.winning || 0)
+                )?.toFixed(2)}
               </Typography>
               <Typography
                 variant="body1"

@@ -54,6 +54,7 @@ import axios from "axios";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import bgms from "../../assets/images/playgame.jpg";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
+import { useSelector } from "react-redux";
 
 function Account() {
   const location = useLocation();
@@ -64,10 +65,14 @@ function Account() {
   const profile_data = localStorage.getItem("profile_data");
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
   const [imageNumber, setImageNumber] = useState(profile_data || "1");
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
+  );
   const { isLoading, data } = useQuery(["myprofile"], () => MyProfileDataFn(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
   });
+
   const result = data?.data?.data;
 
   const imge_array = [
@@ -89,10 +94,11 @@ function Account() {
     } catch (e) {
       console.log(e);
     }
-    client.removeQueries("myprofile");
   }
 
   useEffect(() => {
+    client.removeQueries("myprofile");
+    client.refetchQueries("walletamount");
     if (transactionId) {
       sendUrlCallBackToBackend(transactionId);
     }
@@ -133,12 +139,10 @@ function Account() {
           <Stack direction="row" sx={{ alignItems: "center", mt: "10px" }}>
             <Typography variant="body1" color="initial" sx={style.totalBalance}>
               ₹
-              {(
-                Number(
-                  Number(result?.winning_wallet || 0) +
-                    Number(result?.wallet || 0)
-                ) || 0
-              )?.toFixed(0)}
+              {Number(
+                Number(net_wallet_amount?.wallet || 0) +
+                  Number(net_wallet_amount?.winning || 0) || 0
+              )?.toFixed(2)}
             </Typography>
             <CachedIcon sx={style.cachedIcon} />
           </Stack>

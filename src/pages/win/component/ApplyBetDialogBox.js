@@ -41,7 +41,9 @@ const ApplyBetDialogBox = ({
   const [Rules, setRules] = useState(false);
   const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
-
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
+  );
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
@@ -92,6 +94,10 @@ const ApplyBetDialogBox = ({
         type,
       gameid: Number(gid),
     };
+    if(reqBody.amount>Number(
+      Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
+    ))
+    return toast("Your Wallet Amount is low.")
     try {
       const response = await axios.post(`${endpoint.applybet}`, reqBody);
       if (response?.data?.error === "200") {

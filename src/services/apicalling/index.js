@@ -155,6 +155,7 @@ export const getAllBetsAviator = async () => {
     console.log(e);
   }
 };
+// this is wallet amount function
 export const walletamount = async () => {
   try {
     const response = await axios.get(

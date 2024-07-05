@@ -14,11 +14,12 @@ import howToPlay from "../../../../assets/images/user-guide.png";
 import trxtimerbackground from "../../../../assets/trxtimerbackground.png";
 import Policy from "../policy/Policy";
 import ShowImages from "./ShowImages";
-import { dummycounterFun, trx_game_image_index_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import { dummycounterFun, net_wallet_amount_function, trx_game_image_index_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
 import axios from "axios";
 import { endpoint } from "../../../../services/urls";
 import toast from "react-hot-toast";
 import { zubgmid, zubgtext } from "../../../../Shared/color";
+import { walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -96,6 +97,18 @@ const ThreeMinCountDown = ({ fk }) => {
       socket.off("fivemintrx", handleFiveMin);
     };
   }, []);
+
+  const { isLoading:amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
+    refetchOnMount: false,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: false,
+  });
+
+
+  React.useEffect(()=>{
+    dispatch(net_wallet_amount_function(data?.data?.data))
+  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
+
 
   const { isLoading, data: game_history } = useQuery(
     ["trx_gamehistory"],

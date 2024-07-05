@@ -1,21 +1,14 @@
 import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import WalletOutlinedIcon from '@mui/icons-material/WalletOutlined';
 import { Box, Button, Container, Dialog, Stack, Typography } from "@mui/material";
-import axios from "axios";
 import CryptoJS from "crypto-js";
 import * as React from "react";
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { useQuery, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { lightgreen, zubgback, zubgshadow, zubgtext } from "../../Shared/color";
-import logo from "../../assets/images/logo.png";
 import { default as Timeactive, default as Timeinactive } from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
-import { endpoint } from "../../services/urls";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
@@ -30,34 +23,17 @@ function Win() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [Tab, setTab] = useState(1);
 
-  const walletamount = async () => {
-    try {
-      const response = await axios.get(
-        `${endpoint.userwallet}?userid=${user_id}`
-      );
-      return response;
-    } catch (e) {
-      toast(e?.message);
-      console.log(e);
-    }
-  };
 
   const [opendialogbox, setOpenDialogBox] = useState(false);
   const isAppliedbet = localStorage.getItem("betApplied");
   const dummycounter = useSelector((state) => state.aviator.dummycounter);
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
+  );
 
-  const client = useQueryClient();
-
-  const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
-    refetchOnMount: false,
-    refetchOnReconnect: true,
-  });
-
-  const amount = data?.data?.data || 0;
-
+ 
   React.useEffect(() => {
     setTimeout(() => {
       if (isAppliedbet?.split("_")?.[1] === String(true)) {
@@ -82,7 +58,7 @@ function Win() {
                 <Typography variant="body1" color="initial" className="b-val" sx={{ color: zubgtext }}>
                   ₹{" "}
                   {Number(
-                    Number(amount?.wallet || 0) + Number(amount?.winning || 0) ||
+                    Number(net_wallet_amount?.wallet || 0) + Number(net_wallet_amount?.winning || 0) ||
                     0
                   )?.toFixed(2)}
                 </Typography>
@@ -179,7 +155,7 @@ function Win() {
             <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
           </Dialog>
         )}
-        <CustomCircularProgress isLoading={isLoading} />
+        {/* <CustomCircularProgress isLoading={isLoading} /> */}
       </Container>
     </Layout>
   );

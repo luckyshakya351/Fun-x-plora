@@ -13,10 +13,12 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import moment from "moment";
 import * as React from "react";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
@@ -25,23 +27,19 @@ import {
   zubgbackgrad,
   zubgmid,
   zubgshadow,
-  zubgtext,
-  zubgwhite,
+  zubgtext
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
 import cip from "../../../assets/cip.png";
 import dot from "../../../assets/images/circle-arrow.png";
 import payment from "../../../assets/images/deposit (1).png";
+import user from "../../../assets/images/manuscript.png";
 import playgame from "../../../assets/images/playgame.jpg";
 import balance from "../../../assets/images/send.png";
-import user from "../../../assets/images/manuscript.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
-import { endpoint, rupees } from "../../../services/urls";
-import QRScreen from "./QRScreen";
-import { useDispatch, useSelector } from "react-redux";
 import { get_user_data_fn } from "../../../services/apicalling";
-import CryptoJS from "crypto-js";
+import { endpoint, rupees } from "../../../services/urls";
 
 function WalletRecharge() {
   const [t_id, setT_id] = React.useState();

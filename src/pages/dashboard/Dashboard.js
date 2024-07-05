@@ -59,6 +59,7 @@ import tanveer from "../../assets/tanveer.PNG";
 import trximg from "../../assets/trx.png";
 import Layout from "../../component/Layout/Layout";
 import {
+  net_wallet_amount_function,
   please_reconnect_the_serverFun,
   waitingAviatorFun,
 } from "../../redux/slices/counterSlice";
@@ -87,6 +88,9 @@ function Dashboard() {
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
+  );
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
   );
 
   const isAvailableUser = sessionStorage.getItem("isAvailableUser");
@@ -145,11 +149,14 @@ function Dashboard() {
 
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
-    refetchOnReconnect: false,
+    refetchOnReconnect: true,
     refetchOnWindowFocus: false,
   });
 
-  const newdata = data?.data?.data || 0;
+
+  useEffect(()=>{
+    dispatch(net_wallet_amount_function(data?.data?.data))
+  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
   const {
     isLoading: allWithdrawlCashUserFnLoding,
@@ -460,7 +467,7 @@ function Dashboard() {
               >
                 ₹{" "}
                 {Number(
-                  Number(newdata?.wallet || 0) + Number(newdata?.winning || 0)
+                  Number(net_wallet_amount?.wallet || 0) + Number(net_wallet_amount?.winning || 0)
                 )?.toFixed(2)}
               </Typography>
               <Typography
