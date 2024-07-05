@@ -19,13 +19,18 @@ import Chart from "./Chart";
 import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
 import OneMinCountDown from "./OneMinCountDown";
+import { useSelector } from "react-redux";
 
 function WinOneMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
   const [apply_bit_dialog_box, setapply_bit_dialog_box] = React.useState(false);
   const [dialog_type, setdialog_type] = React.useState(0);
-  // const [show_this_one_min_time,setshow_this_one_min_time] = useState()
+  const [timing, setBetNumber] = useState(100);
 
+  // const [show_this_one_min_time,setshow_this_one_min_time] = useState()
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
+  );
   const initialValues = {
     openTimerDialogBoxOneMin: false,
     show_this_one_min_time: 0,
@@ -41,7 +46,7 @@ function WinOneMin({ gid }) {
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <OneMinCountDown fk={fk} />
+        return <OneMinCountDown fk={fk} setBetNumber={setBetNumber}/>
       }, [])}
       {React.useMemo(() => {
         return (
@@ -309,12 +314,13 @@ function WinOneMin({ gid }) {
         {TabTwo === 2 && <Chart gid={gid} />}
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
-      {apply_bit_dialog_box && (
+      {apply_bit_dialog_box && Number(timing) >= 10 && (
         <ApplyBetDialogBox
           apply_bit_dialog_box={apply_bit_dialog_box}
           setapply_bit_dialog_box={setapply_bit_dialog_box}
           type={dialog_type}
           gid={gid}
+          net_wallet_amount={net_wallet_amount}
         />
       )}
     </Box>

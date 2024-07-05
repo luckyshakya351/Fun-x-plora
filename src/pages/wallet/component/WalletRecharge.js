@@ -42,10 +42,10 @@ import { endpoint } from "../../../services/urls";
 
 function WalletRecharge() {
   const [t_id, setT_id] = React.useState();
-  const [callBackResponse, setCallBackResponse] = React.useState({
-    payment_status: "NO",
-  });
-  let intervalId;
+  // const [callBackResponse, setCallBackResponse] = React.useState({
+  //   payment_status: "NO",
+  // });
+  // let intervalId;
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data

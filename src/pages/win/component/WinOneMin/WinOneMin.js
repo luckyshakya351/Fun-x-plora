@@ -19,12 +19,16 @@ import Chart from "./Chart";
 import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
 import OneMinCountDown from "./OneMinCountDown";
+import { useSelector } from "react-redux";
 
 function WinOneMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
   const [apply_bit_dialog_box, setapply_bit_dialog_box] = React.useState(false);
   const [dialog_type, setdialog_type] = React.useState(0);
-  // const [show_this_one_min_time,setshow_this_one_min_time] = useState()
+  const [timing, setBetNumber] = useState(100);
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
+  );
 
   const initialValues = {
     openTimerDialogBoxOneMin: false,
@@ -38,10 +42,18 @@ function WinOneMin({ gid }) {
     },
   });
 
+  // React.useEffect(() => {
+  //   if (gid === "1") {
+  //     if (Number(timing) <= 10) {setapply_bit_dialog_box(false)
+  //       fk.handleReset()
+  //     };
+  //   }
+  // }, [timing]);
+
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <OneMinCountDown fk={fk} />
+        return <OneMinCountDown fk={fk} setBetNumber={setBetNumber} />;
       }, [])}
       {React.useMemo(() => {
         return (
@@ -50,7 +62,7 @@ function WinOneMin({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: '#FCFEFB',
+              background: "#FCFEFB",
               boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
@@ -72,11 +84,13 @@ function WinOneMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: 'white !important',
+                      color: "white !important",
                     }}
-
                   >
-                    <Typography variant="body1" sx={{ color: 'white', fontSize: 150, fontWeight: 800, }}>
+                    <Typography
+                      variant="body1"
+                      sx={{ color: "white", fontSize: 150, fontWeight: 800 }}
+                    >
                       {String(fk?.values?.show_this_one_min_time)
                         ?.padStart(2, "0")
                         ?.substring(0, 1)}
@@ -91,10 +105,13 @@ function WinOneMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: 'white !important',
+                      color: "white !important",
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: 'white', fontSize: 150, fontWeight: 800, }}>
+                    <Typography
+                      variant="body1"
+                      sx={{ color: "white", fontSize: 150, fontWeight: 800 }}
+                    >
                       {String(fk?.values?.show_this_one_min_time)
                         ?.padStart(2, "0")
                         ?.substring(1, 2)}
@@ -142,7 +159,9 @@ function WinOneMin({ gid }) {
               </Button>
             </Box>
             {/* pridictcolor */}
-            <Box sx={{ padding: '10px', background: '#fff', borderRadius: '10px' }}>
+            <Box
+              sx={{ padding: "10px", background: "#fff", borderRadius: "10px" }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -179,7 +198,6 @@ function WinOneMin({ gid }) {
                   alignItems: "center",
                   justifyContent: "space-between",
 
-
                   "&>img": { width: "15%" },
                 }}
               >
@@ -204,7 +222,14 @@ function WinOneMin({ gid }) {
                 })}
               </Box>
             </Box>
-            <Box sx={{ my: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box
+              sx={{
+                my: 2,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Button variant="outlined" color="primary">
                 Random
               </Button>
@@ -253,7 +278,7 @@ function WinOneMin({ gid }) {
 
               {/* small close */}
             </div>
-          </Box >
+          </Box>
         );
       }, [fk])}
 
@@ -261,7 +286,7 @@ function WinOneMin({ gid }) {
         {React.useMemo(() => {
           return (
             <>
-              <Box sx={{ background: '#fff', borderRadius: "10px" }}>
+              <Box sx={{ background: "#fff", borderRadius: "10px" }}>
                 <Stack direction="row">
                   <Box
                     component={NavLink}
@@ -305,17 +330,16 @@ function WinOneMin({ gid }) {
         {TabTwo === 2 && <Chart gid={gid} />}
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
-      {
-        apply_bit_dialog_box && (
-          <ApplyBetDialogBox
-            apply_bit_dialog_box={apply_bit_dialog_box}
-            setapply_bit_dialog_box={setapply_bit_dialog_box}
-            type={dialog_type}
-            gid={gid}
-          />
-        )
-      }
-    </Box >
+      {apply_bit_dialog_box && Number(timing) >= 10 && (
+        <ApplyBetDialogBox
+          apply_bit_dialog_box={apply_bit_dialog_box}
+          setapply_bit_dialog_box={setapply_bit_dialog_box}
+          type={dialog_type}
+          gid={gid}
+          net_wallet_amount={net_wallet_amount}
+        />
+      )}
+    </Box>
   );
 }
 

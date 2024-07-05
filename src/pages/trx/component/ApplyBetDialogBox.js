@@ -34,6 +34,7 @@ const ApplyBetDialogBox = ({
   setapply_bit_dialog_box,
   type,
   gid,
+  net_wallet_amount
 }) => {
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
@@ -56,9 +57,6 @@ const ApplyBetDialogBox = ({
   const [Rules, setRules] = useState(false);
   const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
-  const net_wallet_amount = useSelector(
-    (state) => state.aviator.net_wallet_amount
-  );
   React.useEffect(() => {
     !aviator_login_data && get_user_data_fn(dispatch);
   }, []);

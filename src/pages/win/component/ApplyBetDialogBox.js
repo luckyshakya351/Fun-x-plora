@@ -15,18 +15,17 @@ import Dialog from "@mui/material/Dialog";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Slide from "@mui/material/Slide";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import * as React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
+import { zubgtext } from "../../../Shared/color";
+import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import Policy from "./policy/Policy";
-import { MyHistoryFn, get_user_data_fn } from "../../../services/apicalling";
-import { useDispatch, useSelector } from "react-redux";
-import { pendingIdsFunction } from "../../../redux/slices/counterSlice";
-import CryptoJS from "crypto-js";
-import { zubgtext } from "../../../Shared/color";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -35,15 +34,14 @@ const ApplyBetDialogBox = ({
   setapply_bit_dialog_box,
   type,
   gid,
+  net_wallet_amount,
 }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(1);
   const [Rules, setRules] = useState(false);
   const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
-  const net_wallet_amount = useSelector(
-    (state) => state.aviator.net_wallet_amount
-  );
+
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
@@ -59,7 +57,6 @@ const ApplyBetDialogBox = ({
   const first_rechange =
     aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
-
 
   React.useEffect(() => {
     !aviator_login_data && get_user_data_fn(dispatch);
@@ -94,10 +91,13 @@ const ApplyBetDialogBox = ({
         type,
       gameid: Number(gid),
     };
-    if(reqBody.amount>Number(
-      Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
-    ))
-    return toast("Your Wallet Amount is low.")
+    if (
+      reqBody.amount >
+      Number(
+        Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
+      )
+    )
+      return toast("Your Wallet Amount is low.");
     try {
       const response = await axios.post(`${endpoint.applybet}`, reqBody);
       if (response?.data?.error === "200") {
@@ -125,12 +125,13 @@ const ApplyBetDialogBox = ({
     >
       <Box>
         <Stack
-          className={`${((type === "green" ||
-            type === 1 ||
-            type === 3 ||
-            type === 7 ||
-            type === 9) &&
-            "!bg-[#30b539]") ||
+          className={`${
+            ((type === "green" ||
+              type === 1 ||
+              type === 3 ||
+              type === 7 ||
+              type === 9) &&
+              "!bg-[#30b539]") ||
             ((type === "red" ||
               type === 2 ||
               type === 6 ||
@@ -141,7 +142,7 @@ const ApplyBetDialogBox = ({
               "!bg-[#710193]") ||
             (type === "small" && "!bg-[#EE1285]") ||
             (type === "big" && "!bg-[#FBB13B]")
-            } 
+          } 
             dialog-header `}
         >
           <Box>
@@ -183,12 +184,13 @@ const ApplyBetDialogBox = ({
                   handleClickValue(i);
                   setcalculated_value(i);
                 }}
-                className={`${((type === "green" ||
-                  type === 1 ||
-                  type === 3 ||
-                  type === 7 ||
-                  type === 9) &&
-                  "!bg-[#30b539]") ||
+                className={`${
+                  ((type === "green" ||
+                    type === 1 ||
+                    type === 3 ||
+                    type === 7 ||
+                    type === 9) &&
+                    "!bg-[#30b539]") ||
                   ((type === "red" ||
                     type === 2 ||
                     type === 6 ||
@@ -199,7 +201,7 @@ const ApplyBetDialogBox = ({
                     "!bg-[#710193]") ||
                   (type === "small" && "!bg-[#EE1285]") ||
                   (type === "big" && "!bg-[#FBB13B]")
-                  } 
+                } 
             `}
               >
                 {i}
@@ -207,7 +209,7 @@ const ApplyBetDialogBox = ({
             );
           })}
         </Box>
-        <Typography variant="body1" color="initial" sx={{ color: zubgtext, }}>
+        <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           small
         </Typography>
       </Box>
@@ -231,15 +233,16 @@ const ApplyBetDialogBox = ({
           return (
             <div
               onClick={() => {
-                handleClickValue(value * i)
+                handleClickValue(value * i);
                 // setcalculated_value(value)
               }}
-              className={`${((type === "green" ||
-                type === 1 ||
-                type === 3 ||
-                type === 7 ||
-                type === 9) &&
-                "!bg-[#30b539]") ||
+              className={`${
+                ((type === "green" ||
+                  type === 1 ||
+                  type === 3 ||
+                  type === 7 ||
+                  type === 9) &&
+                  "!bg-[#30b539]") ||
                 ((type === "red" ||
                   type === 2 ||
                   type === 6 ||
@@ -250,7 +253,7 @@ const ApplyBetDialogBox = ({
                   "!bg-[#710193]") ||
                 (type === "small" && "!bg-[#EE1285]") ||
                 (type === "big" && "!bg-[#FBB13B]")
-                }
+              }
              !px-3 !py-2 rounded-md  !text-center !text-[#fff]
             `}
             >
@@ -260,10 +263,10 @@ const ApplyBetDialogBox = ({
         })}
       </Box>
       <Stack direction="row" className="total-money-box">
-        <Typography variant="body1" color="initial" sx={{ color: zubgtext, }}>
+        <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           Total contract money is ₹{" "}
         </Typography>
-        <Typography variant="body1" color="initial" sx={{ color: zubgtext, }}>
+        <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           {value || "0"}
         </Typography>
       </Stack>
@@ -272,7 +275,9 @@ const ApplyBetDialogBox = ({
           control={<Checkbox defaultChecked />}
           label="I Agree"
         />
-        <Button onClick={() => handleClickOpenRules()} sx={{ color: zubgtext }}>Personal Rules</Button>
+        <Button onClick={() => handleClickOpenRules()} sx={{ color: zubgtext }}>
+          Personal Rules
+        </Button>
         <Dialog
           open={Rules}
           onClose={handleCloseRules}
@@ -280,7 +285,7 @@ const ApplyBetDialogBox = ({
         >
           <DialogContentText id="alert-dialog-description">
             <Stack direction="row" className="personal-rules-header">
-              <Typography sx={{ color: 'white', }}>Presale Rule</Typography>
+              <Typography sx={{ color: "white" }}>Presale Rule</Typography>
               <CloseIcon onClick={() => handleCloseRules()} />
             </Stack>
             <Policy />

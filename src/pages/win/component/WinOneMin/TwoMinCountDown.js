@@ -29,7 +29,7 @@ import Policy from "../policy/Policy";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const TwoMinCountDown = ({ fk }) => {
+const TwoMinCountDown = ({ fk,setBetNumber }) => {
   const socket = useSocket();
   const dispatch = useDispatch();
   const client = useQueryClient();
@@ -69,6 +69,7 @@ const TwoMinCountDown = ({ fk }) => {
   React.useEffect(() => {
     const handleThreeMin = (threemin) => {
       setThree_min_time(threemin);
+      setBetNumber(threemin)
       fk.setFieldValue("show_this_one_min_time", threemin);
       if (
         (threemin?.split("_")?.[1] === "5" ||

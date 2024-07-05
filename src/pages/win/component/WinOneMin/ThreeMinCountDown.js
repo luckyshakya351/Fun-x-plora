@@ -21,7 +21,10 @@ import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun, net_wallet_amount_function } from "../../../../redux/slices/counterSlice";
+import {
+  dummycounterFun,
+  net_wallet_amount_function,
+} from "../../../../redux/slices/counterSlice";
 import { changeImages } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
 import { zubgmid } from "../../../../Shared/color";
@@ -29,7 +32,7 @@ import { walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const ThreeMinCountDown = ({ fk }) => {
+const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const dispatch = useDispatch();
   const client = useQueryClient();
@@ -43,7 +46,7 @@ const ThreeMinCountDown = ({ fk }) => {
   const img3 = Number(isImageChange?.split("_")[2]);
   const img4 = Number(isImageChange?.split("_")[3]);
   const img5 = Number(isImageChange?.split("_")[4]);
-  const next_step = useSelector((state) => state.aviator.next_step)
+  const next_step = useSelector((state) => state.aviator.next_step);
 
   const image_array = [pr0, pr11, pr22, pr33, pr4, pr5, pr6, pr7, pr8, pr9];
   React.useEffect(() => {
@@ -67,7 +70,8 @@ const ThreeMinCountDown = ({ fk }) => {
   React.useEffect(() => {
     const handleFiveMin = (fivemin) => {
       setOne_min_time(fivemin);
-      fk.setFieldValue("show_this_one_min_time", fivemin)
+      setBetNumber(fivemin);
+      fk.setFieldValue("show_this_one_min_time", fivemin);
       if (
         (fivemin?.split("_")?.[1] === "5" ||
           fivemin?.split("_")?.[1] === "4" ||
@@ -120,11 +124,9 @@ const ThreeMinCountDown = ({ fk }) => {
     refetchOnWindowFocus: false,
   });
 
-
-  React.useEffect(()=>{
-    dispatch(net_wallet_amount_function(data?.data?.data))
-  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
-
+  React.useEffect(() => {
+    dispatch(net_wallet_amount_function(data?.data?.data));
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
   const handlePlaySound = async () => {
     try {
@@ -153,7 +155,7 @@ const ThreeMinCountDown = ({ fk }) => {
   };
 
   return (
-    <Box className="countdownbg" sx={{ background: zubgmid, }}>
+    <Box className="countdownbg" sx={{ background: zubgmid }}>
       {React.useMemo(() => {
         return (
           <>
@@ -275,7 +277,7 @@ const ThreeMinCountDown = ({ fk }) => {
             }, [show_this_three_min_time_sec])}
           </Stack>
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {(Number(next_step))?.toString()?.padStart(7, "0")}
+            {Number(next_step)?.toString()?.padStart(7, "0")}
           </Typography>
         </Box>
       </Box>

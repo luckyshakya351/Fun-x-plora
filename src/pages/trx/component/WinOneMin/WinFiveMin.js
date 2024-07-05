@@ -3,7 +3,13 @@ import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
+import {
+  zubgback,
+  zubgmid,
+  zubgshadow,
+  zubgtext,
+  zubgwhite,
+} from "../../../../Shared/color";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
@@ -19,13 +25,16 @@ import Chart from "./Chart";
 import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
 import ThreeMinCountDown from "./ThreeMinCountDown";
+import { useSelector } from "react-redux";
 
 function WinFiveMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
   const [apply_bit_dialog_box, setapply_bit_dialog_box] = React.useState(false);
   const [dialog_type, setdialog_type] = React.useState(0);
-  // const [show_this_one_min_time,setshow_this_one_min_time] = useState()
-
+  const [timing, setBetNumber] = useState(100);
+  const net_wallet_amount = useSelector(
+    (state) => state.aviator.net_wallet_amount
+  );
   const initialValues = {
     openTimerDialogBoxOneMin: false,
     show_this_one_min_time: "0_0",
@@ -41,7 +50,7 @@ function WinFiveMin({ gid }) {
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <ThreeMinCountDown fk={fk} />
+        return <ThreeMinCountDown fk={fk} setBetNumber={setBetNumber} />;
       }, [])}
       {React.useMemo(() => {
         return (
@@ -50,7 +59,7 @@ function WinFiveMin({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: '#FCFEFB',
+              background: "#FCFEFB",
               boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
@@ -73,10 +82,11 @@ function WinFiveMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: 'white !important',
+                      color: "white !important",
                     }}
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
+                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])
+                      .padStart(2, "0")
                       ?.substring(0, 1)}
                   </div>
                   <div
@@ -89,10 +99,11 @@ function WinFiveMin({ gid }) {
                       alignItems: "center",
                       justifyContent: "center",
                       background: zubgtext,
-                      color: 'white !important',
+                      color: "white !important",
                     }}
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
+                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])
+                      .padStart(2, "0")
                       ?.substring(1, 2)}
                   </div>
                 </div>
@@ -208,7 +219,14 @@ function WinFiveMin({ gid }) {
                 })}
               </Box>
             </Box>
-            <Box sx={{ my: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box
+              sx={{
+                my: 2,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Button variant="outlined" color="primary">
                 Random
               </Button>
@@ -308,17 +326,19 @@ function WinFiveMin({ gid }) {
         {TabTwo === 2 && <Chart gid={gid} />}
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
-      {apply_bit_dialog_box && (
-        <ApplyBetDialogBox
-          apply_bit_dialog_box={apply_bit_dialog_box}
-          setapply_bit_dialog_box={setapply_bit_dialog_box}
-          type={dialog_type}
-          gid={gid}
-        />
-      )}
+      {apply_bit_dialog_box &&
+        Number(String(timing)?.split("_")?.[0]) !== 0 &&
+        Number(String(timing)?.split("_")?.[1]) > 10 && (
+          <ApplyBetDialogBox
+            apply_bit_dialog_box={apply_bit_dialog_box}
+            setapply_bit_dialog_box={setapply_bit_dialog_box}
+            type={dialog_type}
+            gid={gid}
+            net_wallet_amount={net_wallet_amount}
+          />
+        )}
     </Box>
   );
 }
 
 export default WinFiveMin;
-

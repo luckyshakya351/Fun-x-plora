@@ -23,7 +23,7 @@ import { walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const OneMinCountDown = ({ fk }) => {
+const OneMinCountDown = ({ fk ,setBetNumber}) => {
   const socket = useSocket();
   const client = useQueryClient();
   const [one_min_time, setOne_min_time] = useState(0);
@@ -44,6 +44,7 @@ const OneMinCountDown = ({ fk }) => {
   React.useEffect(() => {
     const handleOneMin = (onemin) => {
       setOne_min_time(onemin);
+      setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
         handlePlaySound();
@@ -120,8 +121,7 @@ const OneMinCountDown = ({ fk }) => {
     dispatch(net_wallet_amount_function(data?.data?.data))
   },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
-
-
+  
   const handlePlaySound = async () => {
     try {
       if (audioRefMusic?.current?.pause) {
