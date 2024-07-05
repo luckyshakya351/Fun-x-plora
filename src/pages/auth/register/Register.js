@@ -36,8 +36,7 @@ import { lightblue, zubgtext } from "../../../Shared/color";
 import logo from "../../../assets/images/logowhite.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
-
-
+import swal from 'sweetalert';
 
 function Register() {
   const url = new URL(window.location.href);
@@ -116,30 +115,38 @@ function Register() {
           // Add any other headers you may need, such as authorization
         },
       });
-
       if (response?.data?.status === "200") {
         const value = CryptoJS.AES.encrypt(
           JSON.stringify(response?.data),
           "anand"
-        )?.toString();
+        ).toString();
         localStorage.setItem("logindataen", value);
         sessionStorage.setItem("isAvailableUser", true);
         sessionStorage.setItem("isAvailableCricketUser", true);
-        navigate("/dashboard");
         storeCookies();
+        swal({
+          title: 'Login Successful',
+          text: 'Welcome to the dashboard!',
+          icon: 'success',
+          button: 'OK',
+        }).then(() => {
+        navigate("/dashboard");
         document.location.reload();
-      }
-
-      toast.success(response?.data?.msg);
-      // if (response?.data?.status === "200") {
-      //   navigate("/dashboard");
-      // }
-    } catch (e) {
-      toast.error(e?.message);
-      console.error(e);
+        });
+       
+      } else {
+        swal({
+          title: 'Login Failed',
+          text: 'Invalid username or password. Please try again.',
+          icon: 'error',
+          button: 'OK',
+        });
+     setloding(false);
     }
-    setloding(false);
-  };
+  } catch (error) {
+    console.error('Login error:', error);
+  }
+}
 
   const { isLoading, data } = useQuery(
     ["getname", fk.values.referral_code],
@@ -153,7 +160,7 @@ function Register() {
   const [CountryCode, setCountryCode] = React.useState('+91');
 
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event) => {
     setCountryCode(event.target.value);
   };
 
