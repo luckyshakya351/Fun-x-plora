@@ -1,5 +1,6 @@
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
+import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import {
   Box,
@@ -10,51 +11,45 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
   zubgback,
-  zubgbackgrad,
-  zubggray,
   zubgmid,
-  zubgshadow,
-  zubgtext,
-  zubgwhite,
+  zubgtext
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import dp1 from "../../assets/images/pr.png";
 import dp2 from "../../assets/dp2.png";
 import dp3 from "../../assets/dp3.png";
 import dp4 from "../../assets/dp4.png";
+import balance1 from "../../assets/images/atm.png";
+import edit from "../../assets/images/banking.png";
 import card from "../../assets/images/card-payment.png";
-import wtd from "../../assets/images/withdraw.png";
 import casino from "../../assets/images/casino.png";
 import customer from "../../assets/images/customer-service.png";
-import dpt from "../../assets/images/wallet (3).png";
-import edit from "../../assets/images/banking.png";
 import gift from "../../assets/images/gift-box-with-a-bow.png";
 import graph from "../../assets/images/graph (1).png";
 import hand from "../../assets/images/hand.png";
+import balance from "../../assets/images/logotwhite.png";
 import notification from "../../assets/images/notification (1).png";
 import notification1 from "../../assets/images/notification.png";
 import user2 from "../../assets/images/password (1).png";
-import Rank from "../../assets/images/rank.png";
-import namer from "../../assets/images/vip.png";
-import balance from "../../assets/images/logotwhite.png";
-import balance1 from "../../assets/images/atm.png";
+import bgms from "../../assets/images/playgame.jpg";
+import dp1 from "../../assets/images/pr.png";
 import setting from "../../assets/images/settings (1).png";
 import trans from "../../assets/images/translate.png";
+import namer from "../../assets/images/vip.png";
 import s from "../../assets/images/wallet (1).png";
+import dpt from "../../assets/images/wallet (3).png";
+import wtd from "../../assets/images/withdraw.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { MyProfileDataFn } from "../../services/apicalling";
-import axios from "axios";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import bgms from "../../assets/images/playgame.jpg";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
-import { useSelector } from "react-redux";
 
 function Account() {
   const location = useLocation();

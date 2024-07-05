@@ -1,11 +1,12 @@
-import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
 import WalletOutlinedIcon from '@mui/icons-material/WalletOutlined';
 import { Box, Button, Container, Dialog, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
+import { useQueryClient } from 'react-query';
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import refresh from "../../assets/images/refresh.png";
 import { default as Timeactive, default as Timeinactive } from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
@@ -15,7 +16,7 @@ import WinThreeMin from "./component/WinOneMin/WinThreeMin";
 
 function Win() {
   const navigate = useNavigate();
-
+  const client = useQueryClient();
   const [Tab, setTab] = useState(1);
   const [opendialogbox, setOpenDialogBox] = useState(false);
   const isAppliedbet = localStorage.getItem("betApplied");
@@ -36,8 +37,26 @@ function Win() {
   }, [dummycounter]);
 
 
+  function refreshFunctionForRotation() {
+    client.refetchQueries("walletamount");
+    const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
 
-
+    const element = document.getElementById("refresh_button");
+    if (!item) {
+      element.classList.add("rotate_refresh_image");
+    }
+    setTimeout(() => {
+      element.classList.remove("rotate_refresh_image");
+    }, 2000);
+  }
+  React.useEffect(() => {
+    const element = document.getElementById("refresh_button");
+    const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
+    if (item) {
+      element.classList.remove("rotate_refresh_image");
+    }
+  }, []);
+  
   return (
     <Layout header={true} footer={false}>
       <Container sx={styles.root}>
@@ -53,7 +72,17 @@ function Win() {
                     0
                   )?.toFixed(2)}
                 </Typography>
-                <CachedOutlinedIcon sx={{ ml: 3, color: 'gray' }} />
+                <div className="mx-1 rotate_refresh_image" id="refresh_button">
+              <img
+                src={refresh}
+                className='!w-6'
+                ml={2}
+                onClick={() => {
+                  refreshFunctionForRotation();
+                }}
+              />
+            </div>
+                {/* <CachedOutlinedIcon sx={{ ml: 3, color: 'gray' }} /> */}
               </Box>
               <Box display='flex' alignItems='center' mr={5}>
                 <WalletOutlinedIcon sx={{ mr: 1, color: 'gray' }} />

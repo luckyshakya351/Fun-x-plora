@@ -17,14 +17,11 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { lightblue, lightgreen, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
-import colorpr from "../../../assets/images/colorpr (2).png";
-import Lottery from "../../../assets/images/lottery.png";
+import { lightblue, lightgreen, zubgback, zubgbackgrad, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import aviator_game_image from "../../../assets/aviator_game_image.png";
 import Layout from "../../../component/Layout/Layout";
 import { MyHistoryFn, getAllBetsAviator } from "../../../services/apicalling";
 import { rupees } from "../../../services/urls";
-import aviator_game_image from "../../../assets/aviator_game_image.png";
-import CryptoJS from 'crypto-js'
 function BatHistorys() {
   const [selectedGame, setSelectedGame] = React.useState("Lottery");
   const [selectedGameOption, setselectedGameOption] = React.useState("");
@@ -34,8 +31,6 @@ function BatHistorys() {
     navigate(-1);
   };
 
-  const login_data = localStorage.getItem("logindataen") && CryptoJS.AES.decrypt(localStorage.getItem("logindataen"), "anand")?.toString(CryptoJS.enc.Utf8) || null
-  const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
   const handleChangePage = (event, newPage) => {

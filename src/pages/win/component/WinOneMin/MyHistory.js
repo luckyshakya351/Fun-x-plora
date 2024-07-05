@@ -7,7 +7,7 @@ import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
-import { zubgback, zubgtext } from "../../../../Shared/color";
+import { zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import { MyHistoryFn, My_All_HistoryFn } from "../../../../services/apicalling";
 import { rupees } from "../../../../services/urls";

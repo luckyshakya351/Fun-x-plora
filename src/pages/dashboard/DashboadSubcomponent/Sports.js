@@ -1,17 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgwhite } from "../../../Shared/color";
+import { zubgmid, zubgshadow, zubgwhite } from "../../../Shared/color";
 import kind from "../../../assets/images/psd1 (2).png";
-import Crickback from "../../../assets/images/crickback.png";
-import go from "../../../assets/images/go.png";
 import wingobg from '../../../assets/images/wingo1.png';
 
 
 const Original = () => {
-  const navigate = useNavigate();
-
-
+ 
   return (
     <Box>
       <Box sx={style.root}>

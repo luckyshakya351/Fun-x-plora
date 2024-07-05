@@ -1,13 +1,23 @@
-import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
-import WalletOutlinedIcon from '@mui/icons-material/WalletOutlined';
-import { Box, Button, Container, Dialog, Stack, Typography } from "@mui/material";
-import CryptoJS from "crypto-js";
+import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  Stack,
+  Typography,
+} from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
+import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { lightgreen, zubgback, zubgshadow, zubgtext } from "../../Shared/color";
-import { default as Timeactive, default as Timeinactive } from "../../assets/images/time-.png";
+import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import refresh from "../../assets/images/refresh.png";
+import {
+  default as Timeactive,
+  default as Timeinactive,
+} from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
@@ -15,17 +25,9 @@ import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
 
 function Win() {
+  const client = useQueryClient();
   const navigate = useNavigate();
-  const login_data =
-    (localStorage.getItem("logindataen") &&
-      CryptoJS.AES.decrypt(
-        localStorage.getItem("logindataen"),
-        "anand"
-      )?.toString(CryptoJS.enc.Utf8)) ||
-    null;
   const [Tab, setTab] = useState(1);
-
-
   const [opendialogbox, setOpenDialogBox] = useState(false);
   const isAppliedbet = localStorage.getItem("betApplied");
   const dummycounter = useSelector((state) => state.aviator.dummycounter);
@@ -33,7 +35,6 @@ function Win() {
     (state) => state.aviator.net_wallet_amount
   );
 
- 
   React.useEffect(() => {
     setTimeout(() => {
       if (isAppliedbet?.split("_")?.[1] === String(true)) {
@@ -46,35 +47,99 @@ function Win() {
     }, 1000);
   }, [dummycounter]);
 
+  function refreshFunctionForRotation() {
+    client.refetchQueries("walletamount");
+    const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
+
+    const element = document.getElementById("refresh_button");
+    if (!item) {
+      element.classList.add("rotate_refresh_image");
+    }
+    setTimeout(() => {
+      element.classList.remove("rotate_refresh_image");
+    }, 2000);
+  }
+  React.useEffect(() => {
+    const element = document.getElementById("refresh_button");
+    const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
+    if (item) {
+      element.classList.remove("rotate_refresh_image");
+    }
+  }, []);
 
   return (
     <Layout header={true}>
       <Container sx={styles.root}>
-        <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+        <Box sx={{ position: "relative", overflow: "hidden" }}>
           <Box className="wingosx"></Box>
-          <Box sx={{ padding: 2, position: 'relative' }}>
-            <Box sx={{ padding: '25px 10px', background: '#fff', borderRadius: '20px', my: 2, display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <Box display='flex' alignItems='center' ml={5}>
-                <Typography variant="body1" color="initial" className="b-val" sx={{ color: zubgtext }}>
+          <Box sx={{ padding: 2, position: "relative" }}>
+            <Box
+              sx={{
+                padding: "25px 10px",
+                background: "#fff",
+                borderRadius: "20px",
+                my: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Box display="flex" alignItems="center" ml={5}>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  className="b-val"
+                  sx={{ color: zubgtext }}
+                >
                   ₹{" "}
                   {Number(
-                    Number(net_wallet_amount?.wallet || 0) + Number(net_wallet_amount?.winning || 0) ||
-                    0
+                    Number(net_wallet_amount?.wallet || 0) +
+                      Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
-                <CachedOutlinedIcon sx={{ ml: 3, color: lightgreen }} />
+                <div className="mx-1 rotate_refresh_image" id="refresh_button">
+                  <img
+                    src={refresh}
+                    className="!w-6"
+                    ml={2}
+                    onClick={() => {
+                      refreshFunctionForRotation();
+                    }}
+                  />
+                </div>
               </Box>
-              <Box display='flex' alignItems='center' mr={5}>
-                <WalletOutlinedIcon sx={{ mr: 1, color: 'gray' }} />
-                <Typography variant="body1" color="initial" className="b-val2" sx={{ color: zubgtext }}>
+              <Box display="flex" alignItems="center" mr={5}>
+                <WalletOutlinedIcon sx={{ mr: 1, color: "gray" }} />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  className="b-val2"
+                  sx={{ color: zubgtext }}
+                >
                   Walllet balance
                 </Typography>
               </Box>
-              <Box display='flex' alignItems='center' justifyContent='space-between' sx={{ width: '100%' }}>
-                <Button variant="text" color="primary" className="greenbtn" onClick={() => navigate("/wallet/Recharge")}>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ width: "100%" }}
+              >
+                <Button
+                  variant="text"
+                  color="primary"
+                  className="greenbtn"
+                  onClick={() => navigate("/wallet/Recharge")}
+                >
                   Deposit
                 </Button>
-                <Button variant="text" color="primary" className="redbtn" onClick={() => navigate("/Withdrawal")}>
+                <Button
+                  variant="text"
+                  color="primary"
+                  className="redbtn"
+                  onClick={() => navigate("/Withdrawal")}
+                >
                   Withdraw
                 </Button>
               </Box>
@@ -82,12 +147,13 @@ function Win() {
           </Box>
           <Box
             sx={{
-              background: 'linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important',
+              background:
+                "linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important",
               boxShadow: zubgshadow,
               width: "95%",
               marginLeft: "2.5%",
               borderRadius: "10px",
-              position: 'relative'
+              position: "relative",
             }}
           >
             <Stack direction="row">
@@ -102,7 +168,8 @@ function Win() {
                   <Box component="img" src={Timeactive} width={60}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  Win Go <br />1Min
+                  Win Go <br />
+                  1Min
                 </Typography>
               </Box>
               <Box
@@ -132,7 +199,8 @@ function Win() {
                   <Box component="img" src={Timeactive} width={60}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  Win Go <br />5Min
+                  Win Go <br />
+                  5Min
                 </Typography>
               </Box>
             </Stack>
@@ -164,7 +232,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, mt: '74px' },
+  root: { background: zubgback, mt: "74px" },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

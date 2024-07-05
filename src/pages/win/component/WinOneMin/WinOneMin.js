@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { zubgshadow, zubgtext, zubgwhite } from "../../../../Shared/color";
+import { zubgshadow, zubgtext } from "../../../../Shared/color";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
