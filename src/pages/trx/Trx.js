@@ -35,6 +35,30 @@ function Win() {
     }, 1000);
   }, [dummycounter]);
 
+
+  function refreshFunctionForRotation() {
+    client.refetchQueries("walletamount");
+    const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
+
+    const element = document.getElementById("refresh_button");
+    if (!item) {
+      element.classList.add("rotate_refresh_image");
+    }
+    setTimeout(() => {
+      element.classList.remove("rotate_refresh_image");
+    }, 2000);
+  }
+
+  useEffect(() => {
+    const element = document.getElementById("refresh_button");
+    const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
+    if (item) {
+      element.classList.remove("rotate_refresh_image");
+    }
+  }, []);
+
+  
+
   return (
     <Layout header={true} footer={false}>
       <Container sx={styles.root}>
