@@ -12,10 +12,12 @@ import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
+import refresh from "../../assets/images/refresh.png";
+import { useQueryClient } from 'react-query';
 
 function Win() {
   const navigate = useNavigate();
-
+  const client = useQueryClient();
   const [Tab, setTab] = useState(1);
   const [opendialogbox, setOpenDialogBox] = useState(false);
   const isAppliedbet = localStorage.getItem("betApplied");
@@ -48,8 +50,7 @@ function Win() {
       element.classList.remove("rotate_refresh_image");
     }, 2000);
   }
-
-  useEffect(() => {
+  React.useEffect(() => {
     const element = document.getElementById("refresh_button");
     const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
     if (item) {
@@ -74,7 +75,17 @@ function Win() {
                     0
                   )?.toFixed(2)}
                 </Typography>
-                <CachedOutlinedIcon sx={{ ml: 3, color: 'gray' }} />
+                <div className="mx-1 rotate_refresh_image" id="refresh_button">
+              <img
+                src={refresh}
+                className='!w-6'
+                ml={2}
+                onClick={() => {
+                  refreshFunctionForRotation();
+                }}
+              />
+            </div>
+                {/* <CachedOutlinedIcon sx={{ ml: 3, color: 'gray' }} /> */}
               </Box>
               <Box display='flex' alignItems='center' mr={5}>
                 <WalletOutlinedIcon sx={{ mr: 1, color: 'gray' }} />
