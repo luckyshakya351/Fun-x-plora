@@ -36,6 +36,7 @@
     "react-scripts": "5.0.1",
     "react-scroll-into-view": "^2.1.2",
     "socket.io-client": "^4.7.4",
+    "sweetalert": "^2.1.2",
     "swiper": "^11.0.7",
     "tsparticles": "^3.3.0",
     "tsparticles-preset-fireworks": "^2.12.0",
