@@ -117,7 +117,7 @@ const MyHistory = ({ gid }) => {
                             }`}
                         >
                           {" "}
-                          {rupees} bb{i?.status === "1" ? i?.win : i?.totalamount}
+                          {rupees} {i?.status === "1" ? i?.win : i?.totalamount}
                         </span>
                       </div>
                     </AccordionSummary>
