@@ -32,7 +32,8 @@ function DepositeHistory() {
     () => depositHistoryFunction(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
   const res = data?.data?.data?.filter((i) => i?.tr15_depo_type === "Winzo")

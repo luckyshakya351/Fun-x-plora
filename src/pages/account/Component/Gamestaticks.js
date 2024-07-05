@@ -28,7 +28,8 @@ function Gamestaticks() {
       (value === "3" && getAllBetsAviator()),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

@@ -18,7 +18,8 @@ function TeamReports() {
     () => MypromotionDataFn(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

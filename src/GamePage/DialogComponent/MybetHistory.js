@@ -25,7 +25,8 @@ const MybetHistory = () => {
     () => getHistory(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

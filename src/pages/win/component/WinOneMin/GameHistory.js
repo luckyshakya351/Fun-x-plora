@@ -28,7 +28,8 @@ const GameHistory = ({ gid }) => {
     () => GameHistoryFn(gid),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

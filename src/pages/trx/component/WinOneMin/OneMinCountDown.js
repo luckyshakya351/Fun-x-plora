@@ -74,7 +74,8 @@ const OneMinCountDown = ({ fk }) => {
     () => GameHistoryFn(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

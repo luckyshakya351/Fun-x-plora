@@ -26,7 +26,8 @@ function DailyCashBackBonus() {
     () => dailyWalletIncomeFn(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
   const res = data?.data?.data;
