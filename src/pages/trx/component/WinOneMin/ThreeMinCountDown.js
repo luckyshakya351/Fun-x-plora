@@ -116,7 +116,8 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     () => GameHistoryFn(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

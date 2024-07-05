@@ -31,7 +31,8 @@ const MyHistory = ({ gid }) => {
     () => MyHistoryFn(gid),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 
@@ -42,7 +43,8 @@ const MyHistory = ({ gid }) => {
     () => My_All_HistoryFn(gid),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

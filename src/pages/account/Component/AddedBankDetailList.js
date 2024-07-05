@@ -30,7 +30,8 @@ function AddedBankDetailList() {
     () => BankListDetails(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);

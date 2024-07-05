@@ -114,8 +114,8 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     () => walletamount(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
-      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
     }
   );
 
@@ -128,7 +128,8 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     () => GameHistoryFn(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
     }
   );
 

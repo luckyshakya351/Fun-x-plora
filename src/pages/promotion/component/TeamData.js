@@ -19,7 +19,8 @@ function TeamData() {
     () => MypromotionDataFn(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

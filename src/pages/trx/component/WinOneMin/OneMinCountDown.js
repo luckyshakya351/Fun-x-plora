@@ -75,7 +75,8 @@ const OneMinCountDown = ({ fk ,setBetNumber}) => {
     () => GameHistoryFn(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

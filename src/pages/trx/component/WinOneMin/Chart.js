@@ -19,7 +19,8 @@ const Chart = ({ gid }) => {
     () => GameHistoryFn(gid),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
     }
   );
 
@@ -296,7 +297,7 @@ const Chart = ({ gid }) => {
           </div>
         </div>
       </div>
-    
+
       <Box className="paginationTable">
         <TablePagination
           sx={{

@@ -153,7 +153,8 @@ function Register() {
     () => CandidateNameFn({ reffral_id: fk.values.referral_code }),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
 

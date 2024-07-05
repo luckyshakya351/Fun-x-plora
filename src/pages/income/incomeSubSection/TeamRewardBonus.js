@@ -21,7 +21,8 @@ function TeamRewardBonus() {
     () => teamRewartBonus(),
     {
       refetchOnMount: false,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+refetchOnWindowFocus:false
     }
   );
   const res = data?.data?.data;
