@@ -210,9 +210,11 @@ const GameHistory = ({ gid }) => {
           </TableBody>
         </Table>
 
-        <Box className="paginationTable !w-full">
+        <Box className="paginationTable !w-full ">
           <TablePagination
-            sx={{ background: zubgtext, color: 'white', }}
+            sx={{ background: zubgtext, color: 'white', 
+              marginBottom: "40px",
+            }}
             rowsPerPageOptions={[5, 10, 15]}
             component="div"
             count={game_history_data?.length}

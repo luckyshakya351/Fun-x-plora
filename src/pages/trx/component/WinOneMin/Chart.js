@@ -296,20 +296,23 @@ const Chart = ({ gid }) => {
           </div>
         </div>
       </div>
+    
       <Box className="paginationTable">
         <TablePagination
           sx={{
             background: zubgtext,
             color: "white",
-            borderRadius: "0px 0px 10px 10px",
+            borderRadius: "10px",
+            marginTop: "10px",
           }}
-          rowsPerPageOptions={[10]}
+          rowsPerPageOptions={[2, 5, 10, 15]}
           component="div"
           count={game_history_data?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Rows"
         />
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading} /> */}

@@ -552,7 +552,7 @@ const MyHistory = ({ gid }) => {
         <TablePagination
           sx={{
             background: zubgtext,
-            color: zubgwhite,
+            color: "white",
             borderRadius: "10px",
             marginTop: "10px",
           }}
@@ -563,6 +563,7 @@ const MyHistory = ({ gid }) => {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Rows"
         />
       </Box>
       {/* <CustomCircularProgress isLoading={myhistory_loding} /> */}

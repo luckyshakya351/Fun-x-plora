@@ -457,7 +457,7 @@ const MyHistory = ({ gid }) => {
             background: zubgtext,
             color: "white",
             borderRadius: "0px 0px 10px 10px",
-            marginTop: "10px",
+            marginBottom: "40px",
             padding: 1,
           }}
           rowsPerPageOptions={[2, 5, 10, 15]}
