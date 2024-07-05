@@ -1,14 +1,12 @@
+import CryptoJS from "crypto-js";
 import { Route, Routes } from "react-router-dom";
 import "../src/index.css";
 import "./App.css";
 import "./assets/styles/main.css";
-import { routes } from "./routes";
+import ForgetPassword from "./pages/auth/login/ForgetPassword";
 import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
-import ForgetPassword from "./pages/auth/login/ForgetPassword";
-import CryptoJS from "crypto-js";
-import { MypromotionDataFn } from "./services/apicalling";
-import { useQuery } from "react-query";
+import { routes } from "./routes";
 
 const App = () => {
   const isAuthenticated =

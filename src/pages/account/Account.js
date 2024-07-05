@@ -136,7 +136,7 @@ function Account() {
               {(
                 Number(
                   Number(result?.winning_wallet || 0) +
-                  Number(result?.wallet || 0)
+                    Number(result?.wallet || 0)
                 ) || 0
               )?.toFixed(0)}
             </Typography>

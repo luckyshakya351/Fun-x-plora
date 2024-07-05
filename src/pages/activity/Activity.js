@@ -17,7 +17,6 @@ import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import { useState } from "react";
 
 function Activity() {
-  const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
   const game_data = [
@@ -73,19 +72,22 @@ function Activity() {
           {game_data?.map((i, index) => {
             return (
               <Box
-                onClick={() => toast("Comming Soon !")}
+                onClick={() =>
+                  toast("Comming Soon !", {
+                    id: 1,
+                  })
+                }
                 key={index}
                 className="bgcardboxda   !cursor-pointer hover:!scale-95 hover:!duration-1000"
                 sx={{ background: zubgmid }}
               >
-                <Box sx={{ width: "100%", height: "160px" }} >
+                <Box sx={{ width: "100%", height: "160px" }}>
                   <Box
                     sx={{
                       width: "60%",
                       height: "50%",
                       marginLeft: "20%",
                       marginTop: "10%",
-
                     }}
                   >
                     <Box
@@ -113,7 +115,10 @@ function Activity() {
           })}
         </Box>
         {openDialogBoxHomeBanner && (
-          <Dialog PaperProps={{ width: "500px", height: "500px" }} open={openDialogBoxHomeBanner}>
+          <Dialog
+            PaperProps={{ width: "500px", height: "500px" }}
+            open={openDialogBoxHomeBanner}
+          >
             <div>
               <p>
                 <IconButton onClick={() => setopenDialogBoxHomeBanner(false)}>
