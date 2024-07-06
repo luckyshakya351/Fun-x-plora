@@ -2,10 +2,10 @@ import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
   zubgback,
-  zubgmid,
   zubgshadow,
   zubgtext,
   zubgwhite,
@@ -25,7 +25,6 @@ import Chart from "./Chart";
 import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
 import ThreeMinCountDown from "./ThreeMinCountDown";
-import { useSelector } from "react-redux";
 
 function WinFiveMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
@@ -327,8 +326,11 @@ function WinFiveMin({ gid }) {
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
       {apply_bit_dialog_box &&
-        Number(String(timing)?.split("_")?.[0]) !== 0 &&
-        Number(String(timing)?.split("_")?.[1]) > 10 && (
+        Number(
+          `${String(timing)?.split("_")?.[0]}.${String(timing)
+            ?.split("_")?.[1]
+            .padStart(2, "0")}`
+        ) > 0.1 && (
           <ApplyBetDialogBox
             apply_bit_dialog_box={apply_bit_dialog_box}
             setapply_bit_dialog_box={setapply_bit_dialog_box}

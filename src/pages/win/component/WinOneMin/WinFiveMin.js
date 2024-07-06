@@ -341,8 +341,11 @@ function WinFiveMin({ gid }) {
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
       {apply_bit_dialog_box &&
-        (Number(String(timing)?.split("_")?.[0]) !== 0 &&
-        Number(String(timing)?.split("_")?.[1]) > 10) && (
+        Number(
+          `${String(timing)?.split("_")?.[0]}.${
+            String(timing)?.split("_")?.[1].padStart(2, "0")
+          }`
+        ) > 0.1 &&(
           <ApplyBetDialogBox
             apply_bit_dialog_box={apply_bit_dialog_box}
             setapply_bit_dialog_box={setapply_bit_dialog_box}
