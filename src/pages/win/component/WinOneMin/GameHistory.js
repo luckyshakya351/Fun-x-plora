@@ -13,7 +13,7 @@ import * as React from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import CustomCircularProgress from "../../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgtext } from "../../../../Shared/color";
+import { lightblue, zubgback, zubgbackgrad, zubgtext } from "../../../../Shared/color";
 import history from '../../../../assets/images/list.png';
 import { endpoint } from "../../../../services/urls";
 import { useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ const GameHistory = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -100,7 +100,7 @@ refetchOnWindowFocus:false
             {visibleRows?.map((i) => {
               return (
                 <TableRow>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: '1px solid rgb(255 0 0)' }}>
+                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <span
                       style={{ color: zubgtext, fontWeight: 700, fontSize: '13px' }}
                     >
@@ -108,7 +108,7 @@ refetchOnWindowFocus:false
                     </span>
 
                   </TableCell>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: '1px solid rgb(255 0 0)' }}>
+                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <span
                       className={`
                 ${(i?.number === "0" &&
@@ -137,7 +137,7 @@ refetchOnWindowFocus:false
                       {i?.number}
                     </span>
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', fontSize: '12px', fontWeight: '700', borderBottom: '1px solid rgb(255 0 0)' }}
+                  <TableCell sx={{ padding: ' 10px 5px', fontSize: '12px', fontWeight: '700', borderBottom: `1px solid ${lightblue}` }}
                     className={`${Number(i?.number) <= 4
                       ? "!bg-gradient-to-l !from-[#FE63FF] !to-violet-600"
                       : "!bg-gradient-to-l !from-[#FE63FF] !to-green-600"
@@ -145,7 +145,7 @@ refetchOnWindowFocus:false
                   >
                     {Number(i?.number) <= 4 ? "SMALL" : "BIG"}
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', borderBottom: '1px solid rgb(255 0 0)' }}>
+                  <TableCell sx={{ padding: ' 10px 5px', borderBottom: `1px solid ${lightblue}` }}>
                     {i?.number === "0" || i?.number === "5" ? (
                       <div className="!flex !gap-1">
                         <div
@@ -213,7 +213,8 @@ refetchOnWindowFocus:false
 
         <Box className="paginationTable !w-full ">
           <TablePagination
-            sx={{ background: zubgtext, color: 'white', 
+            sx={{
+              background: zubgtext, color: 'white',
               marginBottom: "40px",
             }}
             rowsPerPageOptions={[5, 10, 15]}

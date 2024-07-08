@@ -136,7 +136,7 @@ function Account() {
               ₹
               {Number(
                 Number(net_wallet_amount?.wallet || 0) +
-                  Number(net_wallet_amount?.winning || 0) || 0
+                Number(net_wallet_amount?.winning || 0) || 0
               )?.toFixed(2)}
             </Typography>
             <CachedIcon sx={style.cachedIcon} />
@@ -253,38 +253,6 @@ function Account() {
               borderRadius: "10px",
             }}
           >
-            <Stack
-              component={NavLink}
-              to="/notification"
-              direction="row"
-              sx={{
-                borderBottom: `1px solid ${zubgtext}`,
-                padding: "10px",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Stack direction="row" sx={{ alignItems: "center" }}>
-                <Box
-                  component="img"
-                  src={notification}
-                  sx={{ width: "20px", height: "20px", marginRight: "10px" }}
-                ></Box>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{ color: zubgtext, fontSize: "13px", fontWeight: "600" }}
-                >
-                  Notification
-                </Typography>
-              </Stack>
-              <Box>
-                <KeyboardDoubleArrowRightIcon
-                  sx={{ color: zubgtext, fontSize: "23px", fontWeight: "600" }}
-                />
-              </Box>
-            </Stack>
             <Stack
               component={NavLink}
               to="/gift"

@@ -20,7 +20,7 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import { lightblue, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
 import cip from "../../assets/cip.png";
 import payment from "../../assets/images/deposit (2).png";
 import playgame from "../../assets/images/playgame.jpg";
@@ -91,7 +91,7 @@ function Withdrawl() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
@@ -333,7 +333,7 @@ refetchOnWindowFocus:false
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: zubgwhite,
+              background: '#fff',
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
@@ -448,10 +448,10 @@ refetchOnWindowFocus:false
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   InputProps={{
                     style: {
-                      borderColor: "#ffffff",
+                      borderColor: 'red',
                       borderWidth: "1px",
-                      color: zubgtext,
-                      background: "#dcdcdc92",
+                      color: lightblue,
+                      background: "#fff",
                       borderRadius: "10px",
                     },
                   }}
@@ -525,13 +525,13 @@ refetchOnWindowFocus:false
                   value={fk.values.description}
                   onChange={fk.handleChange}
                   placeholder="Enter description *"
-                  className="withdrawalfield !border-[2px] !border-[#ff82823d]  !rounded-[10px] no-scrollbar !text-white"
+                  className="withdrawalfield"
                   InputProps={{
                     style: {
-                      boxShadow: zubgshadow, background: '#dcdcdc92',
-                      color: zubgtext, // Text color
+                      boxShadow: zubgshadow, background: '#fff', border: '1px solid red',
+                      color: lightblue, // Text color
                       "::placeholder": {
-                        color: zubgtext, // Placeholder color
+                        color: lightblue, // Placeholder color
                       },
                     },
                   }}

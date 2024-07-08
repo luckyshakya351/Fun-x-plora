@@ -78,8 +78,8 @@ function WinOneMin({ gid }) {
                   <div
                     style={{
                       borderRadius: 20,
-                      width: 150,
-                      height: 220,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -89,7 +89,7 @@ function WinOneMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 150, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
                     >
                       {String(fk?.values?.show_this_one_min_time)
                         ?.padStart(2, "0")
@@ -99,8 +99,8 @@ function WinOneMin({ gid }) {
                   <div
                     style={{
                       borderRadius: 20,
-                      height: 220,
-                      width: 150,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -110,7 +110,7 @@ function WinOneMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 150, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
                     >
                       {String(fk?.values?.show_this_one_min_time)
                         ?.padStart(2, "0")
@@ -296,7 +296,7 @@ function WinOneMin({ gid }) {
                     }
                   >
                     <Typography variant="h3" color="initial">
-                      Game History
+                      Game HTY
                     </Typography>
                   </Box>
                   <Box

@@ -268,7 +268,7 @@ function WalletRecharge() {
           width: "95%",
           margin: "auto",
           mt: "20px",
-          background: '#ff00001f',
+          background: '#fff',
           borderRadius: "10px",
           mb: 5,
         }}
@@ -720,7 +720,7 @@ function WalletRecharge() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: '#ff00001f',
+              background: '#ffffff',
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 2,
@@ -757,9 +757,9 @@ function WalletRecharge() {
                 <div className="error">{fk.errors.amount}</div>
               )}
               {/* {!deposit_req_data ? ( */}
-                <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
-                  Deposit
-                </Button>
+              <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
+                Deposit
+              </Button>
               {/* ) : (
                 <div style={style.paytmbtntwo} className="mt-5">
                   <div className="flex w-full justify-between items-center">

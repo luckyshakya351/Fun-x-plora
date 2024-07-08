@@ -8,7 +8,7 @@ const Notification = ({ handleClosepolicy }) => {
     <Box sx={{ "&>p": { textAlign: "center", color: "red" } }}>
       <p>⭐️ Welcome Dear Member ⭐️</p>
       <Box
-        className="mt-2"
+        className=""
         sx={{ "&>p": { color: "white", fontSize: "12px" } }}
       >
         <p className=" pl-10 !text-red-600">
@@ -18,7 +18,7 @@ const Notification = ({ handleClosepolicy }) => {
         <p className=" pl-10 !text-red-600">⭐️ No.1 Game Platform</p>
       </Box>
       <Box
-        className="mt-2"
+        className="mt-1"
         sx={{ "&>p": { color: "white", fontSize: "12px" } }}
       >
         <p className=" pl-10 !text-red-600">
@@ -29,23 +29,23 @@ const Notification = ({ handleClosepolicy }) => {
         </p>
       </Box>
       <Box
-        className="mt-2"
+        className="mt-1"
         sx={{ "&>p": { color: "red", fontSize: "15px", textAlign: "center" } }}
       >
         <p className="mt-3 ">🎁 More Bonus - Click EVENT 🎁</p>
       </Box>
       <Box
-        className="mt-2"
+        className="mt-1"
         sx={{ "&>p": { color: "red", fontSize: "15px", textAlign: "center" } }}
       >
         <p className="!text-red-600  text-center">
           💎Click Promote - Become Agent💎
         </p>
       </Box>
-      <p className="mt-2 !text-red-600 font-bold text-center">
+      <p className="mt-1 !text-red-600 font-bold text-center">
         Get income every day
       </p>
-      <div className="w-full mt-5 ">
+      <div className="w-full mt-3 ">
         <Button
           onClick={() => handleClosepolicy()}
           style={{ width: "100%", background: lightblue, color: 'white' }}

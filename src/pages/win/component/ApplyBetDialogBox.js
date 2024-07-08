@@ -94,8 +94,8 @@ const ApplyBetDialogBox = ({
       Number(
         Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
       )
-    )
-     { setLoding(false);
+    ) {
+      setLoding(false);
       return toast("Your Wallet Amount is low.");
     }
     try {
@@ -125,13 +125,12 @@ const ApplyBetDialogBox = ({
     >
       <Box>
         <Stack
-          className={`${
-            ((type === "green" ||
-              type === 1 ||
-              type === 3 ||
-              type === 7 ||
-              type === 9) &&
-              "!bg-[#30b539]") ||
+          className={`${((type === "green" ||
+            type === 1 ||
+            type === 3 ||
+            type === 7 ||
+            type === 9) &&
+            "!bg-[#30b539]") ||
             ((type === "red" ||
               type === 2 ||
               type === 6 ||
@@ -142,7 +141,7 @@ const ApplyBetDialogBox = ({
               "!bg-[#710193]") ||
             (type === "small" && "!bg-[#EE1285]") ||
             (type === "big" && "!bg-[#FBB13B]")
-          } 
+            } 
             dialog-header `}
         >
           <Box>
@@ -183,13 +182,12 @@ const ApplyBetDialogBox = ({
                 onClick={() => {
                   handleClickValue(i);
                 }}
-                className={`${
-                  ((type === "green" ||
-                    type === 1 ||
-                    type === 3 ||
-                    type === 7 ||
-                    type === 9) &&
-                    "!bg-[#30b539]") ||
+                className={`${((type === "green" ||
+                  type === 1 ||
+                  type === 3 ||
+                  type === 7 ||
+                  type === 9) &&
+                  "!bg-[#30b539]") ||
                   ((type === "red" ||
                     type === 2 ||
                     type === 6 ||
@@ -200,7 +198,7 @@ const ApplyBetDialogBox = ({
                     "!bg-[#710193]") ||
                   (type === "small" && "!bg-[#EE1285]") ||
                   (type === "big" && "!bg-[#FBB13B]")
-                } 
+                  } 
             `}
               >
                 {i}
@@ -217,6 +215,7 @@ const ApplyBetDialogBox = ({
           <RemoveIcon />
         </IconButton>
         <TextField
+          sx={{ background: 'white' }}
           placeholder="Enter value"
           value={value}
           variant="outlined"
@@ -227,7 +226,7 @@ const ApplyBetDialogBox = ({
           <AddIcon />
         </IconButton>
       </Stack>
-      <Box className=" !grid !grid-cols-6 lg:gap-1 gap-[1px] !pt-8 lg:px-2 px-1">
+      <Box className=" !grid !grid-cols-6 lg:gap-1 gap-[1px] !pt-4 lg:px-2 px-1">
         {[1, 5, 10, 20, 50, 100]?.map((i) => {
           return (
             <div
@@ -235,13 +234,12 @@ const ApplyBetDialogBox = ({
                 handleClickValue(value * i);
                 // setcalculated_value(value)
               }}
-              className={`${
-                ((type === "green" ||
-                  type === 1 ||
-                  type === 3 ||
-                  type === 7 ||
-                  type === 9) &&
-                  "!bg-[#30b539]") ||
+              className={`${((type === "green" ||
+                type === 1 ||
+                type === 3 ||
+                type === 7 ||
+                type === 9) &&
+                "!bg-[#30b539]") ||
                 ((type === "red" ||
                   type === 2 ||
                   type === 6 ||
@@ -252,7 +250,7 @@ const ApplyBetDialogBox = ({
                   "!bg-[#710193]") ||
                 (type === "small" && "!bg-[#EE1285]") ||
                 (type === "big" && "!bg-[#FBB13B]")
-              }
+                }
              !px-3 !py-2 rounded-md  !text-center !text-[#fff]
             `}
             >

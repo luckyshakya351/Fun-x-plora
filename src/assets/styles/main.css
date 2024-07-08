@@ -4,10 +4,10 @@
   color: 'white !important'
 }
 
-:root{
-  --lightblue:#6CB4EE;
-   --lightgreen : #8BE68B;
---lightyellow : #FFC300;
+:root {
+  --lightblue: #6CB4EE;
+  --lightgreen: #8BE68B;
+  --lightyellow: #FFC300;
 }
 
 body {
@@ -244,6 +244,7 @@ img {
   align-items: center !important;
   justify-content: space-between !important;
 }
+
 .serv-item2 {
   width: 45px;
   height: 45px;
@@ -411,7 +412,7 @@ img {
 }
 
 .activewinNav {
-background-color: var(--lightyellow) !important;
+  background-color: var(--lightyellow) !important;
   border-radius: 5px;
 }
 
@@ -632,7 +633,7 @@ background-color: var(--lightyellow) !important;
   margin-left: 2.5%;
   background-color: #ffffff !important;
   border-radius: 10px;
-  padding: 10px  5px !important;
+  padding: 10px 5px !important;
   margin-bottom: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -874,7 +875,7 @@ background-color: var(--lightyellow) !important;
   flex-direction: unset !important;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 6px;
 }
 
 .dialog-header-policy {
@@ -904,7 +905,7 @@ background-color: var(--lightyellow) !important;
 
 
 .dialogsmallbat {
-  padding: 20px 15px !important;
+  padding: 10px !important;
 }
 
 .dialogsmallbat>p:nth-child(1) {
@@ -916,7 +917,7 @@ background-color: var(--lightyellow) !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .addbtnbox>button {
@@ -950,16 +951,21 @@ background-color: var(--lightyellow) !important;
   padding: 0.5rem 0.75rem;
   line-height: 1.17333rem;
   color: #E71D1E;
-  background-color: #dbdbdb;
+  background-color: white;
   border-radius: 0.26667rem;
   border: 0 !important;
   text-align: center;
 }
 
+.bat-price-input-box>div>div>fieldset {
+  border: 1px solid red;
+  color: 'red'
+}
+
 
 
 .total-money-box {
-  padding: 10px 15px 0px 15px;
+  padding: 5px 15px 0px 15px;
   display: flex;
   align-items: center;
 }
@@ -973,7 +979,8 @@ background-color: var(--lightyellow) !important;
   font-size: 35px;
   font-weight: 600;
   margin-left: 20px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
+  line-height: 40px;
 }
 
 .agree-btn {
@@ -987,7 +994,7 @@ background-color: var(--lightyellow) !important;
 
 
 .agree-btn-two {
-  padding: 10px 0px 20px 15px;
+  padding: 0px 0px 10px 15px;
 }
 
 .agree-btn-two>button:nth-child(1) {
@@ -1275,7 +1282,7 @@ background-color: var(--lightyellow) !important;
 .withdrawalfield>div>input {
   background-color: #fff !important;
   border-radius: 10px;
-  border: 1px solid #ff82823d;
+  border: 1px solid red;
 }
 
 .withdrawalfield>div>input.MuiInputBase-input {
@@ -1473,9 +1480,9 @@ background-color: var(--lightyellow) !important;
 }
 
 .goldborderbtn {
-  color:WHITE !important;
+  color: WHITE !important;
   border: 1px solid var(--lightblue) !important;
-  background:var(--lightblue) !important;
+  background: var(--lightblue) !important;
 
   width: 85% !important;
   margin-left: 7.5% !important;
@@ -1514,7 +1521,7 @@ background-color: var(--lightyellow) !important;
 
 
 .yellowbtn {
-  background: #F3BD14 !important;
+  background: #E71D1E !important;
   color: white !important;
   text-transform: capitalize !important;
   border-radius: 19px !important;
@@ -1530,13 +1537,14 @@ background-color: var(--lightyellow) !important;
   padding: 7px 36px !important;
   margin-top: 20px !important;
 }
-.greenbtn{
+
+.greenbtn {
   background: var(--lightgreen) !important;
   color: white !important;
   text-transform: capitalize !important;
   border-radius: 19px !important;
   padding: 7px 36px !important;
-  margin-top: 20px !important; 
+  margin-top: 20px !important;
 }
 
 
@@ -1558,7 +1566,7 @@ background-color: var(--lightyellow) !important;
 .icobtn {
   background: var(--lightyellow) !important;
   border: navajowhite !important;
-  color:white !important;
+  color: white !important;
   width: 35px !important;
   padding: 6px 10px !important;
   border-radius: 5px !important;

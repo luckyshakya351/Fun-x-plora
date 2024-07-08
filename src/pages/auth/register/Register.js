@@ -33,7 +33,7 @@ import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
 import { lightblue, zubgtext } from "../../../Shared/color";
-import logo from "../../../assets/images/logowhite.jpg";
+import logo from "../../../assets/images/logowhite - Copy.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import swal from 'sweetalert';
@@ -130,10 +130,10 @@ function Register() {
           icon: 'success',
           button: 'OK',
         }).then(() => {
-        navigate("/dashboard");
-        document.location.reload();
+          navigate("/dashboard");
+          document.location.reload();
         });
-       
+
       } else {
         swal({
           title: 'Login Failed',
@@ -141,12 +141,12 @@ function Register() {
           icon: 'error',
           button: 'OK',
         });
-     setloding(false);
+        setloding(false);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
     }
-  } catch (error) {
-    console.error('Login error:', error);
   }
-}
 
   const { isLoading, data } = useQuery(
     ["getname", fk.values.referral_code],
@@ -154,7 +154,7 @@ function Register() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -169,7 +169,7 @@ refetchOnWindowFocus:false
 
   const result = data?.data?.data;
   return (
-    <Container >
+    <Container sx={{ background: '#FAF9F6' }}>
 
       <Box sx={style.authheader}>
         <Box
@@ -193,7 +193,7 @@ refetchOnWindowFocus:false
           </Box>
 
           <Typography variant="h6" sx={{ fontWeight: '600', fontSize: '18px', color: 'white' }}  >Register </Typography>
-          <Typography variant="body2" mb={2} sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>Please register by phone number or email</Typography>
+          <Typography variant="body2" mb={1} sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>Please register by phone number or email</Typography>
         </Box>
       </Box>
       <Box sx={style.authform} component='form'>
@@ -473,7 +473,7 @@ const style = {
     },
   },
   icon: { color: zubgtext },
-  logocss: { width: '120px', margin: 'auto' },
+  logocss: { width: '100px', margin: 'auto' },
   flexcoloumcenter: {
     display: 'flex',
     flexDirection: 'column',
