@@ -34,7 +34,7 @@ const ApplyBetDialogBox = ({
   setapply_bit_dialog_box,
   type,
   gid,
-  net_wallet_amount
+  net_wallet_amount,
 }) => {
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
@@ -92,10 +92,15 @@ const ApplyBetDialogBox = ({
       gamesnio: Number(next_step),
     };
     try {
-      if(reqBody.amount>Number(
-        Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
-      ))
-      return toast("Your Wallet Amount is low.")
+      if (
+        reqBody.amount >
+        Number(
+          Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
+        )
+      ) {
+        setLoding(false);
+        return toast("Your Wallet Amount is low.");
+      }
       const response = await axios.post(`${endpoint.trx_game_bet}`, reqBody);
       if (response?.data?.error === "200") {
         toast.success(response?.data?.msg);
@@ -124,12 +129,13 @@ const ApplyBetDialogBox = ({
     >
       <Box>
         <Stack
-          className={`${((type === "green" ||
-            type === 1 ||
-            type === 3 ||
-            type === 7 ||
-            type === 9) &&
-            "!bg-[#30b539]") ||
+          className={`${
+            ((type === "green" ||
+              type === 1 ||
+              type === 3 ||
+              type === 7 ||
+              type === 9) &&
+              "!bg-[#30b539]") ||
             ((type === "red" ||
               type === 2 ||
               type === 6 ||
@@ -140,7 +146,7 @@ const ApplyBetDialogBox = ({
               "!bg-[#710193]") ||
             (type === "small" && "!bg-[#EE1285]") ||
             (type === "big" && "!bg-[#FBB13B]")
-            } 
+          } 
             dialog-header `}
         >
           <Box>
@@ -182,12 +188,13 @@ const ApplyBetDialogBox = ({
                   handleClickValue(i);
                   setcalculated_value(i);
                 }}
-                className={`${((type === "green" ||
-                  type === 1 ||
-                  type === 3 ||
-                  type === 7 ||
-                  type === 9) &&
-                  "!bg-[#30b539]") ||
+                className={`${
+                  ((type === "green" ||
+                    type === 1 ||
+                    type === 3 ||
+                    type === 7 ||
+                    type === 9) &&
+                    "!bg-[#30b539]") ||
                   ((type === "red" ||
                     type === 2 ||
                     type === 6 ||
@@ -198,7 +205,7 @@ const ApplyBetDialogBox = ({
                     "!bg-[#710193]") ||
                   (type === "small" && "!bg-[#EE1285]") ||
                   (type === "big" && "!bg-[#FBB13B]")
-                  } 
+                } 
             `}
               >
                 {i}
@@ -230,15 +237,16 @@ const ApplyBetDialogBox = ({
           return (
             <div
               onClick={() => {
-                handleClickValue(value * i)
+                handleClickValue(value * i);
                 // setcalculated_value(value)
               }}
-              className={`${((type === "green" ||
-                type === 1 ||
-                type === 3 ||
-                type === 7 ||
-                type === 9) &&
-                "!bg-[#30b539]") ||
+              className={`${
+                ((type === "green" ||
+                  type === 1 ||
+                  type === 3 ||
+                  type === 7 ||
+                  type === 9) &&
+                  "!bg-[#30b539]") ||
                 ((type === "red" ||
                   type === 2 ||
                   type === 6 ||
@@ -249,7 +257,7 @@ const ApplyBetDialogBox = ({
                   "!bg-[#710193]") ||
                 (type === "small" && "!bg-[#EE1285]") ||
                 (type === "big" && "!bg-[#FBB13B]")
-                }
+              }
              !px-3 !py-2 rounded-md  !text-center !text-[#fff]
             `}
             >
@@ -271,7 +279,9 @@ const ApplyBetDialogBox = ({
           control={<Checkbox defaultChecked />}
           label="I Agree"
         />
-        <Button onClick={() => handleClickOpenRules()} sx={{ color: zubgtext }}>Personal Rules</Button>
+        <Button onClick={() => handleClickOpenRules()} sx={{ color: zubgtext }}>
+          Personal Rules
+        </Button>
         <Dialog
           open={Rules}
           onClose={handleCloseRules}

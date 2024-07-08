@@ -39,9 +39,7 @@ const ApplyBetDialogBox = ({
   const dispatch = useDispatch();
   const [value, setValue] = useState(1);
   const [Rules, setRules] = useState(false);
-  const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
-
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
@@ -97,7 +95,9 @@ const ApplyBetDialogBox = ({
         Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
       )
     )
+     { setLoding(false);
       return toast("Your Wallet Amount is low.");
+    }
     try {
       const response = await axios.post(`${endpoint.applybet}`, reqBody);
       if (response?.data?.error === "200") {
@@ -182,7 +182,6 @@ const ApplyBetDialogBox = ({
               <Button
                 onClick={() => {
                   handleClickValue(i);
-                  setcalculated_value(i);
                 }}
                 className={`${
                   ((type === "green" ||

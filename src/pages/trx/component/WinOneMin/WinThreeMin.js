@@ -81,7 +81,7 @@ function WinThreeMin({ gid }) {
                     }}
 
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
+                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
                       ?.substring(0, 1)}
                   </div>
                   <div
@@ -98,7 +98,7 @@ function WinThreeMin({ gid }) {
                     }}
 
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1]).padStart(2, "0")
+                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
                       ?.substring(1, 2)}
                   </div>
                 </div>
@@ -316,7 +316,7 @@ function WinThreeMin({ gid }) {
       </Box>
       {apply_bit_dialog_box && Number(
           `${String(timing)?.split("_")?.[0]}.${
-            String(timing)?.split("_")?.[1].padStart(2, "0")
+            String(timing)?.split("_")?.[1]?.padStart(2, "0")
           }`
         ) > 0.1 &&(
         <ApplyBetDialogBox

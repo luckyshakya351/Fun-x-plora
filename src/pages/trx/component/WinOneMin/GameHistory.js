@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { zubgback, zubgbackgrad, zubgtext } from "../../../../Shared/color";
+import { zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import {
   trx_game_image_index_function,
