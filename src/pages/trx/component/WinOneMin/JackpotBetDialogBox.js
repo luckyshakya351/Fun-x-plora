@@ -147,7 +147,7 @@ const JackpotBetDialogBox = ({
                 fontWeight: "600",
               }}
             >
-              {(type?.split("_")?.[0] === "green" && `Green ${type?.split("_")?.[1]}`) ||
+              { (type?.split("_")?.[0] === "green" && `Green ${type?.split("_")?.[1]}`) ||
                 (type?.split("_")?.[0] === "voilet" && `Voilet ${type?.split("_")?.[1]}`) ||
                 (type?.split("_")?.[0] === "red" &&`Red ${type?.split("_")?.[1]}`) ||
                 type?.split("_")?.[0]}
