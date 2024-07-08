@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { lightblue, lightyellow } from '../../../Shared/color';
-import logo from "../../../assets/images/logowhite.jpg";
+import logo from "../../../assets/images/logowhite - Copy.jpg";
 import LoginWithEmail from '../login/LoginWithEmail';
 import LoginWithMobile from '../login/LoginWithMobile';
 
@@ -43,7 +43,7 @@ function Login() {
   };
 
   return (
-    <Container >
+    <Container sx={{ background: '#FAF9F6', minHeight: '100vh' }}>
       <Box sx={style.authheader}>
         <Box
           sx={{
@@ -56,7 +56,7 @@ function Login() {
             <Box component={NavLink} sx={{ width: '20%' }}>
 
             </Box>
-            <Box sx={{ width: '60%', py: 1 }}>
+            <Box sx={{ width: '60%', }}>
               <Box component='img' src={logo} sx={style.logocss}></Box>
             </Box>
             <Box component={NavLink} sx={{ width: '20%' }}>
@@ -66,7 +66,7 @@ function Login() {
           </Box>
           <Typography variant="h6" sx={{ fontWeight: '600', fontSize: '18px', color: 'white' }}  > Log in </Typography>
           <Typography variant="body2" sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>Please log in with your phone number or email</Typography>
-          <Typography variant="body2" mb={2} sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>If you forget your password, please contact customer service</Typography>
+          <Typography variant="body2" mb={1} sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>If you forget your password, please contact customer service</Typography>
         </Box>
       </Box>
       <Box
@@ -123,7 +123,7 @@ export default Login;
 
 const style = {
   authheader: { background: lightblue, py: 1, },
-  logocss: { width: '120px', margin: 'auto', },
+  logocss: { width: '100px', margin: 'auto', },
   flagcss: { width: '30px' },
   icon: { fontSize: "18px", color: 'white' },
   authform: { width: '100%' },

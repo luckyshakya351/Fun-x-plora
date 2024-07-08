@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { zubgback, zubgtext } from "../../../../Shared/color";
+import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import {
   trx_game_image_index_function,
@@ -32,7 +32,7 @@ const GameHistory = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -123,19 +123,19 @@ refetchOnWindowFocus:false
         >
           <TableHead>
             <TableRow>
-              <TableCell className="!text-sm !text-center !pl-[2px] !pr-0">
+              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
                 Period
               </TableCell>
-              <TableCell className="!text-sm !text-center !pr-0 !pl-1">
+              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
                 Block
               </TableCell>
-              <TableCell className="!text-sm !text-center !pr-0 !pl-1">
+              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
                 Block Time
               </TableCell>
-              <TableCell className="!text-sm !text-center !pr-0 !pl-1">
+              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
                 Hash
               </TableCell>
-              <TableCell className="!text-sm !text-center !pr-0 !pl-1">
+              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
                 Result
               </TableCell>
             </TableRow>
@@ -144,14 +144,14 @@ refetchOnWindowFocus:false
             {visibleRows?.map((i) => {
               return (
                 <TableRow className="!w-[95%]">
-                  <TableCell className="!text-white !pl-[2px] !pr-0 !text-center">
+                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <p
                       style={{ fontWeight: 700, fontSize: '12px', color: zubgtext }}
                     >
                       {i?.tr_transaction_id}
                     </p>
                   </TableCell>
-                  <TableCell sx={{ color: zubgtext }} className=" !pr-0 !pl-1 !text-center">
+                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <span>
                       <LiveHelpIcon
                         className="!text-[#FBA343] cursor-pointer"
@@ -166,14 +166,14 @@ refetchOnWindowFocus:false
                     </span>
                     <span>{i?.tr_number}</span>
                   </TableCell>
-                  <TableCell sx={{ color: zubgtext }} className=" !pr-0 !pl-1 !text-center">
+                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <span>{i?.tr_block_time}</span>
                   </TableCell>
-                  <TableCell sx={{ color: zubgtext }} className=" !pr-0 !pl-1 !text-center">
+                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <span>{i?.tr_hashno}</span>
                   </TableCell>
 
-                  <TableCell sx={{ color: zubgtext }} className=" !pr-0 !pl-1 !text-center">
+                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <span
                       className={`
                 ${(String(Number(i?.tr41_slot_id)) === "0" &&

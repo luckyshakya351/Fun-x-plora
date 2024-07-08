@@ -48,11 +48,11 @@ function WinFiveMin({ gid }) {
   //       fk.handleReset()
   //     };
   //   } else if (gid === "2") {
-      // if (Number(String(timing)?.split("_")?.[0]) === 0) {
-      //   if (Number(String(timing)?.split("_")?.[1]) <= 10) {setapply_bit_dialog_box(false)
-      //     fk.handleReset()
-      //   };
-      // }
+  // if (Number(String(timing)?.split("_")?.[0]) === 0) {
+  //   if (Number(String(timing)?.split("_")?.[1]) <= 10) {setapply_bit_dialog_box(false)
+  //     fk.handleReset()
+  //   };
+  // }
   //   } else {
   //     if (Number(String(timing)?.split("_")?.[0]) === 0) {
   //       if (Number(String(timing)?.split("_")?.[1]) <= 10) {setapply_bit_dialog_box(false)
@@ -90,7 +90,8 @@ function WinFiveMin({ gid }) {
                   <div
                     style={{
                       borderRadius: 20,
-                      width: 150,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -100,7 +101,7 @@ function WinFiveMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 150, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
                     >
                       {String(fk.values.show_this_one_min_time?.split("_")?.[1])
                         ?.padStart(2, "0")
@@ -110,7 +111,8 @@ function WinFiveMin({ gid }) {
                   <div
                     style={{
                       borderRadius: 20,
-                      width: 150,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -120,7 +122,7 @@ function WinFiveMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 150, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
                     >
                       {String(fk.values.show_this_one_min_time?.split("_")?.[1])
                         ?.padStart(2, "0")
@@ -306,7 +308,7 @@ function WinFiveMin({ gid }) {
                     }
                   >
                     <Typography variant="h3" color="initial">
-                      Game History
+                      Game HTY
                     </Typography>
                   </Box>
                   <Box
@@ -342,10 +344,9 @@ function WinFiveMin({ gid }) {
       </Box>
       {apply_bit_dialog_box &&
         Number(
-          `${String(timing)?.split("_")?.[0]}.${
-            String(timing)?.split("_")?.[1]?.padStart(2, "0")
+          `${String(timing)?.split("_")?.[0]}.${String(timing)?.split("_")?.[1]?.padStart(2, "0")
           }`
-        ) > 0.1 &&(
+        ) > 0.1 && (
           <ApplyBetDialogBox
             apply_bit_dialog_box={apply_bit_dialog_box}
             setapply_bit_dialog_box={setapply_bit_dialog_box}

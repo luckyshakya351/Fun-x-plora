@@ -242,7 +242,7 @@ const style = {
   },
   normalinput: {
     borderRadius: '10px',
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     '&>input': { color: `${lightblue} !important` },
     '&>div': {
       border: 'none',

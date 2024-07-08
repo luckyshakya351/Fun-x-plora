@@ -4,7 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import WalletIcon from '@mui/icons-material/Wallet';
 import { Box, Stack, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import { default as promotion, default as promotionact } from '../../../../assets/images/fevicon.jpg';
+import { default as promotion, default as promotionact } from '../../../../assets/images/diamond (4).png';
 import tabBarBg from '../../../../assets/images/tabBarBg-301df93c.png';
 import { lightgreen, zubgtext } from "../../../../Shared/color";
 
@@ -19,7 +19,7 @@ function Footer() {
         bottom: "0px",
         width: "100%",
         backgroundColor: 'transparent',
-        zIndex:10000,
+        zIndex: 10000,
       }}
     >
       <Box sx={style.root}>
@@ -59,7 +59,7 @@ function Footer() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: '2px solid #F02257',
+                border: '1px solid #F02257',
                 position: ' absolute',
                 top: ' -62px',
                 left: '12px',

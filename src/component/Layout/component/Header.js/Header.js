@@ -5,7 +5,7 @@ import asistant from "../../../../assets/images/asistant.png"
 import backbtn from "../../../../assets/images/backBtn.png"
 import music from "../../../../assets/images/music.png"
 import musicoff from "../../../../assets/images/musicoff.png"
-import logo from '../../../../assets/images/logored.png'
+import logo from '../../../../assets/images/logowhite.jpg'
 import { lightblue } from '../../../../Shared/color'
 
 
@@ -29,12 +29,7 @@ function Header() {
         }}
       >
         <Box sx={{ width: '33%' }}>
-          <NavLink onClick={() => navigate(-1)}>
-            <Box component="img" src={backbtn} width={25}></Box>
-          </NavLink>
-        </Box>
-        <Box sx={{ width: '33%' }}>
-          <Box component='img' src={logo} sx={{ width: '100px', margin: 'auto' }}></Box>
+          <Box component='img' src={logo} sx={{ width: '60px', }}></Box>
         </Box>
         <Box sx={{ width: '33%', display: 'flex', justifyContent: 'end' }}>
           <Stack direction="row">

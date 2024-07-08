@@ -45,7 +45,7 @@ function WinThreeMin({ gid }) {
   return (
     <Box className="mainBox">
       {React.useMemo(() => {
-        return <TwoMinCountDown fk={fk} setBetNumber={setBetNumber}/>
+        return <TwoMinCountDown fk={fk} setBetNumber={setBetNumber} />
       }, [])}
       {React.useMemo(() => {
         return (
@@ -69,10 +69,10 @@ function WinThreeMin({ gid }) {
                 >
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
                       fontWeight: 700,
-                      width: 150,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -81,15 +81,20 @@ function WinThreeMin({ gid }) {
                     }}
 
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
-                      ?.substring(0, 1)}
+                    <Typography
+                      variant="body1"
+                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
+                    >
+                      {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
+                        ?.substring(0, 1)}
+                    </Typography>
                   </div>
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
                       fontWeight: 700,
-                      width: 150,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -98,8 +103,13 @@ function WinThreeMin({ gid }) {
                     }}
 
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
-                      ?.substring(1, 2)}
+                    <Typography
+                      variant="body1"
+                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
+                    >
+                      {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
+                        ?.substring(1, 2)}
+                    </Typography>
                   </div>
                 </div>
               </div>
@@ -148,7 +158,7 @@ function WinThreeMin({ gid }) {
               sx={{
                 width: "100%",
                 my: "20px",
-                background: zubgwhite,
+                background: 'white',
                 boxShadow: zubgshadow,
                 borderRadius: "10px",
                 position: "relative",
@@ -225,16 +235,16 @@ function WinThreeMin({ gid }) {
                 5X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                10X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                20x
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                50X
               </IconButton>
               <IconButton color="primary" className="icobtn">
-                5X
+                100X
               </IconButton>
             </Box>
             <div className="!w-full !grid grid-cols-2 gap-2 !mt-2">
@@ -280,7 +290,7 @@ function WinThreeMin({ gid }) {
                     }
                   >
                     <Typography variant="h3" color="initial">
-                      Game History
+                      Game HTY
                     </Typography>
                   </Box>
                   <Box
@@ -315,18 +325,17 @@ function WinThreeMin({ gid }) {
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
       {apply_bit_dialog_box && Number(
-          `${String(timing)?.split("_")?.[0]}.${
-            String(timing)?.split("_")?.[1]?.padStart(2, "0")
-          }`
-        ) > 0.1 &&(
-        <ApplyBetDialogBox
-          apply_bit_dialog_box={apply_bit_dialog_box}
-          setapply_bit_dialog_box={setapply_bit_dialog_box}
-          type={dialog_type}
-          gid={gid}
-          net_wallet_amount={net_wallet_amount}
-        />
-      )}
+        `${String(timing)?.split("_")?.[0]}.${String(timing)?.split("_")?.[1]?.padStart(2, "0")
+        }`
+      ) > 0.1 && (
+          <ApplyBetDialogBox
+            apply_bit_dialog_box={apply_bit_dialog_box}
+            setapply_bit_dialog_box={setapply_bit_dialog_box}
+            type={dialog_type}
+            gid={gid}
+            net_wallet_amount={net_wallet_amount}
+          />
+        )}
     </Box>
   );
 }

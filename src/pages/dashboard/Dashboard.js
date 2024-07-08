@@ -48,7 +48,7 @@ import two from "../../assets/images/2.jpg";
 import winp4 from "../../assets/images/GOTI.png";
 import bgms from "../../assets/images/bgms2.jpg";
 import deposit from "../../assets/images/deposit.png";
-import logo from "../../assets/images/logotred.png";
+import logo from "../../assets/images/logored.jpg";
 import cash from "../../assets/images/money.png";
 import stage from "../../assets/images/pod2.png";
 import position2 from "../../assets/images/positio2.png";
@@ -154,9 +154,9 @@ function Dashboard() {
   });
 
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(net_wallet_amount_function(data?.data?.data))
-  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)])
 
   const {
     isLoading: allWithdrawlCashUserFnLoding,
@@ -175,7 +175,7 @@ function Dashboard() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -311,7 +311,7 @@ refetchOnWindowFocus:false
                 <Box
                   component="img"
                   src={logo}
-                  sx={{ width: "60px", height: "35px" }}
+                  sx={{ width: "60px", height: "60px" }}
                 ></Box>
               </div>
               <div className="flex gap-1 items-center cursor-pointer">
@@ -656,26 +656,25 @@ refetchOnWindowFocus:false
                           Math.floor(Math.random() * 5) + 1 === 1
                             ? "https://mui.com/static/images/avatar/4.jpg"
                             : Math.floor(Math.random() * 5) + 1 === 2
-                            ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                            : Math.floor(Math.random() * 5) + 1 === 3
-                            ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                            : Math.floor(Math.random() * 5) + 1 === 4
-                            ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                            : ""
+                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+                              : Math.floor(Math.random() * 5) + 1 === 3
+                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+                                : Math.floor(Math.random() * 5) + 1 === 4
+                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+                                  : ""
                         } // Close the src attribute here
-                        className={`capitalize ${
-                          i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                        }`}
+                        className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
+                          }`}
                       >
                         {i?.email?.split("@")[0]?.substring(0, 1)}
                       </Avatar>
                       <Typography variant="body1">
                         {i?.email
                           ? i.email.split("@")[0].substring(0, 2) +
-                            "**" +
-                            (i.email.split("@")[0].length > 2
-                              ? i.email.split("@")[0].substring(2, 4)
-                              : "")
+                          "**" +
+                          (i.email.split("@")[0].length > 2
+                            ? i.email.split("@")[0].substring(2, 4)
+                            : "")
                           : "**"}
                       </Typography>
                     </Stack>
@@ -710,9 +709,6 @@ refetchOnWindowFocus:false
               position: "relative",
             }}
           >
-            <Box sx={{ position: "absolute", top: "49%", left: "40%" }}>
-              <Box component="img" src={logo} sx={{ width: "80px" }}></Box>
-            </Box>
             <Box sx={styles.winner1}>
               <Box
                 component="img"
@@ -805,26 +801,25 @@ refetchOnWindowFocus:false
                           Math.floor(Math.random() * 5) + 1 === 1
                             ? "https://mui.com/static/images/avatar/4.jpg"
                             : Math.floor(Math.random() * 5) + 1 === 2
-                            ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                            : Math.floor(Math.random() * 5) + 1 === 3
-                            ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                            : Math.floor(Math.random() * 5) + 1 === 4
-                            ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                            : ""
+                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+                              : Math.floor(Math.random() * 5) + 1 === 3
+                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+                                : Math.floor(Math.random() * 5) + 1 === 4
+                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+                                  : ""
                         } // Close the src attribute here
-                        className={`capitalize ${
-                          i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                        }`}
+                        className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
+                          }`}
                       >
                         {i?.email?.split("@")[0]?.substring(0, 1)}
                       </Avatar>
                       <Typography variant="body1">
                         {i?.email
                           ? i.email.split("@")[0].substring(0, 2) +
-                            "**" +
-                            (i.email.split("@")[0].length > 2
-                              ? i.email.split("@")[0].substring(2, 4)
-                              : "")
+                          "**" +
+                          (i.email.split("@")[0].length > 2
+                            ? i.email.split("@")[0].substring(2, 4)
+                            : "")
                           : "**"}
                       </Typography>
                     </Stack>

@@ -56,9 +56,9 @@ function Win() {
       element.classList.remove("rotate_refresh_image");
     }
   }, []);
-  
+
   return (
-    <Layout header={true} footer={false}>
+    <Layout header={true} footer={true}>
       <Container sx={styles.root}>
         <Box sx={{ position: 'relative', overflow: 'hidden' }}>
           <Box className="wingosx"></Box>
@@ -73,15 +73,15 @@ function Win() {
                   )?.toFixed(2)}
                 </Typography>
                 <div className="mx-1 rotate_refresh_image" id="refresh_button">
-              <img
-                src={refresh}
-                className='!w-6'
-                ml={2}
-                onClick={() => {
-                  refreshFunctionForRotation();
-                }}
-              />
-            </div>
+                  <img
+                    src={refresh}
+                    className='!w-6'
+                    ml={2}
+                    onClick={() => {
+                      refreshFunctionForRotation();
+                    }}
+                  />
+                </div>
                 {/* <CachedOutlinedIcon sx={{ ml: 3, color: 'gray' }} /> */}
               </Box>
               <Box display='flex' alignItems='center' mr={5}>
@@ -123,7 +123,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  TRX 1Min
+                  TRX     <br />1Min
                 </Typography>
               </Box>
               <Box
@@ -137,7 +137,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  TRX 3Min
+                  TRX    <br /> 3Min
                 </Typography>
               </Box>
               <Box
@@ -151,7 +151,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  TRX 5Min
+                  TRX   <br /> 5Min
                 </Typography>
               </Box>
             </Stack>
@@ -183,7 +183,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, mt: '74px' },
+  root: { background: zubgback, my: '74px' },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",
