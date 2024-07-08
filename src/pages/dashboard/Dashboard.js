@@ -642,7 +642,7 @@ refetchOnWindowFocus:false
               >
                 Winning information
               </Typography>
-              {winnner_data?.slice(3, 10)?.map((i, index) => {
+              {winnner_data?.slice(3, 8)?.map((i, index) => {
                 return (
                   <Stack
                     key={index}
@@ -791,7 +791,7 @@ refetchOnWindowFocus:false
               >
                 TRX Winning information
               </Typography>
-              {winnner_data?.slice(0, 10)?.map((i, index) => {
+              {winnner_data?.slice(0, 5)?.map((i, index) => {
                 return (
                   <Stack
                     key={index}

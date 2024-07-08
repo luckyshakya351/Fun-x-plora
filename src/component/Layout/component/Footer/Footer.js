@@ -19,6 +19,7 @@ function Footer() {
         bottom: "0px",
         width: "100%",
         backgroundColor: 'transparent',
+        zIndex:10000,
       }}
     >
       <Box sx={style.root}>

@@ -139,8 +139,8 @@ refetchOnWindowFocus:false
                   </TableCell>
                   <TableCell sx={{ padding: ' 10px 5px', fontSize: '12px', fontWeight: '700', borderBottom: '1px solid rgb(255 0 0)' }}
                     className={`${Number(i?.number) <= 4
-                      ? "!bg-gradient-to-l !from-[#FE63FF] !to-violet-400"
-                      : "!bg-gradient-to-l !from-[#FE63FF] !to-green-400"
+                      ? "!bg-gradient-to-l !from-[#FE63FF] !to-violet-600"
+                      : "!bg-gradient-to-l !from-[#FE63FF] !to-green-600"
                       }  transparentColor `}
                   >
                     {Number(i?.number) <= 4 ? "SMALL" : "BIG"}
