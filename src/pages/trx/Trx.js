@@ -13,6 +13,7 @@ import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
+import Jackpot from './component/WinOneMin/Jackpot';
 
 function Win() {
   const navigate = useNavigate();
@@ -154,12 +155,27 @@ function Win() {
                   TRX 5Min
                 </Typography>
               </Box>
+              <Box
+                component={NavLink}
+                onClick={() => setTab(4)}
+                className={Tab === 4 ? "activewinNav Winnav" : " Winnav"}
+              >
+                {Tab === 4 ? (
+                  <Box component="img" src={Timeinactive} width={50}></Box>
+                ) : (
+                  <Box component="img" src={Timeactive} width={50}></Box>
+                )}
+                <Typography variant="h3" color="initial">
+                  Jackpot
+                </Typography>
+              </Box>
             </Stack>
           </Box>
         </Box>
         {Tab === 1 && <WinOneMin gid="1" />}
         {Tab === 2 && <WinThreeMin gid="2" />}
         {Tab === 3 && <WinFiveMin gid="3" />}
+        {Tab === 4 && <Jackpot gid="4" />}
         {/* opendialogbox */}
         {opendialogbox && (
           <Dialog
