@@ -99,7 +99,7 @@ const GameHistory = ({ gid }) => {
       </div>
     );
   return (
-    <Box>
+    <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial">
           <Box
@@ -115,13 +115,13 @@ const GameHistory = ({ gid }) => {
               : "Five Go Record"}
         </Typography>
       </Stack>
-      <TableContainer>
+      <TableContainer sx={{ borderRadius: '7px' }}>
         <Table
-          sx={{ background: zubgback, color: "white" }}
+          sx={{ background: zubgback, color: "white", borderRadius: '10px  10px 0px 0px' }}
           className="wintable"
           aria-label="simple table"
         >
-          <TableHead>
+          <TableHead sx={{ borderRadius: '10px  10px 0px 0px' }}>
             <TableRow>
               <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
                 Period
@@ -140,7 +140,7 @@ const GameHistory = ({ gid }) => {
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody >
             {visibleRows?.map((i) => {
               return (
                 <TableRow className="!w-[95%]">
@@ -226,7 +226,7 @@ const GameHistory = ({ gid }) => {
         </Box>
       </TableContainer>
       {/* <CustomCircularProgress isLoading={isLoading}/> */}
-    </Box>
+    </Box >
   );
 };
 

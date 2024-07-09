@@ -32,7 +32,7 @@ const MyHistory = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -44,14 +44,11 @@ refetchOnWindowFocus:false
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
   const my_history_data_all = my_history_all?.data?.data || [];
-
-
-
 
 
   const visibleRows = React.useMemo(
@@ -64,7 +61,7 @@ refetchOnWindowFocus:false
   );
 
   return (
-    <Box>
+    <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
@@ -474,5 +471,6 @@ refetchOnWindowFocus:false
     </Box>
   );
 };
+
 
 export default MyHistory;

@@ -40,7 +40,7 @@ const MyHistory = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -52,7 +52,7 @@ refetchOnWindowFocus:false
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -79,7 +79,7 @@ refetchOnWindowFocus:false
   return (
     <Box>
       <Stack direction="row" className="onegotextbox">
-        <Typography variant="body1" color="initial">
+        <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
             component="img"
             src={history}
@@ -100,12 +100,12 @@ refetchOnWindowFocus:false
             ?.map((i, index) => {
               return (
                 <div key={index}>
-                  <Accordion className="!rounded-lg">
-                    <AccordionSummary
-                      expandIcon={<ArrowDownwardIcon sx={{ color: zubgtext }} />}
+                  <Accordion className="!rounded-lg" disableElevation sx={{ borderBottom: '1px solid red', boxShadow: 'none !important' }}>
+                    <AccordionSummary disableElevation
+                      expandIcon={<ArrowDownwardIcon sx={{ color: `${zubgtext} !important` }} />}
                       aria-controls="panel1-content"
                       id="panel1-header"
-                      sx={{ background: zubgback, color: zubgtext }}
+                      sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
                     >
                       <div className="!w-full !flex !justify-between">
                         <p className=" " style={{ color: zubgtext }}>{i?.gamesno}</p>
@@ -137,7 +137,7 @@ refetchOnWindowFocus:false
                       </div>
                     </AccordionSummary>
                     <AccordionDetails
-                      sx={{ background: zubgback, color: zubgtext, }}
+                      sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
                     >
                       <p className={`!text-green-400 !font-semibold !text-lg`}>
                         Period Detail
@@ -266,12 +266,13 @@ refetchOnWindowFocus:false
         {visibleRows?.map((i) => {
           return (
             <div>
-              <Accordion className="!rounded-lg">
+              <Accordion className="!rounded-lg" disableElevation>
                 <AccordionSummary
+                  disableElevation
                   expandIcon={<ArrowDownwardIcon className="" />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: zubgback, color: zubgtext }}
+                  sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
                 >
                   <div className="!w-full !flex !justify-between">
                     <p className=" ">{i?.gamesno}</p>
@@ -302,7 +303,7 @@ refetchOnWindowFocus:false
                     </span>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: zubgback, color: zubgtext }}>
+                <AccordionDetails sx={{ background: zubgback, color: zubgtext }} disableElevation>
                   <p className={`!text-green-400 !font-semibold !text-lg`}>
                     Period Detail
                   </p>
@@ -569,7 +570,7 @@ refetchOnWindowFocus:false
         />
       </Box>
       {/* <CustomCircularProgress isLoading={myhistory_loding} /> */}
-    </Box>
+    </Box >
   );
 };
 

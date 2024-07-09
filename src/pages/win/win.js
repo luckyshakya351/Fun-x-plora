@@ -95,7 +95,7 @@ function Win() {
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                      Number(net_wallet_amount?.winning || 0) || 0
+                    Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
                 <div className="mx-1 rotate_refresh_image" id="refresh_button">
@@ -232,7 +232,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, mt: "74px" },
+  root: { background: zubgback, mt: "74px", },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

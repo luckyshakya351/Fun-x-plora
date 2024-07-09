@@ -75,7 +75,7 @@ const GameHistory = ({ gid }) => {
       </div>
     );
   return (
-    <Box>
+    <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: `${zubgtext} !important` }}>
           <Box component='img' src={history} width={25} sx={{ marginRight: '10px' }}></Box>
@@ -86,7 +86,7 @@ const GameHistory = ({ gid }) => {
               : "Five Go Record"}
         </Typography>
       </Stack>
-      <TableContainer component={Paper}>
+      <TableContainer >
         <Table sx={{ maxWidth: 575, background: zubgback, color: "white" }} className="wintable" aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -228,7 +228,7 @@ const GameHistory = ({ gid }) => {
         </Box>
       </TableContainer>
       <CustomCircularProgress isLoading={isLoading} />
-    </Box>
+    </Box >
   );
 
 };

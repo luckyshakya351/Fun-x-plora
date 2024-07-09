@@ -20,7 +20,7 @@ const Chart = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -94,7 +94,7 @@ refetchOnWindowFocus:false
   }, [visibleRows]);
 
   return (
-    <Box className="chartTable">
+    <Box className="chartTable" sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box

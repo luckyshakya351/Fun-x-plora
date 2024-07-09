@@ -13,7 +13,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: oldlace !important;
+  background-color: #F6F7FE !important;
 }
 
 a {
@@ -1590,4 +1590,8 @@ td {
 .Gobtn>svg {
   font-size: 15px !important;
   margin-left: 5px !important;
+}
+
+.css-yw020d-MuiAccordionSummary-expandIconWrapper {
+  color: red !important;
 }

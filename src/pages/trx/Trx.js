@@ -82,7 +82,6 @@ function Win() {
                     }}
                   />
                 </div>
-                {/* <CachedOutlinedIcon sx={{ ml: 3, color: 'gray' }} /> */}
               </Box>
               <Box display='flex' alignItems='center' mr={5}>
                 <WalletOutlinedIcon sx={{ mr: 1, color: 'gray' }} />
@@ -183,7 +182,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, my: '74px' },
+  root: { background: zubgback, my: '74px', },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",
