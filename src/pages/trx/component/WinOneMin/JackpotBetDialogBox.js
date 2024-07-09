@@ -78,15 +78,15 @@ const JackpotBetDialogBox = ({
     setLoding(true);
     console.log("FUnction called apply bit");
     const reqBody = {
-      userid: user_id,
-      amount: value | 0,
+      userid: String(user_id),
+      amount: String(value ||0),
       number:
         (type?.split("_")?.[0] === "green" && `100${type?.split("_")?.[1]}`) ||
         (type?.split("_")?.[0] === "voilet" && `200${type?.split("_")?.[1]}`) ||
         (type?.split("_")?.[0] === "red" && `300${type?.split("_")?.[1]}`) ||
         type?.split("_")?.[0],
-      gameid: Number(gid),
-      gamesnio: Number(next_step),
+      gameid: Number(4),
+      // gamesnio: Number(next_step),
     };
     try {
       if (
@@ -98,15 +98,15 @@ const JackpotBetDialogBox = ({
         setLoding(false);
         return toast("Your Wallet Amount is low.");
       }
-      console.log(reqBody)
-      // const response = await axios.post(`${endpoint.trx_game_bet}`, reqBody);
-      // if (response?.data?.error === "200") {
-      //   toast.success(response?.data?.msg);
-      //   setjackpot_bit_dialog_box(false);
-      //   localStorage.setItem("betApplied", `${gid}_true`);
-      // } else {
-      //   toast(response?.data?.msg);
-      // }
+   
+      const response = await axios.post(`${endpoint.place_bid_jackpod}`, reqBody);
+      if (response?.data?.msg === "Bid placed Successfully") {
+        toast.success(response?.data?.msg);
+        setjackpot_bit_dialog_box(false);
+        localStorage.setItem("betApplied", `${4}_true`);
+      } else {
+        toast(response?.data?.msg);
+      }
     } catch (e) {
       toast(e?.message);
       console.log(e);

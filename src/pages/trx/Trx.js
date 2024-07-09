@@ -165,7 +165,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  Jackpot
+                  Jackpod
                 </Typography>
               </Box>
             </Stack>
