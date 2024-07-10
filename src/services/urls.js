@@ -8,8 +8,8 @@ export const fron_end_main_domain = "https://funxplora.com";
 // export const domain = "https://funxplora-timer.onrender.com/";
 // export const domain = "http://192.168.1.3:9000/";
 
- export const domain = "http://192.168.1.12:9000/";
- export const jackpotdomain = "http://192.168.1.12:9000";
+ export const domain = "http://192.168.1.15:9000/";
+ export const jackpotdomain = "http://192.168.1.15:9000";
 
 export const support_mail = ''
 // `support@sunlottrey.fun`;
@@ -70,5 +70,6 @@ export const endpoint = {
   cash_out: `${baseUrl}/api/aviator/cash_out`,
   place_bid_jackpod: `${jackpotdomain}/api/v1/place-bid-jackpod`,
   jackpod_my_history: `${jackpotdomain}/api/v1/my-history-jackpod`,
- 
+  jackpod_game_history: `${jackpotdomain}/api/v1/game-history-jackpod`
+
 };

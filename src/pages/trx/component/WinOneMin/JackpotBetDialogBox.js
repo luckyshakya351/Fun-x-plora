@@ -86,7 +86,6 @@ const JackpotBetDialogBox = ({
         (type?.split("_")?.[0] === "red" && `300${type?.split("_")?.[1]}`) ||
         type?.split("_")?.[0],
       gameid: Number(4),
-      // gamesnio: Number(next_step),
     };
     try {
       if (
@@ -111,10 +110,10 @@ const JackpotBetDialogBox = ({
       toast(e?.message);
       console.log(e);
     }
-    client.refetchQueries("my_trx_Allhistory");
+   
     client.refetchQueries("walletamount");
-    client.refetchQueries("trx_gamehistory");
-    client.refetchQueries("my_trx_history");
+    client.refetchQueries("jackpod_gamehistory");
+    client.refetchQueries("my_jackpod_history");
     setLoding(false);
   }
 

@@ -81,20 +81,18 @@ const JackpotCountdown = ({ fk,setBetNumber }) => {
         fivemin?.split("_")?.[1] === "0" &&
         fivemin?.split("_")?.[0] === "0"
       ) {
-        client.refetchQueries("trx_gamehistory");
-        client.refetchQueries("trx_gamehistory_chart");
-        client.refetchQueries("my_trx_Allhistory");
-        client.refetchQueries("my_trx_history");
+        client.refetchQueries("jackpod_gamehistory");
+        client.refetchQueries("my_jackpod_history");
         client.refetchQueries("walletamount");
         dispatch(dummycounterFun());
         // fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
 
-    socket.on("fivemintrx", handleFiveMin);
+    socket.on("fivemintrxjackpod", handleFiveMin);
 
     return () => {
-      socket.off("fivemintrx", handleFiveMin);
+      socket.off("fivemintrxjackpod", handleFiveMin);
     };
   }, []);
 
@@ -111,7 +109,7 @@ const JackpotCountdown = ({ fk,setBetNumber }) => {
 
 
   const { isLoading, data: game_history } = useQuery(
-    ["trx_gamehistory"],
+    ["jackpod_gamehistory"],
     () => GameHistoryFn(),
     {
       refetchOnMount: false,
@@ -122,7 +120,7 @@ refetchOnWindowFocus:false
 
   const GameHistoryFn = async () => {
     try {
-      const response = await axios.get(`${endpoint.trx_game_history}?gameid=3&limit=500`);
+      const response = await axios.get(`${endpoint.jackpod_game_history}`);
       return response;
     } catch (e) {
       toast(e?.message);
@@ -133,13 +131,13 @@ refetchOnWindowFocus:false
   React.useEffect(() => {
     dispatch(
       updateNextCounter(
-        game_history?.data?.result
-          ? Number(game_history?.data?.result?.[0]?.tr_transaction_id) + 1
+        game_history?.data?.data
+          ? Number(game_history?.data?.data?.[0]?.tr_transaction_id) + 1
           : 1
       )
     );
     const tr_digit =
-      game_history?.data?.result && game_history?.data?.result?.[0]?.tr_digits;
+      game_history?.data?.data && game_history?.data?.data?.tr_digits;
     let array = [];
     for (let i = 0; i < tr_digit?.length; i++) {
       if (/[a-zA-Z]/.test(tr_digit[i])) {
@@ -149,7 +147,7 @@ refetchOnWindowFocus:false
       }
     }
     dispatch(trx_game_image_index_function(array));
-  }, [game_history?.data?.result]);
+  }, [game_history?.data?.data]);
 
 
 
