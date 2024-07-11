@@ -26,6 +26,7 @@ import { get_user_data_fn } from "../../../../services/apicalling";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
 import { zubgtext } from "../../../../Shared/color";
+import { JoinFull } from "@mui/icons-material";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -110,9 +111,8 @@ const JackpotBetDialogBox = ({
       toast(e?.message);
       console.log(e);
     }
-   
     client.refetchQueries("walletamount");
-    client.refetchQueries("jackpod_gamehistory");
+    // client.refetchQueries("jackpod_gamehistory");
     client.refetchQueries("my_jackpod_history");
     setLoding(false);
   }
@@ -120,7 +120,7 @@ const JackpotBetDialogBox = ({
   return (
     <Dialog
       open={jackpot_bit_dialog_box}
-      TransitionComponent={Transition}
+      TransitionComponent={Transition} 
       keepMountedonClose={() => setjackpot_bit_dialog_box(false)}
       className="dialogsmall"
     >

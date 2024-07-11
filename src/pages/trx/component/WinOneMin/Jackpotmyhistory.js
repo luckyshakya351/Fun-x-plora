@@ -170,15 +170,15 @@ const Jackpotmyhistory = ({ gid }) => {
                       <div className="flex gap-2 items-center bg-white !bg-opacity-10 py-1 px-2">
                         <span className={`${(() => {
                                                     const numberresult = Number(i?.number);
-                                                    if (numberresult.toString().length > 3) {
+                                                    if (numberresult.toString().length > 4) {
                                                       numberresult = parseInt(numberresult.toString()?.slice(-1)); 
                                                     }
                                                   else {
                                                         return "";
                                                     }
-                                                }) }`}>{`${i?.number}`}</span>
+                                                }) }`}>{`${i?.number?.slice(-1)}`}</span>
                         
-                        <span
+                        {/* <span
                           className={`
                   ${(i?.number === "0" &&
                               "!bg-gradient-to-t from-red-400 to-violet-400") ||
@@ -217,9 +217,9 @@ const Jackpotmyhistory = ({ gid }) => {
                                   i?.number === "6" ||
                                   i?.number === "8") &&
                                 "Red"}
-                        </span>
+                        </span> */}
                         <span>
-                          {Number(i?.number) }
+                          {/* {Number(i?.number) } */}
                         </span>
                       </div>
                     ) : (
