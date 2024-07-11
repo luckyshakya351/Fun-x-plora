@@ -20,11 +20,11 @@ import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
-import Chart from "./Chart";
-import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
 import JackpotCountdown from "./JackpotCountdown";
 import JackpotBetDialogBox from "./JackpotBetDialogBox";
+import JackpotGameHistory from "./JackpotGameHistory";
+import Jackpotmyhistory from "./Jackpotmyhistory";
 
 function Jackpot({ gid }) {
     const [TabTwo, setTabTwo] = useState(1);
@@ -343,7 +343,7 @@ function Jackpot({ gid }) {
                                             Game History
                                         </Typography>
                                     </Box>
-                                    <Box
+                                    {/* <Box
                                         component={NavLink}
                                         onClick={() => setTabTwo(2)}
                                         className={
@@ -353,7 +353,7 @@ function Jackpot({ gid }) {
                                         <Typography variant="h3" color="initial">
                                             Chart
                                         </Typography>
-                                    </Box>
+                                    </Box> */}
                                     <Box
                                         component={NavLink}
                                         onClick={() => setTabTwo(3)}
@@ -370,9 +370,9 @@ function Jackpot({ gid }) {
                         </>
                     );
                 }, [TabTwo])}
-                {TabTwo === 1 && <GameHistory gid={gid} />}
-                {TabTwo === 2 && <Chart gid={gid} />}
-                {TabTwo === 3 && <MyHistory gid={gid} />}
+                {TabTwo === 1 && <JackpotGameHistory gid={gid} />}
+                {/* {TabTwo === 2 && <Chart gid={gid} />} */}
+                {TabTwo === 3 && <Jackpotmyhistory  gid={gid} />}
             </Box>
             {jackpot_bit_dialog_box &&
                 Number(

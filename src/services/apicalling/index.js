@@ -121,6 +121,17 @@ export const My_All_TRX_HistoryFn = async (gid) => {
     console.log(e);
   }
 };
+export const jackpod_my_history = async (gid) => {
+  try {
+    const response = await axios.get(
+      `${endpoint.jackpod_my_history}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const My_All_TRX_HistoryPendingFn = async (gid) => {
   try {
     const response = await axios.get(
