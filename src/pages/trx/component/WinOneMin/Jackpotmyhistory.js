@@ -171,7 +171,7 @@ const Jackpotmyhistory = ({ gid }) => {
                         <span className={`${(() => {
                                                     const numberresult = Number(i?.number);
                                                     if (numberresult.toString().length > 3) {
-                                                      numberresult = parseInt(numberresult.toString().slice(-1)); 
+                                                      numberresult = parseInt(numberresult.toString()?.slice(-1)); 
                                                     }
                                                   else {
                                                         return "";

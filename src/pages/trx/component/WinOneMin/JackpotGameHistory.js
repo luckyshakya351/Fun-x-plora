@@ -168,71 +168,31 @@ const JackpotGameHistory = ({ gid }) => {
                                         <span>{i?.tr_hashno}</span>
                                     </TableCell>
                                     <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
-                                        <span
+                                        {/* <span
                                             className={`
-                                                    ${(String(Number(i?.tr41_slot_id)) === "0" &&
-                                                    "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                                                (String(Number(i?.tr41_slot_id)) === "5" &&
-                                                    "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                                                ((String(Number(i?.tr41_slot_id)) === "1" ||
-                                                    String(Number(i?.tr41_slot_id)) === "3" ||
-                                                    String(Number(i?.tr41_slot_id)) === "7" ||
-                                                    String(Number(i?.tr41_slot_id)) === "9" ||
-                                                    String(Number(i?.tr41_slot_id)) === "10") &&
-                                                    "bg-gradient-to-t from-green-400 to-green-900") ||
-                                                ((String(Number(i?.tr41_slot_id)) === "2" ||
-                                                    String(Number(i?.tr41_slot_id)) === "4" ||
-                                                    String(Number(i?.tr41_slot_id)) === "6" ||
-                                                    String(Number(i?.tr41_slot_id)) === "8" ||
-                                                    String(Number(i?.tr41_slot_id)) === "30") &&
-                                                    "bg-gradient-to-tl from-red-400 to-red-900") ||
-                                                (String(Number(i?.tr41_slot_id)) === "50" &&
-                                                    "bg-[#3183ee]") ||
-                                                (String(Number(i?.tr41_slot_id)) === "40" &&
-                                                    "bg-[#f1be24]") ||
-                                                (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
-                                                }
-                                                transparentColor font-bold  text-lg
-                                                `}
-                                        >
-                                            {Number(i?.tr41_slot_id)}
-                                        </span>
-                                        <span
-                                            className={`
-                                                    ${(() => {
-                                                    const slotId = Number(i?.tr41_slot_id);
-                                                    if (slotId === 0) {
-                                                        return "!bg-gradient-to-t from-red-400 to-violet-400";
-                                                    } else if (slotId === 5) {
-                                                        return "!bg-gradient-to-t from-violet-400 to-green-400";
-                                                    } else if (slotId === 1 || slotId === 3 || slotId === 7 || slotId === 9 || slotId === 10) {
-                                                        return "bg-gradient-to-t from-green-400 to-green-900";
-                                                    } else if (slotId === 2 || slotId === 4 || slotId === 6 || slotId === 8 || slotId === 30) {
-                                                        return "bg-gradient-to-tl from-red-400 to-red-900";
-                                                    } else if (slotId === 50) {
-                                                        return "bg-[#3183ee]";
-                                                    } else if (slotId === 40) {
-                                                        return "bg-[#f1be24]";
-                                                    } else if (slotId === 20) {
-                                                        return "bg-[#eb2feb]";
-                                                    } else {
-                                                        return "";
-                                                    }
-                                                })()}
-                                                        transparentColor font-bold text-lg
-                                                    `}
-                                        >
+                                                     ${i?.tr41_slot_id?.length > 4 && (
+                                                    Number(i?.tr41_slot_id?.slice(0, 3)) === 100 ? "bg-gradient-to-t from-green-400 to-green-900" :
+                                                        Number(i?.tr41_slot_id?.slice(0, 3)) === 200 ? "bg-gradient-to-t from-violet-400 to-violet-900" :
+                                                            Number(i?.tr41_slot_id?.slice(0, 3)) === 300 ? "bg-gradient-to-t from-red-400 to-red-900" :
+                                                                ""
+                                                )}
+
+                                   transparentColor font-bold text-lg`} >
+                                            {Number(i?.tr41_slot_id?.slice(-1))}
                                             {(() => {
-                                                const slotId = Number(i?.tr41_slot_id);
-                                                if (slotId === 1 || slotId === 3 || slotId === 7 || slotId === 9 || slotId === 10) {
+                                                const firstThreeDigits = i?.tr41_slot_id?.slice(0, 3);
+                                                if (firstThreeDigits === "100") {
                                                     return "g";
-                                                } else if (slotId === 2 || slotId === 4 || slotId === 6 || slotId === 8 || slotId === 30) {
+                                                } else if (firstThreeDigits === "200") {
+                                                    return "v";
+                                                } else if (firstThreeDigits === "300") {
                                                     return "r";
                                                 } else {
-                                                    return "v";
+                                                    return "";
                                                 }
                                             })()}
-                                        </span>
+
+                                        </span> */}
                                     </TableCell>
 
                                 </TableRow>
