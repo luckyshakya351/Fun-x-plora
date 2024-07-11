@@ -296,51 +296,7 @@ refetchOnWindowFocus:false
       {React.useMemo(() => {
         return <ShowImages />
       }, [])}
-      {/* {fk.values.openTimerDialogBox && (
-        <Dialog
-          open={fk.values.openTimerDialogBox}
-          TransitionComponent={Transition}
-          PaperProps={{
-            style: {
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            },
-          }}
-        >
-          <div className="flex gap-2 justify-cente !bg-black !bg-opacity-5">
-            <div
-              style={{
-                fontSize: 200,
-                borderRadius: 20,
-                background: "rgb(73, 57, 193)",
-                fontWeight: 700,
-                width: 150,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-              }}
-            >
-              {show_this_three_min_time_sec?.substring(0, 1)}
-            </div>
-            <div
-              style={{
-                fontSize: 200,
-                borderRadius: 20,
-                background: "rgb(73, 57, 193)",
-                fontWeight: 700,
-                width: 150,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-              }}
-            >
-              {show_this_three_min_time_sec?.substring(1, 2)}
-            </div>
-          </div>
-        </Dialog>
-      )} */}
+   
     </Box>
   );
 };

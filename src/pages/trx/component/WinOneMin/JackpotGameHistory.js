@@ -170,7 +170,7 @@ const JackpotGameHistory = ({ gid }) => {
                                     <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                                         <span
                                             className={`
- ${(String(Number(i?.tr41_slot_id)) === "0" &&
+                                                    ${(String(Number(i?.tr41_slot_id)) === "0" &&
                                                     "!bg-gradient-to-t from-red-400 to-violet-400") ||
                                                 (String(Number(i?.tr41_slot_id)) === "5" &&
                                                     "!bg-gradient-to-t from-violet-400 to-green-400") ||
@@ -192,8 +192,8 @@ const JackpotGameHistory = ({ gid }) => {
                                                     "bg-[#f1be24]") ||
                                                 (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
                                                 }
-     transparentColor font-bold  text-lg
-  `}
+                                                transparentColor font-bold  text-lg
+                                                `}
                                         >
                                             {Number(i?.tr41_slot_id)}
                                         </span>
@@ -219,8 +219,8 @@ const JackpotGameHistory = ({ gid }) => {
                                                         return "";
                                                     }
                                                 })()}
-     transparentColor font-bold text-lg
-  `}
+                                                        transparentColor font-bold text-lg
+                                                    `}
                                         >
                                             {(() => {
                                                 const slotId = Number(i?.tr41_slot_id);

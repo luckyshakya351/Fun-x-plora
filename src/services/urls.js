@@ -7,6 +7,7 @@ export const fron_end_main_domain = "https://funxplora.com";
 
 // export const domain = "https://funxplora-timer.onrender.com/";
 // export const domain = "http://192.168.1.3:9000/";
+// export const domain = "https://twintex.live/";
 
  export const domain = "http://192.168.1.15:9000/";
  export const jackpotdomain = "http://192.168.1.15:9000";
