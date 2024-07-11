@@ -86,16 +86,16 @@ refetchOnWindowFocus:false
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}>{i?.lo1_id}</span>
-                  <span className="!text-yellow-400  !text-[12px]">
+                  <span style={{ color: zubgtext }}></span>
+                  <span className="!text-yellow-600  !text-[12px]">
                     {moment(i?.l01_date)?.format("DD-MM-YYYY")}{" "}
                     {moment(i?.l01_date)?.format("HH:mm:ss")}
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }} className=" !text-[12px]">
+                  {/* <span style={{ color: zubgtext }} className=" !text-[12px]">
                     {i?.l01_type}
-                  </span>
+                  </span> */}
                 </div>
               </div>
             );
