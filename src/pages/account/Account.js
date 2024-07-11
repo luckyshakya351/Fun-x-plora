@@ -35,7 +35,6 @@ import gift from "../../assets/images/gift-box-with-a-bow.png";
 import graph from "../../assets/images/graph (1).png";
 import hand from "../../assets/images/hand.png";
 import balance from "../../assets/images/logotwhite.png";
-import notification from "../../assets/images/notification (1).png";
 import notification1 from "../../assets/images/notification.png";
 import user2 from "../../assets/images/password (1).png";
 import bgms from "../../assets/images/playgame.jpg";
@@ -85,7 +84,6 @@ function Account() {
       if (res?.data?.status === "200") {
         window.location.href = `${fron_end_main_domain}/account`;
       }
-      console.log(res);
     } catch (e) {
       console.log(e);
     }
