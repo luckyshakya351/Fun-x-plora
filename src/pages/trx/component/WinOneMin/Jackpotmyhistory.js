@@ -81,6 +81,8 @@ const Jackpotmyhistory = ({ gid }) => {
         </Typography>
       </Stack>
       <div className="flex flex-col gap-[2px]">
+
+
         {visibleRows?.map((i) => {
           return (
             <div>
@@ -123,7 +125,7 @@ const Jackpotmyhistory = ({ gid }) => {
                       }`}
                     >
                       {" "}
-                      {rupees} {i?.status === "1" ? i?.win : i?.totalamount}
+                      {rupees} {i?.status === "1" ? Number(i?.win)?.toFixed(2) : i?.totalamount}
                     </span>
                   </div>
                 </AccordionSummary>
@@ -178,59 +180,33 @@ const Jackpotmyhistory = ({ gid }) => {
                     {i?.status !== "0" ? (
                       <div className="flex gap-2 items-center bg-white !bg-opacity-10 py-1 px-2">
                         <span
-                          className={`${() => {
-                            const numberresult = Number(i?.number);
-                            if (numberresult.toString().length > 4) {
-                              numberresult = parseInt(
-                                numberresult.toString()?.slice(-1)
-                              );
-                            } else {
-                              return "";
-                            }
-                          }}`}
-                        >{`${i?.number?.slice(-1)}`}</span>
+                         className=
+                         {`slot-id ${(String(i?.result)?.slice(0, 3))  === "300" ? 
+                          "bg-gradient-to-tl from-red-400 to-red-900" :
+                          (String(i?.result)?.slice(0, 3))  === "200" ? 
+                             "!bg-gradient-to-t from-violet-400 to-violet-900" :
+                             (String(i?.result)?.slice(0, 3)) === "100" ?
+                                  "bg-gradient-to-t from-green-400 to-green-900" :
+                                     ""} transparentColor font-bold  text-lg !px-1` } >
+                                      {`${i?.result?.slice(-1)}`}
+                        </span>
+                        <span 
+                         className=
+                         {`slot-id ${(String(i?.result)?.slice(0, 3))  === "300" ? 
+                          "bg-gradient-to-tl from-red-400 to-red-900" :
+                          (String(i?.result)?.slice(0, 3))  === "200" ? 
+                             "!bg-gradient-to-t from-violet-400 to-violet-900" :
+                             (String(i?.result)?.slice(0, 3)) === "100" ?
+                                  "bg-gradient-to-t from-green-400 to-green-900" :
+                                     ""} transparentColor font-bold  text-lg !px-1`}>
+                          {
+                            (String(i?.result)?.slice(0, 3)) === "300" ? "Red" :
+                              (String(i?.result)?.slice(0, 3)) === "200" ? "Violet" :
+                                (String(i?.result)?.slice(0, 3)) === "100" ? "Green" :
+                                  ""
+                          }</span>
 
-                        {/* <span
-                          className={`
-                  ${(i?.number === "0" &&
-                              "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                            (i?.number === "5" &&
-                              "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                            ((i?.number === "1" ||
-                              i?.number === "3" ||
-                              i?.number === "7" ||
-                              i?.number === "9" ||
-                              i?.number === "10") &&
-                              "bg-gradient-to-t from-green-400 to-green-900") ||
-                            ((i?.number === "2" ||
-                              i?.number === "4" ||
-                              i?.number === "6" ||
-                              i?.number === "8" ||
-                              i?.number === "30") &&
-                              "bg-gradient-to-tl from-red-400 to-red-900") ||
-                            (i?.number === "50" && "bg-[#3183ee]") ||
-                            (i?.number === "40" && "bg-[#f1be24]") ||
-                            (i?.number === "20" && "bg-[#eb2feb]")
-                            }
-                  transparentColor font-bold text-xl
-                  `}
-                        >
-                          {i?.number === "0"
-                            ? "Red Voilet"
-                            : i?.number === "1" ||
-                              i?.number === "3" ||
-                              i?.number === "7" ||
-                              i?.number === "9"
-                              ? "Green"
-                              : i?.number === "5"
-                                ? "Voilet Green"
-                                : (i?.number === "2" ||
-                                  i?.number === "4" ||
-                                  i?.number === "6" ||
-                                  i?.number === "8") &&
-                                "Red"}
-                        </span> */}
-                        <span>{/* {Number(i?.number) } */}</span>
+
                       </div>
                     ) : (
                       <div></div>
@@ -240,40 +216,7 @@ const Jackpotmyhistory = ({ gid }) => {
                       Select
                     </span>
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
-                      <span
-                        className={`
-                  ${
-                    (i?.number === "0" &&
-                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                    (i?.number === "5" &&
-                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                    ((i?.number === "1" ||
-                      i?.number === "3" ||
-                      i?.number === "7" ||
-                      i?.number === "9" ||
-                      i?.number === "10") &&
-                      "bg-gradient-to-t from-green-400 to-green-900") ||
-                    ((i?.number === "2" ||
-                      i?.number === "4" ||
-                      i?.number === "6" ||
-                      i?.number === "8" ||
-                      i?.number === "30") &&
-                      "bg-gradient-to-tl from-red-400 to-red-900") ||
-                    (i?.number === "50" && "bg-[#3183ee]") ||
-                    (i?.number === "40" && "bg-[#f1be24]") ||
-                    (i?.number === "20" && "bg-[#eb2feb]")
-                  }
-                  transparentColor font-bold text-xl 
-
-                  `}
-                      >
-                        {i?.number === "10"
-                          ? "Green"
-                          : i?.number === "30"
-                          ? "Red"
-                          : i?.number === "20"
-                          ? "Voilet"
-                          : i?.number}
+                      <span >   {i?.color}
                       </span>
                     </div>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
@@ -301,7 +244,7 @@ const Jackpotmyhistory = ({ gid }) => {
                       className={`!text-green-400 bg-white !bg-opacity-10 py-1 px-2`}
                     >
                       {" "}
-                      {rupees} {i?.win || 0}
+                      {rupees} {Number(i?.win)?.toFixed(2) || 0}
                     </span>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Create Time
