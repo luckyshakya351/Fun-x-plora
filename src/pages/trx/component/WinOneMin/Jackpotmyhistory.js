@@ -21,6 +21,7 @@ import {
 import history from "../../../../assets/images/list.png";
 import { jackpod_my_history } from "../../../../services/apicalling";
 import { rupees } from "../../../../services/urls";
+import { getNumber } from "../../../../Shared/Number";
 
 const Jackpotmyhistory = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -81,8 +82,6 @@ const Jackpotmyhistory = ({ gid }) => {
         </Typography>
       </Stack>
       <div className="flex flex-col gap-[2px]">
-
-
         {visibleRows?.map((i) => {
           return (
             <div>
@@ -125,7 +124,10 @@ const Jackpotmyhistory = ({ gid }) => {
                       }`}
                     >
                       {" "}
-                      {rupees} {i?.status === "1" ? Number(i?.win)?.toFixed(2) : i?.totalamount}
+                      {rupees}{" "}
+                      {i?.status === "1"
+                        ? Number(i?.win)?.toFixed(2)
+                        : i?.totalamount}
                     </span>
                   </div>
                 </AccordionSummary>
@@ -180,33 +182,41 @@ const Jackpotmyhistory = ({ gid }) => {
                     {i?.status !== "0" ? (
                       <div className="flex gap-2 items-center bg-white !bg-opacity-10 py-1 px-2">
                         <span
-                         className=
-                         {`slot-id ${(String(i?.result)?.slice(0, 3))  === "300" ? 
-                          "bg-gradient-to-tl from-red-400 to-red-900" :
-                          (String(i?.result)?.slice(0, 3))  === "200" ? 
-                             "!bg-gradient-to-t from-violet-400 to-violet-900" :
-                             (String(i?.result)?.slice(0, 3)) === "100" ?
-                                  "bg-gradient-to-t from-green-400 to-green-900" :
-                                     ""} transparentColor font-bold  text-lg !px-1` } >
-                                      {`${i?.result?.slice(-1)}`}
-                        </span>
-                        <span 
-                         className=
-                         {`slot-id ${(String(i?.result)?.slice(0, 3))  === "300" ? 
-                          "bg-gradient-to-tl from-red-400 to-red-900" :
-                          (String(i?.result)?.slice(0, 3))  === "200" ? 
-                             "!bg-gradient-to-t from-violet-400 to-violet-900" :
-                             (String(i?.result)?.slice(0, 3)) === "100" ?
-                                  "bg-gradient-to-t from-green-400 to-green-900" :
-                                     ""} transparentColor font-bold  text-lg !px-1`}>
+                          className={`slot-id ${
+                            String(i?.result)?.slice(0, 3) === "300"
+                              ? "bg-gradient-to-tl from-red-400 to-red-900"
+                              : String(i?.result)?.slice(0, 3) === "200"
+                              ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                              : String(i?.result)?.slice(0, 3) === "100"
+                              ? "bg-gradient-to-t from-green-400 to-green-900"
+                              : ""
+                          } transparentColor font-bold  text-lg !px-1`}
+                        >
                           {
-                            (String(i?.result)?.slice(0, 3)) === "300" ? "Red" :
-                              (String(i?.result)?.slice(0, 3)) === "200" ? "Violet" :
-                                (String(i?.result)?.slice(0, 3)) === "100" ? "Green" :
-                                  ""
-                          }</span>
-
-
+                            getNumber?.find(
+                              (i) => i?.id === Number(i?.result?.slice(-1))
+                            )?.number
+                          }
+                        </span>
+                        <span
+                          className={`slot-id ${
+                            String(i?.result)?.slice(0, 3) === "300"
+                              ? "bg-gradient-to-tl from-red-400 to-red-900"
+                              : String(i?.result)?.slice(0, 3) === "200"
+                              ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                              : String(i?.result)?.slice(0, 3) === "100"
+                              ? "bg-gradient-to-t from-green-400 to-green-900"
+                              : ""
+                          } transparentColor font-bold  text-lg !px-1`}
+                        >
+                          {String(i?.result)?.slice(0, 3) === "300"
+                            ? "Red"
+                            : String(i?.result)?.slice(0, 3) === "200"
+                            ? "Violet"
+                            : String(i?.result)?.slice(0, 3) === "100"
+                            ? "Green"
+                            : ""}
+                        </span>
                       </div>
                     ) : (
                       <div></div>
@@ -216,8 +226,7 @@ const Jackpotmyhistory = ({ gid }) => {
                       Select
                     </span>
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
-                      <span >   {i?.color}
-                      </span>
+                      <span> {i?.color}</span>
                     </div>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Status
