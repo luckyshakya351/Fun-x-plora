@@ -46,6 +46,7 @@ export const endpoint = {
   daily_self_bet_income: `${baseUrl}/api/daily-self-bet-income`,
   daily_wallet_income: `${baseUrl}/api/daily-wallet-income`,
   daily_salary_income: `${baseUrl}/api/daily-salay-income`,
+  weekly_salary_income: `${baseUrl}/api/weekly-salay-income`,
   team_reward_bonus: `${baseUrl}/api/team-reward-bonus`,
   team_trading_bonus: `${baseUrl}/api/team-trading-bonus`,
   add_bank_details: `${baseUrl}/api/bank-add`,

@@ -299,6 +299,18 @@ export const dailySalaryIncomeFn = async () => {
     console.log(e);
   }
 };
+export const WeeklySalaryIncomeFn = async () => {
+  //
+  try {
+    const response = await axios.get(
+      `${endpoint.weekly_salary_income}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const teamRewartBonus = async () => {
   //
   try {
