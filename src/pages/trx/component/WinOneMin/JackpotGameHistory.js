@@ -168,32 +168,39 @@ const JackpotGameHistory = ({ gid }) => {
                                         <span>{i?.tr_hashno}</span>
                                     </TableCell>
                                     <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
-                                        {/* <span
-                                            className={`
-                                                     ${i?.tr41_slot_id?.length > 4 && (
-                                                    Number(i?.tr41_slot_id?.slice(0, 3)) === 100 ? "bg-gradient-to-t from-green-400 to-green-900" :
-                                                        Number(i?.tr41_slot_id?.slice(0, 3)) === 200 ? "bg-gradient-to-t from-violet-400 to-violet-900" :
-                                                            Number(i?.tr41_slot_id?.slice(0, 3)) === 300 ? "bg-gradient-to-t from-red-400 to-red-900" :
-                                                                ""
-                                                )}
+                                        <span
+                                         className=
+                                         {`slot-id ${(String(i?.tr41_slot_id)?.slice(0, 3))  === "300" ? 
+                                            "bg-gradient-to-tl from-red-400 to-red-900" :
+                                            (String(i?.tr41_slot_id)?.slice(0, 3))  === "200" ? 
+                                               "!bg-gradient-to-t from-violet-400 to-violet-900" :
+                                               (String(i?.tr41_slot_id)?.slice(0, 3)) === "100" ?
+                                                    "bg-gradient-to-t from-green-400 to-green-900" :
+                                                       ""} transparentColor font-bold  text-lg !px-1`}
+                                                    > 
+                                                    {`${i?.tr41_slot_id?.toString()?.slice(-1) || ""}`} 
+                                                    </span>          
 
-                                   transparentColor font-bold text-lg`} >
-                                            {Number(i?.tr41_slot_id?.slice(-1))}
-                                            {(() => {
-                                                const firstThreeDigits = i?.tr41_slot_id?.slice(0, 3);
-                                                if (firstThreeDigits === "100") {
-                                                    return "g";
-                                                } else if (firstThreeDigits === "200") {
-                                                    return "v";
-                                                } else if (firstThreeDigits === "300") {
-                                                    return "r";
-                                                } else {
-                                                    return "";
-                                                }
-                                            })()}
+                                        <span 
+                                        
+                                        className=
+                                        {`slot-id ${(String(i?.tr41_slot_id)?.slice(0, 3))  === "300" ? 
+                                         "bg-gradient-to-tl from-red-400 to-red-900" :
+                                         (String(i?.tr41_slot_id)?.slice(0, 3))  === "200" ? 
+                                            "!bg-gradient-to-t from-violet-400 to-violet-900" :
+                                            (String(i?.tr41_slot_id)?.slice(0, 3)) === "100" ?
+                                                 "bg-gradient-to-t from-green-400 to-green-900" :
+                                                    ""} transparentColor font-bold  text-lg !px-1`}
+                                        >
+                                            {
+                                            (String(i?.tr41_slot_id)?.slice(0, 3))  === "300" ? "R" :
+                                                    (String(i?.tr41_slot_id)?.slice(0, 3))  === "200" ? "V" :
+                                                        (String(i?.tr41_slot_id)?.slice(0, 3)) === "100" ? "G" :
+                                                         ""
+                                            }
 
-                                        </span> */}
-                                    </TableCell>
+                                         </span>
+                                           </TableCell>
 
                                 </TableRow>
                             );
