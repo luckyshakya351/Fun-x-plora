@@ -125,8 +125,8 @@ function Register() {
         sessionStorage.setItem("isAvailableCricketUser", true);
         storeCookies();
         swal({
-          title: 'Login Successful',
-          text: 'Welcome to the dashboard!',
+          title: 'Registration Successful',
+          text: response?.data?.msg,
           icon: 'success',
           button: 'OK',
         }).then(() => {
@@ -136,8 +136,8 @@ function Register() {
 
       } else {
         swal({
-          title: 'Login Failed',
-          text: 'Invalid username or password. Please try again.',
+          title: 'Registration Failed',
+          text: response?.data?.msg,
           icon: 'error',
           button: 'OK',
         });

@@ -6,7 +6,7 @@ export const getNumber = [
     },
     {
         id:1,
-        number:"One"
+        number:"ONE"
     },
     {
         id:2,
@@ -19,10 +19,27 @@ export const getNumber = [
     },
     {
         id:4,
-        number:"Four"
+        number:"FOUR"
     },
     {
         id:5,
-        number:"Five"
+        number:"FIVE"
     },
+    {
+        id:6,
+        number:"SIX"
+    },
+    {
+        id:7,
+        number:"SEVEN"
+    },
+    {
+        id:8,
+        number:"EIGHT"
+    },
+    {
+        id:9,
+        number:"NINE"
+    }
+   
 ]
