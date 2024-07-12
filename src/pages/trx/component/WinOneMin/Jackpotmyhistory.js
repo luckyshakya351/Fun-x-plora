@@ -125,7 +125,7 @@ const Jackpotmyhistory = ({ gid }) => {
                       {rupees}{" "}
                       {i?.status === "1"
                         ? Number(i?.win)?.toFixed(2)
-                        : i?.totalamount}
+                        : Number(i?.amount || 0).toFixed(2)}
                     </span>
                   </div>
                 </AccordionSummary>

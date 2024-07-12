@@ -20,7 +20,6 @@ import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
-import MyHistory from "./MyHistory";
 import JackpotCountdown from "./JackpotCountdown";
 import JackpotBetDialogBox from "./JackpotBetDialogBox";
 import JackpotGameHistory from "./JackpotGameHistory";
