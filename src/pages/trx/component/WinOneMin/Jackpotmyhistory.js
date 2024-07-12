@@ -12,11 +12,14 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
-import { zubgback, zubgbackgrad, zubgtext, zubgwhite } from "../../../../Shared/color";
-import history from "../../../../assets/images/list.png";
 import {
-  jackpod_my_history,
-} from "../../../../services/apicalling";
+  zubgback,
+  zubgbackgrad,
+  zubgtext,
+  zubgwhite,
+} from "../../../../Shared/color";
+import history from "../../../../assets/images/list.png";
+import { jackpod_my_history } from "../../../../services/apicalling";
 import { rupees } from "../../../../services/urls";
 
 const Jackpotmyhistory = ({ gid }) => {
@@ -38,12 +41,11 @@ const Jackpotmyhistory = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
   const my_history_data = my_history?.data?.data || [];
-
 
   const visibleRows = React.useMemo(
     () =>
@@ -74,13 +76,11 @@ const Jackpotmyhistory = ({ gid }) => {
           {gid === "1"
             ? " My One GO Record"
             : gid === "2"
-              ? " My Three GO Record"
-              : " My Five GO Record"}
+            ? " My Three GO Record"
+            : " My Five GO Record"}
         </Typography>
       </Stack>
       <div className="flex flex-col gap-[2px]">
-      
-
         {visibleRows?.map((i) => {
           return (
             <div>
@@ -90,38 +90,47 @@ const Jackpotmyhistory = ({ gid }) => {
                   expandIcon={<ArrowDownwardIcon className="" />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
+                  sx={{
+                    background: "#fff",
+                    color: zubgtext,
+                    borderBottom: "1px solid red",
+                  }}
                 >
                   <div className="!w-full !flex !justify-between">
                     <p className=" ">{i?.gamesno}</p>
                     <p
-                      className={`${i?.status === "0"
-                        ? "!text-red-400"
-                        : i?.status === "1"
+                      className={`${
+                        i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
                           ? "!text-green-400"
                           : "!text-red-400"
-                        }`}
+                      }`}
                     >
                       {i?.status === "0"
                         ? "Pending"
                         : i?.status === "1"
-                          ? "Win"
-                          : "Loss"}
+                        ? "Win"
+                        : "Loss"}
                     </p>
                     <span
-                      className={`${i?.status === "0"
-                        ? "!text-red-400"
-                        : i?.status === "1"
+                      className={`${
+                        i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
                           ? "!text-green-400"
                           : "!text-red-400"
-                        }`}
+                      }`}
                     >
                       {" "}
                       {rupees} {i?.status === "1" ? i?.win : i?.totalamount}
                     </span>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: zubgback, color: zubgtext }} disableElevation>
+                <AccordionDetails
+                  sx={{ background: zubgback, color: zubgtext }}
+                  disableElevation
+                >
                   <p className={`!text-green-400 !font-semibold !text-lg`}>
                     Period Detail
                   </p>
@@ -168,16 +177,19 @@ const Jackpotmyhistory = ({ gid }) => {
 
                     {i?.status !== "0" ? (
                       <div className="flex gap-2 items-center bg-white !bg-opacity-10 py-1 px-2">
-                        <span className={`${(() => {
-                                                    const numberresult = Number(i?.number);
-                                                    if (numberresult.toString().length > 4) {
-                                                      numberresult = parseInt(numberresult.toString()?.slice(-1)); 
-                                                    }
-                                                  else {
-                                                        return "";
-                                                    }
-                                                }) }`}>{`${i?.number?.slice(-1)}`}</span>
-                        
+                        <span
+                          className={`${() => {
+                            const numberresult = Number(i?.number);
+                            if (numberresult.toString().length > 4) {
+                              numberresult = parseInt(
+                                numberresult.toString()?.slice(-1)
+                              );
+                            } else {
+                              return "";
+                            }
+                          }}`}
+                        >{`${i?.number?.slice(-1)}`}</span>
+
                         {/* <span
                           className={`
                   ${(i?.number === "0" &&
@@ -218,9 +230,7 @@ const Jackpotmyhistory = ({ gid }) => {
                                   i?.number === "8") &&
                                 "Red"}
                         </span> */}
-                        <span>
-                          {/* {Number(i?.number) } */}
-                        </span>
+                        <span>{/* {Number(i?.number) } */}</span>
                       </div>
                     ) : (
                       <div></div>
@@ -232,55 +242,57 @@ const Jackpotmyhistory = ({ gid }) => {
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
                       <span
                         className={`
-                  ${(i?.number === "0" &&
-                            "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                          (i?.number === "5" &&
-                            "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                          ((i?.number === "1" ||
-                            i?.number === "3" ||
-                            i?.number === "7" ||
-                            i?.number === "9" ||
-                            i?.number === "10") &&
-                            "bg-gradient-to-t from-green-400 to-green-900") ||
-                          ((i?.number === "2" ||
-                            i?.number === "4" ||
-                            i?.number === "6" ||
-                            i?.number === "8" ||
-                            i?.number === "30") &&
-                            "bg-gradient-to-tl from-red-400 to-red-900") ||
-                          (i?.number === "50" && "bg-[#3183ee]") ||
-                          (i?.number === "40" && "bg-[#f1be24]") ||
-                          (i?.number === "20" && "bg-[#eb2feb]")
-                          }
+                  ${
+                    (i?.number === "0" &&
+                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    (i?.number === "5" &&
+                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    ((i?.number === "1" ||
+                      i?.number === "3" ||
+                      i?.number === "7" ||
+                      i?.number === "9" ||
+                      i?.number === "10") &&
+                      "bg-gradient-to-t from-green-400 to-green-900") ||
+                    ((i?.number === "2" ||
+                      i?.number === "4" ||
+                      i?.number === "6" ||
+                      i?.number === "8" ||
+                      i?.number === "30") &&
+                      "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    (i?.number === "50" && "bg-[#3183ee]") ||
+                    (i?.number === "40" && "bg-[#f1be24]") ||
+                    (i?.number === "20" && "bg-[#eb2feb]")
+                  }
                   transparentColor font-bold text-xl 
 
                   `}
                       >
                         {i?.number === "10"
                           ? "Green"
-                              : i?.number === "30"
-                                ? "Red"
-                                : i?.number === "20"
-                                  ? "Voilet"
-                                  : i?.number}
+                          : i?.number === "30"
+                          ? "Red"
+                          : i?.number === "20"
+                          ? "Voilet"
+                          : i?.number}
                       </span>
                     </div>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Status
                     </span>
                     <span
-                      className={`${i?.status === "0"
-                        ? "!text-red-400"
-                        : i?.status === "1"
+                      className={`${
+                        i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
                           ? "!text-green-400"
                           : "!text-red-400"
-                        } bg-white !bg-opacity-10 py-1 px-2`}
+                      } bg-white !bg-opacity-10 py-1 px-2`}
                     >
                       {i?.status === "0"
                         ? "Pending"
                         : i?.status === "1"
-                          ? "Win"
-                          : "Loss"}
+                        ? "Win"
+                        : "Loss"}
                     </span>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Amount
@@ -303,7 +315,6 @@ const Jackpotmyhistory = ({ gid }) => {
               </Accordion>
             </div>
           );
-         
         })}
       </div>
 
@@ -326,7 +337,7 @@ const Jackpotmyhistory = ({ gid }) => {
         />
       </Box>
       {/* <CustomCircularProgress isLoading={myhistory_loding} /> */}
-    </Box >
+    </Box>
   );
 };
 
