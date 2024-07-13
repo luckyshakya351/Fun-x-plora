@@ -45,7 +45,6 @@ const JackpotGameHistory = ({ gid }) => {
       console.log(e);
     }
   };
-  const game_history_data = game_history?.data?.data || [];
 
   React.useEffect(() => {
     dispatch(
@@ -79,11 +78,11 @@ const JackpotGameHistory = ({ gid }) => {
 
   const visibleRows = React.useMemo(
     () =>
-      game_history_data?.slice(
+      game_history?.data?.data?.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [page, rowsPerPage, game_history_data]
+    [page, rowsPerPage, game_history?.data?.data]
   );
 
   if (isLoading)
@@ -261,7 +260,7 @@ const JackpotGameHistory = ({ gid }) => {
             sx={{ background: zubgtext, color: "white", width: "100%" }}
             rowsPerPageOptions={[5, 10, 15]}
             component="div"
-            count={game_history_data?.length}
+            count={game_history?.data?.data?.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
