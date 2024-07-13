@@ -9,12 +9,12 @@ export const domain = "https://funxplora-timer.onrender.com/";
 // export const domain = "https://twintex.live/";
 
 //  export const domain = "http://192.168.18.183:9000";
- export const jackpotdomain = "https://funxplora-timer.onrender.com";
+export const jackpotdomain = "https://funxplora-timer.onrender.com";
 //  export const jackpotdomain = "http://192.168.184.149:9000";
 
-export const support_mail = ''
+export const support_mail = "";
 // `support@sunlottrey.fun`;
-export const telegram_url = ''
+export const telegram_url = "";
 // `https://t.me/SunLottaryOfficial`;
 
 export const endpoint = {
@@ -72,6 +72,5 @@ export const endpoint = {
   cash_out: `${baseUrl}/api/aviator/cash_out`,
   place_bid_jackpod: `${jackpotdomain}/api/v1/place-bid-jackpod`,
   jackpod_my_history: `${jackpotdomain}/api/v1/my-history-jackpod`,
-  jackpod_game_history: `${jackpotdomain}/api/v1/game-history-jackpod`
-
+  jackpod_game_history: `${jackpotdomain}/api/v1/game-history-jackpod`,
 };

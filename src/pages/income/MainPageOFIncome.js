@@ -1,14 +1,14 @@
+import { Diversity2Outlined } from "@mui/icons-material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import RedeemIcon from "@mui/icons-material/Redeem";
 import StoreIcon from "@mui/icons-material/Store";
-import { Box, CardMedia, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
-import { CardGiftcard, CardGiftcardRounded, Diversity2Outlined } from "@mui/icons-material";
 function MainPageOFIncome() {
 
   const data_array = [

@@ -225,11 +225,11 @@ const Jackpotmyhistory = ({ gid }) => {
                       Select
                     </span>
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
-                      <span className={`slot-id ${String(i?.color)?.slice(0, 3) === "Red"
+                      <span className={`slot-id ${String(i?.number)?.slice(0, 3) === "300"
                           ? "bg-gradient-to-tl from-red-400 to-red-900"
-                          : String(i?.color)?.slice(0, 6) === "Violet"
+                          : String(i?.number)?.slice(0, 3) === "200"
                             ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                            : String(i?.color)?.slice(0, 5) === "Green"
+                            : String(i?.number)?.slice(0, 3) === "100"
                               ? "bg-gradient-to-t from-green-400 to-green-900"
                               : ""
                         } transparentColor font-bold  text-lg !px-1`}> {i?.color}</span>

@@ -1,20 +1,31 @@
-import WalletOutlinedIcon from '@mui/icons-material/WalletOutlined';
-import { Box, Button, Container, Dialog, Stack, Typography } from "@mui/material";
+import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  Stack,
+  Typography,
+} from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
 import refresh from "../../assets/images/refresh.png";
-import { default as Timeactive, default as Timeinactive } from "../../assets/images/time-.png";
+import {
+  default as Timeactive,
+  default as Timeinactive,
+} from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
-import Jackpot from './component/WinOneMin/Jackpot';
-import { walletamount } from '../../services/apicalling';
+import Jackpot from "./component/WinOneMin/Jackpot";
+import { walletamount } from "../../services/apicalling";
+import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 
 function Win() {
   const navigate = useNavigate();
@@ -74,22 +85,38 @@ function Win() {
   return (
     <Layout header={true} footer={true}>
       <Container sx={styles.root}>
-        <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+        <Box sx={{ position: "relative", overflow: "hidden" }}>
           <Box className="wingosx"></Box>
-          <Box sx={{ padding: 2, position: 'relative' }}>
-            <Box sx={{ padding: '25px 10px', background: '#fff', borderRadius: '20px', my: 2, display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <Box display='flex' alignItems='center' ml={5}>
-                <Typography variant="body1" color="initial" className="b-val" sx={{ color: zubgtext }}>
+          <Box sx={{ padding: 2, position: "relative" }}>
+            <Box
+              sx={{
+                padding: "25px 10px",
+                background: "#fff",
+                borderRadius: "20px",
+                my: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Box display="flex" alignItems="center" ml={5}>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  className="b-val"
+                  sx={{ color: zubgtext }}
+                >
                   ₹{" "}
                   {Number(
-                    Number(net_wallet_amount?.wallet || 0) + Number(net_wallet_amount?.winning || 0) ||
-                    0
+                    Number(net_wallet_amount?.wallet || 0) +
+                      Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
                 <div className="mx-1 rotate_refresh_image" id="refresh_button">
                   <img
                     src={refresh}
-                    className='!w-6'
+                    className="!w-6"
                     ml={2}
                     onClick={() => {
                       refreshFunctionForRotation();
@@ -97,17 +124,37 @@ function Win() {
                   />
                 </div>
               </Box>
-              <Box display='flex' alignItems='center' mr={5}>
-                <WalletOutlinedIcon sx={{ mr: 1, color: 'gray' }} />
-                <Typography variant="body1" color="initial" className="b-val2" sx={{ color: zubgtext }}>
+              <Box display="flex" alignItems="center" mr={5}>
+                <WalletOutlinedIcon sx={{ mr: 1, color: "gray" }} />
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  className="b-val2"
+                  sx={{ color: zubgtext }}
+                >
                   Walllet balance
                 </Typography>
               </Box>
-              <Box display='flex' alignItems='center' justifyContent='space-between' sx={{ width: '100%' }}>
-                <Button variant="text" color="primary" className="greenbtn" onClick={() => navigate("/wallet/Recharge")}>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ width: "100%" }}
+              >
+                <Button
+                  variant="text"
+                  color="primary"
+                  className="greenbtn"
+                  onClick={() => navigate("/wallet/Recharge")}
+                >
                   Deposit
                 </Button>
-                <Button variant="text" color="primary" className="yellowbtn" onClick={() => navigate("/Withdrawal")}>
+                <Button
+                  variant="text"
+                  color="primary"
+                  className="yellowbtn"
+                  onClick={() => navigate("/Withdrawal")}
+                >
                   Withdraw
                 </Button>
               </Box>
@@ -116,12 +163,13 @@ function Win() {
 
           <Box
             sx={{
-              background: 'linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important',
+              background:
+                "linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important",
               boxShadow: zubgshadow,
               width: "95%",
               marginLeft: "2.5%",
               borderRadius: "10px",
-              position: 'relative'
+              position: "relative",
             }}
           >
             <Stack direction="row">
@@ -136,7 +184,8 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  TRX     <br />1Min
+                  TRX <br />
+                  1Min
                 </Typography>
               </Box>
               <Box
@@ -150,7 +199,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  TRX    <br /> 3Min
+                  TRX <br /> 3Min
                 </Typography>
               </Box>
               <Box
@@ -164,7 +213,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography variant="h3" color="initial">
-                  TRX   <br /> 5Min
+                  TRX <br /> 5Min
                 </Typography>
               </Box>
               <Box
@@ -202,7 +251,7 @@ function Win() {
             <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
           </Dialog>
         )}
-        {/* <CustomCircularProgress isLoading={isLoading} /> */}
+        <CustomCircularProgress isLoading={walletloding} />
       </Container>
     </Layout>
   );
@@ -211,7 +260,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, my: '74px', },
+  root: { background: zubgback, my: "74px" },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

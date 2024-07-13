@@ -24,6 +24,7 @@ import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
 import { walletamount } from "../../services/apicalling";
+import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 
 function Win() {
   const client = useQueryClient();
@@ -239,7 +240,7 @@ function Win() {
             <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
           </Dialog>
         )}
-        {/* <CustomCircularProgress isLoading={isLoading} /> */}
+        <CustomCircularProgress isLoading={walletloding} />
       </Container>
     </Layout>
   );

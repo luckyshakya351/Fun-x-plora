@@ -92,15 +92,7 @@ const ApplyBetDialogBox = ({
       gamesnio: Number(next_step),
     };
     try {
-      if (
-        reqBody.amount >
-        Number(
-          Number(net_wallet_amount?.wallet) + Number(net_wallet_amount?.winning)
-        )
-      ) {
-        setLoding(false);
-        return toast("Your Wallet Amount is low.");
-      }
+     
       const response = await axios.post(`${endpoint.trx_game_bet}`, reqBody);
       if (response?.data?.error === "200") {
         toast.success(response?.data?.msg);

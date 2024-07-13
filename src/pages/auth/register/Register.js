@@ -1,9 +1,8 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import MarkEmailReadIcon from '@mui/icons-material/MarkEmailReadOutlined';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import PhonelinkLockIcon from '@mui/icons-material/PhonelinkLock';
-import ReceiptIcon from '@mui/icons-material/Receipt';
+import MarkEmailReadIcon from "@mui/icons-material/MarkEmailReadOutlined";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+import PhonelinkLockIcon from "@mui/icons-material/PhonelinkLock";
+import ReceiptIcon from "@mui/icons-material/Receipt";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
@@ -29,6 +28,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
@@ -36,7 +36,6 @@ import { lightblue, zubgtext } from "../../../Shared/color";
 import logo from "../../../assets/images/logowhite - Copy.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
-import swal from 'sweetalert';
 
 function Register() {
   const url = new URL(window.location.href);
@@ -125,28 +124,27 @@ function Register() {
         sessionStorage.setItem("isAvailableCricketUser", true);
         storeCookies();
         swal({
-          title: 'Registration Successful',
+          title: "Registration Successful",
           text: response?.data?.msg,
-          icon: 'success',
-          button: 'OK',
+          icon: "success",
+          button: "OK",
         }).then(() => {
           navigate("/dashboard");
           document.location.reload();
         });
-
       } else {
         swal({
-          title: 'Registration Failed',
+          title: "Registration Failed",
           text: response?.data?.msg,
-          icon: 'error',
-          button: 'OK',
+          icon: "error",
+          button: "OK",
         });
         setloding(false);
       }
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login error:", error);
     }
-  }
+  };
 
   const { isLoading, data } = useQuery(
     ["getname", fk.values.referral_code],
@@ -154,23 +152,19 @@ function Register() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
-  const [CountryCode, setCountryCode] = React.useState('+91');
-
+  const [CountryCode, setCountryCode] = React.useState("+91");
 
   const handleChange = (event) => {
     setCountryCode(event.target.value);
   };
 
-
-
   const result = data?.data?.data;
   return (
-    <Container sx={{ background: '#FAF9F6' }}>
-
+    <Container sx={{ background: "#FAF9F6" }}>
       <Box sx={style.authheader}>
         <Box
           sx={{
@@ -180,26 +174,38 @@ function Register() {
           }}
         >
           <Box sx={style.flexbetween}>
-            <Box component={NavLink} sx={{ width: '20%' }}>
+            <Box component={NavLink} sx={{ width: "20%" }}>
               {/* <ArrowBackIosIcon sx={style.icon} /> */}
             </Box>
-            <Box sx={{ width: '60%' }}>
-              <Box component='img' src={logo} sx={style.logocss}></Box>
+            <Box sx={{ width: "60%" }}>
+              <Box component="img" src={logo} sx={style.logocss}></Box>
             </Box>
-            <Box component={NavLink} sx={{ width: '20%' }}>
-              <Box sx={{ ...style.flexcenter, float: 'right' }}>
-              </Box>
+            <Box component={NavLink} sx={{ width: "20%" }}>
+              <Box sx={{ ...style.flexcenter, float: "right" }}></Box>
             </Box>
           </Box>
 
-          <Typography variant="h6" sx={{ fontWeight: '600', fontSize: '18px', color: 'white' }}  >Register </Typography>
-          <Typography variant="body2" mb={1} sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>Please register by phone number or email</Typography>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "600", fontSize: "18px", color: "white" }}
+          >
+            Register{" "}
+          </Typography>
+          <Typography
+            variant="body2"
+            mb={1}
+            sx={{ fontWeight: "400", fontSize: "12px", color: "white" }}
+          >
+            Please register by phone number or email
+          </Typography>
         </Box>
       </Box>
-      <Box sx={style.authform} component='form'>
+      <Box sx={style.authform} component="form">
         <Box sx={{ ...style.flexcoloumcenter, ...style.registerheader }}>
-          <PhoneAndroidIcon sx={{ color: zubgtext, }} />
-          <Typography variant="body1" sx={{ color: zubgtext, }} >Register your phone</Typography>
+          <PhoneAndroidIcon sx={{ color: zubgtext }} />
+          <Typography variant="body1" sx={{ color: zubgtext }}>
+            Register your phone
+          </Typography>
         </Box>
       </Box>
       <Box
@@ -212,16 +218,18 @@ function Register() {
         }}
         onSubmit={fk.handleSubmit}
       >
-
         <Box mt={0}>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mb: 1 }}>
-              <PersonOutlineIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Name</Typography>
+              <PersonOutlineIcon sx={style.icon} />{" "}
+              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+                Name
+              </Typography>
             </Box>
             <TextField
               id="name"
               placeholder="Enter Name"
-              sx={{ ...style.normalinput, }}
+              sx={{ ...style.normalinput }}
               name="name"
               type="text"
               value={fk.values.name}
@@ -234,26 +242,30 @@ function Register() {
           </FormControl>
         </Box>
 
-
-
-
         <FormControl fullWidth>
           <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-            <PhoneAndroidIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Phone number</Typography>
+            <PhoneAndroidIcon sx={style.icon} />{" "}
+            <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+              {" "}
+              Phone number
+            </Typography>
           </Box>
-          <Box sx={{ ...style.flexbetween, }}>
+          <Box sx={{ ...style.flexbetween }}>
             <Select
               sx={{ ...style.selectinput }}
               mr={2}
               value={CountryCode}
               onChange={handleChange}
               displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
+              inputProps={{ "aria-label": "Without label" }}
             >
-              <MenuItem value="+91" selected> + 91</MenuItem>
+              <MenuItem value="+91" selected>
+                {" "}
+                + 91
+              </MenuItem>
             </Select>
             <TextField
-              sx={{ ...style.normalinput, width: '80%', }}
+              sx={{ ...style.normalinput, width: "80%" }}
               ml={2}
               id="mob"
               name="mobile"
@@ -261,7 +273,7 @@ function Register() {
               value={fk.values.mobile}
               onChange={fk.handleChange}
               onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-              placeholder='Enter Phone Number'
+              placeholder="Enter Phone Number"
             />
           </Box>
           {fk.touched.mobile && fk.errors.mobile && (
@@ -269,16 +281,19 @@ function Register() {
           )}
         </FormControl>
 
-        <Box >
+        <Box>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <MarkEmailReadIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>E-mail</Typography>
+              <MarkEmailReadIcon sx={style.icon} />{" "}
+              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+                E-mail
+              </Typography>
             </Box>
             <TextField
               id="fullWidth"
               type="email"
               placeholder="Enter email"
-              sx={{ ...style.normalinput, }}
+              sx={{ ...style.normalinput }}
               name="email"
               value={fk.values.email}
               onChange={fk.handleChange}
@@ -292,12 +307,15 @@ function Register() {
         <Box mt={2}>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <PhonelinkLockIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Set password</Typography>
+              <PhonelinkLockIcon sx={style.icon} />{" "}
+              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+                Set password
+              </Typography>
             </Box>
             <OutlinedInput
               placeholder="Enter password"
               name="password"
-              sx={{ ...style.passwordinput, }}
+              sx={{ ...style.passwordinput }}
               value={fk.values.password}
               onChange={fk.handleChange}
               onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
@@ -327,10 +345,13 @@ function Register() {
         <Box mt={2}>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <PhonelinkLockIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Confirm password</Typography>
+              <PhonelinkLockIcon sx={style.icon} />{" "}
+              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+                Confirm password
+              </Typography>
             </Box>
             <OutlinedInput
-              sx={{ ...style.passwordinput, }}
+              sx={{ ...style.passwordinput }}
               name="confirmed_password"
               id="confirmed_password"
               value={fk.values.confirmed_password}
@@ -355,24 +376,23 @@ function Register() {
                 </InputAdornment>
               }
             />
-            {fk.touched.confirmed_password &&
-              fk.errors.confirmed_password && (
-                <div className="error">
-                  {fk.errors.confirmed_password}
-                </div>
-              )}
+            {fk.touched.confirmed_password && fk.errors.confirmed_password && (
+              <div className="error">{fk.errors.confirmed_password}</div>
+            )}
           </FormControl>
         </Box>
         <Box mt={2}>
           <FormControl fullWidth>
-
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
-              <ReceiptIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Referral Code</Typography>
+              <ReceiptIcon sx={style.icon} />{" "}
+              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+                Referral Code
+              </Typography>
             </Box>
             <TextField
               id="referral_code"
               placeholder="Enter Referral Code"
-              sx={{ ...style.normalinput, }}
+              sx={{ ...style.normalinput }}
               name="referral_code"
               value={fk.values.referral_code}
               onChange={fk.handleChange}
@@ -394,7 +414,7 @@ function Register() {
               control={
                 <Checkbox
                   checked={fk.values.privacy_policy}
-                  sx={{ color: zubgtext, fontSize: '12px', fontWeight: '500' }}
+                  sx={{ color: zubgtext, fontSize: "12px", fontWeight: "500" }}
                   onClick={() =>
                     fk.setFieldValue(
                       "privacy_policy",
@@ -404,108 +424,107 @@ function Register() {
                 />
               }
               label="I have read and agree 【Privacy Agreement】"
-
             />
           </FormControl>
         </Box>
-        <Stack >
-          <NavLink to='/register'>
-            <Button className='goldbtn' onClick={fk.handleSubmit}>Register</Button>
+        <Stack>
+          <NavLink to="/register">
+            <Button className="goldbtn" onClick={fk.handleSubmit}>
+              Register
+            </Button>
           </NavLink>
-          <NavLink to='/' >
-            <Button className=' goldborderbtn' >Log in</Button>
+          <NavLink to="/">
+            <Button className=" goldborderbtn">Log in</Button>
           </NavLink>
         </Stack>
       </Box>
       <CustomCircularProgress isLoading={loding} />
-
     </Container>
   );
 }
 
 export default Register;
 
-
 const style = {
-  authheader: { background: lightblue, py: 1, },
+  authheader: { background: lightblue, py: 1 },
   flexcenterstart: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   normalinput: {
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
-      color: 'red',
-
+    borderRadius: "10px",
+    backgroundColor: "#fff",
+    "&>div": {
+      border: "none",
+      borderRadius: "10px",
+      color: "red",
     },
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
-      color: lightblue
+    "&>div": {
+      border: "none",
+      borderRadius: "10px",
+      color: lightblue,
     },
-    '&>div>input': {
-      padding: '10px !important'
+    "&>div>input": {
+      padding: "10px !important",
     },
-    '&>div>fieldset': {
-      border: 'none !important',
-      borderRadius: '10px',
-      marginLeft: '20px',
+    "&>div>fieldset": {
+      border: "none !important",
+      borderRadius: "10px",
+      marginLeft: "20px",
     },
-
   },
   flexbetween: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between;',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between;",
   },
   passwordinput: {
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>input': { padding: '10px', color: lightblue },
-    '&>fieldset': { border: 'none' },
+    borderRadius: "10px",
+    backgroundColor: "#fff",
+    "&>input": { padding: "10px", color: lightblue },
+    "&>fieldset": { border: "none" },
     // '&>div>button>svg': { padding: '10px', color: 'red' },
     // '&>div>button': { padding: '0px', },
-    '&>:hover': {
-      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
+    "&>:hover": {
+      backgroundColor: "#fff",
+      borderRadius: "10px 0px 0px 10px",
     },
   },
   icon: { color: zubgtext },
-  logocss: { width: '100px', margin: 'auto' },
+  logocss: { width: "100px", margin: "auto" },
   flexcoloumcenter: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  authform: { width: '100%', pb: 3 },
-  registerheader: { borderBottom: `2px solid ${zubgtext}`, py: 2 }, '&>p': { color: `${zubgtext} !important`, fontSize: '18px', mt: 1 },
+  authform: { width: "100%", pb: 3 },
+  registerheader: { borderBottom: `2px solid ${zubgtext}`, py: 2 },
+  "&>p": { color: `${zubgtext} !important`, fontSize: "18px", mt: 1 },
   selectinput: {
-    width: '18%',
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
+    width: "18%",
+    borderRadius: "10px",
+    backgroundColor: "#fff",
+    "&>div": {
+      border: "none",
+      borderRadius: "10px",
       color: lightblue,
-      padding: '10px 0px 10px 5px !important'
+      padding: "10px 0px 10px 5px !important",
     },
-    '&>fieldset': {
-      border: 'none !important',
-      borderRadius: '10px',
-      marginLeft: '20px',
+    "&>fieldset": {
+      border: "none !important",
+      borderRadius: "10px",
+      marginLeft: "20px",
     },
-
   },
   passwordinput: {
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>input': { padding: '10px', color: lightblue },
-    '&>fieldset': { border: 'none' },
-    '&>:hover': {
-      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
+    borderRadius: "10px",
+    backgroundColor: "#fff",
+    "&>input": { padding: "10px", color: lightblue },
+    "&>fieldset": { border: "none" },
+    "&>:hover": {
+      backgroundColor: "#fff",
+      borderRadius: "10px 0px 0px 10px",
     },
   },
-}
+};
