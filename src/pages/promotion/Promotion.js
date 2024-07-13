@@ -65,7 +65,7 @@ refetchOnWindowFocus:false
               {result?.today_turnover}
             </Typography>
             <Typography variant="body1" sx={{ color: 'white' }}>
-              Today's Turnover
+              Total Turnover
             </Typography>
             <Typography variant="body1" sx={{ color: zubgtext }}>
               Upgrade the level to increase turnover
@@ -302,7 +302,7 @@ refetchOnWindowFocus:false
                 </Typography>
               </Stack>
             </Box>
-            <Stack direction="row">
+            {/* <Stack direction="row">
               <Box>
                 <Typography variant="body1" >
                   {Number(Number(result?.turnover || 0) + Number(result?.today_turnover || 0))?.toFixed(2)}
@@ -319,7 +319,7 @@ refetchOnWindowFocus:false
                   Total Commission
                 </Typography>
               </Box>
-            </Stack>
+            </Stack> */}
             <Stack direction="row">
               <Box>
                 <Typography variant="body1" >
