@@ -10,29 +10,39 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import CryptoJS from 'crypto-js';
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import { withdrawAmountSchemaValidaton } from "../../../Shared/Validation";
-import { zubgback, zubgbackgrad, zubgmid, zubgtext, zubgwhite } from "../../../Shared/color";
+import {
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgtext,
+  zubgwhite,
+} from "../../../Shared/color";
 import cip from "../../../assets/cip.png";
 import payment from "../../../assets/images/banking.png";
 import playgame from "../../../assets/images/playgame.jpg";
 import Layout from "../../../component/Layout/Layout";
 import { endpoint } from "../../../services/urls";
 function AddBankDetails() {
-  const login_data = localStorage.getItem("logindataen") && CryptoJS.AES.decrypt(localStorage.getItem("logindataen"), "anand")?.toString(CryptoJS.enc.Utf8) || null
+  const login_data =
+    (localStorage.getItem("logindataen") &&
+      CryptoJS.AES.decrypt(
+        localStorage.getItem("logindataen"),
+        "anand"
+      )?.toString(CryptoJS.enc.Utf8)) ||
+    null;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
-  const client = useQueryClient()
+  const client = useQueryClient();
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
-
-
 
   const initialValues = {
     email: "",
@@ -72,10 +82,10 @@ function AddBankDetails() {
   const addbankDetailsFunction = async (fd) => {
     try {
       const response = await axios.post(`${endpoint.add_bank_details}`, fd);
-      toast(response?.data?.msg)
+      toast(response?.data?.msg);
       client.refetchQueries("bank_list_details");
       if (response?.data?.msg) {
-        navigate('/add-bank-details/pre-added-bank-details')
+        navigate("/add-bank-details/pre-added-bank-details");
       }
     } catch (e) {
       toast(e?.message);
@@ -102,7 +112,10 @@ function AddBankDetails() {
           <Typography variant="body1" color="initial">
             Add Bank Details
           </Typography>
-          <Box component={NavLink} to="/add-bank-details/pre-added-bank-details">
+          <Box
+            component={NavLink}
+            to="/add-bank-details/pre-added-bank-details"
+          >
             <HistoryIcon />
           </Box>
         </Box>
@@ -283,10 +296,10 @@ const style = {
       fontSize: "20px",
       fontWeight: "600",
       textAlign: "center",
-      color: 'white',
+      color: "white",
     },
     "& > a > svg": {
-      color: 'white',
+      color: "white",
       fontSize: "35px",
     },
   },
@@ -357,4 +370,3 @@ const style = {
     "&>p": { marginLeft: "10px", color: "white !important", fontSize: "14px" },
   },
 };
-

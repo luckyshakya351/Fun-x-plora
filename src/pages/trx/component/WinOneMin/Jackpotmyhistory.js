@@ -12,15 +12,13 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
-import {
-  zubgback,
-  zubgbackgrad,
-  zubgtext,
-  zubgwhite,
-} from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import { jackpod_my_history } from "../../../../services/apicalling";
 import { rupees } from "../../../../services/urls";
+import {
+  zubgback,
+  zubgtext
+} from "../../../../Shared/color";
 import { getNumber } from "../../../../Shared/Number";
 
 const Jackpotmyhistory = ({ gid }) => {
@@ -50,11 +48,11 @@ const Jackpotmyhistory = ({ gid }) => {
 
   const visibleRows = React.useMemo(
     () =>
-      my_history_data?.slice(
+      my_history?.data?.data?.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [page, rowsPerPage, my_history_data]
+    [page, rowsPerPage, my_history?.data?.datatory_data]
   );
 
   if (isLoading)
@@ -285,7 +283,7 @@ const Jackpotmyhistory = ({ gid }) => {
           }}
           rowsPerPageOptions={[2, 5, 10, 15]}
           component="div"
-          count={my_history_data?.length}
+          count={my_history?.data?.data?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

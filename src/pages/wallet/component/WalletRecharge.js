@@ -41,7 +41,7 @@ import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 
 function WalletRecharge() {
-  const [t_id, setT_id] = React.useState();
+  // const [t_id, setT_id] = React.useState();
   // const [callBackResponse, setCallBackResponse] = React.useState({
   //   payment_status: "NO",
   // });
@@ -69,7 +69,7 @@ function WalletRecharge() {
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [deposit_req_data, setDeposit_req_data] = React.useState();
   const [loding, setloding] = React.useState(false);
-  const [show_time, set_show_time] = React.useState("0_0");
+  // const [show_time, set_show_time] = React.useState("0_0");
   const [amount, setAmount] = React.useState({
     wallet: 0,
     winning: 0,
@@ -130,7 +130,7 @@ function WalletRecharge() {
     validationSchema: cashDepositRequestValidationSchema,
     onSubmit: () => {
       const transaction_id = `${Date.now()}${user_id}`;
-      setT_id(transaction_id);
+      // setT_id(transaction_id);
       const fd = new FormData();
       fd.append("UserID", "7704002732");
       fd.append("Email", "mailto:sunlottery@gmail.com");

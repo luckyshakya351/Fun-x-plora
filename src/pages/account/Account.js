@@ -65,6 +65,7 @@ function Account() {
   const { isLoading, data } = useQuery(["myprofile"], () => MyProfileDataFn(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
+    refetchOnWindowFocus:false
   });
 
   const result = data?.data?.data;

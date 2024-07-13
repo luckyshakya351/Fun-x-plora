@@ -92,7 +92,6 @@ const ApplyBetDialogBox = ({
       gamesnio: Number(next_step),
     };
     try {
-     
       const response = await axios.post(`${endpoint.trx_game_bet}`, reqBody);
       if (response?.data?.error === "200") {
         toast.success(response?.data?.msg);

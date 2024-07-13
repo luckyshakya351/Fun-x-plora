@@ -2,11 +2,7 @@ import { Lock, Mail } from "@mui/icons-material";
 import CallIcon from "@mui/icons-material/Call";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import PersonIcon from "@mui/icons-material/Person";
-import {
-  Box,
-  CircularProgress,
-  Container
-} from "@mui/material";
+import { Box, CircularProgress, Container } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
@@ -19,12 +15,19 @@ import Layout from "../../../component/Layout/Layout";
 import { endpoint } from "../../../services/urls";
 function Profile() {
   const navigate = useNavigate();
-  const login_data = localStorage.getItem("logindataen") && CryptoJS.AES.decrypt(localStorage.getItem("logindataen"), "anand")?.toString(CryptoJS.enc.Utf8) || null
+  const login_data =
+    (localStorage.getItem("logindataen") &&
+      CryptoJS.AES.decrypt(
+        localStorage.getItem("logindataen"),
+        "anand"
+      )?.toString(CryptoJS.enc.Utf8)) ||
+    null;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
 
   const { isLoading, data } = useQuery(["profiledata"], () => profileFn(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
+    refetchOnWindowFocus:false,
   });
 
   const profileFn = async () => {
@@ -47,9 +50,7 @@ function Profile() {
   return (
     <Layout>
       <Box sx={styles.root}>
-        <Container
-         
-        >
+        <Container>
           <div className="no-scrollbar h-screen overflow-auto">
             <div
               style={{
@@ -68,8 +69,12 @@ function Profile() {
                 />
                 <CameraAltIcon className="absolute bottom-0 left-[55%] !text-black" />
               </div>
-              <p className="text-lg !text-black mt-2">{profile_data?.data?.username}</p>
-              <p className="text-sm !text-black ">{profile_data?.data?.referral_code}</p>
+              <p className="text-lg !text-black mt-2">
+                {profile_data?.data?.username}
+              </p>
+              <p className="text-sm !text-black ">
+                {profile_data?.data?.referral_code}
+              </p>
               <div className="!border-[1px] border-white grid grid-cols-3 place-items-center w-full py-3 mt-2">
                 <div className="w-full flex  flex-col items-center">
                   <p className="!text-[#8f5206]">276</p>
@@ -93,28 +98,38 @@ function Profile() {
               <p className="py-4 !text-black">Account Info</p>
               <div className="!border-[1px] border-white w-full py-3 mt-2 px-3">
                 <div className="flex gap-2">
-                  <PersonIcon className="!text-[#8f5206]"/>
-                  <span className="!text-black">{profile_data?.data?.referral_code}</span>
+                  <PersonIcon className="!text-[#8f5206]" />
+                  <span className="!text-black">
+                    {profile_data?.data?.referral_code}
+                  </span>
                 </div>
                 <p className="bg-[#DCB86A] h-[1px] !my-2 "></p>
                 <div className="flex gap-2">
-                  <PersonIcon className="!text-[#8f5206]"/>
-                  <span className="!text-black">{profile_data?.data?.username}</span>
+                  <PersonIcon className="!text-[#8f5206]" />
+                  <span className="!text-black">
+                    {profile_data?.data?.username}
+                  </span>
                 </div>
                 <p className="bg-[#DCB86A] h-[1px] !my-2 "></p>
                 <div className="flex gap-2">
-                  <CallIcon className="!text-[#8f5206]"/>
-                  <span className="!text-black">{profile_data?.data?.mobile}</span>
+                  <CallIcon className="!text-[#8f5206]" />
+                  <span className="!text-black">
+                    {profile_data?.data?.mobile}
+                  </span>
                 </div>
                 <p className="bg-[#DCB86A] h-[1px] !my-2 "></p>
                 <div className="flex gap-2">
-                  <Mail className="!text-[#8f5206]"/>
-                  <span className="!text-black">{profile_data?.data?.email}</span>
+                  <Mail className="!text-[#8f5206]" />
+                  <span className="!text-black">
+                    {profile_data?.data?.email}
+                  </span>
                 </div>
                 <p className="bg-[#DCB86A] h-[1px] !my-2 "></p>
                 <div className="flex gap-2">
-                  <Lock className="!text-[#8f5206]"/>
-                  <span className="!text-black">{profile_data?.data?.password}</span>
+                  <Lock className="!text-[#8f5206]" />
+                  <span className="!text-black">
+                    {profile_data?.data?.password}
+                  </span>
                 </div>
               </div>
             </div>
