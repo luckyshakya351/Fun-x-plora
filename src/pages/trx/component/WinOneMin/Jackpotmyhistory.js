@@ -77,8 +77,8 @@ const Jackpotmyhistory = ({ gid }) => {
           {gid === "1"
             ? " My One GO Record"
             : gid === "2"
-            ? " My Three GO Record"
-            : " My Five GO Record"}
+              ? " My Three GO Record"
+              : " My Five GO Record"}
         </Typography>
       </Stack>
       <div className="flex flex-col gap-[2px]">
@@ -100,34 +100,32 @@ const Jackpotmyhistory = ({ gid }) => {
                   <div className="!w-full !flex !justify-between">
                     <p className=" ">{i?.gamesno}</p>
                     <p
-                      className={`${
-                        i?.status === "0"
+                      className={`${i?.status === "0"
                           ? "!text-red-400"
                           : i?.status === "1"
-                          ? "!text-green-400"
-                          : "!text-red-400"
-                      }`}
+                            ? "!text-green-400"
+                            : "!text-red-400"
+                        }`}
                     >
                       {i?.status === "0"
                         ? "Pending"
                         : i?.status === "1"
-                        ? "Win"
-                        : "Loss"}
+                          ? "Win"
+                          : "Loss"}
                     </p>
                     <span
-                      className={`${
-                        i?.status === "0"
+                      className={`${i?.status === "0"
                           ? "!text-red-400"
                           : i?.status === "1"
-                          ? "!text-green-400"
-                          : "!text-red-400"
-                      }`}
+                            ? "!text-green-400"
+                            : "!text-red-400"
+                        }`}
                     >
                       {" "}
                       {rupees}{" "}
                       {i?.status === "1"
                         ? Number(i?.win)?.toFixed(2)
-                        : i?.totalamount}
+                        : Number(i?.amount || 0).toFixed(2)}
                     </span>
                   </div>
                 </AccordionSummary>
@@ -180,42 +178,43 @@ const Jackpotmyhistory = ({ gid }) => {
                     </span>
 
                     {i?.status !== "0" ? (
-                      <div className="flex gap-2 items-center bg-white !bg-opacity-10 py-1 px-2">
+                      <div className="flex gap-2 items-center bg-white !bg-opacity-10 py-1 pl-1">
+
                         <span
-                          className={`slot-id ${
-                            String(i?.result)?.slice(0, 3) === "300"
+                          className={`slot-id ${String(i?.result)?.slice(0, 3) === "300"
                               ? "bg-gradient-to-tl from-red-400 to-red-900"
                               : String(i?.result)?.slice(0, 3) === "200"
-                              ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                              : String(i?.result)?.slice(0, 3) === "100"
-                              ? "bg-gradient-to-t from-green-400 to-green-900"
-                              : ""
-                          } transparentColor font-bold  text-lg !px-1`}
-                        >
-                          {
-                            getNumber?.find(
-                              (i) => i?.id === Number(i?.result?.slice(-1))
-                            )?.number
-                          }
-                        </span>
-                        <span
-                          className={`slot-id ${
-                            String(i?.result)?.slice(0, 3) === "300"
-                              ? "bg-gradient-to-tl from-red-400 to-red-900"
-                              : String(i?.result)?.slice(0, 3) === "200"
-                              ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                              : String(i?.result)?.slice(0, 3) === "100"
-                              ? "bg-gradient-to-t from-green-400 to-green-900"
-                              : ""
-                          } transparentColor font-bold  text-lg !px-1`}
+                                ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                                : String(i?.result)?.slice(0, 3) === "100"
+                                  ? "bg-gradient-to-t from-green-400 to-green-900"
+                                  : ""
+                            } transparentColor font-bold  text-lg !px-1`}
                         >
                           {String(i?.result)?.slice(0, 3) === "300"
                             ? "Red"
                             : String(i?.result)?.slice(0, 3) === "200"
-                            ? "Violet"
-                            : String(i?.result)?.slice(0, 3) === "100"
-                            ? "Green"
-                            : ""}
+                              ? "Violet"
+                              : String(i?.result)?.slice(0, 3) === "100"
+                                ? "Green"
+                                : ""}
+                        </span>
+                        <span
+                          className={`slot-id ${String(i?.result)?.slice(0, 3) === "300"
+                              ? "bg-gradient-to-tl from-red-400 to-red-900"
+                              : String(i?.result)?.slice(0, 3) === "200"
+                                ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                                : String(i?.result)?.slice(0, 3) === "100"
+                                  ? "bg-gradient-to-t from-green-400 to-green-900"
+                                  : ""
+                            } transparentColor font-bold  text-lg `}
+                        >
+                          {
+                            getNumber?.find(
+                              (j) => j?.id === Number(String(i?.result?.slice(-1)))
+                            )?.number
+                          }
+
+                    
                         </span>
                       </div>
                     ) : (
@@ -226,25 +225,31 @@ const Jackpotmyhistory = ({ gid }) => {
                       Select
                     </span>
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
-                      <span> {i?.color}</span>
+                      <span className={`slot-id ${String(i?.color)?.slice(0, 3) === "Red"
+                          ? "bg-gradient-to-tl from-red-400 to-red-900"
+                          : String(i?.color)?.slice(0, 6) === "Violet"
+                            ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                            : String(i?.color)?.slice(0, 5) === "Green"
+                              ? "bg-gradient-to-t from-green-400 to-green-900"
+                              : ""
+                        } transparentColor font-bold  text-lg !px-1`}> {i?.color}</span>
                     </div>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Status
                     </span>
                     <span
-                      className={`${
-                        i?.status === "0"
+                      className={`${i?.status === "0"
                           ? "!text-red-400"
                           : i?.status === "1"
-                          ? "!text-green-400"
-                          : "!text-red-400"
-                      } bg-white !bg-opacity-10 py-1 px-2`}
+                            ? "!text-green-400"
+                            : "!text-red-400"
+                        } bg-white !bg-opacity-10 py-1 px-2`}
                     >
                       {i?.status === "0"
                         ? "Pending"
                         : i?.status === "1"
-                        ? "Win"
-                        : "Loss"}
+                          ? "Win"
+                          : "Loss"}
                     </span>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Amount

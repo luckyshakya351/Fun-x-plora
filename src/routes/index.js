@@ -29,6 +29,7 @@ import RegistrationBonus from "../pages/income/incomeSubSection/RegistrationBonu
 import SelfTradingBonus from "../pages/income/incomeSubSection/SelfTradingBonus";
 import TeamRewardBonus from "../pages/income/incomeSubSection/TeamRewardBonus";
 import TeamTradingBonus from "../pages/income/incomeSubSection/TeamTradingBonus";
+import WeeklySalaryBonus from "../pages/income/incomeSubSection/WeeklySalaryBonus";
 import Promotion from "../pages/promotion/Promotion";
 import CustomerLine from "../pages/promotion/component/CustomerLine";
 import Invitaton from "../pages/promotion/component/Invitaton";
@@ -215,6 +216,10 @@ export const routes = [
     {
         path: "/account/income-main/daily-salary-bonus",
         component: <DailySalaryBonus />
+    },
+    {
+        path: "/account/income-main/weekly-bonus",
+        component :<WeeklySalaryBonus/>
     },
     {
         path: "/account/income-main/self-trading-bonus",
