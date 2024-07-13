@@ -112,6 +112,7 @@ const ApplyBetDialogBox = ({
       console.log(e);
     }
     client.refetchQueries("walletamount");
+    client.refetchQueries("walletamount_aviator");
     client.refetchQueries("myhistory");
     setLoding(false);
   }
