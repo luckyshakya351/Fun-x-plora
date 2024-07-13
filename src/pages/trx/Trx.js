@@ -164,8 +164,8 @@ function Win() {
                 ) : (
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
-                <Typography variant="h3" color="initial">
-                  Jackpod
+                <Typography className='!pb-4' variant="h3" color="initial">
+                 JACKPOD
                 </Typography>
               </Box>
             </Stack>
