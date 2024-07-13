@@ -79,7 +79,7 @@ const PlayGame = () => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -106,7 +106,7 @@ refetchOnWindowFocus:false
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false,
     }
   );
 

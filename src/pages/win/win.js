@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
@@ -23,6 +23,7 @@ import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
+import { walletamount } from "../../services/apicalling";
 
 function Win() {
   const client = useQueryClient();
@@ -31,7 +32,7 @@ function Win() {
   const [opendialogbox, setOpenDialogBox] = useState(false);
   const isAppliedbet = localStorage.getItem("betApplied");
   const dummycounter = useSelector((state) => state.aviator.dummycounter);
-  const net_wallet_amount = useSelector(
+  let net_wallet_amount = useSelector(
     (state) => state.aviator.net_wallet_amount
   );
 
@@ -47,8 +48,23 @@ function Win() {
     }, 1000);
   }, [dummycounter]);
 
+
+  const { isLoading: walletloding, data: walletdata } = useQuery(
+    ["walletamount_aviator"],
+    () => walletamount(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  net_wallet_amount = walletdata?.data?.data || 0;
+
+
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
+    client.refetchQueries("walletamount_aviator");
     const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
 
     const element = document.getElementById("refresh_button");
@@ -95,7 +111,7 @@ function Win() {
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                    Number(net_wallet_amount?.winning || 0) || 0
+                      Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
                 <div className="mx-1 rotate_refresh_image" id="refresh_button">
@@ -232,7 +248,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, mt: "74px", },
+  root: { background: zubgback, mt: "74px" },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

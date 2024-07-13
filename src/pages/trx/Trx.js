@@ -2,7 +2,7 @@ import WalletOutlinedIcon from '@mui/icons-material/WalletOutlined';
 import { Box, Button, Container, Dialog, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
-import { useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
@@ -14,6 +14,7 @@ import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
 import Jackpot from './component/WinOneMin/Jackpot';
+import { walletamount } from '../../services/apicalling';
 
 function Win() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function Win() {
   const [opendialogbox, setOpenDialogBox] = useState(false);
   const isAppliedbet = localStorage.getItem("betApplied");
   const dummycounter = useSelector((state) => state.aviator.dummycounter);
-  const net_wallet_amount = useSelector(
+  let net_wallet_amount = useSelector(
     (state) => state.aviator.net_wallet_amount
   );
   React.useEffect(() => {
@@ -37,9 +38,21 @@ function Win() {
     }, 1000);
   }, [dummycounter]);
 
+  const { isLoading: walletloding, data: walletdata } = useQuery(
+    ["walletamount_aviator"],
+    () => walletamount(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  net_wallet_amount = walletdata?.data?.data || 0;
 
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
+    client.refetchQueries("walletamount_aviator");
     const item = document.getElementsByClassName("rotate_refresh_image")?.[0];
 
     const element = document.getElementById("refresh_button");

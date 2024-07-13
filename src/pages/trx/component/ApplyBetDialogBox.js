@@ -115,6 +115,7 @@ const ApplyBetDialogBox = ({
     }
     client.refetchQueries("my_trx_Allhistory");
     client.refetchQueries("walletamount");
+    client.refetchQueries("walletamount_aviator");
     client.refetchQueries("trx_gamehistory");
     client.refetchQueries("my_trx_history");
     setLoding(false);
