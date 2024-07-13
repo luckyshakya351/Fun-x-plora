@@ -80,6 +80,7 @@ import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
+import { Logout } from "@mui/icons-material";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -314,11 +315,23 @@ function Dashboard() {
                   sx={{ width: "60px", height: "60px" }}
                 ></Box>
               </div>
-              <div className="flex gap-1 items-center cursor-pointer">
-                <CloudDownloadIcon sx={{ color: zubgtext }} />
-                <span className="text-[12px]" style={{ color: zubgtext }}>
-                  Download App
-                </span>
+              <div className="flex justify-end gap-2">
+                <div className="flex  gap-1 items-center cursor-pointer "
+                 onClick={() => {
+                  localStorage.clear();
+                  navigate("/") }}>
+                 <Logout  sx={{ color: zubgtext }}/>
+                  <Button
+                    className="text-red"  style={{ color: zubgtext }}>
+                    Logout
+                  </Button>
+                </div>
+                <div className="flex gap-1 items-center cursor-pointer">
+                  <CloudDownloadIcon sx={{ color: zubgtext }} />
+                  <span className="text-[12px]" style={{ color: zubgtext }}>
+                    Download App
+                  </span>
+                </div>
               </div>
             </div>
           </div>
