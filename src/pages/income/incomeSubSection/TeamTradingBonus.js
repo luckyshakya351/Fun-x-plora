@@ -80,21 +80,19 @@ refetchOnWindowFocus:false
               <div className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
                 <div className="!w-full !flex !justify-between">
                   <span style={{ color: zubgtext }}>{i?.l01_transection_type}</span>
-                  <span className="!text-green-400 !text-lg">
+                  <span className="!text-green-800 !text-lg">
                     {i?.l01_amount}
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}>{i?.lo1_id}</span>
-                  <span className="!text-yellow-400  !text-[12px]">
+                  <span style={{ color: zubgtext }}></span>
+                  <span className="!text-yellow-600  !text-[12px]">
                     {moment(i?.l01_date)?.format("DD-MM-YYYY")}{" "}
                     {moment(i?.l01_date)?.format("HH:mm:ss")}
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }} className=" !text-[12px]">
-                    {i?.l01_type}
-                  </span>
+                  
                 </div>
               </div>
             );
