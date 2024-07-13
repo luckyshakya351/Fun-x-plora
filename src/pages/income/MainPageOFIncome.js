@@ -4,6 +4,7 @@ import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import RedeemIcon from "@mui/icons-material/Redeem";
 import StoreIcon from "@mui/icons-material/Store";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import { Box, Container, Typography } from "@mui/material";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
@@ -82,16 +83,16 @@ function MainPageOFIncome() {
         />
       ),
     },
-    // {
-    //   to: "/account/income-main/team-trading-bonus",
-    //   name: "Team Trading  Bonus",
-    //   logo: (
-    //     <CardGiftcardIcon
-    //       className="!w-[40px] !h-[40px] !text-white"
-    //       color="#8f5206"
-    //     />
-    //   ),
-    // },
+    {
+      to: "/account/income-main/team-trading-bonus",
+      name: "Team Trading  Bonus",
+      logo: (
+        <CardGiftcardIcon
+          className="!w-[40px] !h-[40px] !text-white"
+          color="#8f5206"
+        />
+      ),
+    },
     // {
     //   to: "/account/income-main/team-reward-bonus",
     //   name: "Team Reward Bonus",
