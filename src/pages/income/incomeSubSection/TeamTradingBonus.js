@@ -1,7 +1,8 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
-  Container
+  Container,
+  Select
 } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
@@ -20,6 +21,7 @@ function TeamTradingBonus() {
   const goBack = () => {
     navigate(-1);
   };
+  const [filter, setFilter] = React.useState("0")
 
   const { isLoading, data } = useQuery(
     ["team_trading_bonus"],
@@ -27,10 +29,15 @@ function TeamTradingBonus() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
-  const res = data?.data?.data;
+  const res =
+    React.useMemo(() => {
+      return filter === "0" ? data?.data?.data : data?.data?.data?.filter((i) => i?.l01_transection_type?.includes(filter))
+    }, [filter, data?.data?.data])
+
+
   if (!isLoading && !res)
     return (
       <Layout>
@@ -74,6 +81,20 @@ refetchOnWindowFocus:false
           </Box>
           <p>Team Trading Bonus</p>
         </Box>
+        <div>
+          <select onChange={(e) => setFilter(e.target.value)} className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
+         <option value={"Level 1"}>Level 1 </option>
+         <option value={"Level 2"}>Level 2 </option>
+         <option value={"Level 3"}>Level 3 </option>
+         <option value={"Level 4"}>Level 4 </option>
+         <option value={"Level 5"}>Level 5 </option>
+         <option value={"Level 6"}>Level 6 </option>
+         {/* {[1,2,3,4,5,6]?.map((level, index)=>{
+          <option key={index} value={level}>Level {level}</option>
+       })} */}
+          </select>
+
+        </div>
         <div className="no-scrollbar !mb-10">
           {res?.map((i) => {
             return (
@@ -92,7 +113,7 @@ refetchOnWindowFocus:false
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
-                  
+
                 </div>
               </div>
             );
