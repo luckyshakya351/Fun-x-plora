@@ -237,6 +237,20 @@ refetchOnWindowFocus:false
               </Stack>
             </Box>
           </NavLink>
+          <NavLink to="/account/income-main">
+            <Box sx={style.invitbox}>
+              <Stack direction="row">
+                {/* <Box component='img' src={team_port}></Box> */}
+                <Box component="img" src={money}></Box>
+                <Typography variant="body1" >
+                  Income data
+                </Typography>
+              </Stack>
+              <Stack direction="row">
+                <ArrowForwardIosOutlinedIcon />
+              </Stack>
+            </Box>
+          </NavLink>
           <NavLink to="/promotion/TeamReport/data">
             <Box sx={style.invitbox}>
               <Stack direction="row">
@@ -321,7 +335,8 @@ refetchOnWindowFocus:false
               </Box>
             </Stack> */}
             <Stack direction="row">
-              <Box>
+              <Box className= "!text-white">
+              <EmojiPeopleOutlinedIcon />
                 <Typography variant="body1" >
                   {result?.count || 0}
                 </Typography>
@@ -329,13 +344,13 @@ refetchOnWindowFocus:false
                   Direct subordinate
                 </Typography>
               </Box>
-              <Box>
+              <Box className= "!text-white">
+              <Groups2OutlinedIcon />
                 <Typography variant="body1" >
                   {result?.teamcount || 0}
                 </Typography>
                 <Typography variant="body1" >
-                  Total number of <br />
-                  subordinates in the team
+                  Team subordinates  
                 </Typography>
               </Box>
             </Stack>
