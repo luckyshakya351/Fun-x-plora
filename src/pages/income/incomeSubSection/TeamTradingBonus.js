@@ -83,6 +83,7 @@ function TeamTradingBonus() {
         </Box>
         <div>
           <select onChange={(e) => setFilter(e.target.value)} className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
+          <option value={"0"}>All </option>
          <option value={"Level 1"}>Level 1 </option>
          <option value={"Level 2"}>Level 2 </option>
          <option value={"Level 3"}>Level 3 </option>
