@@ -33,7 +33,7 @@ import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
 import { lightblue, zubgtext } from "../../../Shared/color";
-import logo from "../../../assets/images/logowhite - Copy.jpg";
+import logo from "../../../assets/images/fun.jpg";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 

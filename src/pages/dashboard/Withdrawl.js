@@ -182,22 +182,22 @@ function Withdrawl() {
     setloding(false);
   };
 
-  const handlePlaySound = async () => {
-    try {
-      if (audioRefMusic?.current?.pause) {
-        await audioRefMusic?.current?.play();
-      } else {
-        await audioRefMusic?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
+  // const handlePlaySound = async () => {
+  //   try {
+  //     if (audioRefMusic?.current?.pause) {
+  //       await audioRefMusic?.current?.play();
+  //     } else {
+  //       await audioRefMusic?.current?.pause();
+  //     }
+  //   } catch (error) {
+  //     // Handle any errors during play
+  //     console.error("Error during play:", error);
+  //   }
+  // };
 
-  React.useEffect(() => {
-    handlePlaySound();
-  }, []);
+  // React.useEffect(() => {
+  //   handlePlaySound();
+  // }, []);
 
   return (
     <Layout>

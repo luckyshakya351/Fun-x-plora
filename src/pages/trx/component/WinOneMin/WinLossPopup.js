@@ -66,6 +66,7 @@ const WinLossPopup = ({ gid }) => {
           status: "2",
           amount: amntAmnt,
         });
+        toast("Your Loss"); // Display toast for loss
       }
       // setstatus(response?.data?.data?.[0]);
     } catch (e) {
@@ -107,6 +108,7 @@ const WinLossPopup = ({ gid }) => {
           status: "2",
           amount: amntAmnt,
         });
+        toast("Your Loss"); // Display toast for loss
       }
       // setstatus(response?.data?.data?.[0]);
     } catch (e) {
@@ -127,6 +129,10 @@ const WinLossPopup = ({ gid }) => {
 
   console.log(all_result)
   if (loding) return <CustomCircularProgress isLoading={loding} />;
+  
+  if (status?.status === "2") {
+    return null;
+  }
   return (
     <Box
       sx={{

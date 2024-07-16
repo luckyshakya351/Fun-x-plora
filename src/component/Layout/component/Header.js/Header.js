@@ -5,7 +5,7 @@ import asistant from "../../../../assets/images/asistant.png"
 import backbtn from "../../../../assets/images/backBtn.png"
 import music from "../../../../assets/images/music.png"
 import musicoff from "../../../../assets/images/musicoff.png"
-import logo from '../../../../assets/images/logowhite.jpg'
+import logo from '../../../../assets/images/fun.jpg'
 import { lightblue } from '../../../../Shared/color'
 
 

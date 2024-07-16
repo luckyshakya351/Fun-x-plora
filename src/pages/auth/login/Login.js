@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { lightblue, lightyellow } from '../../../Shared/color';
-import logo from "../../../assets/images/logowhite - Copy.jpg";
+import logo from "../../../assets/images/fun.jpg";
 import LoginWithEmail from '../login/LoginWithEmail';
 import LoginWithMobile from '../login/LoginWithMobile';
 

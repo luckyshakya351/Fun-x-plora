@@ -136,7 +136,7 @@ function WinThreeMin({ gid }) {
                   setdialog_type("green");
                 }}
               >
-                Join Green
+                Green
               </Button>
               <Button
                 className="greemviolet"
@@ -145,7 +145,7 @@ function WinThreeMin({ gid }) {
                   setdialog_type("voilet");
                 }}
               >
-                Join Violet
+                Violet
               </Button>
               <Button
                 className="greemred"
@@ -154,7 +154,7 @@ function WinThreeMin({ gid }) {
                   setdialog_type("red");
                 }}
               >
-                Join Red
+                Red
               </Button>
             </Box>
             {/* pridictcolor */}

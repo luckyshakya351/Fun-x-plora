@@ -140,17 +140,17 @@ function Jackpot({ gid }) {
                             <Button
                                 className="greembtn"
                             >
-                                Join Green
+                                Green
                             </Button>
                             <Button
                                 className="greemviolet"
                             >
-                                Join Violet
+                                Violet
                             </Button>
                             <Button
                                 className="greemred"
                             >
-                                Join Red
+                                Red
                             </Button>
                         </Box>
                         {/* pridictcolor */}

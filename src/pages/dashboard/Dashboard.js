@@ -47,7 +47,7 @@ import two from "../../assets/images/2.jpg";
 import winp4 from "../../assets/images/GOTI.png";
 import bgms from "../../assets/images/bgms2.jpg";
 import deposit from "../../assets/images/deposit.png";
-import logo from "../../assets/images/logored.jpg";
+import logo from "../../assets/images/fun.jpg";
 import cash from "../../assets/images/money.png";
 import stage from "../../assets/images/pod2.png";
 import position2 from "../../assets/images/positio2.png";
