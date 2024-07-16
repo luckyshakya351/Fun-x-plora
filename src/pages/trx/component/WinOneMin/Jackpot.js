@@ -10,12 +10,32 @@ import {
     zubgtext,
     zubgwhite,
 } from "../../../../Shared/color";
-import pr0 from "../../../../assets/images/0.png";
+import v0 from "../../../../assets/voilet_coin (8).png";
+import v1 from "../../../../assets/Red_coin (1).png";
+import v2 from "../../../../assets/voilet_coin.png";
+import v3 from "../../../../assets/voilet_coin (1).png";
+import v4 from "../../../../assets/voilet_coin (2).png";
+import v5 from "../../../../assets/voilet_coin (3).png";
+import v6 from "../../../../assets/voilet_coin (4).png";
+import v7 from "../../../../assets/voilet_coin (5).png";
+import v8 from "../../../../assets/voilet_coin (6).png";
+import v9 from "../../../../assets/voilet_coin (7).png";
+import r0 from "../../../../assets/n2-c2913607.png";
+import r3 from "../../../../assets/a3.png";
+import r7 from "../../../../assets/a7-removebg-preview.png";
+import r9 from "../../../../assets/a9-removebg-preview.png";
+import r5 from "../../../../assets/images/num5.png";
+import r1 from "../../../../assets/i.png";
+import g0 from "../../../../assets/Green_coin (2).png";
+import g2 from "../../../../assets/Green_coin.png";
+import g5 from "../../../../assets/Green_coin (1).png";
+import g8 from "../../../../assets/a8-removebg-preview.png";
+import g6 from "../../../../assets/a6-removebg-preview.png";
+import g4 from "../../../../assets/a4.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
 import pr33 from "../../../../assets/images/33.png";
 import pr4 from "../../../../assets/images/4.png";
-import pr5 from "../../../../assets/images/5.png";
 import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
@@ -160,11 +180,11 @@ function Jackpot({ gid }) {
                             >
                                 <div className="w-[28%] m-1 " >
                                     {[
-                                        { nogreen: 0, img: pr0 },
+                                        { nogreen: 0, img: g0 },
                                         { nogreen: 1, img: pr11 },
-                                        { nogreen: 2, img: pr22 },
+                                        { nogreen: 2, img: g2 },
                                         { nogreen: 3, img: pr33 },
-                                        { nogreen: 4, img: pr4 },
+                                        { nogreen: 4, img: g4 },
 
                                     ]?.map((i) => {
                                         return (
@@ -183,10 +203,10 @@ function Jackpot({ gid }) {
                                 <div
                                     className="w-[28%] m-1">
                                     {[ 
-                                        { nogreen: 5, img: pr5 },
-                                        { nogreen: 6, img: pr6 },
+                                        { nogreen: 5, img: g5 },
+                                        { nogreen: 6, img: g6 },
                                         { nogreen: 7, img: pr7 },
-                                        { nogreen: 8, img: pr8 },
+                                        { nogreen: 8, img: g8 },
                                         { nogreen: 9, img: pr9 },
 
                                     ]?.map((i) => {
@@ -216,11 +236,11 @@ function Jackpot({ gid }) {
                             >
                                 <div className="w-[28%] m-1" >
                                     {[
-                                        { noviolet: 0, img: pr0 },
-                                        { noviolet: 1, img: pr11 },
-                                        { noviolet: 2, img: pr22 },
-                                        { noviolet: 3, img: pr33 },
-                                        { noviolet: 4, img: pr4 },
+                                        { noviolet: 0, img: v0 },
+                                        { noviolet: 1, img: v1 },
+                                        { noviolet: 2, img: v2 },
+                                        { noviolet: 3, img: v3 },
+                                        { noviolet: 4, img: v4 },
 
                                     ]?.map((i) => {
                                         return (
@@ -240,11 +260,11 @@ function Jackpot({ gid }) {
                                     className="w-[28%] m-1"
                                 >
                                     {[
-                                        { noviolet: 5, img: pr5 },
-                                        { noviolet: 6, img: pr6 },
-                                        { noviolet: 7, img: pr7 },
-                                        { noviolet: 8, img: pr8 },
-                                        { noviolet: 9, img: pr9 },
+                                        { noviolet: 5, img: v5 },
+                                        { noviolet: 6, img: v6 },
+                                        { noviolet: 7, img: v7 },
+                                        { noviolet: 8, img: v8 },
+                                        { noviolet: 9, img: v9 },
 
                                     ]?.map((i) => {
                                         return (
@@ -273,10 +293,10 @@ function Jackpot({ gid }) {
                             >
                                 <div className="w-[28%] m-1 " >
                                     {[
-                                        { nored: 0, img: pr0 },
-                                        { nored: 1, img: pr11 },
+                                        { nored: 0, img: r0 },
+                                        { nored: 1, img: r1 },
                                         { nored: 2, img: pr22 },
-                                        { nored: 3, img: pr33 },
+                                        { nored: 3, img: r3 },
                                         { nored: 4, img: pr4 },
 
                                     ]?.map((i) => {
@@ -297,11 +317,11 @@ function Jackpot({ gid }) {
                                     className="w-[28%] m-1"
                                 >
                                     {[
-                                        { nored: 5, img: pr5 },
+                                        { nored: 5, img: r5 },
                                         { nored: 6, img: pr6 },
-                                        { nored: 7, img: pr7 },
+                                        { nored: 7, img: r7 },
                                         { nored: 8, img: pr8 },
-                                        { nored: 9, img: pr9 },
+                                        { nored: 9, img: r9 },
 
                                     ]?.map((i) => {
                                         return (

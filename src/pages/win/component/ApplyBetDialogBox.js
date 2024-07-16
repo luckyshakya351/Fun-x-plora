@@ -34,10 +34,11 @@ const ApplyBetDialogBox = ({
   setapply_bit_dialog_box,
   type,
   gid,
+  random,
   net_wallet_amount,
 }) => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState(1);
+  const [value, setValue] =useState(random || 1)
   const [Rules, setRules] = useState(false);
   const [loding, setLoding] = useState(false);
   const aviator_login_data = useSelector(

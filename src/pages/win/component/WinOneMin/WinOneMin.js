@@ -26,6 +26,7 @@ function WinOneMin({ gid }) {
   const [apply_bit_dialog_box, setapply_bit_dialog_box] = React.useState(false);
   const [dialog_type, setdialog_type] = React.useState(0);
   const [timing, setBetNumber] = useState(100);
+  const [value, setValue] = useState(1);
   const net_wallet_amount = useSelector(
     (state) => state.aviator.net_wallet_amount
   );
@@ -41,7 +42,11 @@ function WinOneMin({ gid }) {
       console.log(fk.values);
     },
   });
-
+  const generateRandomType = () => {
+    const randomType = Math.floor(Math.random() * 10); // Random number between 0 to 9
+    setdialog_type(randomType);
+    setapply_bit_dialog_box(true);
+  };
   // React.useEffect(() => {
   //   if (gid === "1") {
   //     if (Number(timing) <= 10) {setapply_bit_dialog_box(false)
@@ -230,27 +235,20 @@ function WinOneMin({ gid }) {
                 justifyContent: "space-between",
               }}
             >
-              <Button variant="outlined" color="primary">
+              <Button variant="outlined" color="primary" onClick={generateRandomType}>
                 Random
               </Button>
-              <IconButton color="primary" className="icobtn">
-                1X
-              </IconButton>
-              <IconButton color="primary" className="icobtn">
-                5X
-              </IconButton>
-              <IconButton color="primary" className="icobtn">
-                10X
-              </IconButton>
-              <IconButton color="primary" className="icobtn">
-                20X
-              </IconButton>
-              <IconButton color="primary" className="icobtn">
-                50X
-              </IconButton>
-              <IconButton color="primary" className="icobtn">
-                100X
-              </IconButton>
+              {[1, 5, 10, 20, 50, 100]?.map((i) => (
+                <IconButton
+                  key={i}
+                  color="primary"
+                  className={`icobtn ${value === i ? "bg-green-600" : "bg-yellow-400"} cursor-pointer text-white`}
+                  onClick={() => setValue(i)}
+                >
+                  {i}X
+                </IconButton>
+              ))}
+
             </Box>
 
             <div className="!w-full !grid grid-cols-2 gap-2 !mt-2">
@@ -337,6 +335,7 @@ function WinOneMin({ gid }) {
           type={dialog_type}
           gid={gid}
           net_wallet_amount={net_wallet_amount}
+          random={value}
         />
       )}
     </Box>

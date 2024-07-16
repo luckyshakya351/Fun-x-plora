@@ -34,7 +34,7 @@ const ApplyBetDialogBox = ({
   setapply_bit_dialog_box,
   type,
   gid,
-  net_wallet_amount,
+  random,
 }) => {
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
@@ -53,7 +53,7 @@ const ApplyBetDialogBox = ({
   const first_rechange =
     aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(random || 1);
   const [Rules, setRules] = useState(false);
   const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
