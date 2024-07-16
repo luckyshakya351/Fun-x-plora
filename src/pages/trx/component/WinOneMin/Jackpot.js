@@ -188,8 +188,9 @@ function Jackpot({ gid }) {
 
                                     ]?.map((i) => {
                                         return (
+                                            <div className="!h-12 !w-12">
                                             <img
-                                                className="!cursor-pointer"
+                                                   className="!cursor-pointer h-full w-full object-cover"
                                                 src={i?.img}
                                                 onClick={() => {
                                                     setjackpot_bit_dialog_box(true);
@@ -197,6 +198,7 @@ function Jackpot({ gid }) {
                                                 }}
                                                 alt="button"
                                             />
+                                            </div>
                                         );
                                     })}
                                 </div>
@@ -211,8 +213,9 @@ function Jackpot({ gid }) {
 
                                     ]?.map((i) => {
                                         return (
+                                            <div className="!h-12 !w-12">
                                             <img
-                                                className="!cursor-pointer"
+                                                   className="!cursor-pointer h-full w-full object-cover"
                                                 src={i?.img}
                                                 onClick={() => {
                                                     setjackpot_bit_dialog_box(true);
@@ -220,6 +223,7 @@ function Jackpot({ gid }) {
                                                 }}
                                                 alt="button"
                                             />
+                                            </div>
                                         );
                                     })}
                                 </div>
@@ -244,8 +248,9 @@ function Jackpot({ gid }) {
 
                                     ]?.map((i) => {
                                         return (
+                                           <div className="!h-12 !w-12">
                                             <img
-                                                className="!cursor-pointer"
+                                                   className="!cursor-pointer h-full w-full object-cover"
                                                 src={i?.img}
                                                 onClick={() => {
                                                     setjackpot_bit_dialog_box(true);
@@ -253,6 +258,7 @@ function Jackpot({ gid }) {
                                                 }}
                                                 alt="button"
                                             />
+                                            </div>
                                         );
                                     })}
                                 </div>
@@ -268,8 +274,9 @@ function Jackpot({ gid }) {
 
                                     ]?.map((i) => {
                                         return (
+                                           <div className="!h-12 !w-12">
                                             <img
-                                                className="!cursor-pointer"
+                                                   className="!cursor-pointer h-full w-full object-cover"
                                                 src={i?.img}
                                                 onClick={() => {
                                                     setjackpot_bit_dialog_box(true);
@@ -277,6 +284,7 @@ function Jackpot({ gid }) {
                                                 }}
                                                 alt="button"
                                             />
+                                           </div>
                                         );
                                     })}
                                 </div>
@@ -301,8 +309,9 @@ function Jackpot({ gid }) {
 
                                     ]?.map((i) => {
                                         return (
+                                           <div className="!h-12 !w-12">
                                             <img
-                                                className="!cursor-pointer"
+                                                   className="!cursor-pointer h-full w-full object-cover"
                                                 src={i?.img}
                                                 onClick={() => {
                                                     setjackpot_bit_dialog_box(true);
@@ -310,6 +319,7 @@ function Jackpot({ gid }) {
                                                 }}
                                                 alt="button"
                                             />
+                                            </div>
                                         );
                                     })}
                                 </div>
@@ -325,8 +335,9 @@ function Jackpot({ gid }) {
 
                                     ]?.map((i) => {
                                         return (
+                                           <div className="!h-12 !w-12">
                                             <img
-                                                className="!cursor-pointer"
+                                                className="!cursor-pointer h-full w-full object-cover"
                                                 src={i?.img}
                                                 onClick={() => {
                                                     setjackpot_bit_dialog_box(true);
@@ -334,6 +345,7 @@ function Jackpot({ gid }) {
                                                 }}
                                                 alt="button"
                                             />
+                                            </div>
                                         );
                                     })}
                                 </div>
