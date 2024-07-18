@@ -150,16 +150,16 @@ const GameHistory = ({ gid }) => {
                       <div className="!flex !gap-1">
                         <div
                           className={`!w-[15px] !h-[15px] !rounded-full ${(i?.number === "0" &&
-                            "bg-gradient-to-tl from-red-200 to-red-900") ||
+                            " bg-[#be4345]") ||
                             (i?.number === "5" &&
-                              "bg-gradient-to-tl from-green-200 to-green-900")
+                              "bg-[#249357]")
                             }`}
                         ></div>
                         <div
                           className={`!w-[15px] !h-[15px] !rounded-full ${(i?.number === "0" &&
-                            "bg-gradient-to-tl from-violet-200 to-violet-900") ||
+                            "bg-[#b065e9]") ||
                             (i?.number === "5" &&
-                              "bg-gradient-to-tl from-violet-200 to-violet-900")
+                              "bg-[#b065e9]")
                             }`}
                         ></div>
                       </div>
@@ -176,7 +176,7 @@ const GameHistory = ({ gid }) => {
                                 i?.number === "7" ||
                                 i?.number === "9" ||
                                 i?.number === "10") &&
-                                "bg-gradient-to-tl from-green-200 to-green-900"
+                                "bg-[#249357]"
                                 }`}
                             ></div>
                           )) ||
@@ -191,7 +191,7 @@ const GameHistory = ({ gid }) => {
                                   i?.number === "6" ||
                                   i?.number === "8" ||
                                   i?.number === "30") &&
-                                  "bg-gradient-to-tl from-red-200 to-red-900"
+                                  "bg-[#be4345]"
                                   }`}
                               ></div>
                             )) || (

@@ -10,16 +10,16 @@ import {
     zubgtext,
     zubgwhite,
 } from "../../../../Shared/color";
-import v0 from "../../../../assets/voilet_coin (8).png";
-import v1 from "../../../../assets/Red_coin (1).png";
-import v2 from "../../../../assets/voilet_coin.png";
-import v3 from "../../../../assets/voilet_coin (1).png";
-import v4 from "../../../../assets/voilet_coin (2).png";
-import v5 from "../../../../assets/voilet_coin (3).png";
-import v6 from "../../../../assets/voilet_coin (4).png";
-import v7 from "../../../../assets/voilet_coin (5).png";
-import v8 from "../../../../assets/voilet_coin (6).png";
-import v9 from "../../../../assets/voilet_coin (7).png";
+import v0 from "../../../../assets/voilet_coin__8_-removebg-preview.png";
+import v1 from "../../../../assets/Red_coin__1_-removebg-preview.png";
+import v2 from "../../../../assets/voilet_coin-removebg-preview.png";
+import v3 from "../../../../assets/voilet_coin__1_-removebg-preview.png";
+import v4 from "../../../../assets/voilet_coin__2_-removebg-preview.png";
+import v5 from "../../../../assets/voilet_coin__3_-removebg-preview.png";
+import v6 from "../../../../assets/voilet_coin__4_-removebg-preview.png";
+import v7 from "../../../../assets/voilet_coin__5_-removebg-preview.png";
+import v8 from "../../../../assets/voilet_coin__6_-removebg-preview.png";
+import v9 from "../../../../assets/voilet_coin__7_-removebg-preview.png";
 import r0 from "../../../../assets/n2-c2913607.png";
 import r3 from "../../../../assets/a3.png";
 import r7 from "../../../../assets/a7-removebg-preview.png";
@@ -77,8 +77,8 @@ function Jackpot({ gid }) {
                             width: "95%",
                             marginLeft: "2.5%",
                             my: "20px",
-                            background: "#FCFEFB",
-                            boxShadow: zubgshadow,
+                            background: "white",
+                            // boxShadow: zubgshadow,
                             padding: "10px",
                             borderRadius: "10px",
                             position: "relative",
