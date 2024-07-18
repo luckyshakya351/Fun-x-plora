@@ -159,8 +159,8 @@ function Jackpot({ gid }) {
                             sx={{
                                 width: "100%",
                                 my: "20px",
-                                background: zubgwhite,
-                                boxShadow: zubgshadow,
+                                // background: zubgwhite,
+                                // boxShadow: zubgshadow,
                                 borderRadius: "10px",
                                 position: "relative",
                                 padding: "10px",
