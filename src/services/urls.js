@@ -14,7 +14,7 @@ export const jackpotdomain = "https://funxplora-timer.onrender.com";
 
 export const support_mail = "";
 // `support@sunlottrey.fun`;
-export const telegram_url = "";
+export const telegram_url = "https://t.me/+9c__nUH79PtiYzBl";
 // `https://t.me/SunLottaryOfficial`;
 
 export const endpoint = {

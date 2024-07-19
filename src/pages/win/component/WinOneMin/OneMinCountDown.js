@@ -72,9 +72,10 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
       setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
-        handlePlaySound();
+        // handlePlaySound();
       }
-      if (onemin === 1) handlePlaySoundLast();
+      if (onemin === 1) 
+        // handlePlaySoundLast();
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);

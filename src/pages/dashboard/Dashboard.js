@@ -40,7 +40,6 @@ import {
   zubgshadow,
   zubgtext,
 } from "../../Shared/color";
-import anand from "../../assets/anand.jpg";
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import one from "../../assets/images/1.jpg";
 import three from "../../assets/images/123.png";
@@ -48,14 +47,12 @@ import two from "../../assets/images/2.jpg";
 import winp4 from "../../assets/images/GOTI.png";
 import bgms from "../../assets/images/bgms2.jpg";
 import deposit from "../../assets/images/deposit.png";
-import logo from "../../assets/images/logored.jpg";
+import logo from "../../assets/images/fun.jpg";
 import cash from "../../assets/images/money.png";
 import stage from "../../assets/images/pod2.png";
 import position2 from "../../assets/images/positio2.png";
 import position3 from "../../assets/images/position3.png";
 import position1 from "../../assets/images/positoin1.png";
-import sajid from "../../assets/sajid.jpg";
-import tanveer from "../../assets/tanveer.PNG";
 import trximg from "../../assets/trx.png";
 import Layout from "../../component/Layout/Layout";
 import {
@@ -667,13 +664,13 @@ function Dashboard() {
                         width={50}
                         src={
                           Math.floor(Math.random() * 5) + 1 === 1
-                            ? "https://mui.com/static/images/avatar/4.jpg"
+                            ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFCKn8Mm3sD46GsY3dSodC_9W8HzE2NJjxffFf5Sc5XHl_4bSqBWTz6DfOg&s"
                             : Math.floor(Math.random() * 5) + 1 === 2
-                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+                              ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFCKn8Mm3sD46GsY3dSodC_9W8HzE2NJjxffFf5Sc5XHl_4bSqBWTz6DfOg&s"
                               : Math.floor(Math.random() * 5) + 1 === 3
-                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+                                ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFCKn8Mm3sD46GsY3dSodC_9W8HzE2NJjxffFf5Sc5XHl_4bSqBWTz6DfOg&s"
                                 : Math.floor(Math.random() * 5) + 1 === 4
-                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+                                  ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFCKn8Mm3sD46GsY3dSodC_9W8HzE2NJjxffFf5Sc5XHl_4bSqBWTz6DfOg&s"
                                   : ""
                         } // Close the src attribute here
                         className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
@@ -726,7 +723,7 @@ function Dashboard() {
               <Box
                 component="img"
                 // src={pro1c}
-                src={sajid}
+                src="https://img.freepik.com/premium-photo/man-with-shirt-that-says-he-is-wearing-orange-shirt_745528-9884.jpg?size=626&ext=jpg"
                 sx={{
                   width: "60px",
                   borderRadius: "50%",
@@ -745,7 +742,7 @@ function Dashboard() {
               <Box
                 component="img"
                 // src={pro1c}
-                src={tanveer}
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFCKn8Mm3sD46GsY3dSodC_9W8HzE2NJjxffFf5Sc5XHl_4bSqBWTz6DfOg&s"
                 sx={{
                   width: "50px",
                   borderRadius: "50%",
@@ -764,7 +761,7 @@ function Dashboard() {
               <Box
                 component="img"
                 // src={pro1c}
-                src={anand}
+                 src="data:image/jpeg;base64,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"
                 sx={{
                   width: "50px",
                   borderRadius: "50%",
@@ -787,69 +784,72 @@ function Dashboard() {
               <CircularProgress className="!text-#E71D1E" />
             </div>
           ) : (
-            <Box sx={styles.wininfoouter}>
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{
-                  color: zubgtext,
-                  fontWeight: "600",
-                  fontSize: "16px",
-                  mb: 2,
-                }}
-              >
-                TRX Winning information
-              </Typography>
-              {winnner_data?.slice(0, 5)?.map((i, index) => {
-                return (
-                  <Stack
-                    key={index}
-                    direction="row"
-                    sx={{ ...styles.wininfoinner, mb: "10px" }}
-                  >
-                    <Stack direction="row" sx={styles.wininfoouterone}>
-                      <Avatar
-                        width={50}
-                        src={
-                          Math.floor(Math.random() * 5) + 1 === 1
-                            ? "https://mui.com/static/images/avatar/4.jpg"
-                            : Math.floor(Math.random() * 5) + 1 === 2
-                              ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
-                              : Math.floor(Math.random() * 5) + 1 === 3
-                                ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
-                                : Math.floor(Math.random() * 5) + 1 === 4
-                                  ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
-                                  : ""
-                        } // Close the src attribute here
-                        className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
-                          }`}
-                      >
-                        {i?.email?.split("@")[0]?.substring(0, 1)}
-                      </Avatar>
-                      <Typography variant="body1">
-                        {i?.email
-                          ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
-                          : "**"}
-                      </Typography>
-                    </Stack>
-                    <Stack direction="row" sx={styles.wininfooutertwo}>
-                      <Box component="img" src={trximg} />
-                      <Box>
-                        <Typography variant="body1" color="initial">
-                          Receive ₹{Number(i?.win || 0)?.toFixed(2)}
-                        </Typography>
-                        <Typography variant="body1" color="initial">
-                          Winning amount
-                        </Typography>
-                      </Box>
-                    </Stack>
-                  </Stack>
-                );
-              })}
+            // <Box sx={styles.wininfoouter}>
+            //   <Typography
+            //     variant="body1"
+            //     color="initial"
+            //     sx={{
+            //       color: zubgtext,
+            //       fontWeight: "600",
+            //       fontSize: "16px",
+            //       mb: 2,
+            //     }}
+            //   >
+            //     TRX Winning information
+            //   </Typography>
+            //   {winnner_data?.slice(0, 5)?.map((i, index) => {
+            //     return (
+            //       <Stack
+            //         key={index}
+            //         direction="row"
+            //         sx={{ ...styles.wininfoinner, mb: "10px" }}
+            //       >
+            //         <Stack direction="row" sx={styles.wininfoouterone}>
+            //           <Avatar
+            //             width={50}
+            //             src={
+            //               Math.floor(Math.random() * 5) + 1 === 1
+            //                 ? "https://mui.com/static/images/avatar/4.jpg"
+            //                 : Math.floor(Math.random() * 5) + 1 === 2
+            //                   ? "https://lh3.googleusercontent.com/a/ACg8ocJ_lQQ7XjcLthKctAe1u5A6Fv8JJUQ0ugECmc7RkiZmKfI=s360-c-no"
+            //                   : Math.floor(Math.random() * 5) + 1 === 3
+            //                     ? "https://sunlottery.fun/static/media/tanveer.03fd8989206194114777.PNG"
+            //                     : Math.floor(Math.random() * 5) + 1 === 4
+            //                       ? "https://sunlottery.fun/static/media/sajid.e6abfd6b30c0fa7d3b1a.PNG"
+            //                       : ""
+            //             } // Close the src attribute here
+            //             className={`capitalize ${i.id % 2 === 0 ? "!bg-[#2350BF]" : "!bg-green-700"
+            //               }`}
+            //           >
+            //             {i?.email?.split("@")[0]?.substring(0, 1)}
+            //           </Avatar>
+            //           <Typography variant="body1">
+            //             {i?.email
+            //               ? i.email.split("@")[0].substring(0, 2) +
+            //               "**" +
+            //               (i.email.split("@")[0].length > 2
+            //                 ? i.email.split("@")[0].substring(2, 4)
+            //                 : "")
+            //               : "**"}
+            //           </Typography>
+            //         </Stack>
+            //         <Stack direction="row" sx={styles.wininfooutertwo}>
+            //           <Box component="img" src={trximg} />
+            //           <Box>
+            //             <Typography variant="body1" color="initial">
+            //               Receive ₹{Number(i?.win || 0)?.toFixed(2)}
+            //             </Typography>
+            //             <Typography variant="body1" color="initial">
+            //               Winning amount
+            //             </Typography>
+            //           </Box>
+            //         </Stack>
+            //       </Stack>
+            //     );
+            //   })}
+            // </Box>
+            <Box>
+             
             </Box>
           )}
 

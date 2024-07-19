@@ -79,9 +79,9 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
           fivemin?.split("_")?.[1] === "2") &&
         fivemin?.split("_")?.[0] === "0"
       )
-        handlePlaySound();
+        // handlePlaySound();
       if (fivemin?.split("_")?.[1] === "1" && fivemin?.split("_")?.[0] === "0")
-        handlePlaySoundLast();
+        // handlePlaySoundLast();
 
       if (
         Number(fivemin?.split("_")?.[1]) <= 10 && // this is for sec

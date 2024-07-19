@@ -182,22 +182,22 @@ function Withdrawl() {
     setloding(false);
   };
 
-  const handlePlaySound = async () => {
-    try {
-      if (audioRefMusic?.current?.pause) {
-        await audioRefMusic?.current?.play();
-      } else {
-        await audioRefMusic?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
+  // const handlePlaySound = async () => {
+  //   try {
+  //     if (audioRefMusic?.current?.pause) {
+  //       await audioRefMusic?.current?.play();
+  //     } else {
+  //       await audioRefMusic?.current?.pause();
+  //     }
+  //   } catch (error) {
+  //     // Handle any errors during play
+  //     console.error("Error during play:", error);
+  //   }
+  // };
 
-  React.useEffect(() => {
-    handlePlaySound();
-  }, []);
+  // React.useEffect(() => {
+  //   handlePlaySound();
+  // }, []);
 
   return (
     <Layout>
@@ -552,6 +552,122 @@ function Withdrawl() {
               </Button>
             </Box>
           </Box>
+          <Box 
+          
+          mt={3}
+          sx={{
+
+            padding: "10px",
+            width: "95%",
+            margin: "auto",
+            mt: "20px",
+            background: '#fff',
+            boxShadow: zubgshadow,
+            borderRadius: "10px",
+            mb: 5,
+          }}>
+          <Stack direction="row" alignItems="center" mt={1}
+            className="!text-bold !text-xl">
+            
+            <Typography
+              variant="body1"
+              color="initial"
+             
+            >
+           *   Need to bet{" "}
+            </Typography>
+            <Typography
+            className="!text-orange-500"
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "12px",
+             
+                mx: 0.5,
+              }}
+            >
+              {" "}
+              ₹ 0
+            </Typography>
+            <Typography
+              variant="body1"
+              color="initial"
+             
+            >
+              {" "}
+              to be able to withdraw{" "}
+            </Typography>
+          </Stack>
+      
+        
+          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold !text-xl">
+           
+            <Typography
+              variant="body1"
+              color="initial"
+             
+            >
+           *   Withdraw time{" "}
+            </Typography>
+            <Typography
+             className="!text-orange-500"
+              variant="body1"
+              color="initial"
+              sx={{
+                fontSize: "12px",
+               
+                mx: 0.5,
+              }}
+            >
+              00:00-23:50{" "}
+            </Typography>
+          </Stack>
+          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold !text-xl">
+           
+           <Typography
+             variant="body1"
+             color="initial"
+            
+           >
+          *   Withdraw Amount Range{" "}
+           </Typography>
+           <Typography
+            className="!text-orange-500"
+             variant="body1"
+             color="initial"
+             sx={{
+               fontSize: "12px",
+              
+               mx: 0.5,
+             }}
+           >
+             ₹ 110.00 - ₹ 100000.00{" "}
+           </Typography>
+         </Stack>
+          <Stack direction="row" alignItems="center" mt={1}>
+          
+            <Typography
+              variant="body1"
+              color="initial"
+             
+            >
+          *    Please confirm your beneficial account information before
+             withdrawing. If your information is incorrect, our company will
+              not be liable for the amount of loss{" "}
+            </Typography>
+          </Stack>
+          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold !text-xl">
+           
+            <Typography
+              variant="body1"
+              color="initial"
+             
+            >
+            *  If your beneficial information is incorrect, please contact
+              customer service
+            </Typography>
+          </Stack>
+        </Box>
         </Box>
         <Dialog open={openDialogBox}>
           <div className="!p-5 !max-w-[300px]">

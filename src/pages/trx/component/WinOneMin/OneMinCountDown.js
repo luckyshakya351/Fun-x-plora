@@ -47,9 +47,10 @@ const OneMinCountDown = ({ fk ,setBetNumber}) => {
       setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
-        handlePlaySound();
+        // handlePlaySound();
       }
-      if (onemin === 1) handlePlaySoundLast();
+      if (onemin === 1)
+        //  handlePlaySoundLast();
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
@@ -123,31 +124,31 @@ refetchOnWindowFocus:false
   },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
   
-  const handlePlaySound = async () => {
-    try {
-      if (audioRefMusic?.current?.pause) {
-        await audioRefMusic?.current?.play();
-      } else {
-        await audioRefMusic?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
+  // const handlePlaySound = async () => {
+  //   try {
+  //     if (audioRefMusic?.current?.pause) {
+  //       await audioRefMusic?.current?.play();
+  //     } else {
+  //       await audioRefMusic?.current?.pause();
+  //     }
+  //   } catch (error) {
+  //     // Handle any errors during play
+  //     console.error("Error during play:", error);
+  //   }
+  // };
 
-  const handlePlaySoundLast = async () => {
-    try {
-      if (audioRefMusiclast?.current?.pause) {
-        await audioRefMusiclast?.current?.play();
-      } else {
-        await audioRefMusiclast?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
+  // const handlePlaySoundLast = async () => {
+  //   try {
+  //     if (audioRefMusiclast?.current?.pause) {
+  //       await audioRefMusiclast?.current?.play();
+  //     } else {
+  //       await audioRefMusiclast?.current?.pause();
+  //     }
+  //   } catch (error) {
+  //     // Handle any errors during play
+  //     console.error("Error during play:", error);
+  //   }
+  // };
 
   return (
     <Box

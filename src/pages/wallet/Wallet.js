@@ -198,7 +198,7 @@ function Wallet() {
                     left: "39%",
                     top: "32%",
                     fontSize: "15px",
-                    fontWeight: "700",
+                    fontWeight: "400",
                     color: "white",
                   }}
                 >
@@ -242,7 +242,7 @@ function Wallet() {
                     left: "39%",
                     top: "32%",
                     fontSize: "15px",
-                    fontWeight: "700",
+                    fontWeight: "400",
                   }}
                 >
                   {series2}%

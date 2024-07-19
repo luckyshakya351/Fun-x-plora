@@ -78,12 +78,12 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
           threemin?.split("_")?.[1] === "2") &&
         threemin?.split("_")?.[0] === "0"
       )
-        handlePlaySound();
+        // handlePlaySound();
       if (
         threemin?.split("_")?.[1] === "1" &&
         threemin?.split("_")?.[0] === "0"
       )
-        handlePlaySoundLast();
+        // handlePlaySoundLast();
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
         threemin?.split("_")?.[0] === "0" // 0 index means min

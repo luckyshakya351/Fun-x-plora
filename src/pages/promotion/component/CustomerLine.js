@@ -8,6 +8,7 @@ import customer from '../../../assets/images/supportgirls.png';
 import Layout from '../../../component/Layout/Layout';
 
 
+
 function Subordinate() {
   return (
     <Layout>
@@ -30,11 +31,13 @@ function Subordinate() {
             <Typography variant="body1" sx={{ color: 'white', fontSize: '20px', fontWeight: '400', }}>
               Live Now
             </Typography>
+           
             <Typography variant="body1" color="initial">
               <ArrowForwardIcon sx={{ color: 'white' }} />
             </Typography>
           </Stack>
         </Box>
+      
       </Container >
     </Layout>
   )

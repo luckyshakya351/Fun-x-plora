@@ -66,12 +66,12 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
           threemin?.split("_")?.[1] === "2") &&
         threemin?.split("_")?.[0] === "0"
       )
-        handlePlaySound();
+        // handlePlaySound();
       if (
         threemin?.split("_")?.[1] === "1" &&
         threemin?.split("_")?.[0] === "0"
       )
-        handlePlaySoundLast();
+        // handlePlaySoundLast();
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
         threemin?.split("_")?.[0] === "0" // 0 index means min
@@ -166,32 +166,32 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.result]);
 
-  const audioRefMusic = React.useRef(null);
-  const handlePlaySound = async () => {
-    try {
-      if (audioRefMusic?.current?.pause) {
-        await audioRefMusic?.current?.play();
-      } else {
-        await audioRefMusic?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
-  const audioRefMusiclast = React.useRef(null);
-  const handlePlaySoundLast = async () => {
-    try {
-      if (audioRefMusiclast?.current?.pause) {
-        await audioRefMusiclast?.current?.play();
-      } else {
-        await audioRefMusiclast?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
+   const audioRefMusic = React.useRef(null);
+  // const handlePlaySound = async () => {
+  //   try {
+  //     if (audioRefMusic?.current?.pause) {
+  //       await audioRefMusic?.current?.play();
+  //     } else {
+  //       await audioRefMusic?.current?.pause();
+  //     }
+  //   } catch (error) {
+  //     // Handle any errors during play
+  //     console.error("Error during play:", error);
+  //   }
+  // };
+   const audioRefMusiclast = React.useRef(null);
+  // const handlePlaySoundLast = async () => {
+  //   try {
+  //     if (audioRefMusiclast?.current?.pause) {
+  //       await audioRefMusiclast?.current?.play();
+  //     } else {
+  //       await audioRefMusiclast?.current?.pause();
+  //     }
+  //   } catch (error) {
+  //     // Handle any errors during play
+  //     console.error("Error during play:", error);
+  //   }
+  // };
 
   return (
     <Box className="countdownbgtrx" sx={{ background: zubgtext }}>
