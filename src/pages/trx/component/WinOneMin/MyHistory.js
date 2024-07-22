@@ -12,7 +12,12 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
-import { zubgback, zubgbackgrad, zubgtext, zubgwhite } from "../../../../Shared/color";
+import {
+  zubgback,
+  zubgbackgrad,
+  zubgtext,
+  zubgwhite,
+} from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import {
   MyHistoryFn,
@@ -40,7 +45,7 @@ const MyHistory = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -52,13 +57,11 @@ const MyHistory = ({ gid }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
   const my_history_data_all = my_history_all?.data?.data || [];
-
-  console.log(my_history_data_all, "Trx history")
 
   const visibleRows = React.useMemo(
     () =>
@@ -89,8 +92,8 @@ const MyHistory = ({ gid }) => {
           {gid === "1"
             ? " My One GO Record"
             : gid === "2"
-              ? " My Three GO Record"
-              : " My Five GO Record"}
+            ? " My Three GO Record"
+            : " My Five GO Record"}
         </Typography>
       </Stack>
       <div className="flex flex-col gap-[2px]">
@@ -100,36 +103,56 @@ const MyHistory = ({ gid }) => {
             ?.map((i, index) => {
               return (
                 <div key={index}>
-                  <Accordion className="!rounded-lg" disableElevation sx={{ borderBottom: '1px solid red', boxShadow: 'none !important' }}>
-                    <AccordionSummary disableElevation
-                      expandIcon={<ArrowDownwardIcon sx={{ color: `${zubgtext} !important` }} />}
+                  <Accordion
+                    className="!rounded-lg"
+                    disableElevation
+                    sx={{
+                      borderBottom: "1px solid red",
+                      boxShadow: "none !important",
+                    }}
+                  >
+                    <AccordionSummary
+                      disableElevation
+                      expandIcon={
+                        <ArrowDownwardIcon
+                          sx={{ color: `${zubgtext} !important` }}
+                        />
+                      }
                       aria-controls="panel1-content"
                       id="panel1-header"
-                      sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
+                      sx={{
+                        background: "#fff",
+                        color: zubgtext,
+                        borderBottom: "1px solid red",
+                      }}
                     >
                       <div className="!w-full !flex !justify-between">
-                        <p className=" " style={{ color: zubgtext }}>{i?.gamesno}</p>
+                        <p className=" " style={{ color: zubgtext }}>
+                          {i?.gamesno}
+                        </p>
                         <p
-                          className={`${i?.status === "0"
-                            ? "!text-red-400"
-                            : i?.status === "1"
+                          className={`${
+                            i?.status === "0"
+                              ? "!text-red-400"
+                              : i?.status === "1"
                               ? "!text-green-400"
                               : "!text-red-400"
-                            }`}
+                          }`}
                         >
                           {i?.status === "0"
                             ? "Pending"
                             : i?.status === "1"
-                              ? "Win"
-                              : "Loss"}
+                            ? "Win"
+                            : "Loss"}
                         </p>
                         <span
-                          className={`${i?.status === "0"
-                            ? "!text-red-400"
-                            : i?.status === "1"
+                          className={`${
+                            i?.status === "0"
+                              ? "!text-red-400"
+                              : i?.status === "1"
                               ? "!text-green-400"
                               : "!text-red-400"
-                            }`}
+                          }`}
                         >
                           {" "}
                           {rupees} {i?.status === "1" ? i?.win : i?.totalamount}
@@ -137,7 +160,11 @@ const MyHistory = ({ gid }) => {
                       </div>
                     </AccordionSummary>
                     <AccordionDetails
-                      sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
+                      sx={{
+                        background: "#fff",
+                        color: zubgtext,
+                        borderBottom: "1px solid red",
+                      }}
                     >
                       <p className={`!text-green-400 !font-semibold !text-lg`}>
                         Period Detail
@@ -162,26 +189,27 @@ const MyHistory = ({ gid }) => {
                             <span>{`${i?.number_result}`}</span>
                             <span
                               className={`
-                  ${(i?.number === "0" &&
-                                  "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                                (i?.number === "5" &&
-                                  "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                                ((i?.number === "1" ||
-                                  i?.number === "3" ||
-                                  i?.number === "7" ||
-                                  i?.number === "9" ||
-                                  i?.number === "10") &&
-                                  "bg-gradient-to-t from-green-400 to-green-900") ||
-                                ((i?.number === "2" ||
-                                  i?.number === "4" ||
-                                  i?.number === "6" ||
-                                  i?.number === "8" ||
-                                  i?.number === "30") &&
-                                  "bg-gradient-to-tl from-red-400 to-red-900") ||
-                                (i?.number === "50" && "bg-[#3183ee]") ||
-                                (i?.number === "40" && "bg-[#f1be24]") ||
-                                (i?.number === "20" && "bg-[#eb2feb]")
-                                }
+                  ${
+                    (i?.number === "0" &&
+                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    (i?.number === "5" &&
+                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    ((i?.number === "1" ||
+                      i?.number === "3" ||
+                      i?.number === "7" ||
+                      i?.number === "9" ||
+                      i?.number === "10") &&
+                      "bg-gradient-to-t from-green-400 to-green-900") ||
+                    ((i?.number === "2" ||
+                      i?.number === "4" ||
+                      i?.number === "6" ||
+                      i?.number === "8" ||
+                      i?.number === "30") &&
+                      "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    (i?.number === "50" && "bg-[#3183ee]") ||
+                    (i?.number === "40" && "bg-[#f1be24]") ||
+                    (i?.number === "20" && "bg-[#eb2feb]")
+                  }
                   transparentColor font-bold text-xl
                   `}
                             >
@@ -196,55 +224,57 @@ const MyHistory = ({ gid }) => {
                         <span>Select</span>
                         <span
                           className={`
-                  ${(i?.number === "0" &&
-                              "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                            (i?.number === "5" &&
-                              "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                            ((i?.number === "1" ||
-                              i?.number === "3" ||
-                              i?.number === "7" ||
-                              i?.number === "9" ||
-                              i?.number === "10") &&
-                              "bg-gradient-to-t from-green-400 to-green-900") ||
-                            ((i?.number === "2" ||
-                              i?.number === "4" ||
-                              i?.number === "6" ||
-                              i?.number === "8" ||
-                              i?.number === "30") &&
-                              "bg-gradient-to-tl from-red-400 to-red-900") ||
-                            (i?.number === "50" && "bg-[#3183ee]") ||
-                            (i?.number === "40" && "bg-[#f1be24]") ||
-                            (i?.number === "20" && "bg-[#eb2feb]")
-                            }
+                  ${
+                    (i?.number === "0" &&
+                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    (i?.number === "5" &&
+                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    ((i?.number === "1" ||
+                      i?.number === "3" ||
+                      i?.number === "7" ||
+                      i?.number === "9" ||
+                      i?.number === "10") &&
+                      "bg-gradient-to-t from-green-400 to-green-900") ||
+                    ((i?.number === "2" ||
+                      i?.number === "4" ||
+                      i?.number === "6" ||
+                      i?.number === "8" ||
+                      i?.number === "30") &&
+                      "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    (i?.number === "50" && "bg-[#3183ee]") ||
+                    (i?.number === "40" && "bg-[#f1be24]") ||
+                    (i?.number === "20" && "bg-[#eb2feb]")
+                  }
                   transparentColor font-bold text-xl
                   `}
                         >
                           {i?.number === "10"
                             ? "Green"
                             : i?.number === "50"
-                              ? "Small"
-                              : i?.number === "40"
-                                ? "Big"
-                                : i?.number === "30"
-                                  ? "Red"
-                                  : i?.number === "20"
-                                    ? "Voilet"
-                                    : i?.number}
+                            ? "Small"
+                            : i?.number === "40"
+                            ? "Big"
+                            : i?.number === "30"
+                            ? "Red"
+                            : i?.number === "20"
+                            ? "Voilet"
+                            : i?.number}
                         </span>
                         <span>Status</span>
                         <span
-                          className={`${i?.status === "0"
-                            ? "!text-red-400"
-                            : i?.status === "1"
+                          className={`${
+                            i?.status === "0"
+                              ? "!text-red-400"
+                              : i?.status === "1"
                               ? "!text-green-400"
                               : "!text-red-400"
-                            }`}
+                          }`}
                         >
                           {i?.status === "0"
                             ? "Pending"
                             : i?.status === "1"
-                              ? "Win"
-                              : "Loss"}
+                            ? "Win"
+                            : "Loss"}
                         </span>
                         <span>Amount</span>
                         <span className={`!text-green-400`}>
@@ -272,38 +302,47 @@ const MyHistory = ({ gid }) => {
                   expandIcon={<ArrowDownwardIcon className="" />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
+                  sx={{
+                    background: "#fff",
+                    color: zubgtext,
+                    borderBottom: "1px solid red",
+                  }}
                 >
                   <div className="!w-full !flex !justify-between">
                     <p className=" ">{i?.gamesno}</p>
                     <p
-                      className={`${i?.status === "0"
-                        ? "!text-red-400"
-                        : i?.status === "1"
+                      className={`${
+                        i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
                           ? "!text-green-400"
                           : "!text-red-400"
-                        }`}
+                      }`}
                     >
                       {i?.status === "0"
                         ? "Pending"
                         : i?.status === "1"
-                          ? "Win"
-                          : "Loss"}
+                        ? "Win"
+                        : "Loss"}
                     </p>
                     <span
-                      className={`${i?.status === "0"
-                        ? "!text-red-400"
-                        : i?.status === "1"
+                      className={`${
+                        i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
                           ? "!text-green-400"
                           : "!text-red-400"
-                        }`}
+                      }`}
                     >
                       {" "}
                       {rupees} {i?.status === "1" ? i?.win : i?.totalamount}
                     </span>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: zubgback, color: zubgtext }} disableElevation>
+                <AccordionDetails
+                  sx={{ background: zubgback, color: zubgtext }}
+                  disableElevation
+                >
                   <p className={`!text-green-400 !font-semibold !text-lg`}>
                     Period Detail
                   </p>
@@ -353,26 +392,27 @@ const MyHistory = ({ gid }) => {
                         <span>{`${i?.number_result}`}</span>
                         <span
                           className={`
-                  ${(i?.number_result === "0" &&
-                              "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                            (i?.number_result === "5" &&
-                              "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                            ((i?.number_result === "1" ||
-                              i?.number_result === "3" ||
-                              i?.number_result === "7" ||
-                              i?.number_result === "9" ||
-                              i?.number_result === "10") &&
-                              "bg-gradient-to-t from-green-400 to-green-900") ||
-                            ((i?.number_result === "2" ||
-                              i?.number_result === "4" ||
-                              i?.number_result === "6" ||
-                              i?.number_result === "8" ||
-                              i?.number_result === "30") &&
-                              "bg-gradient-to-tl from-red-400 to-red-900") ||
-                            (i?.number_result === "50" && "bg-[#3183ee]") ||
-                            (i?.number_result === "40" && "bg-[#f1be24]") ||
-                            (i?.number_result === "20" && "bg-[#eb2feb]")
-                            }
+                  ${
+                    (i?.number_result === "0" &&
+                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    (i?.number_result === "5" &&
+                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    ((i?.number_result === "1" ||
+                      i?.number_result === "3" ||
+                      i?.number_result === "7" ||
+                      i?.number_result === "9" ||
+                      i?.number_result === "10") &&
+                      "bg-gradient-to-t from-green-400 to-green-900") ||
+                    ((i?.number_result === "2" ||
+                      i?.number_result === "4" ||
+                      i?.number_result === "6" ||
+                      i?.number_result === "8" ||
+                      i?.number_result === "30") &&
+                      "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    (i?.number_result === "50" && "bg-[#3183ee]") ||
+                    (i?.number_result === "40" && "bg-[#f1be24]") ||
+                    (i?.number_result === "20" && "bg-[#eb2feb]")
+                  }
                   transparentColor font-bold text-xl
                   `}
                         >
@@ -382,14 +422,14 @@ const MyHistory = ({ gid }) => {
                               i?.number_result === "3" ||
                               i?.number_result === "7" ||
                               i?.number_result === "9"
-                              ? "Green"
-                              : i?.number_result === "5"
-                                ? "Voilet Green"
-                                : (i?.number_result === "2" ||
-                                  i?.number_result === "4" ||
-                                  i?.number_result === "6" ||
-                                  i?.number_result === "8") &&
-                                "Red"}
+                            ? "Green"
+                            : i?.number_result === "5"
+                            ? "Voilet Green"
+                            : (i?.number_result === "2" ||
+                                i?.number_result === "4" ||
+                                i?.number_result === "6" ||
+                                i?.number_result === "8") &&
+                              "Red"}
                         </span>
                         <span>
                           {Number(i?.number_result) <= 4 ? "Small" : "Big"}
@@ -405,26 +445,27 @@ const MyHistory = ({ gid }) => {
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
                       <span
                         className={`
-                  ${(i?.number === "0" &&
-                            "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                          (i?.number === "5" &&
-                            "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                          ((i?.number === "1" ||
-                            i?.number === "3" ||
-                            i?.number === "7" ||
-                            i?.number === "9" ||
-                            i?.number === "10") &&
-                            "bg-gradient-to-t from-green-400 to-green-900") ||
-                          ((i?.number === "2" ||
-                            i?.number === "4" ||
-                            i?.number === "6" ||
-                            i?.number === "8" ||
-                            i?.number === "30") &&
-                            "bg-gradient-to-tl from-red-400 to-red-900") ||
-                          (i?.number === "50" && "bg-[#3183ee]") ||
-                          (i?.number === "40" && "bg-[#f1be24]") ||
-                          (i?.number === "20" && "bg-[#eb2feb]")
-                          }
+                  ${
+                    (i?.number === "0" &&
+                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    (i?.number === "5" &&
+                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    ((i?.number === "1" ||
+                      i?.number === "3" ||
+                      i?.number === "7" ||
+                      i?.number === "9" ||
+                      i?.number === "10") &&
+                      "bg-gradient-to-t from-green-400 to-green-900") ||
+                    ((i?.number === "2" ||
+                      i?.number === "4" ||
+                      i?.number === "6" ||
+                      i?.number === "8" ||
+                      i?.number === "30") &&
+                      "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    (i?.number === "50" && "bg-[#3183ee]") ||
+                    (i?.number === "40" && "bg-[#f1be24]") ||
+                    (i?.number === "20" && "bg-[#eb2feb]")
+                  }
                   transparentColor font-bold text-xl 
 
                   `}
@@ -432,32 +473,33 @@ const MyHistory = ({ gid }) => {
                         {i?.number === "10"
                           ? "Green"
                           : i?.number === "50"
-                            ? "Small"
-                            : i?.number === "40"
-                              ? "Big"
-                              : i?.number === "30"
-                                ? "Red"
-                                : i?.number === "20"
-                                  ? "Voilet"
-                                  : i?.number}
+                          ? "Small"
+                          : i?.number === "40"
+                          ? "Big"
+                          : i?.number === "30"
+                          ? "Red"
+                          : i?.number === "20"
+                          ? "Voilet"
+                          : i?.number}
                       </span>
                     </div>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Status
                     </span>
                     <span
-                      className={`${i?.status === "0"
-                        ? "!text-red-400"
-                        : i?.status === "1"
+                      className={`${
+                        i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
                           ? "!text-green-400"
                           : "!text-red-400"
-                        } bg-white !bg-opacity-10 py-1 px-2`}
+                      } bg-white !bg-opacity-10 py-1 px-2`}
                     >
                       {i?.status === "0"
                         ? "Pending"
                         : i?.status === "1"
-                          ? "Win"
-                          : "Loss"}
+                        ? "Win"
+                        : "Loss"}
                     </span>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Amount
@@ -570,7 +612,7 @@ const MyHistory = ({ gid }) => {
         />
       </Box>
       {/* <CustomCircularProgress isLoading={myhistory_loding} /> */}
-    </Box >
+    </Box>
   );
 };
 

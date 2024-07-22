@@ -1,27 +1,31 @@
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import {
-  Box,
-  Container,
-  Select
-} from "@mui/material";
+import { Box, Container, IconButton } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import {
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgshadow,
+  zubgtext,
+  zubgwhite,
+} from "../../../Shared/color";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
-import {
-  team_trading_bonus_functoin
-} from "../../../services/apicalling";
-
+import { team_trading_bonus_functoin } from "../../../services/apicalling";
 function TeamTradingBonus() {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
-  const [filter, setFilter] = React.useState("0")
+  const [filter, setFilter] = React.useState("0");
+  const [startDate, setStartDate] = React.useState(null);
+  const [endDate, setEndDate] = React.useState(null);
 
   const { isLoading, data } = useQuery(
     ["team_trading_bonus"],
@@ -29,15 +33,26 @@ function TeamTradingBonus() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
-  const res =
-    React.useMemo(() => {
-      return filter === "0" ? data?.data?.data : data?.data?.data?.filter((i) => i?.l01_transection_type?.includes(filter))
-    }, [filter, data?.data?.data])
-
-
+  const res = React.useMemo(() => {
+    if (startDate && endDate && filter) {
+      return data?.data?.data?.filter(
+        (i) =>
+          moment(i?.l01_date)?.format("YYYY-MM-DD") >=
+            moment(startDate)?.format("YYYY-MM-DD") &&
+          moment(i?.l01_date)?.format("YYYY-MM-DD") <=
+            moment(endDate)?.format("YYYY-MM-DD") &&
+          i?.l01_transection_type?.includes(filter)
+      );
+    }
+    return filter === "0"
+      ? data?.data?.data
+      : data?.data?.data?.filter((i) =>
+          i?.l01_transection_type?.includes(filter)
+        );
+  }, [filter, data?.data?.data, startDate && endDate]);
   if (!isLoading && !res)
     return (
       <Layout>
@@ -81,27 +96,72 @@ function TeamTradingBonus() {
           </Box>
           <p>Team Trading Bonus</p>
         </Box>
-        <div>
-          <select onChange={(e) => setFilter(e.target.value)} className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
-          <option value={"0"}>All </option>
-         <option value={"Level 1"}>Level 1 </option>
-         <option value={"Level 2"}>Level 2 </option>
-         <option value={"Level 3"}>Level 3 </option>
-         <option value={"Level 4"}>Level 4 </option>
-         <option value={"Level 5"}>Level 5 </option>
-         <option value={"Level 6"}>Level 6 </option>
-         {/* {[1,2,3,4,5,6]?.map((level, index)=>{
-          <option key={index} value={level}>Level {level}</option>
-       })} */}
-          </select>
+        <div
+          className="!flex !w-fullpx-5 justify-between py-1 items-center"
+          style={{ background: zubgwhite, boxShadow: zubgshadow }}
+        >
+          <div className="flex flex-col">
+            <label className="!text-sm"> Start Date:</label>
+            <input
+              value={startDate}
+              type="date"
+              placeholder="Start Date"
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </div>
 
+          {filter !== "0" || (startDate && endDate) ? (
+            <IconButton
+              className="!pt-8"
+              onClick={() => {
+                setFilter("0");
+                setStartDate();
+                setEndDate();
+              }}
+            >
+              {" "}
+              <FilterAltOffIcon />{" "}
+            </IconButton>
+          ) : (
+            <IconButton className="!pt-8">
+              <FilterAltIcon />{" "}
+            </IconButton>
+          )}
+
+          <div className="flex flex-col">
+            <label className="!text-sm"> End Date:</label>
+            <input
+              value={endDate}
+              type="date"
+              placeholder="Start Date"
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </div>
         </div>
+        <div>
+          <select
+            onChange={(e) => setFilter(e.target.value)}
+            className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2"
+            style={{ background: zubgwhite, boxShadow: zubgshadow }}
+          >
+            <option value={"0"}>All </option>
+            {[1, 2, 3, 4, 5, 6]?.map((i) => {
+              return <option value={`Level ${i}`}>Level {i} </option>;
+            })}
+          </select>
+        </div>
+
         <div className="no-scrollbar !mb-10">
           {res?.map((i) => {
             return (
-              <div className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
+              <div
+                className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2"
+                style={{ background: zubgwhite, boxShadow: zubgshadow }}
+              >
                 <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}>{i?.l01_transection_type}</span>
+                  <span style={{ color: zubgtext }}>
+                    {i?.l01_transection_type}
+                  </span>
                   <span className="!text-green-800 !text-lg">
                     {i?.l01_amount?.toFixed(2)}
                   </span>
@@ -113,9 +173,7 @@ function TeamTradingBonus() {
                     {moment(i?.l01_date)?.format("HH:mm:ss")}
                   </span>
                 </div>
-                <div className="!w-full !flex !justify-between">
-
-                </div>
+                <div className="!w-full !flex !justify-between"></div>
               </div>
             );
           })}
@@ -212,5 +270,3 @@ const style = {
     "&>p": { marginLeft: "10px", color: "white !important", fontSize: "14px" },
   },
 };
-
-
