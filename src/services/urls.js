@@ -77,8 +77,4 @@ export const endpoint = {
   jackpod_my_history: `${jackpotdomain}/api/v1/my-history-jackpod`,
   jackpod_game_history: `${jackpotdomain}/api/v1/game-history-jackpod`,
   change_password: `${domain}api/v1/change-password`,
-
-
-
-
 };
