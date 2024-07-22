@@ -227,7 +227,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography className='!pb-4' variant="h3" color="initial">
-                 JACKPOD
+                 JACKPOT
                 </Typography>
               </Box>
             </Stack>
