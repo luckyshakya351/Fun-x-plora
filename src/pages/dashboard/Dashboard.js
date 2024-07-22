@@ -69,7 +69,9 @@ import {
 } from "../../services/apicalling";
 import {
   endpoint,
+  facebook_url,
   fron_end_main_domain,
+  instagram_url,
   support_mail,
   telegram_url,
 } from "../../services/urls";
@@ -77,7 +79,7 @@ import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
-import { Logout } from "@mui/icons-material";
+import { Facebook, Instagram, Logout, Telegram } from "@mui/icons-material";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -323,12 +325,20 @@ function Dashboard() {
                     Logout
                   </Button>
                 </div>
-                <div className="flex gap-1 items-center cursor-pointer">
+                <div className="flex gap-3 items-center cursor-pointer">
+                  <Facebook
+                  onClick={() => window.open(`${facebook_url}`, "_blank")} sx={{ color: zubgtext }} />
+                  <Instagram
+                  onClick={() => window.open(`${instagram_url}`, "_blank")} sx={{ color: zubgtext }} />
+                  <Telegram 
+                  onClick={() => window.open(`${telegram_url}`, "_blank")} sx={{ color: zubgtext }} />
+                </div>
+                {/* <div className="flex gap-1 items-center cursor-pointer">
                   <CloudDownloadIcon sx={{ color: zubgtext }} />
                   <span className="text-[12px]" style={{ color: zubgtext }}>
                     Download App
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

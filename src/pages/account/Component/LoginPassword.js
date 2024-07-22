@@ -1,11 +1,18 @@
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import { Box, Button, Container, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import * as React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color';
 import Layout from '../../../component/Layout/Layout';
-import Giftimg from '../../../assets/images/gift-removebg-preview.png'
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import CryptoJS from "crypto-js";
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { endpoint } from '../../../services/urls';
+import { useFormik } from 'formik';
+import CustomCircularProgress from '../../../Shared/CustomCircularProgress';
+import { MyProfileDataFn } from '../../../services/apicalling';
+import { useQuery } from 'react-query';
 
 function LoginPassword() {
   const navigate = useNavigate();
@@ -17,7 +24,7 @@ function LoginPassword() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [show_confirm_password, set_show_confirm_password] =
     React.useState(false);
-  const [agree, setAgree] = React.useState(false);
+    const [isLoading, setLoading] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
@@ -27,6 +34,85 @@ function LoginPassword() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const {  data: profile } = useQuery(
+    ["myprofile"],
+    () => MyProfileDataFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+
+  const result = profile?.data?.data || [];
+
+  const login_data =
+  (localStorage.getItem("logindataen") &&
+    CryptoJS.AES.decrypt(
+      localStorage.getItem("logindataen"),
+      "anand"
+    )?.toString(CryptoJS.enc.Utf8)) ||
+  null;
+
+const user_id = login_data && JSON.parse(login_data)?.UserID;
+
+  const initialValue = {
+    userid: "",
+    old_pass: "",
+    new_pass: "",
+    confirm_new_pass: "",
+  };
+
+  const fk = useFormik({
+    initialValues: initialValue,
+    enableReinitialize: true,
+    onSubmit: () => {
+      if (!fk.values.old_pass || !fk.values.new_pass || !fk.values.confirm_new_pass) {
+        toast.error("Please enter all fields");
+        return;
+      }
+      if (fk.values.old_pass !== result?.password) {
+        toast.error("Old password is incorrect");
+        return;
+      }
+      if (fk.values.old_pass === fk.values.new_pass) {
+        toast.error("New password must be different from old password");
+        return;
+      }
+      if (fk.values.new_pass !== fk.values.confirm_new_pass) {
+        toast.error("New password and confirm password do not match");
+        return;
+      }
+      const reqbody = {
+        userid: user_id,
+        old_pass: fk.values.old_pass,
+        new_pass: fk.values.new_pass,
+        confirm_new_pass: fk.values.confirm_new_pass,
+      };
+      changePassword(reqbody);
+    },
+  });
+
+  const changePassword = async (reqbody) => {
+    setLoading(true);
+
+    try {
+      const response = await axios.post(endpoint.change_password, reqbody, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    toast.success(response?.data?.msg);
+      navigate("/account");
+    } catch (error) {
+      toast.error(error?.message);
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Layout>
       <Container sx={style.container}>
@@ -38,30 +124,49 @@ function LoginPassword() {
           <Typography variant="body1" color="initial"> </Typography>
         </Box>
         <Box sx={{ width: '95%', marginLeft: '2.5%', background: zubgback, borderRadius: '10px', padding: '10px', mt: '10px', }}>
-          <Box mt={2} component='form'>
+          <Box mt={2} component='form' 
+          onSubmit={fk.handleSubmit}>
             <Box mt={2}>
 
               <FormControl fullWidth>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">Old password</Typography>
                 </Stack>
-                <OutlinedInput
+
+                <TextField
+                  sx={{
+                    '& fieldset': {
+                      borderColor: '#FE0000',
+                      borderWidth: '2px',
+                      borderRadius: '8px', 
+                    },
+                    '& input': {
+                      borderColor: '#FE0000',
+                    },
+                  }}
                   placeholder="Enter password"
-                  name="password"
+                  name="old_pass"
                   className="loginfieldspass"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowoldPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showoldPassword ? <VisibilityOff sx={{ color: zubgtext }} /> : <Visibility sx={{ color: zubgtext }} />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
+                  value={fk.values.old_pass}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  type={showoldPassword ? "text" : "password"}
+                  InputProps={{
+                    endAdornment:(
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowoldPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showoldPassword ? 
+                          <VisibilityOff sx={{ color: zubgtext }} /> : <Visibility sx={{ color: zubgtext }} />}
+                        </IconButton>
+                      </InputAdornment>
+                      ),
+                    }}
+                 
                 />
               </FormControl>
             </Box>
@@ -71,23 +176,39 @@ function LoginPassword() {
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">Set new password</Typography>
                 </Stack>
-                <OutlinedInput
+                <TextField
+                sx={{
+                  '& fieldset': {
+                    borderColor: '#FE0000',
+                    borderWidth: '2px',
+                    borderRadius: '8px', 
+                  },
+                  '& input': {
+                    borderColor: '#FE0000',
+                  },
+                }}
                   placeholder="Enter new password"
-                  name="password"
-                  className="loginfieldspass"
+                  name="new_pass"
+                  value={fk.values.new_pass}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff sx={{ color: zubgtext }} /> : <Visibility sx={{ color: zubgtext }} />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? 
+                          <VisibilityOff sx={{ color: zubgtext }}/> 
+                          : <Visibility sx={{ color: zubgtext }}/>}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </FormControl>
             </Box>
@@ -96,12 +217,26 @@ function LoginPassword() {
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3">Confirm new password</Typography>
                 </Stack>
-                <OutlinedInput
+                <TextField
+                  sx={{
+                    '& fieldset': {
+                      borderColor: '#FE0000',
+                      borderWidth: '2px',
+                      borderRadius: '8px', 
+                    },
+                    '& input': {
+                      borderColor: '#FE0000',
+                    },
+                  }}
                   className="loginfieldspass"
-                  name="confirmed_password"
+                  name="confirm_new_pass"
+                  value={fk.values.confirm_new_pass}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   placeholder="Enter new confirm password"
                   type={show_confirm_password ? "text" : "password"}
-                  endAdornment={
+                  InputProps={{
+                  endAdornment:(
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
@@ -112,11 +247,16 @@ function LoginPassword() {
                         {show_confirm_password ? <VisibilityOff sx={{ color: zubgtext }} /> : <Visibility sx={{ color: zubgtext }} />}
                       </IconButton>
                     </InputAdornment>
-                  }
+                  )
+                }}
                 />
               </FormControl>
             </Box>
-            <Button sx={style.paytmbtntwo}>Change Password </Button>
+          
+            <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit} >Change Password </Button>
+              {isLoading && (
+                            <CustomCircularProgress isLoading={isLoading}/>
+                        )}
           </Box>
         </Box>
       </Container>

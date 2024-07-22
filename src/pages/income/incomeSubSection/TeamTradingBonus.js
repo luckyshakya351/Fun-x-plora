@@ -100,11 +100,12 @@ function TeamTradingBonus() {
           className="!flex !w-fullpx-5 justify-between py-1 items-center"
           style={{ background: zubgwhite, boxShadow: zubgshadow }}
         >
-          <div className="flex flex-col">
-            <label className="!text-sm"> Start Date:</label>
+          <div className="flex mx-1 flex-col">
+            <label className="!text-sm "> Start Date:</label>
             <input
               value={startDate}
               type="date"
+              className="px-1 rounded-sm"
               placeholder="Start Date"
               onChange={(e) => setStartDate(e.target.value)}
             />
@@ -128,11 +129,12 @@ function TeamTradingBonus() {
             </IconButton>
           )}
 
-          <div className="flex flex-col">
+          <div className="flex flex-col mx-1">
             <label className="!text-sm"> End Date:</label>
             <input
               value={endDate}
               type="date"
+               className="px-1 rounded-sm"
               placeholder="Start Date"
               onChange={(e) => setEndDate(e.target.value)}
             />
