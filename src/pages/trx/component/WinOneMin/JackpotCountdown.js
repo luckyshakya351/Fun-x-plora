@@ -89,11 +89,11 @@ const JackpotCountdown = ({ fk,setBetNumber }) => {
       }
     };
 
-    socket.on("fivemintrxjackpod", handleFiveMin);
+    // socket.on("fivemintrxjackpod", handleFiveMin);
 
-    return () => {
-      socket.off("fivemintrxjackpod", handleFiveMin);
-    };
+    // return () => {
+    //   socket.off("fivemintrxjackpod", handleFiveMin);
+    // };
   }, []);
 
   const { isLoading:amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {

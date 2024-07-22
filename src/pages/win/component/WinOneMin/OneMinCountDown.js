@@ -90,10 +90,10 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
-    socket.on("onemin", handleOneMin);
-    return () => {
-      socket.off("onemin", handleOneMin);
-    };
+    // socket.on("onemin", handleOneMin);
+    // return () => {
+    //   socket.off("onemin", handleOneMin); working
+    // };
   }, []);
 
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
