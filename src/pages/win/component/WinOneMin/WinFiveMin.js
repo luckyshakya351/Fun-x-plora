@@ -247,14 +247,20 @@ function WinFiveMin({ gid }) {
                 justifyContent: "space-between",
               }}
             >
-               <Button variant="outlined" color="primary" onClick={generateRandomType}>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={generateRandomType}
+              >
                 Random
               </Button>
               {[1, 5, 10, 20, 50, 100]?.map((i) => (
                 <IconButton
                   key={i}
                   color="primary"
-                  className={`icobtn ${value === i ? "bg-green-600" : "bg-yellow-400"} cursor-pointer text-white`}
+                  className={`icobtn ${
+                    value === i ? "bg-green-600" : "bg-yellow-400"
+                  } cursor-pointer text-white`}
                   onClick={() => setValue(i)}
                 >
                   {i}X
@@ -341,8 +347,9 @@ function WinFiveMin({ gid }) {
       </Box>
       {apply_bit_dialog_box &&
         Number(
-          `${String(timing)?.split("_")?.[0]}.${String(timing)?.split("_")?.[1]?.padStart(2, "0")
-          }`
+          `${String(timing)?.split("_")?.[0]}.${String(timing)
+            ?.split("_")?.[1]
+            ?.padStart(2, "0")}`
         ) > 0.1 && (
           <ApplyBetDialogBox
             apply_bit_dialog_box={apply_bit_dialog_box}
