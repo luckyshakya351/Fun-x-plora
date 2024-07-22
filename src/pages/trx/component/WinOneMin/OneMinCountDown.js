@@ -65,10 +65,10 @@ const OneMinCountDown = ({ fk ,setBetNumber}) => {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
-    socket.on("onemintrx", handleOneMin);
-    return () => {
-      socket.off("onemintrx", handleOneMin);
-    };
+    // socket.on("onemintrx", handleOneMin);
+    // return () => {
+    //   socket.off("onemintrx", handleOneMin);
+    // };
   }, []);
 
   const { isLoading, data: game_history } = useQuery(
