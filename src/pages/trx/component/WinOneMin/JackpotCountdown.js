@@ -13,23 +13,28 @@ import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
 import Policy from "../policy/Policy";
 import ShowImages from "./ShowImages";
-import { dummycounterFun, net_wallet_amount_function, trx_game_image_index_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import {
+  dummycounterFun,
+  net_wallet_amount_function,
+  trx_game_image_index_function,
+  updateNextCounter,
+} from "../../../../redux/slices/counterSlice";
 import axios from "axios";
 import { endpoint } from "../../../../services/urls";
 import toast from "react-hot-toast";
-import {  zubgtext } from "../../../../Shared/color";
+import { zubgtext } from "../../../../Shared/color";
 import { walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const JackpotCountdown = ({ fk,setBetNumber }) => {
+const JackpotCountdown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const audioRefMusic = React.useRef(null);
   const audioRefMusiclast = React.useRef(null);
   const [poicy, setpoicy] = React.useState(false);
   const [one_min_time, setOne_min_time] = useState("0_0");
-  const next_step = useSelector((state) => state.aviator.next_step)
+  const next_step = useSelector((state) => state.aviator.next_step);
   const dispatch = useDispatch();
   const show_this_three_min_time_sec = React.useMemo(
     () => String(one_min_time?.split("_")?.[1]).padStart(2, "0"),
@@ -47,9 +52,10 @@ const JackpotCountdown = ({ fk,setBetNumber }) => {
   };
   React.useEffect(() => {
     const handleFiveMin = (fivemin) => {
+      console.log(fivemin);
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
-      fk.setFieldValue("show_this_one_min_time", fivemin)
+      fk.setFieldValue("show_this_one_min_time", fivemin);
       if (
         (fivemin?.split("_")?.[1] === "5" ||
           fivemin?.split("_")?.[1] === "4" ||
@@ -89,24 +95,26 @@ const JackpotCountdown = ({ fk,setBetNumber }) => {
       }
     };
 
-    // socket.on("fivemintrxjackpod", handleFiveMin);
+    socket.on("fivemintrxjackpod", handleFiveMin);
 
-    // return () => {
-    //   socket.off("fivemintrxjackpod", handleFiveMin);
-    // };
+    return () => {
+      socket.off("fivemintrxjackpod", handleFiveMin);
+    };
   }, []);
 
-  const { isLoading:amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
-    refetchOnMount: false,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading: amount_loder, data } = useQuery(
+    ["walletamount"],
+    () => walletamount(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 
-
-  React.useEffect(()=>{
-    dispatch(net_wallet_amount_function(data?.data?.data))
-  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
-
+  React.useEffect(() => {
+    dispatch(net_wallet_amount_function(data?.data?.data));
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
   const { isLoading, data: game_history } = useQuery(
     ["jackpod_gamehistory"],
@@ -114,7 +122,7 @@ const JackpotCountdown = ({ fk,setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -149,8 +157,6 @@ refetchOnWindowFocus:false
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.data]);
 
-
-
   const handlePlaySound = async () => {
     try {
       if (audioRefMusic?.current?.pause) {
@@ -178,10 +184,7 @@ refetchOnWindowFocus:false
   };
 
   return (
-    <Box
-      className="countdownbgtrx"
-      sx={{ background: zubgtext }}
-    >
+    <Box className="countdownbgtrx" sx={{ background: zubgtext }}>
       {React.useMemo(() => {
         return (
           <>
@@ -227,8 +230,12 @@ refetchOnWindowFocus:false
                     sx={{ width: "15px !important", height: "15px !important" }}
                   ></Box>
                 </Box>
-                <Typography variant="body1" color="initial" className="!ml-2 !text-lg">
-                 Jackpod
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  className="!ml-2 !text-lg"
+                >
+                  Jackpod
                 </Typography>
               </>
             );
@@ -255,7 +262,6 @@ refetchOnWindowFocus:false
               <Policy />
             </Dialog>
           )}
-
         </Box>
         <Box>
           <Typography variant="h3" color="initial" className="winTextone">
@@ -289,14 +295,13 @@ refetchOnWindowFocus:false
             }, [show_this_three_min_time_sec])}
           </Stack>
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {(Number(next_step))?.toString()?.padStart(7, "0")}
+            {Number(next_step)?.toString()?.padStart(7, "0")}
           </Typography>
         </Box>
       </Box>
       {React.useMemo(() => {
-        return <ShowImages />
+        return <ShowImages />;
       }, [])}
-   
     </Box>
   );
 };

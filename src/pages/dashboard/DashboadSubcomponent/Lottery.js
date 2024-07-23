@@ -3,6 +3,7 @@ import CasinoIcon from '@mui/icons-material/Casino';
 import { Box, Button, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -11,9 +12,7 @@ import k3 from '../../../assets/images/k3.png';
 import trx from '../../../assets/images/trx.png';
 import wingo from '../../../assets/images/wingo.png';
 import { endpoint } from "../../../services/urls";
-import { Navigate, useNavigate } from 'react-router-dom';
-import { lightblue, lightyellow, zubgtext } from '../../../Shared/color';
-import { lightBlue } from '@mui/material/colors';
+import { lightblue, zubgtext } from '../../../Shared/color';
 
 function Lottery() {
   const [status, setStatus] = useState(false);
