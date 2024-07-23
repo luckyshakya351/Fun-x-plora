@@ -94,7 +94,7 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       ) {
         client.refetchQueries("trx_gamehistory");
         client.refetchQueries("trx_gamehistory_chart");
-        client.refetchQueries("my_trx_Allhistory");
+        // client.refetchQueries("my_trx_Allhistory");
         client.refetchQueries("my_trx_history");
         client.refetchQueries("walletamount");
         dispatch(dummycounterFun());
@@ -102,11 +102,11 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
 
-    // socket.on("threemintrx", handleThreeMin);
+    socket.on("threemintrx", handleThreeMin);
 
-    // return () => {
-    //   socket.off("threemintrx", handleThreeMin);
-    // };
+    return () => {
+      socket.off("threemintrx", handleThreeMin);
+    };
   }, []);
 
   const { isLoading: amount_loder, data } = useQuery(

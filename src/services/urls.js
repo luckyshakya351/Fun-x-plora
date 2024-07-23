@@ -23,7 +23,7 @@ export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 // `https://t.me/SunLottaryOfficial`;
 
 export const endpoint = {
-  //node api login
+  //node login api 
   login: `${domain1}/api/v1/user_login`,
   
 // login: `${baseUrl}/api/user_login`,
@@ -63,15 +63,17 @@ export const endpoint = {
   all_withdrawl_user_list: `${baseUrl}/api/widthrol-user-list`,
   recharge_call_bakc: `${baseUrl}/api/deposits-user-request`,
   cricket_get_url_id_pass: `${baseUrl}/api/cricket-details`,
+
   // trx api's
   // trx_game_history: `${baseUrl}/api/trx-auto-genrated-result`,
-  trx_game_bet: `${baseUrl}/api/trx-bet`,
-  my_history_all_trx: `${baseUrl}/api/trx-getColourBets`,
-  my_history_all_trx_pending: `${baseUrl}/api/trx-getColourBets-results`,
+  // trx_game_bet: `${baseUrl}/api/trx-bet`,
+  // my_history_all_trx: `${baseUrl}/api/trx-getColourBets`,
+  // my_history_all_trx_pending: `${baseUrl}/api/trx-getColourBets-results`,
 
-  //node api trx
+  //node  trx api
   trx_game_history: `${domain1}/api/v1/trx-auto-genrated-result`,
   my_history_all_trx: `${domain1}/api/v1/trx-getColourBets`,
+  trx_game_bet: `${domain1}/api/v1/trx-bet`,
 
   // aviator api's
   aviator_login: `${baseUrl}/api/aviator/login`,

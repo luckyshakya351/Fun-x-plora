@@ -84,7 +84,7 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
       ) {
         client.refetchQueries("trx_gamehistory");
         client.refetchQueries("trx_gamehistory_chart");
-        client.refetchQueries("my_trx_Allhistory");
+        // client.refetchQueries("my_trx_Allhistory");
         client.refetchQueries("my_trx_history");
         client.refetchQueries("walletamount");
         dispatch(dummycounterFun());
@@ -92,11 +92,11 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
 
-    // socket.on("fivemintrx", handleFiveMin);
+    socket.on("fivemintrx", handleFiveMin);
 
-    // return () => {
-    //   socket.off("fivemintrx", handleFiveMin);
-    // };
+    return () => {
+      socket.off("fivemintrx", handleFiveMin);
+    };
   }, []);
 
   const { isLoading:amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
