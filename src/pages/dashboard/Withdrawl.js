@@ -567,12 +567,12 @@ function Withdrawl() {
             mb: 5,
           }}>
           <Stack direction="row" alignItems="center" mt={1}
-            className="!text-bold !text-xl">
+            className="!text-bold ">
             
             <Typography
               variant="body1"
               color="initial"
-             
+             className="!text-sm"
             >
            *   Need to bet{" "}
             </Typography>
@@ -581,7 +581,7 @@ function Withdrawl() {
               variant="body1"
               color="initial"
               sx={{
-                fontSize: "12px",
+                
              
                 mx: 0.5,
               }}
@@ -592,10 +592,10 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             
+             className="!text-sm"
             >
               {" "}
-              to be able to withdraw{" "}
+              to be able to withdraw .{" "}
             </Typography>
           </Stack>
       
@@ -605,7 +605,7 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             
+             className="!text-sm"
             >
            *   Withdraw time{" "}
             </Typography>
@@ -614,12 +614,12 @@ function Withdrawl() {
               variant="body1"
               color="initial"
               sx={{
-                fontSize: "12px",
+                
                
                 mx: 0.5,
               }}
             >
-              00:00-23:50{" "}
+              00:00-23:50.{" "}
             </Typography>
           </Stack>
           <Stack direction="row" alignItems="center" mt={1}   className="!text-bold !text-xl">
@@ -627,21 +627,22 @@ function Withdrawl() {
            <Typography
              variant="body1"
              color="initial"
-            
+            className="!text-sm"
            >
           *   Withdraw Amount Range{" "}
            </Typography>
            <Typography
-            className="!text-orange-500"
+            className="!text-orange-500 !text-sm"
              variant="body1"
              color="initial"
+            
              sx={{
-               fontSize: "12px",
+               
               
                mx: 0.5,
              }}
            >
-             ₹ 110.00 - ₹ 100000.00{" "}
+             ₹ 110.00 - ₹ 100000.00 .{" "}
            </Typography>
          </Stack>
           <Stack direction="row" alignItems="center" mt={1}>
@@ -649,22 +650,32 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             
+             className="!text-sm"
             >
           *    Please confirm your beneficial account information before
-             withdrawing. If your information is incorrect, our company will
-              not be liable for the amount of loss{" "}
+             withdrawing. 
             </Typography>
           </Stack>
-          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold !text-xl">
+          <Stack direction="row" alignItems="center" mt={1}>
+          
+          <Typography
+            variant="body1"
+            color="initial"
+           className="!text-sm"
+          >
+        *    If your information is incorrect, our company will
+            not be liable for the amount of loss .{" "}
+          </Typography>
+        </Stack>
+          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold ">
            
             <Typography
               variant="body1"
               color="initial"
-             
+             className="!text-sm"
             >
             *  If your beneficial information is incorrect, please contact
-              customer service
+              customer service.
             </Typography>
           </Stack>
         </Box>

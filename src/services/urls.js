@@ -8,13 +8,16 @@ export const fron_end_main_domain = "https://funxplora.com";
 // export const domain = "https://funxplora-timer.onrender.com/";
 export const domain = "http://192.168.18.183:9000";
 
-//  export const domain = "http://192.168.18.183:9000";
+//  export const domain1 = "http://192.168.18.183:8000";
 export const jackpotdomain = "https://funxplora-timer.onrender.com";
 //  export const jackpotdomain = "http://192.168.184.149:9000";
 
 export const support_mail = "";
 // `support@sunlottrey.fun`;
 export const telegram_url = "https://t.me/+9c__nUH79PtiYzBl";
+export const facebook_url = "https://www.facebook.com/people/Funxplora-Gaming/61561351673648/";
+export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
+
 // `https://t.me/SunLottaryOfficial`;
 
 export const endpoint = {
@@ -73,4 +76,5 @@ export const endpoint = {
   place_bid_jackpod: `${jackpotdomain}/api/v1/place-bid-jackpod`,
   jackpod_my_history: `${jackpotdomain}/api/v1/my-history-jackpod`,
   jackpod_game_history: `${jackpotdomain}/api/v1/game-history-jackpod`,
+  change_password: `${domain}api/v1/change-password`,
 };
