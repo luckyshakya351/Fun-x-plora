@@ -58,7 +58,7 @@ const OneMinCountDown = ({ fk ,setBetNumber}) => {
       if (onemin === 0) {
         client.refetchQueries("trx_gamehistory");
         client.refetchQueries("trx_gamehistory_chart");
-        client.refetchQueries("my_trx_Allhistory");
+        // client.refetchQueries("my_trx_Allhistory");
         client.refetchQueries("my_trx_history");
         client.refetchQueries("walletamount");
         dispatch(dummycounterFun());

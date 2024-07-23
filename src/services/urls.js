@@ -8,7 +8,8 @@ export const fron_end_main_domain = "https://funxplora.com";
 export const domain = "https://funxplora-timer.onrender.com/";
 // export const domain = "https://twintex.live/";
 
-//  export const domain1 = "http://192.168.18.183:8000";
+ export const domain1 = "http://192.168.18.183:9000";
+
 export const jackpotdomain = "https://funxplora-timer.onrender.com";
 //  export const jackpotdomain = "http://192.168.184.149:9000";
 
@@ -21,7 +22,10 @@ export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 // `https://t.me/SunLottaryOfficial`;
 
 export const endpoint = {
-  login: `${baseUrl}/api/user_login`,
+  //node api login
+  login: `${domain1}/api/v1/user_login`,
+  
+// login: `${baseUrl}/api/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/user_register`,
@@ -59,10 +63,15 @@ export const endpoint = {
   recharge_call_bakc: `${baseUrl}/api/deposits-user-request`,
   cricket_get_url_id_pass: `${baseUrl}/api/cricket-details`,
   // trx api's
-  trx_game_history: `${baseUrl}/api/trx-auto-genrated-result`,
+  // trx_game_history: `${baseUrl}/api/trx-auto-genrated-result`,
   trx_game_bet: `${baseUrl}/api/trx-bet`,
   my_history_all_trx: `${baseUrl}/api/trx-getColourBets`,
   my_history_all_trx_pending: `${baseUrl}/api/trx-getColourBets-results`,
+
+  //node api trx
+  trx_game_history: `${domain1}/api/v1/trx-auto-genrated-result`,
+  my_history_all_trx: `${domain1}/api/v1/trx-getColourBets`,
+
   // aviator api's
   aviator_login: `${baseUrl}/api/aviator/login`,
   get_data_by_user_id: `${baseUrl}/api/userProfile`,

@@ -228,7 +228,7 @@ refetchOnWindowFocus:false
                   ></Box>
                 </Box>
                 <Typography variant="body1" color="initial" className="!ml-2 !text-lg">
-                 Jackpod
+                 Jackpot
                 </Typography>
               </>
             );
