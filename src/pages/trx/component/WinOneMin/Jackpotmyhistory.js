@@ -273,7 +273,7 @@ const Jackpotmyhistory = ({ gid }) => {
         })}
       </div>
 
-      <Box className="paginationTable">
+      <Box className="paginationTable mb-32">
         <TablePagination
           sx={{
             background: zubgtext,
@@ -281,7 +281,7 @@ const Jackpotmyhistory = ({ gid }) => {
             borderRadius: "10px",
             marginTop: "10px",
           }}
-          rowsPerPageOptions={[2, 5, 10, 15]}
+          rowsPerPageOptions={[ 5, 10]}
           component="div"
           count={my_history_data?.length}
           rowsPerPage={rowsPerPage}

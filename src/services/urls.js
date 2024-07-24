@@ -101,5 +101,5 @@ export const endpoint = {
   place_bid_jackpod: `${domain}/api/v1/place-bid-jackpod`,
   jackpod_my_history: `${domain}/api/v1/my-history-jackpod`,
   jackpod_game_history: `${domain}/api/v1/game-history-jackpod`,
-  change_password: `${domain}api/v1/change-password`,
+  change_password: `${domain}/api/v1/change-password`,
 };

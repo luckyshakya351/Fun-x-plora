@@ -255,10 +255,10 @@ const JackpotGameHistory = ({ gid }) => {
           </TableBody>
         </Table>
 
-        <Box className="paginationTable !w-full">
+        <Box className="paginationTable !w-full mb-32">
           <TablePagination
             sx={{ background: zubgtext, color: "white", width: "100%" }}
-            rowsPerPageOptions={[5, 10, 15]}
+            rowsPerPageOptions={[5, 10]}
             component="div"
             count={game_history?.data?.data?.length}
             rowsPerPage={rowsPerPage}

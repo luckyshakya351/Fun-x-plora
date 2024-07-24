@@ -450,16 +450,15 @@ const MyHistory = ({ gid }) => {
         })}
       </div>
 
-      <Box className="paginationTable">
+      <Box className="paginationTable mb-32">
         <TablePagination
           sx={{
             background: zubgtext,
             color: "white",
             borderRadius: "0px 0px 10px 10px",
-            marginBottom: "40px",
             padding: 1,
           }}
-          rowsPerPageOptions={[2, 5, 10, 15]}
+          rowsPerPageOptions={[5,10]}
           component="div"
           count={my_history_data_all?.length}
           rowsPerPage={rowsPerPage}
