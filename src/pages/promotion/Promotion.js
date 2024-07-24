@@ -264,10 +264,10 @@ refetchOnWindowFocus:false
               </Stack>
             </Box>
           </NavLink>
-          <NavLink to="/promotion/PromotionRule">
+          {/* <NavLink to="/promotion/PromotionRule">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={invite_reg}></Box> */}
+              
                 <Box component="img" src={book}></Box>
                 <Typography variant="body1" >
                   Invitation rules
@@ -277,7 +277,7 @@ refetchOnWindowFocus:false
                 <ArrowForwardIosOutlinedIcon />
               </Stack>
             </Box>
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/customerLine/">
             <Box sx={style.invitbox}>
               <Stack direction="row">

@@ -71,18 +71,18 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       setThree_min_time(threemin);
       setBetNumber(threemin)
       fk.setFieldValue("show_this_one_min_time", threemin);
-      if (
-        (threemin?.split("_")?.[1] === "5" ||
-          threemin?.split("_")?.[1] === "4" ||
-          threemin?.split("_")?.[1] === "3" ||
-          threemin?.split("_")?.[1] === "2") &&
-        threemin?.split("_")?.[0] === "0"
-      )
+      // if (
+      //   (threemin?.split("_")?.[1] === "5" ||
+      //     threemin?.split("_")?.[1] === "4" ||
+      //     threemin?.split("_")?.[1] === "3" ||
+      //     threemin?.split("_")?.[1] === "2") &&
+      //   threemin?.split("_")?.[0] === "0"
+      // )
         // handlePlaySound();
-      if (
-        threemin?.split("_")?.[1] === "1" &&
-        threemin?.split("_")?.[0] === "0"
-      )
+      // if (
+      //   threemin?.split("_")?.[1] === "1" &&
+      //   threemin?.split("_")?.[0] === "0"
+      // )
         // handlePlaySoundLast();
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
@@ -107,17 +107,17 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
         client.refetchQueries("gamehistory");
         client.refetchQueries("walletamount");
         client.refetchQueries("gamehistory_chart");
-        client.refetchQueries("myhistory");
+        // client.refetchQueries("myhistory");
         client.refetchQueries("myAllhistory");
         dispatch(dummycounterFun());
       }
     };
 
-    // socket.on("threemin", handleThreeMin);
+    socket.on("threemin", handleThreeMin);
 
-    // return () => {
-    //   socket.off("threemin", handleThreeMin);
-    // };
+    return () => {
+      socket.off("threemin", handleThreeMin);
+    };
   }, []);
 
   const audioRefMusic = React.useRef(null);

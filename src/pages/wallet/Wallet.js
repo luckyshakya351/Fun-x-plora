@@ -41,7 +41,7 @@ function Wallet() {
   });
   const result = data?.data?.data;
 
-  const series = [Number(result?.bonus || 0)?.toFixed(2) || 0];
+  const series = [Number(Number(result?.bonus || 0) % 100)?.toFixed(2)  || 0];
   const series2 = [
     (Number(Number(result?.winning_wallet || 0) % 100) || 0)?.toFixed(2),
   ];
@@ -191,6 +191,7 @@ function Wallet() {
             >
               <Box sx={{ width: "50%", position: "relative" }}>
                 <Typography
+                
                   variant="body1"
                   color="initial"
                   sx={{
@@ -209,6 +210,7 @@ function Wallet() {
                   series={series}
                   type="radialBar"
                   height={150}
+                  
                 />
                 <Box
                   sx={{
@@ -239,7 +241,7 @@ function Wallet() {
                   sx={{
                     position: "absolute",
                     color: "white",
-                    left: "39%",
+                    left: "40%",
                     top: "32%",
                     fontSize: "15px",
                     fontWeight: "400",

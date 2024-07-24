@@ -51,15 +51,15 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
       fk.setFieldValue("show_this_one_min_time", fivemin)
-      if (
-        (fivemin?.split("_")?.[1] === "5" ||
-          fivemin?.split("_")?.[1] === "4" ||
-          fivemin?.split("_")?.[1] === "3" ||
-          fivemin?.split("_")?.[1] === "2") &&
-        fivemin?.split("_")?.[0] === "0"
-      )
+      // if (
+      //   (fivemin?.split("_")?.[1] === "5" ||
+      //     fivemin?.split("_")?.[1] === "4" ||
+      //     fivemin?.split("_")?.[1] === "3" ||
+      //     fivemin?.split("_")?.[1] === "2") &&
+      //   fivemin?.split("_")?.[0] === "0"
+      // )
         // handlePlaySound();
-      if (fivemin?.split("_")?.[1] === "1" && fivemin?.split("_")?.[0] === "0")
+      // if (fivemin?.split("_")?.[1] === "1" && fivemin?.split("_")?.[0] === "0")
         // handlePlaySoundLast();
 
       if (

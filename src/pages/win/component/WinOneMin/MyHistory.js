@@ -26,17 +26,17 @@ const MyHistory = ({ gid }) => {
     setPage(0);
   };
 
-  const { isLoading: myhistory_loding, data: my_history } = useQuery(
-    ["myhistory", gid],
-    () => MyHistoryFn(gid),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false
-    }
-  );
+  // const { isLoading: myhistory_loding, data: my_history } = useQuery(
+  //   ["myhistory", gid],
+  //   () => MyHistoryFn(gid),
+  //   {
+  //     refetchOnMount: false,
+  //     refetchOnReconnect: false,
+  //     refetchOnWindowFocus: false
+  //   }
+  // );
 
-  const my_history_data = my_history?.data?.data || [];
+  // const my_history_data = my_history?.data?.data || [];
 
   const { isLoading: myhistory_loding_all, data: my_history_all } = useQuery(
     ["myAllhistory", gid],
@@ -78,7 +78,7 @@ const MyHistory = ({ gid }) => {
         </Typography>
       </Stack>
       <div className="flex flex-col gap-[2px]">
-        {my_history_data?.[0]?.status === "0" &&
+        {/* {my_history_data?.[0]?.status === "0" &&
           my_history_data
             ?.filter((i) => i.status === "0")
             ?.map((i, index) => {
@@ -143,7 +143,7 @@ const MyHistory = ({ gid }) => {
 
                         {i?.status !== "0" ? (
                           <div className="flex gap-2 items-center">
-                            <span>{`${i?.number_result}`}</span>
+                            <span>{`${i?.result}`}</span>
                             <span
                               className={`
                   ${(i?.number === "0" &&
@@ -245,7 +245,7 @@ const MyHistory = ({ gid }) => {
                   </Accordion>
                 </div>
               );
-            })}
+            })} */}
         {visibleRows?.map((i) => {
           return (
             <div>
@@ -332,35 +332,35 @@ const MyHistory = ({ gid }) => {
 
                     {i?.status !== "0" ? (
                       <div className="flex gap-2 items-center  !bg-opacity-10 py-1 px-2">
-                        <span>{`${i?.number_result}`}</span>
+                        <span>{`${i?.result}`}</span>
                         <span
                           className={`
-                  ${(i?.number_result === "0" &&
+                  ${(i?.result === "0" &&
                               "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                            (i?.number_result === "5" &&
+                            (i?.result === "5" &&
                               "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                            ((i?.number_result === "1" ||
-                              i?.number_result === "3" ||
-                              i?.number_result === "7" ||
-                              i?.number_result === "9" ||
-                              i?.number_result === "10") &&
+                            ((i?.result === "1" ||
+                              i?.result === "3" ||
+                              i?.result === "7" ||
+                              i?.result === "9" ||
+                              i?.result === "10") &&
                               "bg-gradient-to-t from-green-400 to-green-900") ||
-                            ((i?.number_result === "2" ||
-                              i?.number_result === "4" ||
-                              i?.number_result === "6" ||
-                              i?.number_result === "8" ||
-                              i?.number_result === "30") &&
+                            ((i?.result === "2" ||
+                              i?.result === "4" ||
+                              i?.result === "6" ||
+                              i?.result === "8" ||
+                              i?.result === "30") &&
                               "bg-gradient-to-tl from-red-400 to-red-900") ||
-                            (i?.number_result === "50" && "bg-[#3183ee]") ||
-                            (i?.number_result === "40" && "bg-[#f1be24]") ||
-                            (i?.number_result === "20" && "bg-[#eb2feb]")
+                            (i?.result === "50" && "bg-[#3183ee]") ||
+                            (i?.result === "40" && "bg-[#f1be24]") ||
+                            (i?.result === "20" && "bg-[#eb2feb]")
                             }
                   transparentColor font-bold text-xl
                   `}
                         >
-                          {i?.color_result}
+                          {/* {i?.color_result} */}
                         </span>
-                        <span>{i?.number_result <= 4 ? "Small" : "Big"}</span>
+                        <span>{i?.result <= 4 ? "Small" : "Big"}</span>
                       </div>
                     ) : (
                       <div></div>
@@ -461,7 +461,7 @@ const MyHistory = ({ gid }) => {
           }}
           rowsPerPageOptions={[2, 5, 10, 15]}
           component="div"
-          count={my_history_data?.length}
+          count={my_history_data_all?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

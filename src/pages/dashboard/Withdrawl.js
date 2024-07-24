@@ -572,12 +572,12 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             className="!text-sm"
+             className="!text-xs"
             >
            *   Need to bet{" "}
             </Typography>
             <Typography
-            className="!text-orange-500"
+            className="!text-orange-500 !text-xs"
               variant="body1"
               color="initial"
               sx={{
@@ -592,7 +592,7 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             className="!text-sm"
+             className="!text-xs"
             >
               {" "}
               to be able to withdraw .{" "}
@@ -605,12 +605,12 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             className="!text-sm"
+             className="!text-xs"
             >
            *   Withdraw time{" "}
             </Typography>
             <Typography
-             className="!text-orange-500"
+             className="!text-orange-500 !text-xs"
               variant="body1"
               color="initial"
               sx={{
@@ -627,12 +627,12 @@ function Withdrawl() {
            <Typography
              variant="body1"
              color="initial"
-            className="!text-sm"
+            className="!text-xs"
            >
-          *   Withdraw Amount Range{" "}
+          *   Withdraw Amount 
            </Typography>
            <Typography
-            className="!text-orange-500 !text-sm"
+            className="!text-orange-500 !text-xs"
              variant="body1"
              color="initial"
             
@@ -642,7 +642,7 @@ function Withdrawl() {
                mx: 0.5,
              }}
            >
-             ₹ 110.00 - ₹ 100000.00 .{" "}
+            ₹ 110.00 - ₹ 50000.00 .{" "}
            </Typography>
          </Stack>
           <Stack direction="row" alignItems="center" mt={1}>
@@ -650,7 +650,7 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             className="!text-sm"
+             className="!text-xs"
             >
           *    Please confirm your beneficial account information before
              withdrawing. 
@@ -661,7 +661,7 @@ function Withdrawl() {
           <Typography
             variant="body1"
             color="initial"
-           className="!text-sm"
+           className="!text-xs"
           >
         *    If your information is incorrect, our company will
             not be liable for the amount of loss .{" "}
@@ -672,7 +672,7 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             className="!text-sm"
+             className="!text-xs"
             >
             *  If your beneficial information is incorrect, please contact
               customer service.

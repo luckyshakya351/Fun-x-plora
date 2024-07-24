@@ -38,7 +38,7 @@ const WinLossPopup = ({ gid }) => {
     console.log(gid, "anand kumar verma")
     try {
       const response = await axios.get(
-        `${endpoint.my_history_all_trx_pending}?userid=${user_id}&limit=0&gameid=${gid}`
+        `${endpoint.my_history_all_trx}?userid=${user_id}&limit=0&gameid=${gid}`
       );
       const firstId = response?.data?.data?.[0]?.gamesno;
       const winAmnt =

@@ -7,9 +7,9 @@ export const fron_end_main_domain = "https://funxplora.com";
 
 // export const domain = "https://funxplora-timer.onrender.com/";
 
-export const domain = "http://192.168.18.183:9000";
+export const domain = "https://api.funxplora.com";
 
- export const domain1 = "http://192.168.18.183:9000";
+//  export const domain1 = "http://192.168.18.183:9000";
 
 export const jackpotdomain = "https://funxplora-timer.onrender.com";
 //  export const jackpotdomain = "http://192.168.184.149:9000";
@@ -24,21 +24,33 @@ export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 
 export const endpoint = {
   //node login api 
-  login: `${domain1}/api/v1/user_login`,
+  login: `${domain}/api/v1/user_login`,
   
 // login: `${baseUrl}/api/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/user_register`,
-  userwallet: `${baseUrl}/api/userwallet`,
+  //node balance api
+  userwallet: `${domain}/api/v1/userwallet`,
+  // userwallet: `${baseUrl}/api/userwallet`,
   // top11winner: `https://game-zone-sql.onrender.com/api/v1/topw11winningInformation`,
   top11winner: `${baseUrl}/api/winning-list`,
   openbannerUrl: `${baseUrl}/popup`,
   profiledata: `${baseUrl}/api/profileapi`,
-  applybet: `${baseUrl}/api/bet`,
-  game_history: `${baseUrl}/api/colour_result`,
-  my_history: `${baseUrl}/api/getbet`,
-  my_history_all: `${baseUrl}/api/getbet-game-results`,
+  // wingo
+  // applybet: `${baseUrl}/api/bet`,
+  // game_history: `${baseUrl}/api/colour_result`,
+  // my_history: `${baseUrl}/api/getbet`,
+  // my_history_all: `${baseUrl}/api/getbet-game-results`,
+
+ // wingo node api 
+  applybet: `${domain}/api/v1/bet`,
+  game_history: `${domain}/api/v1/colour_result`,
+  // my_history: `${domain1}/api/v1/getbet`,
+  // my_history_all: `${baseUrl}/api/getbet-game-results`,
+  my_history_all: `${domain}/api/v1/getbet-game-results`,
+
+
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,
   cash_deposit: `${baseUrl}/api/deposit`,
@@ -71,9 +83,9 @@ export const endpoint = {
   // my_history_all_trx_pending: `${baseUrl}/api/trx-getColourBets-results`,
 
   //node  trx api
-  trx_game_history: `${domain1}/api/v1/trx-auto-genrated-result`,
-  my_history_all_trx: `${domain1}/api/v1/trx-getColourBets`,
-  trx_game_bet: `${domain1}/api/v1/trx-bet`,
+  trx_game_history: `${domain}/api/v1/trx-auto-genrated-result`,
+  my_history_all_trx: `${domain}/api/v1/trx-getColourBets`,
+  trx_game_bet: `${domain}/api/v1/trx-bet`,
 
   // aviator api's
   aviator_login: `${baseUrl}/api/aviator/login`,
@@ -85,8 +97,9 @@ export const endpoint = {
   wallet_data: `${baseUrl}/api/aviator/userwallet`,
   bet_now: `${baseUrl}/api/aviator/bet_now`,
   cash_out: `${baseUrl}/api/aviator/cash_out`,
-  place_bid_jackpod: `${jackpotdomain}/api/v1/place-bid-jackpod`,
-  jackpod_my_history: `${jackpotdomain}/api/v1/my-history-jackpod`,
-  jackpod_game_history: `${jackpotdomain}/api/v1/game-history-jackpod`,
+  
+  place_bid_jackpod: `${domain}/api/v1/place-bid-jackpod`,
+  jackpod_my_history: `${domain}/api/v1/my-history-jackpod`,
+  jackpod_game_history: `${domain}/api/v1/game-history-jackpod`,
   change_password: `${domain}api/v1/change-password`,
 };

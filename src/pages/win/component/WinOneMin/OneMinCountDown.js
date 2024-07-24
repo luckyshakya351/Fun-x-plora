@@ -68,32 +68,39 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
 
   React.useEffect(() => {
     const handleOneMin = (onemin) => {
+   
       setOne_min_time(onemin);
       setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
         // handlePlaySound();
       }
-      if (onemin === 1) 
+      // if (onemin === 1) 
         // handlePlaySoundLast();
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
       }
+      // if (onemin === 59) {
+      //   client.refetchQueries("walletamount");
+      
+      // }
       if (onemin === 0) {
-        client.refetchQueries("myhistory");
+        // client.refetchQueries("myhistory");
+        client.refetchQueries("myAllhistory");
         client.refetchQueries("walletamount");
         client.refetchQueries("gamehistory");
         client.refetchQueries("gamehistory_chart");
-        client.refetchQueries("myAllhistory");
+        
         dispatch(dummycounterFun());
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
-    // socket.on("onemin", handleOneMin);
-    // return () => {
-    //   socket.off("onemin", handleOneMin); working
-    // };
+    
+    socket.on("onemin", handleOneMin);
+    return () => {
+      socket.off("onemin", handleOneMin); 
+    };
   }, []);
 
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {

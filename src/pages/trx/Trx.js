@@ -26,6 +26,7 @@ import WinThreeMin from "./component/WinOneMin/WinThreeMin";
 import Jackpot from "./component/WinOneMin/Jackpot";
 import { walletamount } from "../../services/apicalling";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
+import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 
 function Win() {
   const navigate = useNavigate();
@@ -49,17 +50,17 @@ function Win() {
     }, 1000);
   }, [dummycounter]);
 
-  const { isLoading: walletloding, data: walletdata } = useQuery(
-    ["walletamount_aviator"],
-    () => walletamount(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // const { isLoading: walletloding, data: walletdata } = useQuery(
+  //   ["walletamount_aviator"],
+  //   () => walletamount(),
+  //   {
+  //     refetchOnMount: false,
+  //     refetchOnReconnect: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
-  net_wallet_amount = walletdata?.data?.data || 0;
+  // net_wallet_amount = walletdata?.data?.data || 0;
 
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
@@ -88,6 +89,9 @@ function Win() {
         <Box sx={{ position: "relative", overflow: "hidden" }}>
           <Box className="wingosx"></Box>
           <Box sx={{ padding: 2, position: "relative" }}>
+          <Box>
+            <KeyboardArrowLeftOutlinedIcon className="!text-white !cursor-pointer" onClick={()=>navigate(-1)}/>
+          </Box>
             <Box
               sx={{
                 padding: "25px 10px",
@@ -251,7 +255,7 @@ function Win() {
             <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
           </Dialog>
         )}
-        <CustomCircularProgress isLoading={walletloding} />
+        {/* <CustomCircularProgress isLoading={walletloding} /> */}
       </Container>
     </Layout>
   );

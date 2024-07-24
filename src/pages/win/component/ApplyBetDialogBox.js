@@ -112,9 +112,10 @@ const ApplyBetDialogBox = ({
       toast(e?.message);
       console.log(e);
     }
-    client.refetchQueries("walletamount");
+    
     client.refetchQueries("walletamount_aviator");
-    client.refetchQueries("myhistory");
+    client.refetchQueries("myAllhistory");
+    client.refetchQueries("walletamount");
     setLoding(false);
   }
 

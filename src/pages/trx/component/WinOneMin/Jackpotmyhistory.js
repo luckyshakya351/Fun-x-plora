@@ -48,11 +48,11 @@ const Jackpotmyhistory = ({ gid }) => {
 
   const visibleRows = React.useMemo(
     () =>
-      my_history?.data?.data?.slice(
+      my_history_data?.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [page, rowsPerPage, my_history?.data?.datatory_data]
+    [page, rowsPerPage,  my_history?.data?.data]
   );
 
   if (isLoading)
@@ -283,7 +283,7 @@ const Jackpotmyhistory = ({ gid }) => {
           }}
           rowsPerPageOptions={[2, 5, 10, 15]}
           component="div"
-          count={my_history?.data?.data?.length}
+          count={my_history_data?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

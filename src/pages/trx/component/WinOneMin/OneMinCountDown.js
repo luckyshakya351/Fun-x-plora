@@ -23,7 +23,7 @@ import { walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const OneMinCountDown = ({ fk ,setBetNumber}) => {
+const OneMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const [one_min_time, setOne_min_time] = useState(0);
@@ -49,18 +49,21 @@ const OneMinCountDown = ({ fk ,setBetNumber}) => {
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
         // handlePlaySound();
       }
-      if (onemin === 1)
-        //  handlePlaySoundLast();
+      // if (onemin === 1)
+      //  handlePlaySoundLast();
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
+      }
+      if (onemin === 58) {
+        client.refetchQueries("walletamount");
       }
       if (onemin === 0) {
         client.refetchQueries("trx_gamehistory");
         client.refetchQueries("trx_gamehistory_chart");
         // client.refetchQueries("my_trx_Allhistory");
         client.refetchQueries("my_trx_history");
-        client.refetchQueries("walletamount");
+        // client.refetchQueries("walletamount");
         dispatch(dummycounterFun());
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
@@ -77,7 +80,7 @@ const OneMinCountDown = ({ fk ,setBetNumber}) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -112,18 +115,18 @@ refetchOnWindowFocus:false
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.result]);
 
-  const { isLoading:amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
+  const { isLoading: amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
   });
 
-
   React.useEffect(()=>{
     dispatch(net_wallet_amount_function(data?.data?.data))
   },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
-  
+
+
   // const handlePlaySound = async () => {
   //   try {
   //     if (audioRefMusic?.current?.pause) {
