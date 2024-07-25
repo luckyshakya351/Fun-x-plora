@@ -65,7 +65,7 @@ export const endpoint = {
   team_trading_bonus: `${baseUrl}/api/team-trading-bonus`,
   add_bank_details: `${baseUrl}/api/bank-add`,
   get_bank_list: `${baseUrl}/api/user-bank-details`,
-  promotion_data: `${domain}api/v1/promotiondata`,
+  promotion_data: `${domain}/api/v1/promotiondata`,
   all_withdrawl_user_list: `${baseUrl}/api/widthrol-user-list`,
   recharge_call_bakc: `${baseUrl}/api/deposits-user-request`,
   cricket_get_url_id_pass: `${baseUrl}/api/cricket-details`,
