@@ -1,5 +1,5 @@
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { Box, Stack, TablePagination, Typography } from "@mui/material";
+import { Box, CircularProgress, Stack, TablePagination, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -59,7 +59,12 @@ const MyHistory = ({ gid }) => {
       ),
     [page, rowsPerPage, my_history_data_all]
   );
-
+  if (myhistory_loding_all)
+    return (
+      <div className="!w-full flex justify-center">
+        <CircularProgress />
+      </div>
+    );
   return (
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">

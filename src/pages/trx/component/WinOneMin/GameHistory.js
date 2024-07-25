@@ -95,7 +95,7 @@ const GameHistory = ({ gid }) => {
   if (isLoading)
     return (
       <div className="!w-full  flex justify-center">
-        <CircularProgress className={"!text-white"} />
+        <CircularProgress  />
       </div>
     );
   return (

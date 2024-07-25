@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
 import axios from "axios";
 import * as React from "react";
@@ -57,7 +57,7 @@ const Chart = ({ gid }) => {
   }, [page, rowsPerPage, game_history?.data?.data]);
 
   React.useEffect(() => {
-    if (visibleRows) {
+    if (visibleRows && !isLoading) {
       const parent = document.getElementById("parent");
       const parentRect = parent.getBoundingClientRect();
       const newCor = visibleRows?.map((element, index) => {
@@ -92,6 +92,13 @@ const Chart = ({ gid }) => {
       setcor(newCor);
     }
   }, [visibleRows]);
+
+  if (isLoading)
+    return (
+      <div className="!w-full flex justify-center">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <Box className="chartTable" sx={{ pb: 4 }}>
