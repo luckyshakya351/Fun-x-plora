@@ -121,7 +121,7 @@ function WalletRecharge() {
   }, []);
 
   const initialValues = {
-    amount: deposit_amount || 100,
+    amount: deposit_amount || 110,
     all_data: { t_id: "", amount: "", date: "" },
   };
 
