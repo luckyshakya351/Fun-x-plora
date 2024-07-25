@@ -135,51 +135,51 @@ const WinLossPopup = ({ gid }) => {
                   <span>Results: </span>
                   <span
                     className={`${
-                      [1, 3, 7, 9]?.includes(Number(all_result?.number_result))
+                      [1, 3, 7, 9]?.includes(Number(all_result?.result))
                         ? "!bg-green-500"
                         : "!bg-red-500"
                     }
                   ${
-                    String(Number(all_result?.number_result)) === String(0) &&
+                    String(Number(all_result?.result)) === String(0) &&
                     "!bg-gradient-to-r from-red-500 to-purple-500"
                   }
                   ${
-                    String(Number(all_result?.number_result)) === String(5) &&
+                    String(Number(all_result?.result)) === String(5) &&
                     "!bg-gradient-to-r from-green-500 to-purple-500"
                   }
                   !text-center !p-2 !rounded-md
                   `}
                   >
-                    {(String(Number(all_result?.number_result)) === String(0) &&
+                    {(String(Number(all_result?.result)) === String(0) &&
                       "Red Purple") ||
-                    (String(Number(all_result?.number_result)) === String(5) &&
+                    (String(Number(all_result?.result)) === String(5) &&
                       "Green Purple") ||
-                    [1, 3, 7, 9]?.includes(Number(all_result?.number_result))
+                    [1, 3, 7, 9]?.includes(Number(all_result?.result))
                       ? "Green"
                       : "Red"}
                   </span>
                   <img
                     className="!h-[10%] !w-[10%]"
-                    src={array[Number(all_result?.number_result)]}
+                    src={array[Number(all_result?.result)]}
                   />
                   <span
                     className={`${
-                      [1, 3, 7, 9]?.includes(Number(all_result?.number_result))
+                      [1, 3, 7, 9]?.includes(Number(all_result?.result))
                         ? "!bg-green-500"
                         : "!bg-red-500"
                     }
                   ${
-                    String(Number(all_result?.number_result)) === String(0) &&
+                    String(Number(all_result?.result)) === String(0) &&
                     "!bg-gradient-to-r from-red-500 to-purple-500"
                   }
                   ${
-                    String(Number(all_result?.number_result)) === String(5) &&
+                    String(Number(all_result?.result)) === String(5) &&
                     "!bg-gradient-to-r from-green-500 to-purple-500"
                   }
                   !text-center !p-2 !rounded-md
                   `}
                   >
-                    {Number(all_result?.number_result) <= 4 ? "Small" : "Big"}
+                    {Number(all_result?.result) <= 4 ? "Small" : "Big"}
                   </span>
                 </div>
                 <div className="!text-[20px] !mt-4">Bonus</div>
