@@ -163,6 +163,7 @@ function Register() {
   };
 
   const result = data?.data?.data;
+
   return (
     <Container sx={{ background: "#FAF9F6" }}>
       <Box sx={style.authheader}>
@@ -400,11 +401,14 @@ function Register() {
             />
             {fk.touched.referral_code && fk.errors.referral_code ? (
               <div className="error">{fk.errors.referral_code}</div>
-            ) : result ? (
-              <div className="no-error">Referral From: {result}</div>
-            ) : (
-              <div className="error">Invalid Referral Id</div>
-            )}
+            ) : fk.values.referral_code ? (
+              result ? (
+                <div className="no-error">Referral From: {result}</div>
+              ) : (
+                <div className="error">Invalid Referral Id</div>
+              )
+            ) : null}
+           
           </FormControl>
         </Box>
         <Box mt={1}>
