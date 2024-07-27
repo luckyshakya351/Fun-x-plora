@@ -27,7 +27,7 @@ import wallet from "../../assets/images/wallet (5).png";
 import withdrow from "../../assets/images/withdraw.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { MyProfileDataFn } from "../../services/apicalling";
+import {walletamount } from "../../services/apicalling";
 
 function Wallet() {
   const net_wallet_amount = useSelector(
@@ -35,15 +35,18 @@ function Wallet() {
   );  const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =
     React.useState(false);
-  const { isLoading, data } = useQuery(["myprofile"], () => MyProfileDataFn(), {
-    refetchOnMount: false,
-    refetchOnReconnect: true,
-  });
-  const result = data?.data?.data;
 
-  const series = [Number(Number(result?.bonus || 0) % 100)?.toFixed(2)  || 0];
+    const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      retryOnMount:false,
+      refetchOnWindowFocus:false
+    });
+    const amount = data?.data?.data || 0;
+  
+  const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2),]
   const series2 = [
-    (Number(Number(result?.winning_wallet || 0) % 100) || 0)?.toFixed(2),
+    (Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),
   ];
 
   const [options] = React.useState({
@@ -157,29 +160,7 @@ function Wallet() {
               borderRadius: "10px",
             }}
           >
-            {/* <Box sx={{ width: "50%" }}>
-              <ReactApexChart
-                options={main_wallet.options}
-                series={main_wallet.series}
-                type="radialBar"
-                height={!isMediumScreen ? 200 : 250}
-              />
-              <Box
-                sx={{
-                  textAlign: "center",
-                  "&>p": { color: zubgtext, fontSize: "12px" },
-                }}
-              >
-                <Typography variant="body1" color="initial">
-                  ₹{" "}
-
-                  {Number(result?.bonus || 0)}
-                </Typography>
-                <Typography variant="body1" color="initial">
-                  Bonus Amount
-                </Typography>
-              </Box>
-            </Box> */}
+          
             <Stack
               direction="row"
               sx={{
@@ -278,30 +259,7 @@ function Wallet() {
                 </Box>
               </Box>
             </Stack>
-            {/* <Box sx={{ width: "50%" }}>
-              <ReactApexChart
-                options={third_party_wallet.options}
-                series={third_party_wallet.series}
-                type="radialBar"
-                height={!isMediumScreen ? 200 : 250}
-              />
-              <Box
-                sx={{
-                  textAlign: "center",
-                  "&>p": { color: "white", fontSize: "12px" },
-                }}
-              >
-                <Typography variant="body1" color="initial">
-                  ₹  {(
-                    Number(
-                      Number(result?.winning_wallet || 0)) || 0
-                  )?.toFixed(0)}
-                </Typography>
-                <Typography variant="body1" color="initial">
-                  Winning Amount
-                </Typography>
-              </Box>
-            </Box> */}
+           
           </Stack>
           <Stack
             direction="row"

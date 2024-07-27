@@ -42,10 +42,11 @@ export const Cricket_id_passFunction = async ({ setId_pass_data }) => {
     console.log(e);
   }
 };
-export const MypromotionDataFn = async () => {
+
+export const MygetdataFn = async () => {
   try {
     const response = await axios.get(
-      `${endpoint.promotion_data}?id=${Number(user_id)}`
+      `${endpoint.get_level}?userid=${Number(user_id)}`
     );
     return response;
   } catch (e) {
