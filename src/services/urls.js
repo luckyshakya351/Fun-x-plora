@@ -5,7 +5,7 @@ export const baseUrl = "https://admin.funxplora.com";
 // export const fron_end_main_domain = "https://sunlottery.fun";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain1 = "http://192.168.18.183:9000";
+// export const newdomain1 = "http://192.168.18.183:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -28,11 +28,12 @@ export const endpoint = {
   //node balance api
   // userwallet: `${baseUrl}/api/userwallet`,
   // top11winner: `https://game-zone-sql.onrender.com/api/v1/topw11winningInformation`,
-  userwallet: `${newdomain1}/api/v1/userwallet`,
+  userwallet: `${newdomain}/api/v1/userwallet`,
   top11winner: `${baseUrl}/api/winning-list`,
   openbannerUrl: `${baseUrl}/popup`,
   profiledata: `${baseUrl}/api/profileapi`,
-  get_level: `${newdomain1}/api/v1/get-level`,
+  get_level: `${newdomain}/api/v1/get-level`,
+  promotion_data: `${newdomain}/api/v1/promotiondata`,
   // wingo
   // applybet: `${baseUrl}/api/bet`,
   // game_history: `${baseUrl}/api/colour_result`,

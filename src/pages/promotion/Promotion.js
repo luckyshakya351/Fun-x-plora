@@ -16,11 +16,10 @@ import bgms1 from "../../assets/images/bgs1.jpg";
 import copyIimage from "../../assets/images/copy.png";
 import sort from "../../assets/images/data-flow.png";
 import donut from "../../assets/images/database.png";
-import book from "../../assets/images/rules.png";
 import money from "../../assets/images/salary.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { MygetdataFn,  walletamount } from "../../services/apicalling";
+import { MygetdataFn,  Mypromotion,  walletamount } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
 
 function Promotion() {
@@ -33,6 +32,18 @@ function Promotion() {
   });
 
   const wallet = amount?.data?.data;
+
+  // const { data:promotion } = useQuery(
+  //   ["promotiondata"],
+  //   () => Mypromotion(),
+  //   {
+  //     refetchOnMount: false,
+  //     refetchOnReconnect: false,
+  //     refetchOnWindowFocus: false
+  //   }
+  // );
+  // const prom = promotion?.data?.data;
+
 
   const { isLoading, data } = useQuery(
     ["get_level"],
