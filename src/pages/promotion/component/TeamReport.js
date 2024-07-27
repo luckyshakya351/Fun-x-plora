@@ -10,20 +10,21 @@ import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
-import { MygetdataFn } from "../../../services/apicalling";
+import { MypromotionDataFn } from "../../../services/apicalling";
 
 function TeamReports() {
   const { isLoading, data } = useQuery(
-    ["get_level"],
-    () => MygetdataFn(),
+    ["promotion_data"],
+    () => MypromotionDataFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+refetchOnWindowFocus:false
     }
   );
+
   const result = data?.data?.data;
-  const level1Data = result?.filter(item => item.LEVEL === 1) || [];
+
   return (
     <Layout>
       <Container
@@ -73,12 +74,12 @@ function TeamReports() {
               <span className="!col-span-2">Name</span>
               <span className="!col-span-2">Mobile No</span>
             </div>
-            {level1Data?.map((i, index) => {
+            {result?.directReferrals?.map((i, index) => {
               return (
                 <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-6   !place-items-center">
                   <span >{index + 1}</span>
                   <span>{i?.id}</span>
-                  <span className="!text-center !col-span-2">{i?.username || "No data found"}</span>
+                  <span className="!text-center !col-span-2">{i?.user_name || "No data found"}</span>
                   <span className="!col-span-2">{i?.mobile || "987654210"}</span>
                 </div>
               );
