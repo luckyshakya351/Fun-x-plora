@@ -23,9 +23,6 @@ import {
   zubgtext
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import dp2 from "../../assets/dp2.png";
-import dp3 from "../../assets/dp3.png";
-import dp4 from "../../assets/dp4.png";
 import balance1 from "../../assets/images/atm.png";
 import edit from "../../assets/images/banking.png";
 import card from "../../assets/images/card-payment.png";
@@ -47,7 +44,7 @@ import dpt from "../../assets/images/wallet (3).png";
 import wtd from "../../assets/images/withdraw.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { MyProfileDataFn } from "../../services/apicalling";
+import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 
 function Account() {
@@ -56,26 +53,14 @@ function Account() {
   const transactionId = searchParams?.get("order_id");
   const client = useQueryClient();
   const navigate = useNavigate();
-  const profile_data = localStorage.getItem("profile_data");
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
-  const [imageNumber, setImageNumber] = useState(profile_data || "1");
-  const net_wallet_amount = useSelector(
-    (state) => state.aviator.net_wallet_amount
-  );
-  const { isLoading, data } = useQuery(["myprofile"], () => MyProfileDataFn(), {
+
+  const {isLoading, data:amount} = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
-    refetchOnWindowFocus:false
+    refetchOnWindowFocus: false,
   });
-
-  const result = data?.data?.data;
-
-  const imge_array = [
-    { id: 1, img: dp1 },
-    { id: 2, img: dp2 },
-    { id: 3, img: dp3 },
-    { id: 4, img: dp4 },
-  ];
+  const wallet = amount?.data?.data;
 
   async function sendUrlCallBackToBackend(transactionId) {
     try {
@@ -105,20 +90,20 @@ function Account() {
           <Box sx={style.profileBox}>
             <Box
               component="img"
-              src={imge_array[Number(Number(imageNumber) - 1 || 0)]?.img}
+              src={dp1}
               sx={style.profileImage}
             />
           </Box>
           <Box sx={style.userInfo}>
             <Stack direction="row" alignItems="center">
               <Typography variant="" color="initial" sx={{ mr: 2 }}>
-                {result?.full_name}
+                {wallet?.full_name}
               </Typography>
               <Box component="img" src={namer} sx={{ width: "50px" }} />
             </Stack>
 
             <Typography variant="body1" color="initial" sx={{ mt: 1 }}>
-              UID | {result?.custid || 0}{" "}
+              UID | {wallet?.username || 0}{" "}
               <ContentCopyOutlinedIcon sx={{ fontSize: "15px", ml: 2 }} />
             </Typography>
           </Box>
@@ -133,10 +118,12 @@ function Account() {
           <Stack direction="row" sx={{ alignItems: "center", mt: "10px" }}>
             <Typography variant="body1" color="initial" sx={style.totalBalance}>
               ₹
-              {Number(
-                Number(net_wallet_amount?.wallet || 0) +
-                Number(net_wallet_amount?.winning || 0) || 0
-              )?.toFixed(2)}
+              {(
+                Number(
+                  Number(wallet?.winning || 0) +
+                    Number(wallet?.wallet || 0)
+                ) || 0
+              )?.toFixed(0)}
             </Typography>
             <CachedIcon sx={style.cachedIcon} />
           </Stack>
@@ -150,7 +137,7 @@ function Account() {
           >
             <Box component="img" src={cip} sx={style.cardImage} />
             <Typography variant="body1" color="initial" sx={style.cardNumber}>
-              Rererral Code: {result?.referral_code}
+              Rererral Code: {wallet?.referral_code}
             </Typography>
           </Stack>
         </Box>

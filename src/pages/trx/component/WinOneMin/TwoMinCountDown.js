@@ -2,33 +2,30 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
-import countdownfirst from "../../../../assets/countdownfirst.mp3";
-import countdownlast from "../../../../assets/countdownlast.mp3";
+import { zubgtext } from "../../../../Shared/color";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import trxtimerbackground from "../../../../assets/trxtimerbackground.png";
-import Policy from "../policy/Policy";
-import ShowImages from "./ShowImages";
 import {
   dummycounterFun,
   net_wallet_amount_function,
   trx_game_image_index_function,
   updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
-import axios from "axios";
-import { endpoint } from "../../../../services/urls";
-import toast from "react-hot-toast";
-import { zubgmid, zubgtext } from "../../../../Shared/color";
 import { walletamount } from "../../../../services/apicalling";
+import { endpoint } from "../../../../services/urls";
+import Policy from "../policy/Policy";
+import ShowImages from "./ShowImages";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const TwoMinCountDown = ({ fk,setBetNumber }) => {
+const TwoMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const [three_min_time, setThree_min_time] = useState("0_0");
@@ -57,21 +54,8 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
   React.useEffect(() => {
     const handleThreeMin = (threemin) => {
       setThree_min_time(threemin);
-      setBetNumber(threemin)
+      setBetNumber(threemin);
       fk.setFieldValue("show_this_one_min_time", threemin);
-      // if (
-      //   (threemin?.split("_")?.[1] === "5" ||
-      //     threemin?.split("_")?.[1] === "4" ||
-      //     threemin?.split("_")?.[1] === "3" ||
-      //     threemin?.split("_")?.[1] === "2") &&
-      //   threemin?.split("_")?.[0] === "0"
-      // )
-        // handlePlaySound();
-      // if (
-      //   threemin?.split("_")?.[1] === "1" &&
-      //   threemin?.split("_")?.[0] === "0"
-      // )
-        // handlePlaySoundLast();
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
         threemin?.split("_")?.[0] === "0" // 0 index means min
@@ -81,32 +65,24 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       if (threemin?.split("_")?.[1] === "59") {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
-      if (
-        threemin?.split("_")?.[1] === "25" &&
-        threemin?.split("_")?.[0] === "0"
-      ) {
-        // oneMinCheckResult();
-        // oneMinColorWinning();
-      }
+
       if (
         threemin?.split("_")?.[1] === "0" &&
         threemin?.split("_")?.[0] === "0"
       ) {
         client.refetchQueries("trx_gamehistory");
         client.refetchQueries("trx_gamehistory_chart");
-        // client.refetchQueries("my_trx_Allhistory");
         client.refetchQueries("my_trx_history");
         client.refetchQueries("walletamount");
         dispatch(dummycounterFun());
-        // fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
 
-    // socket.on("threemintrx", handleThreeMin);
+    socket.on("threemintrx", handleThreeMin);
 
-    // return () => {
-    //   socket.off("threemintrx", handleThreeMin);
-    // };
+    return () => {
+      socket.off("threemintrx", handleThreeMin);
+    };
   }, []);
 
   const { isLoading: amount_loder, data } = useQuery(
@@ -115,7 +91,7 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -129,7 +105,7 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -166,47 +142,8 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.result]);
 
-   const audioRefMusic = React.useRef(null);
-  // const handlePlaySound = async () => {
-  //   try {
-  //     if (audioRefMusic?.current?.pause) {
-  //       await audioRefMusic?.current?.play();
-  //     } else {
-  //       await audioRefMusic?.current?.pause();
-  //     }
-  //   } catch (error) {
-  //     // Handle any errors during play
-  //     console.error("Error during play:", error);
-  //   }
-  // };
-   const audioRefMusiclast = React.useRef(null);
-  // const handlePlaySoundLast = async () => {
-  //   try {
-  //     if (audioRefMusiclast?.current?.pause) {
-  //       await audioRefMusiclast?.current?.play();
-  //     } else {
-  //       await audioRefMusiclast?.current?.pause();
-  //     }
-  //   } catch (error) {
-  //     // Handle any errors during play
-  //     console.error("Error during play:", error);
-  //   }
-  // };
-
   return (
     <Box className="countdownbgtrx" sx={{ background: zubgtext }}>
-      {React.useMemo(() => {
-        return (
-          <>
-            <audio ref={audioRefMusic} hidden>
-              <source src={`${countdownfirst}`} type="audio/mp3" />
-            </audio>
-            <audio ref={audioRefMusiclast} hidden>
-              <source src={`${countdownlast}`} type="audio/mp3" />
-            </audio>
-          </>
-        );
-      }, [audioRefMusic, audioRefMusiclast])}
       <Box
         sx={{
           display: "flex",

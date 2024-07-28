@@ -25,11 +25,13 @@ import { dummycounterFun, net_wallet_amount_function } from "../../../../redux/s
 import { walletamount } from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
+import { useSocket } from "../../../../Shared/SocketContext";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 const TwoMinCountDown = ({ fk,setBetNumber }) => {
   const dispatch = useDispatch();
+  const socket = useSocket();
   const client = useQueryClient();
   const [three_min_time, setThree_min_time] = useState("0_0");
   const [isImageChange, setIsImageChange] = useState("1_2_3_4_5");
@@ -111,11 +113,11 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
 
-    // socket.on("threemin", handleThreeMin);
+    socket.on("threemin", handleThreeMin);
 
-    // return () => {
-    //   socket.off("threemin", handleThreeMin);
-    // };
+    return () => {
+      socket.off("threemin", handleThreeMin);
+    };
   }, []);
 
   const audioRefMusic = React.useRef(null);

@@ -5,6 +5,7 @@ export const baseUrl = "https://admin.funxplora.com";
 // export const fron_end_main_domain = "https://sunlottery.fun";
 export const fron_end_main_domain = "https://funxplora.com";
 
+// export const newdomain1 = "http://192.168.18.183:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -13,37 +14,37 @@ export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
 // `support@sunlottrey.fun`;
 export const telegram_url = "https://t.me/+9c__nUH79PtiYzBl";
-export const facebook_url = "https://www.facebook.com/people/Funxplora-Gaming/61561351673648/";
+export const facebook_url =
+  "https://www.facebook.com/people/Funxplora-Gaming/61561351673648/";
 export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 
 // `https://t.me/SunLottaryOfficial`;
 
 export const endpoint = {
-  //node login api 
+  //node login api
   login: `${newdomain}/api/v1/user_login`,
-  
-// login: `${baseUrl}/api/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/user_register`,
   //node balance api
-  userwallet: `${newdomain}/api/v1/userwallet`,
   // userwallet: `${baseUrl}/api/userwallet`,
   // top11winner: `https://game-zone-sql.onrender.com/api/v1/topw11winningInformation`,
+  userwallet: `${newdomain}/api/v1/userwallet`,
   top11winner: `${baseUrl}/api/winning-list`,
   openbannerUrl: `${baseUrl}/popup`,
   profiledata: `${baseUrl}/api/profileapi`,
+  get_level: `${newdomain}/api/v1/get-level`,
+  promotion_data: `${newdomain}/api/v1/promotiondata`,
   // wingo
   // applybet: `${baseUrl}/api/bet`,
   // game_history: `${baseUrl}/api/colour_result`,
   // my_history: `${baseUrl}/api/getbet`,
   // my_history_all: `${baseUrl}/api/getbet-game-results`,
 
- // wingo node api 
+  // wingo node api
   applybet: `${newdomain}/api/v1/bet`,
   game_history: `${newdomain}/api/v1/colour_result`,
   my_history_all: `${newdomain}/api/v1/getbet-game-results`,
-
 
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,
@@ -92,7 +93,7 @@ export const endpoint = {
   wallet_data: `${baseUrl}/api/aviator/userwallet`,
   bet_now: `${baseUrl}/api/aviator/bet_now`,
   cash_out: `${baseUrl}/api/aviator/cash_out`,
-  
+
   place_bid_jackpod: `${newdomain}/api/v1/place-bid-jackpod`,
   jackpod_my_history: `${newdomain}/api/v1/my-history-jackpod`,
   jackpod_game_history: `${newdomain}/api/v1/game-history-jackpod`,
