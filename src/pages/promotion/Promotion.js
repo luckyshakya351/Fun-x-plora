@@ -1,3 +1,4 @@
+
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import EmojiPeopleOutlinedIcon from "@mui/icons-material/EmojiPeopleOutlined";
@@ -16,28 +17,45 @@ import bgms1 from "../../assets/images/bgs1.jpg";
 import copyIimage from "../../assets/images/copy.png";
 import sort from "../../assets/images/data-flow.png";
 import donut from "../../assets/images/database.png";
-import book from "../../assets/images/rules.png";
 import money from "../../assets/images/salary.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { MypromotionDataFn } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
+import { promotionDataFunctionNodeJs, walletamount } from "../../services/apicalling";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
+  const { data:amount} = useQuery(["walletamount"], () => walletamount(), {
+    refetchOnMount: false,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: false,
+  });
+
+  const wallet = amount?.data?.data;
+
   const { isLoading, data } = useQuery(
-    ["promotion_data"],
-    () => MypromotionDataFn(),
+    ["get_level"],
+    () => promotionDataFunctionNodeJs(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
-
   const result = data?.data?.data;
 
+  const level1Count = result?.filter(entry => entry.LEVEL === 1).length || 0;
+  const levelOneWithDeposit = result?.filter(level => level.LEVEL === 1 && Number(level.deposit_amount) > 0);
+  const depositmember = levelOneWithDeposit?.length;
+  const total_deposit = levelOneWithDeposit?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)
+
+  const levelCount = result?.filter(entry => entry.LEVEL !== 0).length || 0;
+  const levelWithDeposit = result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0);
+  const depositeallmember = levelWithDeposit?.length;
+  const alltotal_deposit = levelWithDeposit?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)
+
+  
   const functionTOCopy = (value) => {
     console.log("function hit");
     copy(value);
@@ -49,7 +67,7 @@ refetchOnWindowFocus:false
         <CustomCircularProgress isLoading={isLoading} />
         <Box sx={style.header}>
           <Typography variant="body1" >
-            {" "}
+
           </Typography>
           <Typography variant="body1" className="!text-white">
             Agency
@@ -61,7 +79,7 @@ refetchOnWindowFocus:false
         <Box sx={style.commitionboxOuter}>
           <Box sx={style.commitionbox}>
             <Typography variant="body1" sx={{ color: zubgtext }}>
-              {result?.today_turnover}
+              {wallet?.total_turnover}
             </Typography>
             <Typography variant="body1" sx={{ color: 'white' }}>
               Total Turnover
@@ -76,7 +94,7 @@ refetchOnWindowFocus:false
             <Box sx={style.subordinatesleft}>
               <EmojiPeopleOutlinedIcon />
               <Typography variant="body1" >
-                {" "}
+
                 Direct subordinates
               </Typography>
             </Box>
@@ -94,13 +112,13 @@ refetchOnWindowFocus:false
                   variant="body1"
 
                 >
-                  {result?.count || 0}
+                  {level1Count || 0}
                 </Typography>
                 <Typography
                   variant="body1"
 
                 >
-                  {" "}
+
                   Number of register
                 </Typography>
               </Box>
@@ -109,13 +127,13 @@ refetchOnWindowFocus:false
                   variant="body1"
 
                 >
-                  {result?.deposit_member || 0}
+                  {depositmember || 0}
                 </Typography>
                 <Typography
                   variant="body1"
 
                 >
-                  {" "}
+
                   Number of Deposit Members
                 </Typography>
               </Box>
@@ -124,78 +142,52 @@ refetchOnWindowFocus:false
                   variant="body1"
 
                 >
-                  {result?.deposit_recharge || 0}
+                  {total_deposit || 0}
                 </Typography>
                 <Typography
                   variant="body1"
 
                 >
-                  {" "}
+
                   Deposit amount
                 </Typography>
               </Box>
-              {/* <Box sx={style.subcordinatelist}>
-                  <Typography
-                    variant="body1"
-                    
-                
-                  >
-                    0
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    
-                
-                  >
-                    {" "}
-                    Number of people making first deposit
-                  </Typography>
-                </Box> */}
             </Box>
 
             <Box sx={style.innerBoxStylestwo}>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" >
-                  {result?.teamcount || 0}
+                  {levelCount || 0}
                 </Typography>
                 <Typography variant="body1" >
-                  {" "}
-                  Number of register{" "}
+
+                  Number of register
                 </Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" >
-                  {result?.deposit_member_team || 0}
+                  {depositeallmember || 0}
                 </Typography>
                 <Typography variant="body1" >
-                  {" "}
+
                   Number of Deposit Members
                 </Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" >
-                  {result?.deposit_recharge_team || 0}
+                  {alltotal_deposit|| 0}
                 </Typography>
                 <Typography variant="body1" >
-                  {" "}
+
                   Deposit amount
                 </Typography>
               </Box>
-              {/* <Box sx={style.subcordinatelist}>
-                  <Typography variant="body1" >
-                    0
-                  </Typography>
-                  <Typography variant="body1" >
-                    {" "}
-                    Number of people making first deposit
-                  </Typography>
-                </Box> */}
+
             </Box>
           </Box>
           <Box sx={style.invitebtn}>
             <NavLink
-              //  to="/promotion/PromotionShare"
-              onClick={() => functionTOCopy(`${fron_end_main_domain}/register?ref=${result?.referral_code}`)}
+              onClick={() => functionTOCopy(`${fron_end_main_domain}/register?ref=${wallet?.referral_code}`)}
             >
               <Typography sx={{}}>INVITATION LINK</Typography>
             </NavLink>
@@ -204,12 +196,11 @@ refetchOnWindowFocus:false
         <Box sx={style.invitebutton} className="invitebutton">
           <Box sx={style.invitbox}>
             <Stack direction="row">
-              {/* <Box component='img' src={copycode}></Box> */}
               <Box
                 component="img"
                 src={copyIimage}
                 className="!cursor-pointer"
-                onClick={() => functionTOCopy(result?.referral_code)}
+                onClick={() => functionTOCopy(wallet?.referral_code)}
               ></Box>
               <Typography variant="body1" >
                 Copy invitation code
@@ -217,7 +208,7 @@ refetchOnWindowFocus:false
             </Stack>
             <Stack direction="row">
               <Typography variant="body1" >
-                {result?.referral_code}
+                {wallet?.referral_code}
               </Typography>
               <ArrowForwardIosOutlinedIcon />
             </Stack>
@@ -225,7 +216,6 @@ refetchOnWindowFocus:false
           <NavLink to="/promotion/TeamReport">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" >
                   Subordinate data
@@ -239,7 +229,6 @@ refetchOnWindowFocus:false
           <NavLink to="/account/income-main">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={money}></Box>
                 <Typography variant="body1" >
                   Income data
@@ -253,7 +242,6 @@ refetchOnWindowFocus:false
           <NavLink to="/promotion/TeamReport/data">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={team_port}></Box> */}
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" >
                   Team data
@@ -264,24 +252,10 @@ refetchOnWindowFocus:false
               </Stack>
             </Box>
           </NavLink>
-          {/* <NavLink to="/promotion/PromotionRule">
-            <Box sx={style.invitbox}>
-              <Stack direction="row">
-              
-                <Box component="img" src={book}></Box>
-                <Typography variant="body1" >
-                  Invitation rules
-                </Typography>
-              </Stack>
-              <Stack direction="row">
-                <ArrowForwardIosOutlinedIcon />
-              </Stack>
-            </Box>
-          </NavLink> */}
+         
           <NavLink to="/customerLine/">
             <Box sx={style.invitbox}>
               <Stack direction="row">
-                {/* <Box component='img' src={server}></Box> */}
                 <Box component="img" src={customer}></Box>
                 <Typography variant="body1" >
                   Agent line customer service
@@ -292,64 +266,34 @@ refetchOnWindowFocus:false
               </Stack>
             </Box>
           </NavLink>
-          {/* <NavLink to="/promotion/RebateRatio/">
-              <Box sx={style.invitbox}>
-                <Stack direction="row">
-                  <Box component="img" src={money}></Box>
-                  <Typography variant="body1" >
-                    Rebate ratio
-                  </Typography>
-                </Stack>
-                <Stack direction="row">
-                  <ArrowForwardIosOutlinedIcon />
-                </Stack>
-              </Box>
-            </NavLink> */}
+        
           <Box sx={style.promotionBoxOuter}>
             <Box sx={style.promotionBox}>
               <Stack direction="row">
-                {/* <Box component='img' src={download}></Box> */}
                 <Box component="img" src={money}></Box>
                 <Typography variant="body1" >
                   Promotion data
                 </Typography>
               </Stack>
             </Box>
-            {/* <Stack direction="row">
-              <Box>
-                <Typography variant="body1" >
-                  {Number(Number(result?.turnover || 0) + Number(result?.today_turnover || 0))?.toFixed(2)}
-                </Typography>
-                <Typography variant="body1" >
-                  Total Turnover
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="body1" >
-                  {result?.commission || 0}
-                </Typography>
-                <Typography variant="body1" >
-                  Total Commission
-                </Typography>
-              </Box>
-            </Stack> */}
+           
             <Stack direction="row">
-              <Box className= "!text-white">
-              <EmojiPeopleOutlinedIcon />
+              <Box className="!text-white">
+                <EmojiPeopleOutlinedIcon />
                 <Typography variant="body1" >
-                  {result?.count || 0}
+                  {level1Count || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Direct subordinate
                 </Typography>
               </Box>
-              <Box className= "!text-white">
-              <Groups2OutlinedIcon />
+              <Box className="!text-white">
+                <Groups2OutlinedIcon />
                 <Typography variant="body1" >
-                  {result?.teamcount || 0}
+                  {levelCount || 0}
                 </Typography>
                 <Typography variant="body1" >
-                  Team subordinates  
+                  Team subordinates
                 </Typography>
               </Box>
             </Stack>

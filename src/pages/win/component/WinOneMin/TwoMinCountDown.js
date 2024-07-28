@@ -6,7 +6,6 @@ import * as React from "react";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useSocket } from "../../../../Shared/SocketContext";
 import { zubgmid } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
@@ -30,7 +29,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 const TwoMinCountDown = ({ fk,setBetNumber }) => {
-  const socket = useSocket();
   const dispatch = useDispatch();
   const client = useQueryClient();
   const [three_min_time, setThree_min_time] = useState("0_0");

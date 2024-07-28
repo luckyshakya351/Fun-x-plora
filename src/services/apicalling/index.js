@@ -178,6 +178,17 @@ export const walletamount = async () => {
     console.log(e);
   }
 };
+export const promotionDataFunctionNodeJs = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.promotion_data_node}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const allWithdrawlCashUserFn = async () => {
   try {
     const response = await axios.get(`${endpoint.all_withdrawl_user_list}`);
