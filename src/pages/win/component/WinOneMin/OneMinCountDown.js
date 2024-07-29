@@ -21,11 +21,14 @@ import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun, net_wallet_amount_function } from "../../../../redux/slices/counterSlice";
+import { dummycounterFun, net_wallet_amount_function ,trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
 import { changeImages } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
 import { zubgmid } from "../../../../Shared/color";
-import { walletamount } from "../../../../services/apicalling";
+import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
+import { endpoint } from "../../../../services/urls";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -73,26 +76,20 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
       setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
-        // handlePlaySound();
+     
       }
-      // if (onemin === 1) 
-        // handlePlaySoundLast();
+      
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
       }
-      // if (onemin === 59) {
-      //   client.refetchQueries("walletamount");
-      
-      // }
+   
       if (onemin === 0) {
-        // client.refetchQueries("myhistory");
-        client.refetchQueries("myAllhistory");
+        client.refetchQueries("myAllhistory_1");
         client.refetchQueries("walletamount");
-        client.refetchQueries("gamehistory");
-        client.refetchQueries("gamehistory_chart");
+        client.refetchQueries("gamehistory_wingo_1");
         
-        dispatch(dummycounterFun());
+        // dispatch(dummycounterFun());
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
@@ -108,14 +105,57 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
   });
+  
+  const { data: my_history } = useQuery(
+    ["myAllhistory_1"],
+    () => My_All_HistoryFn(1),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+  const { data: game_history } = useQuery(
+    ["gamehistory_wingo_1"],
+    () => GameHistoryFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      retryOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
+  const GameHistoryFn = async () => {
+    try {
+      const response = await axios.get(
+        `${endpoint.game_history}?limit=500&offset=0&gameid=1`
+      );
+      return response;
+    } catch (e) {
+      toast(e?.message);
+      console.log(e);
+    }
+  };
+  React.useEffect(() => {
+    dispatch(
+      updateNextCounter(
+        game_history?.data?.data
+          ? Number(game_history?.data?.data?.[0]?.gamesno) + 1
+          : 1
+      )
+    );
+    dispatch(trx_game_history_data_function(game_history?.data?.data));
+  }, [game_history?.data?.data]);
 
   React.useEffect(()=>{
     dispatch(net_wallet_amount_function(data?.data?.data))
   },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
-
-
+React.useEffect(()=>{
+  dispatch(trx_my_history_data_function(my_history?.data?.data));
+  one_min_time>=58 ||one_min_time===0 &&  dispatch(dummycounterFun());
+},[my_history?.data?.data])
   const handlePlaySound = async () => {
     try {
       if (audioRefMusic?.current?.pause) {

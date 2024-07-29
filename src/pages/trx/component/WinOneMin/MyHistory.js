@@ -11,21 +11,20 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import moment from "moment";
 import * as React from "react";
-import { useQuery } from "react-query";
 import {
   zubgback,
   zubgtext,
 } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
-import {
-  My_All_TRX_HistoryFn,
-} from "../../../../services/apicalling";
 import { rupees } from "../../../../services/urls";
+import { useSelector } from "react-redux";
 
 const MyHistory = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
-
+  const my_history_data = useSelector(
+    (state) => state.aviator.trx_my_history_data
+  );
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -34,30 +33,6 @@ const MyHistory = ({ gid }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const { isLoading: myhistory_loding, data: my_history } = useQuery(
-    ["my_trx_history", gid],
-    () => My_All_TRX_HistoryFn(gid),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  const my_history_data = my_history?.data?.data || [];
-
-  // const { isLoading: myhistory_loding_all, data: my_history_all } = useQuery(
-  //   ["my_trx_Allhistory", gid],
-  //   () => My_All_TRX_HistoryPendingFn(gid),
-  //   {
-  //     refetchOnMount: false,
-  //     refetchOnReconnect: false,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
-
-  // const my_history_data_all = my_history_all?.data?.data || [];
 
   const visibleRows = React.useMemo(
     () =>
@@ -68,12 +43,7 @@ const MyHistory = ({ gid }) => {
     [page, rowsPerPage, my_history_data]
   );
 
-  if (myhistory_loding)
-    return (
-      <div className="!w-full  flex justify-center">
-        <CircularProgress className={""} />
-      </div>
-    );
+
 
   return (
     <Box>

@@ -1,38 +1,17 @@
 import { Box, Stack, Typography } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
 import TablePagination from "@mui/material/TablePagination";
-import axios from "axios";
 import * as React from "react";
-import toast from "react-hot-toast";
-import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 import { zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
-import { endpoint } from "../../../../services/urls";
 const Chart = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [cor, setcor] = React.useState([]);
   const [visibleRows, setVisibleRows] = React.useState([]);
-
-  const { isLoading, data: game_history } = useQuery(
-    ["trx_gamehistory_chart", gid],
-    () => GameHistoryFn(gid),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false
-    }
+  const game_history_data = useSelector(
+    (state) => state.aviator.trx_game_history_data
   );
-
-  const GameHistoryFn = async (gid) => {
-    try {
-      const response = await axios.get(`${endpoint.trx_game_history}?gameid=${gid}&limit=500`);
-      return response;
-    } catch (e) {
-      toast(e?.message);
-      console.log(e);
-    }
-  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -43,11 +22,6 @@ const Chart = ({ gid }) => {
     setPage(0);
   };
 
-  const game_history_data = React.useMemo(
-    () => game_history?.data?.result,
-    [game_history?.data?.result]
-  );
-
   React.useEffect(() => {
     setVisibleRows(
       game_history_data?.slice(
@@ -55,10 +29,10 @@ const Chart = ({ gid }) => {
         page * rowsPerPage + rowsPerPage
       )
     );
-  }, [page, rowsPerPage, game_history?.data?.result]);
+  }, [page, rowsPerPage, game_history_data]);
 
   React.useEffect(() => {
-    if (visibleRows && !isLoading) {
+    if (visibleRows && visibleRows?.length > 0) {
       const parent = document.getElementById("parent");
       const parentRect = parent.getBoundingClientRect();
       const newCor =
@@ -97,12 +71,7 @@ const Chart = ({ gid }) => {
     }
   }, [visibleRows]);
 
-  if (isLoading)
-    return (
-      <div className="!w-full  flex justify-center">
-        <CircularProgress className={"!text-white"} />
-      </div>
-    );
+
   return (
     <Box className="chartTable">
       <Stack direction="row" className="onegotextbox">
@@ -137,7 +106,11 @@ const Chart = ({ gid }) => {
                     {/* // main box of chart form 0 to 9 */}
                     <Box className="flex items-center justify-between !w-[80%]  lg:!w-[70%]">
                       {/* /// 0   //// */}
-                      <div id={`zero${indexi}`} className="z-20">
+                      <div id={`zero${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "0"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "0"
                             ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white"
@@ -149,7 +122,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 1   //// */}
-                      <div id={`one${indexi}`} className="z-20">
+                      <div id={`one${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "1"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "1"
                             ? "!bg-[#4bef98] !text-white"
@@ -161,7 +138,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 2   //// */}
-                      <div id={`two${indexi}`} className="z-20">
+                      <div id={`two${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "2"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "2"
                             ? "!bg-[#f1494c] !text-white"
@@ -173,7 +154,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 3   //// */}
-                      <div id={`three${indexi}`} className="z-20">
+                      <div id={`three${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "3"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "3"
                             ? "!bg-[#46eb93] !text-white"
@@ -185,7 +170,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 4   //// */}
-                      <div id={`four${indexi}`} className="z-20">
+                      <div id={`four${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "4"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "4"
                             ? "!bg-[#ed4b4e] !text-white"
@@ -197,7 +186,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 5   //// */}
-                      <div id={`five${indexi}`} className="z-20">
+                      <div id={`five${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "5"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "5"
                             ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
@@ -209,7 +202,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 6   //// */}
-                      <div id={`six${indexi}`} className="z-20">
+                      <div id={`six${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "6"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "6"
                             ? "!bg-[#f54b4e] !text-white"
@@ -221,7 +218,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 7   //// */}
-                      <div id={`seven${indexi}`} className="z-20">
+                      <div id={`seven${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "7"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "7"
                             ? "!bg-[#4af499] !text-white"
@@ -233,7 +234,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 8   //// */}
-                      <div id={`eight${indexi}`} className="z-20">
+                      <div id={`eight${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "8"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "8"
                             ? "!bg-[#eb494c] !text-white"
@@ -245,7 +250,11 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 9   //// */}
-                      <div id={`nine${indexi}`} className="z-20">
+                      <div id={`nine${indexi}`} className={`${
+                     String(Number(element?.tr41_slot_id)) === "9"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "9"
                             ? "!bg-[#4cf199] !text-white"

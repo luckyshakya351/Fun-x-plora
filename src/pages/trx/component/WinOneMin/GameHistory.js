@@ -7,73 +7,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import axios from "axios";
 import * as React from "react";
-import toast from "react-hot-toast";
-import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
-import {
-  trx_game_image_index_function,
-  updateNextCounter,
-} from "../../../../redux/slices/counterSlice";
-import { endpoint } from "../../../../services/urls";
 
 const GameHistory = ({ gid }) => {
   const navigate = useNavigate();
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
-  const dispatch = useDispatch();
-  const { isLoading, data: game_history } = useQuery(
-    ["trx_gamehistory", gid],
-    () => GameHistoryFn(gid),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false
-    }
+  const game_history_data = useSelector(
+    (state) => state.aviator.trx_game_history_data
   );
-
-  const GameHistoryFn = async (gid) => {
-    try {
-      const response = await axios.get(
-        `${endpoint.trx_game_history}?gameid=${gid}&limit=500`
-      );
-      return response;
-    } catch (e) {
-      toast(e?.message);
-      console.log(e);
-    }
-  };
-
-  const game_history_data = React.useMemo(
-    () => game_history?.data?.result,
-    [game_history?.data?.result]
-  );
-
-  React.useEffect(() => {
-    dispatch(
-      updateNextCounter(
-        game_history?.data?.result
-          ? Number(game_history?.data?.result?.[0]?.tr_transaction_id) + 1
-          : 1
-      )
-    );
-    const tr_digit =
-      game_history?.data?.result && game_history?.data?.result?.[0]?.tr_digits;
-    let array = [];
-    for (let i = 0; i < tr_digit?.length; i++) {
-      if (/[a-zA-Z]/.test(tr_digit[i])) {
-        array.push(tr_digit[i].toUpperCase());
-      } else {
-        array.push(tr_digit[i]);
-      }
-    }
-    dispatch(trx_game_image_index_function(array));
-  }, [game_history?.data?.result]);
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -91,13 +37,6 @@ const GameHistory = ({ gid }) => {
       ),
     [page, rowsPerPage, game_history_data]
   );
-
-  if (isLoading)
-    return (
-      <div className="!w-full  flex justify-center">
-        <CircularProgress  />
-      </div>
-    );
   return (
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">

@@ -14,12 +14,12 @@ import howToPlay from "../../../../assets/images/user-guide.png";
 import trxtimerbackground from "../../../../assets/trxtimerbackground.png";
 import Policy from "../policy/Policy";
 import ShowImages from "./ShowImages";
-import { dummycounterFun, net_wallet_amount_function, trx_game_image_index_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import { dummycounterFun,trx_game_history_data_function, net_wallet_amount_function, trx_game_image_index_function, updateNextCounter, trx_my_history_data_function } from "../../../../redux/slices/counterSlice";
 import axios from "axios";
 import { endpoint } from "../../../../services/urls";
 import toast from "react-hot-toast";
 import { zubgmid, zubgtext } from "../../../../Shared/color";
-import { walletamount } from "../../../../services/apicalling";
+import { My_All_TRX_HistoryFn, walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -82,12 +82,10 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
         fivemin?.split("_")?.[1] === "0" &&
         fivemin?.split("_")?.[0] === "0"
       ) {
-        client.refetchQueries("trx_gamehistory");
-        client.refetchQueries("trx_gamehistory_chart");
-        // client.refetchQueries("my_trx_Allhistory");
-        client.refetchQueries("my_trx_history");
+        client.refetchQueries("trx_gamehistory_3");
+        client.refetchQueries("my_trx_history_3");
         client.refetchQueries("walletamount");
-        dispatch(dummycounterFun());
+        // dispatch(dummycounterFun());
         // fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
@@ -110,9 +108,18 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     dispatch(net_wallet_amount_function(data?.data?.data))
   },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
+  const { data: my_history } = useQuery(
+    ["my_trx_history_3"],
+    () => My_All_TRX_HistoryFn(3),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const { isLoading, data: game_history } = useQuery(
-    ["trx_gamehistory"],
+    ["trx_gamehistory_3"],
     () => GameHistoryFn(),
     {
       refetchOnMount: false,
@@ -149,10 +156,14 @@ refetchOnWindowFocus:false
         array.push(tr_digit[i]);
       }
     }
+    dispatch(trx_game_history_data_function(game_history?.data?.result));
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.result]);
 
-
+  React.useEffect(()=>{
+    dispatch(trx_my_history_data_function(my_history?.data?.data));
+    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
+  },[my_history?.data?.data])
 
   const handlePlaySound = async () => {
     try {

@@ -1,40 +1,18 @@
 import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
-import axios from "axios";
 import * as React from "react";
-import toast from "react-hot-toast";
-import { useQuery } from "react-query";
-import { zubgback, zubgtext } from "../../../../Shared/color";
+import { zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
-import { endpoint } from "../../../../services/urls";
+import { useSelector } from "react-redux";
 
 const Chart = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const [cor, setcor] = React.useState([]);
   const [visibleRows, setVisibleRows] = React.useState([]);
-
-  const { isLoading, data: game_history } = useQuery(
-    ["gamehistory_chart", gid],
-    () => GameHistoryFn(gid),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false
-    }
+  const game_history_data = useSelector(
+    (state) => state.aviator.trx_game_history_data
   );
-
-  const GameHistoryFn = async (gid) => {
-    try {
-      const response = await axios.get(
-        `${endpoint.game_history}?limit=500&offset=0&gameid=${gid}`
-      );
-      return response;
-    } catch (e) {
-      toast(e?.message);
-      console.log(e);
-    }
-  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -45,7 +23,6 @@ const Chart = ({ gid }) => {
     setPage(0);
   };
 
-  const game_history_data = game_history?.data?.data;
 
   React.useEffect(() => {
     setVisibleRows(
@@ -54,10 +31,10 @@ const Chart = ({ gid }) => {
         page * rowsPerPage + rowsPerPage
       )
     );
-  }, [page, rowsPerPage, game_history?.data?.data]);
+  }, [page, rowsPerPage, game_history_data]);
 
   React.useEffect(() => {
-    if (visibleRows && !isLoading) {
+    if (visibleRows && game_history_data?.length > 0) {
       const parent = document.getElementById("parent");
       const parentRect = parent.getBoundingClientRect();
       const newCor = visibleRows?.map((element, index) => {
@@ -93,12 +70,6 @@ const Chart = ({ gid }) => {
     }
   }, [visibleRows]);
 
-  if (isLoading)
-    return (
-      <div className="!w-full flex justify-center">
-        <CircularProgress />
-      </div>
-    );
 
   return (
     <Box className="chartTable" sx={{ pb: 4 }}>
@@ -120,7 +91,7 @@ const Chart = ({ gid }) => {
               <Box
                 sx={{
                   background: '#fff',
-                  padding: "10px 0px",
+                  padding: "10px ",
                   borderBottom: "1px solid red",
                 }}
               >
@@ -133,11 +104,15 @@ const Chart = ({ gid }) => {
                   {/* // main box of chart form 0 to 9 */}
                   <Box className="flex items-center justify-between !w-[70%]"  >
                     {/* /// 0   //// */}
-                    <div id={`zero${indexi}`} className="z-20">
+                    <div id={`zero${indexi}`} className={`${
+                       i?.number === "0"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "0"
-                          ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white"
-                          : "!bg-white "
+                          ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white "
+                          : "!bg-white"
                           }`}
                       >
                         {" "}
@@ -145,7 +120,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 1   //// */}
-                    <div id={`one${indexi}`} className="z-20">
+                    <div id={`one${indexi}`} className={`${
+                       i?.number === "1"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "1"
                           ? "!bg-[#4bef98] !text-white"
@@ -157,7 +136,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 2   //// */}
-                    <div id={`two${indexi}`} className="z-20">
+                    <div id={`two${indexi}`} className={`${
+                       i?.number === "2"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "2"
                           ? "!bg-[#f1494c] !text-white"
@@ -169,7 +152,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 3   //// */}
-                    <div id={`three${indexi}`} className="z-20">
+                    <div id={`three${indexi}`} className={`${
+                       i?.number === "3"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "3"
                           ? "!bg-[#46eb93] !text-white"
@@ -181,7 +168,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 4   //// */}
-                    <div id={`four${indexi}`} className="z-20">
+                    <div id={`four${indexi}`} className={`${
+                       i?.number === "4"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "4"
                           ? "!bg-[#ed4b4e] !text-white"
@@ -193,7 +184,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 5   //// */}
-                    <div id={`five${indexi}`} className="z-20">
+                    <div id={`five${indexi}`} className={`${
+                       i?.number === "5"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "5"
                           ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
@@ -205,7 +200,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 6   //// */}
-                    <div id={`six${indexi}`} className="z-20">
+                    <div id={`six${indexi}`} className={`${
+                       i?.number === "6"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "6"
                           ? "!bg-[#f54b4e] !text-white"
@@ -217,7 +216,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 7   //// */}
-                    <div id={`seven${indexi}`} className="z-20">
+                    <div id={`seven${indexi}`} className={`${
+                       i?.number === "7"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody  !font-bold ${i?.number === "7"
                           ? "!bg-[#4af499] !text-white"
@@ -229,7 +232,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 8   //// */}
-                    <div id={`eight${indexi}`} className="z-20">
+                    <div id={`eight${indexi}`} className={`${
+                       i?.number === "8"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "8"
                           ? "!bg-[#eb494c] !text-white"
@@ -241,7 +248,11 @@ const Chart = ({ gid }) => {
                       </Typography>
                     </div>
                     {/* /// 9   //// */}
-                    <div id={`nine${indexi}`} className="z-20">
+                    <div id={`nine${indexi}`} className={`${
+                       i?.number === "9"
+                          ? "!z-20"
+                          : "!z-[-10px]"
+                      }`}>
                       <Typography
                         className={`circleNumberbody   !font-bold ${i?.number === "9"
                           ? "!bg-[#4cf199] !text-white"
@@ -268,7 +279,7 @@ const Chart = ({ gid }) => {
           <div className="!w-[80%] lg:!w-[70%]" id="parent">
             <svg
               width="100%"
-              height="100%"
+              height="100%" 
               xmlns="http://www.w3.org/2000/svg"
               className="z-10 absolute"
             >

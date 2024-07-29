@@ -13,13 +13,17 @@ import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import trxtimerbackground from "../../../../assets/trxtimerbackground.png";
-import { dummycounterFun, net_wallet_amount_function, trx_game_image_index_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import { dummycounterFun, 
+  net_wallet_amount_function,
+   trx_game_image_index_function,
+   trx_game_history_data_function,
+    updateNextCounter, 
+    trx_my_history_data_function} from "../../../../redux/slices/counterSlice";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
 import ShowImages from "./ShowImages";
-import { zubgmid, zubgtext } from "../../../../Shared/color";
-import { walletamount } from "../../../../services/apicalling";
+import { zubgtext } from "../../../../Shared/color";
+import { My_All_TRX_HistoryFn, walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -47,10 +51,8 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
       setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
-        // handlePlaySound();
       }
-      // if (onemin === 1)
-      //  handlePlaySoundLast();
+      
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
@@ -59,12 +61,9 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
         client.refetchQueries("walletamount");
       }
       if (onemin === 0) {
-        client.refetchQueries("trx_gamehistory");
-        client.refetchQueries("trx_gamehistory_chart");
-        // client.refetchQueries("my_trx_Allhistory");
-        client.refetchQueries("my_trx_history");
-        // client.refetchQueries("walletamount");
-        dispatch(dummycounterFun());
+        client.refetchQueries("trx_gamehistory_1");
+        client.refetchQueries("my_trx_history_1");
+        // dispatch(dummycounterFun());
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
@@ -73,9 +72,18 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
       socket.off("onemintrx", handleOneMin);
     };
   }, []);
+  const { isLoading: myhistory_loding, data: my_history } = useQuery(
+    ["my_trx_history_1"],
+    () => My_All_TRX_HistoryFn(1),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const { isLoading, data: game_history } = useQuery(
-    ["trx_gamehistory"],
+    ["trx_gamehistory_1"],
     () => GameHistoryFn(),
     {
       refetchOnMount: false,
@@ -112,8 +120,14 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
         array.push(tr_digit[i]);
       }
     }
+    dispatch(trx_game_history_data_function(game_history?.data?.result));
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.result]);
+
+  React.useEffect(()=>{
+    dispatch(trx_my_history_data_function(my_history?.data?.data));
+    one_min_time>=58 ||one_min_time===0 &&  dispatch(dummycounterFun());
+  },[my_history?.data?.data])
 
   const { isLoading: amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
@@ -125,33 +139,6 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(net_wallet_amount_function(data?.data?.data))
   },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
-
-
-  // const handlePlaySound = async () => {
-  //   try {
-  //     if (audioRefMusic?.current?.pause) {
-  //       await audioRefMusic?.current?.play();
-  //     } else {
-  //       await audioRefMusic?.current?.pause();
-  //     }
-  //   } catch (error) {
-  //     // Handle any errors during play
-  //     console.error("Error during play:", error);
-  //   }
-  // };
-
-  // const handlePlaySoundLast = async () => {
-  //   try {
-  //     if (audioRefMusiclast?.current?.pause) {
-  //       await audioRefMusiclast?.current?.play();
-  //     } else {
-  //       await audioRefMusiclast?.current?.pause();
-  //     }
-  //   } catch (error) {
-  //     // Handle any errors during play
-  //     console.error("Error during play:", error);
-  //   }
-  // };
 
   return (
     <Box

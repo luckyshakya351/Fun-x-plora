@@ -24,11 +24,17 @@ import howToPlay from "../../../../assets/images/user-guide.png";
 import {
   dummycounterFun,
   net_wallet_amount_function,
+  trx_game_history_data_function,
+  trx_my_history_data_function,
+  updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
 import { changeImages } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
 import { zubgmid } from "../../../../Shared/color";
-import { walletamount } from "../../../../services/apicalling";
+import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
+import axios from "axios";
+import { endpoint } from "../../../../services/urls";
+import toast from "react-hot-toast";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -103,12 +109,10 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
         fivemin?.split("_")?.[1] === "0" &&
         fivemin?.split("_")?.[0] === "0"
       ) {
-        client.refetchQueries("gamehistory");
+        client.refetchQueries("gamehistory_wingo_3");
         client.refetchQueries("walletamount");
-        client.refetchQueries("gamehistory_chart");
-        // client.refetchQueries("myhistory");
-        client.refetchQueries("myAllhistory");
-        dispatch(dummycounterFun());
+        client.refetchQueries("myAllhistory_3");
+        // dispatch(dummycounterFun());
       }
     };
 
@@ -118,6 +122,54 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       socket.off("fivemin", handleFiveMin);
     };
   }, []);
+
+  const { data: my_history } = useQuery(
+    ["myAllhistory_3"],
+    () => My_All_HistoryFn(3),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+  const { data: game_history } = useQuery(
+    ["gamehistory_wingo_3"],
+    () => GameHistoryFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      retryOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  const GameHistoryFn = async () => {
+    try {
+      const response = await axios.get(
+        `${endpoint.game_history}?limit=500&offset=0&gameid=3`
+      );
+      return response;
+    } catch (e) {
+      toast(e?.message);
+      console.log(e);
+    }
+  };
+  React.useEffect(()=>{
+    dispatch(trx_my_history_data_function(my_history?.data?.data));
+    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
+  },[my_history?.data?.data])
+
+  React.useEffect(() => {
+    dispatch(
+      updateNextCounter(
+        game_history?.data?.data
+          ? Number(game_history?.data?.data?.[0]?.gamesno) + 1
+          : 1
+      )
+    );
+    dispatch(trx_game_history_data_function(game_history?.data?.data));
+  }, [game_history?.data?.data]);
+
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
@@ -128,46 +180,11 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(net_wallet_amount_function(data?.data?.data));
   }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
-  const handlePlaySound = async () => {
-    try {
-      if (audioRefMusic?.current?.pause) {
-        await audioRefMusic?.current?.play();
-      } else {
-        await audioRefMusic?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
 
-  const handlePlaySoundLast = async () => {
-    try {
-      if (audioRefMusiclast?.current?.pause) {
-        await audioRefMusiclast?.current?.play();
-      } else {
-        await audioRefMusiclast?.current?.pause();
-      }
-    } catch (error) {
-      // Handle any errors during play
-      console.error("Error during play:", error);
-    }
-  };
 
   return (
     <Box className="countdownbg" sx={{ background: zubgmid }}>
-      {React.useMemo(() => {
-        return (
-          <>
-            <audio ref={audioRefMusic} hidden>
-              <source src={`${countdownfirst}`} type="audio/mp3" />
-            </audio>
-            <audio ref={audioRefMusiclast} hidden>
-              <source src={`${countdownlast}`} type="audio/mp3" />
-            </audio>
-          </>
-        );
-      }, [audioRefMusiclast, audioRefMusic])}
+     
       <Box
         sx={{
           display: "flex",
