@@ -17,6 +17,7 @@ import eight from "../../../../assets/trximage/8.png";
 import nine from "../../../../assets/trximage/9.png";
 import { endpoint } from "../../../../services/urls";
 import CryptoJS from "crypto-js";
+import { useSelector } from "react-redux";
 const WinLossPopup = ({ gid }) => {
   let array = [zero, one, two, three, four, five, six, seven, eight, nine];
   const login_data =
@@ -31,23 +32,25 @@ const WinLossPopup = ({ gid }) => {
   const [status, setstatus] = useState("");
   const [newstatus, setstatusNew] = useState("");
   const [all_result, setall_result] = useState();
-
+  const my_history_data = useSelector(
+    (state) => state.aviator.trx_my_history_data
+  );
   const MyHistoryFn = async () => {
     setloding(true);
     try {
-      const response = await axios.get(
-        `${endpoint.my_history_all}?userid=${user_id}&limit=0&gameid=${gid}`
-      );
-      const firstId = response?.data?.data?.[0]?.gamesno;
+      // const response = await axios.get(
+      //   `${endpoint.my_history_all}?userid=${user_id}&limit=0&gameid=${gid}`
+      // );
+      const firstId = my_history_data?.[0]?.gamesno;
       const winAmnt =
-        response?.data?.data
+        my_history_data
           ?.filter((i) => i?.gamesno === firstId)
           ?.reduce((a, b) => a + Number(b?.win || 0), 0) || 0;
       const amntAmnt =
-        response?.data?.data
+        my_history_data
           ?.filter((i) => i?.gamesno === firstId)
           ?.reduce((a, b) => a + Number(b?.amount || 0), 0) || 0;
-      setall_result(response?.data?.data?.[0]);
+      setall_result(my_history_data?.[0]);
 
       if (winAmnt) {
         setstatus({
