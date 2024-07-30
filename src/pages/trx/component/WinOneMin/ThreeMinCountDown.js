@@ -90,11 +90,11 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
 
-    // socket.on("fivemintrx", handleFiveMin);
+    socket.on("fivemintrx", handleFiveMin);
 
-    // return () => {
-    //   socket.off("fivemintrx", handleFiveMin);
-    // };
+    return () => {
+      socket.off("fivemintrx", handleFiveMin);
+    };
   }, []);
 
   const { isLoading:amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {

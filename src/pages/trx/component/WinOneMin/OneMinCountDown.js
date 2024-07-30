@@ -67,10 +67,10 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
-    // socket.on("onemintrx", handleOneMin);
-    // return () => {
-    //   socket.off("onemintrx", handleOneMin);
-    // };
+    socket.on("onemintrx", handleOneMin);
+    return () => {
+      socket.off("onemintrx", handleOneMin);
+    };
   }, []);
   const { isLoading: myhistory_loding, data: my_history } = useQuery(
     ["my_trx_history_1"],

@@ -14,7 +14,6 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
-import { useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
@@ -23,7 +22,6 @@ import {
   zubgtext
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import balance1 from "../../assets/images/atm.png";
 import edit from "../../assets/images/banking.png";
 import card from "../../assets/images/card-payment.png";
 import casino from "../../assets/images/casino.png";

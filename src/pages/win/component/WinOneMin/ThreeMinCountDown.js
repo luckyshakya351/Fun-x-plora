@@ -116,11 +116,11 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       }
     };
 
-    // socket.on("fivemin", handleFiveMin);
+    socket.on("fivemin", handleFiveMin);
 
-    // return () => {
-    //   socket.off("fivemin", handleFiveMin);
-    // };
+    return () => {
+      socket.off("fivemin", handleFiveMin);
+    };
   }, []);
 
   const { data: my_history } = useQuery(
