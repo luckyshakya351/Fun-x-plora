@@ -94,10 +94,10 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
     
-    socket.on("onemin", handleOneMin);
-    return () => {
-      socket.off("onemin", handleOneMin); 
-    };
+    // socket.on("onemin", handleOneMin);
+    // return () => {
+    //   socket.off("onemin", handleOneMin); 
+    // };
   }, []);
 
   const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {

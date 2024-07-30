@@ -114,11 +114,11 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
 
-    socket.on("threemin", handleThreeMin);
+    // socket.on("threemin", handleThreeMin);
 
-    return () => {
-      socket.off("threemin", handleThreeMin);
-    };
+    // return () => {
+    //   socket.off("threemin", handleThreeMin);
+    // };
   }, []);
 
   const audioRefMusic = React.useRef(null);

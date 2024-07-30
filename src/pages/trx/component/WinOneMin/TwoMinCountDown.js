@@ -101,11 +101,11 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
 
-    socket.on("threemintrx", handleThreeMin);
+    // socket.on("threemintrx", handleThreeMin);
 
-    return () => {
-      socket.off("threemintrx", handleThreeMin);
-    };
+    // return () => {
+    //   socket.off("threemintrx", handleThreeMin);
+    // };
   }, []);
 
   const { isLoading: amount_loder, data } = useQuery(
