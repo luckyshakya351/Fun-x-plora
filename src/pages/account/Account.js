@@ -167,14 +167,14 @@ function Account() {
             </Typography>
           </Box>
         </Box>
-        <Box sx={style.actionContainer} component={NavLink} to={"/bathistory"}>
+        <Box sx={style.actionContainer} >
           <Box
             sx={{
               width: "50%",
               height: "100%",
             }}
           >
-            <Stack direction="row" sx={{ alignItems: "center" }}>
+            <Stack direction="row" sx={{ alignItems: "center" }} component={NavLink} to={"/bathistory"}>
               <Box
                 component="img"
                 src={casino}
@@ -205,7 +205,8 @@ function Account() {
               height: "100%",
             }}
           >
-            <Stack direction="row" sx={{ alignItems: "center" }}>
+            <Stack direction="row" sx={{ alignItems: "center" }}
+            component={NavLink} to={"/account/income-main"}>
               <Box
                 component="img"
                 src={card}
@@ -226,7 +227,7 @@ function Account() {
                 }}
               >
                 <p className="!text-sm">Transaction</p>
-                <p className="!text-[10px]">My Transaction history</p>
+                <p className="!text-[10px]">All Income</p>
               </Box>
             </Stack>
           </Box>
@@ -361,12 +362,16 @@ function Account() {
 
           <div className="!w-full !grid !grid-cols-3 !place-items-center">
             {[
+              // {
+              //   to: "/account/income-main",
+              //   name: "Income",
+              //   logo: balance1,
+              // },
               {
-                to: "/account/income-main",
-                name: "Income",
-                logo: balance1,
-              },
-              { to: "/SettingCenter", name: "Setting", logo: setting },
+                 to: "/SettingCenter",
+                 name: "Setting", 
+                 logo: setting 
+                },
               {
                 to: "/gameNotification",
                 name: "Notification",
