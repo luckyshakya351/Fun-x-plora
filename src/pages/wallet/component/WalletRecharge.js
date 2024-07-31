@@ -32,6 +32,7 @@ import audiovoice from "../../../assets/bankvoice.mp3";
 import cip from "../../../assets/cip.png";
 import dot from "../../../assets/images/circle-arrow.png";
 import payment from "../../../assets/images/deposit (1).png";
+import usdt from "../../../assets/payNameIcon1.png";
 import user from "../../../assets/images/manuscript.png";
 import playgame from "../../../assets/images/playgame.jpg";
 import balance from "../../../assets/images/send.png";
@@ -46,7 +47,7 @@ function WalletRecharge() {
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
-
+  const [paymentType, setPaymentType] = React.useState('UPI');
   const deposit_amount = localStorage.getItem("amount_set");
   const Deposit_type = localStorage.getItem("Deposit_type");
   const server_provider = localStorage.getItem("server_provider");
@@ -388,7 +389,74 @@ function WalletRecharge() {
       </>
     );
   }, []);
+  const payment_button2 = React.useMemo(() => {
+    return (
+      <>
+        <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
+          <Box component="img" src={payment} width={30}></Box>
+          <Typography
+            variant="body1"
+            color="initial"
+            sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+          >
+            Select amount of USDT
+          </Typography>
+        </Stack>
+        <Stack
+          direction="row"
+          sx={{
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            mt: "10px",
+          }}
+        >
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => fk.setFieldValue("amount", 10)}
+          >
+            {" "}
+             10
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => fk.setFieldValue("amount", 50)}
+          >
+            {" "}
+            50
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => fk.setFieldValue("amount", 100)}
+          >
+            {" "}
+            100
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => fk.setFieldValue("amount", 500)}
+          >
+            {" "}
+            500
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => fk.setFieldValue("amount", 1000)}
+          >
+            {" "}
+            1K
+          </Button>
+          <Button
+            sx={style.paytmbtn}
+            onClick={() => fk.setFieldValue("amount", 5000)}
+          >
 
+            5K
+          </Button>
+        </Stack>
+      </>
+    );
+  }, []);
   // deposit_req_data
   if (deposit_req_data) {
     window.open(deposit_req_data);
@@ -536,227 +604,83 @@ function WalletRecharge() {
             </Typography>
           </Stack>
         </Box>
-        <Box sx={style.paymentBoxOuter}>
-          <Box sx={style.paymentlink} component={NavLink}>
-            <Box
-              component="img"
-              src={payNameIcon2}
-              sx={{ width: "100px", height: "80px", borderRadius: "10px" }}
-            ></Box>
-            <Typography variant="body1" color="initial">
-              UPI
-            </Typography>
+        <Box >
+          <Box sx={style.paymentBoxOuter} className="!cursor-pointer"
+            onClick={() => setPaymentType('UPI')} variant={paymentType === 'UPI' ? 'contained' : 'outlined'}>
+            <Box sx={style.paymentlink} component={NavLink}>
+              <Box
+                component="img"
+                src={payNameIcon2}
+                sx={{ width: "100px", height: "80px", borderRadius: "10px" }}
+              ></Box>
+              <Typography variant="body1" color="initial" >
+                UPI
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={style.paymentBoxOuter} className="!cursor-pointer"
+            onClick={() => setPaymentType('USDT')} variant={paymentType === 'USDT' ? 'contained' : 'outlined'}>
+            <Box sx={style.paymentlink} >
+              <Box
+                component="img"
+                src={usdt}
+                sx={{ width: "100px", height: "80px", borderRadius: "10px" }}
+              ></Box>
+              <Typography variant="body1" color="initial">
+                USDT
+              </Typography>
+            </Box>
           </Box>
         </Box>
-        <Box>
-          {/* {React.useMemo(() => {
-            return (
-              <>
-                <Box
-                  sx={{
-                    padding: "10px",
-                    width: "95%",
-                    margin: "auto",
-                    mt: "20px",
-                    background: zubgmid,
-                    borderRadius: "10px",
-                    mb: 2,
-                  }}
-                >
-                  <Stack
-                    direction="row"
-                    sx={{ alignItems: "center", mb: "20px" }}
-                  >
-                    <Box component="img" src={quickpay} width={30}></Box>
-                    <Typography
-                      variant="body1"
-                      color="initial"
-                      sx={{ fontSize: "15px ", color: "white", ml: "10px" }}
-                    >
-                      {" "}
-                      Select channel
-                    </Typography>
-                  </Stack>
-                  <Stack
-                    direction="row"
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      flexWrap: "wrap",
-                      mt: "10px",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: "48%",
-                        background: zubgbackgrad,
-                        padding: "15px 20px",
-                        borderRadius: "10px",
-                        mb: "10px",
-                        "&>p": { fontSize: "14px", color: "white" },
-                      }}
-                    >
-                      <Typography variant="body1" color="initial">
-                        IMpay-QR
-                      </Typography>
-                      <Typography variant="body1" color="initial">
-                        Balance:100 - 50K
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "48%",
-                        background: zubgback,
-                        padding: "15px 20px",
-                        borderRadius: "10px",
-                        mb: "10px",
-                        "&>p": { fontSize: "14px", color: "white" },
-                      }}
-                    >
-                      <Typography variant="body1" color="initial">
-                        TYpay-QR
-                      </Typography>
-                      <Typography variant="body1" color="initial">
-                        Balance:500 - 50K
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "48%",
-                        background: zubgback,
-                        padding: "15px 20px",
-                        borderRadius: "10px",
-                        mb: "10px",
-                        "&>p": { fontSize: "14px", color: "white" },
-                      }}
-                    >
-                      <Typography variant="body1" color="initial">
-                        HeyPay-APP
-                      </Typography>
-                      <Typography variant="body1" color="initial">
-                        Balance:100 - 50K
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "48%",
-                        background: zubgback,
-                        padding: "15px 20px",
-                        borderRadius: "10px",
-                        mb: "10px",
-                        "&>p": { fontSize: "14px", color: "white" },
-                      }}
-                    >
-                      <Typography variant="body1" color="initial">
-                        UPIpay-APP
-                      </Typography>
-                      <Typography variant="body1" color="initial">
-                        Balance:100 - 50K
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "48%",
-                        background: zubgback,
-                        padding: "15px 20px",
-                        borderRadius: "10px",
-                        mb: "10px",
-                        "&>p": { fontSize: "14px", color: "white" },
-                      }}
-                    >
-                      <Typography variant="body1" color="initial">
-                        BYpay-APP
-                      </Typography>
-                      <Typography variant="body1" color="initial">
-                        Balance:100 - 50K
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "48%",
-                        background: zubgback,
-                        padding: "15px 20px",
-                        borderRadius: "10px",
-                        mb: "10px",
-                        "&>p": { fontSize: "14px", color: "white" },
-                      }}
-                    >
-                      <Typography variant="body1" color="initial">
-                        OKpay-QR
-                      </Typography>
-                      <Typography variant="body1" color="initial">
-                        Balance:500 - 50K
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "48%",
-                        background: zubgback,
-                        padding: "15px 20px",
-                        borderRadius: "10px",
-                        mb: "10px",
-                        "&>p": { fontSize: "14px", color: "white" },
-                      }}
-                    >
-                      <Typography variant="body1" color="initial">
-                        MGpay-QR
-                      </Typography>
-                      <Typography variant="body1" color="initial">
-                        Balance:500 - 100K
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </Box>
-              </>
-            );
-          }, [])} */}
-          <Box
-            sx={{
-              padding: "10px",
-              width: "95%",
-              margin: "auto",
-              mt: "20px",
-              background: '#ffffff',
-              boxShadow: zubgshadow,
-              borderRadius: "10px",
-              mb: 2,
-            }}
-          >
-            {payment_button}
-            <Stack
-              direction="row"
+        {paymentType === 'UPI' ? (
+          <Box>
+            <Box
               sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                mt: "10px",
+                padding: "10px",
+                width: "95%",
+                margin: "auto",
+                mt: "20px",
+                background: '#ffffff',
+                boxShadow: zubgshadow,
+                borderRadius: "10px",
+                mb: 2,
               }}
             >
-              <OutlinedInput
-                fullWidth
-                placeholder="Enter amount"
-                className="wallet-textfield"
-                type="number"
-                id="amount"
-                name="amount"
-                value={fk.values.amount}
-                onChange={fk.handleChange}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton edge="end">
-                      <CloseIcon />
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              {fk.touched.amount && fk.errors.amount && (
-                <div className="error">{fk.errors.amount}</div>
-              )}
-              {/* {!deposit_req_data ? ( */}
-              <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
-                Deposit
-              </Button>
-              {/* ) : (
+              {payment_button}
+              <Stack
+                direction="row"
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  mt: "10px",
+                }}
+              >
+                <OutlinedInput
+                  fullWidth
+                  placeholder="Enter amount"
+                  className="wallet-textfield"
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  value={fk.values.amount}
+                  onChange={fk.handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton edge="end">
+                        <CloseIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                {fk.touched.amount && fk.errors.amount && (
+                  <div className="error">{fk.errors.amount}</div>
+                )}
+                {/* {!deposit_req_data ? ( */}
+                <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
+                  Deposit
+                </Button>
+                {/* ) : (
                 <div style={style.paytmbtntwo} className="mt-5">
                   <div className="flex w-full justify-between items-center">
                     <span style={{ color: "white" }}>
@@ -801,10 +725,136 @@ function WalletRecharge() {
                   </div>
                 </div>
               )} */}
-            </Stack>
+              </Stack>
+            </Box>
+            {rechargeInstruction}
+          </Box>) : (
+          <Box>
+          
+                  <Box
+                    sx={{
+                      padding: "10px",
+                      width: "95%",
+                      margin: "auto",
+                      mt: "20px",
+                      background: zubgmid,
+                      borderRadius: "10px",
+                      mb: 2,
+                    }}
+                  >
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center", mb: "20px" }}
+                    >
+                      <Box component="img" width={30}></Box>
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        sx={{ fontSize: "20px ", color: "white", ml: "10px" }}
+                      >
+                        {" "}
+                        Select channel
+                      </Typography>
+                    </Stack>
+                    <Stack
+
+                      sx={{
+
+                        mt: "10px",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          width: "100%",
+                          background: zubgbackgrad,
+                          padding: "15px 20px",
+                          borderRadius: "10px",
+                          mb: "10px",
+                          "&>p": { fontSize: "14px", color: "white" },
+                        }}
+                      >
+                        <Typography variant="body1" color="initial">
+                          IMpay-QR
+                        </Typography>
+                        <Typography variant="body1" color="initial">
+                         Balance:100 - 50K
+                        </Typography>
+                        <Typography variant="body1" color="initial">
+                          3 %  Bonus
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          width: "100%",
+                          background: zubgbackgrad,
+                          padding: "15px 20px",
+                          borderRadius: "10px",
+                          mb: "10px",
+                          "&>p": { fontSize: "14px", color: "white" },
+                        }}
+                      >
+                        <Typography variant="body1" color="initial">
+                          TYpay-QR
+                        </Typography>
+                        <Typography variant="body1" color="initial">
+                          Balance:500 - 50K
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </Box>
+              
+             
+            <Box
+              sx={{
+                padding: "10px",
+                width: "95%",
+                margin: "auto",
+                mt: "20px",
+                background: '#ffffff',
+                boxShadow: zubgshadow,
+                borderRadius: "10px",
+                mb: 2,
+              }}
+            >
+              {payment_button2}
+              <Stack
+                direction="row"
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  mt: "10px",
+                }}
+              >
+                <OutlinedInput
+                  fullWidth
+                  placeholder="Enter USDT "
+                  className="wallet-textfield"
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  value={fk.values.amount}
+                  onChange={fk.handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton edge="end">
+                        <CloseIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+
+
+                <Button sx={style.paytmbtntwo} >
+                  Deposit
+                </Button>
+
+              </Stack>
+            </Box>
+            {rechargeInstruction}
           </Box>
-          {rechargeInstruction}
-        </Box>
+        )}
+
         <CustomCircularProgress isLoading={loding} />
         {/* deposit_req_data */}
         {/* {true && (

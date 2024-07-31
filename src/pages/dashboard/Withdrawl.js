@@ -20,7 +20,7 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
-import { lightblue, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import { lightblue, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
 import cip from "../../assets/cip.png";
 import payment from "../../assets/images/deposit (2).png";
 import playgame from "../../assets/images/playgame.jpg";
@@ -509,7 +509,7 @@ function Withdrawl() {
                   <div className="error">{fk.errors.account_number}</div>
                 )}
               </FormControl> */}
-              <FormControl fullWidth sx={{ mt: "10px" }}>
+              {/* <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
                     Description <span className="!text-red-600">*</span>
@@ -528,9 +528,9 @@ function Withdrawl() {
                   InputProps={{
                     style: {
                       boxShadow: zubgshadow, background: '#fff', border: '1px solid red',
-                      color: lightblue, // Text color
+                      color: lightblue, 
                       "::placeholder": {
-                        color: lightblue, // Placeholder color
+                        color: lightblue, 
                       },
                     },
                   }}
@@ -539,7 +539,7 @@ function Withdrawl() {
                 {fk.touched.description && fk.errors.description && (
                   <div className="error">{fk.errors.description}</div>
                 )}
-              </FormControl>
+              </FormControl> */}
               <Button
                 sx={style.paytmbtntwo}
                 type="submit"
@@ -592,7 +592,7 @@ function Withdrawl() {
             <Typography
               variant="body1"
               color="initial"
-             className="!text-xs"
+              className="!text-xs"
             >
               {" "}
               to be able to withdraw .{" "}
