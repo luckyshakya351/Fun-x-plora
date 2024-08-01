@@ -5,7 +5,7 @@ export const baseUrl = "https://admin.funxplora.com";
 // export const fron_end_main_domain = "https://sunlottery.fun";
 export const fron_end_main_domain = "https://funxplora.com";
 
-// export const newdomain1 = "http://192.168.18.183:9000";
+export const newdomain1 = "http://192.168.18.183:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -53,6 +53,7 @@ export const endpoint = {
   withdraw_payment: `${baseUrl}/api/payout-request`,
   get_name_by_referral_code: `${baseUrl}/api/get-user-reffral-name`,
   payment_request: `${baseUrl}/api/deposit-request`,
+  payment: `${newdomain1}/api/v1/payment`,
   registration_bonus: `${baseUrl}/api/welcom-bonus`,
   deposit_history: `${baseUrl}/api/deposit-history`,
   withdrawl_history: `${baseUrl}/api/withdrawl-history`,

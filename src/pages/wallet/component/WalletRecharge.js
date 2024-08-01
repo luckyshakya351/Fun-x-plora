@@ -31,7 +31,7 @@ import {
 import audiovoice from "../../../assets/bankvoice.mp3";
 import cip from "../../../assets/cip.png";
 import dot from "../../../assets/images/circle-arrow.png";
-import payment from "../../../assets/images/deposit (1).png";
+import pay from "../../../assets/images/deposit (1).png";
 import usdt from "../../../assets/payNameIcon1.png";
 import user from "../../../assets/images/manuscript.png";
 import playgame from "../../../assets/images/playgame.jpg";
@@ -40,6 +40,7 @@ import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
+import UsdtQR from "./UsdtQR";
 
 function WalletRecharge() {
 
@@ -60,13 +61,14 @@ function WalletRecharge() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  // const aviator_data = localStorage.getItem("aviator_data");
   const user_name =
     aviator_login_data && JSON.parse(aviator_login_data)?.username;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [deposit_req_data, setDeposit_req_data] = React.useState();
   const [loding, setloding] = React.useState(false);
-  // const [show_time, set_show_time] = React.useState("0_0");
+  const [deposit_req_data_usdt, setDeposit_req_data_usdt] = React.useState();
+  const [address, setAddress] = React.useState("");
+
   const [amount, setAmount] = React.useState({
     wallet: 0,
     winning: 0,
@@ -94,7 +96,6 @@ function WalletRecharge() {
         await audioRefMusic?.current?.pause();
       }
     } catch (error) {
-      // Handle any errors during play
       console.error("Error during play:", error);
     }
   };
@@ -106,7 +107,6 @@ function WalletRecharge() {
       );
 
       setAmount(response?.data?.data);
-      // console.log(response,"response")
     } catch (e) {
       toast(e?.message);
       console.log(e);
@@ -187,67 +187,36 @@ function WalletRecharge() {
     setloding(false);
   }
 
-  // React.useEffect(() => {
-  //   let x = true;
-  //   if (deposit_req_data) {
-  //     let min = 1;
-  //     let sec = 59;
-  //     const interval = setInterval(() => {
-  //       set_show_time(`${min}_${sec}`);
-  //       if (x) {
-  //         startGetTimeForCallBack();
-  //         x = false;
-  //       }
-  //       sec--;
 
-  //       if (sec < 0) {
-  //         sec = 59;
-  //         min--;
+const initialValuesss = {
+  amount: deposit_amount || 1,
+};
 
-  //         if (min < 0) {
-  //           sec = 59;
-  //           min = 1;
-  //           stopPrintingHello();
-  //           clearInterval(interval);
-  //           setDeposit_req_data();
-  //           set_show_time("0_0");
-  //           setloding(false);
-  //         }
-  //       }
-  //     }, 1000);
-  //   }
-  // }, [deposit_req_data]);
+const formik = useFormik({
+  initialValues: initialValuesss,
+  onSubmit: () => {
+    const fd = new FormData();
+    payment(formik.values.amount);
 
-  // async function printHello() {
-  //   try {
-  //     const res = await axios.get(
-  //       `${endpoint.recharge_call_bakc}?userid=${user_id}&transectionid=${t_id}`
-  //     );
-  //     console.log(res, "Api response");
-  //     if (res?.data?.payment_status !== "Pending") {
-  //       setTimeout(() => {
-  //         setDeposit_req_data();
-  //         set_show_time("0_0");
-  //         setloding(false);
-  //         stopPrintingHello();
-  //       }, 2000);
-  //     }
-  //     if (res?.data?.msg === "Successfully Data Found") {
-  //       setCallBackResponse(res?.data);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
-  // function startGetTimeForCallBack() {
-  //   intervalId = setInterval(printHello, 20000);
-  // }
-
-  // // Function to stop the interval
-  // function stopPrintingHello() {
-  //   clearInterval(intervalId); // Clear the interval using its ID
-  // }
+  },
+});
+async function payment(amnt) {
+  setloding(true);
+  if (!amnt) {
+    toast("Please Enter the amount");
+    return;
+  }
+  const formdata = {
+    userid: Number(user_id),
+    amount: Number(amnt)
+  }
+  const response = await axios.post(`${endpoint.payment}`, formdata);
+  setDeposit_req_data_usdt(response?.data?.data?.qrcode_url);
+  setAddress(response?.data?.data?.address)
+  setAmount(response?.data?.data?.amount)
+  // console.log(response?.data?.data?.amount)
+  setloding(false);
+}
 
   const audio = React.useMemo(() => {
     return (
@@ -325,7 +294,7 @@ function WalletRecharge() {
     return (
       <>
         <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-          <Box component="img" src={payment} width={30}></Box>
+          <Box component="img" src={pay} width={30}></Box>
           <Typography
             variant="body1"
             color="initial"
@@ -393,7 +362,7 @@ function WalletRecharge() {
     return (
       <>
         <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-          <Box component="img" src={payment} width={30}></Box>
+          <Box component="img" src={pay} width={30}></Box>
           <Typography
             variant="body1"
             color="initial"
@@ -413,51 +382,50 @@ function WalletRecharge() {
         >
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 10)}
+            onClick={() => formik.setFieldValue("amount", 10)}
           >
             {" "}
-             10
+            $ 10
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 50)}
+            onClick={() => formik.setFieldValue("amount", 50)}
           >
             {" "}
-            50
+            $  50
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 100)}
+            onClick={() => formik.setFieldValue("amount", 100)}
           >
             {" "}
-            100
+            $ 100
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 500)}
+            onClick={() => formik.setFieldValue("amount", 500)}
           >
             {" "}
-            500
+            $  500
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 1000)}
+            onClick={() => formik.setFieldValue("amount", 1000)}
           >
             {" "}
-            1K
+            $  1K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 5000)}
+            onClick={() => formik.setFieldValue("amount", 5000)}
           >
 
-            5K
+          $   5K
           </Button>
         </Stack>
       </>
     );
   }, []);
-  // deposit_req_data
   if (deposit_req_data) {
     window.open(deposit_req_data);
     // return (
@@ -467,6 +435,14 @@ function WalletRecharge() {
     //     show_time={show_time}
     //   />
     // );
+  }
+  if (paymentType !== "UPI" && deposit_req_data_usdt && address) {
+    return (
+      <UsdtQR
+        deposit_req_data={deposit_req_data_usdt}
+        address={address}
+      />
+    );
   }
   return (
     <Layout>
@@ -604,29 +580,40 @@ function WalletRecharge() {
             </Typography>
           </Stack>
         </Box>
-        <Box >
-          <Box sx={style.paymentBoxOuter} className="!cursor-pointer"
+        <Box className="!flex !justify-start !mx-5 gap-5">
+          <Box
+          sx={{
+            background: zubgtext,
+            border: zubgtext
+          }}
+           className="!cursor-pointer px-8 py-3 !rounded-lg !my-10 "
             onClick={() => setPaymentType('UPI')} variant={paymentType === 'UPI' ? 'contained' : 'outlined'}>
-            <Box sx={style.paymentlink} component={NavLink}>
+            <Box  component={NavLink}>
               <Box
                 component="img"
                 src={payNameIcon2}
                 sx={{ width: "100px", height: "80px", borderRadius: "10px" }}
               ></Box>
-              <Typography variant="body1" color="initial" >
+              <Typography className="!text-center !text-white !text-sm">
                 UPI
               </Typography>
             </Box>
           </Box>
-          <Box sx={style.paymentBoxOuter} className="!cursor-pointer"
-            onClick={() => setPaymentType('USDT')} variant={paymentType === 'USDT' ? 'contained' : 'outlined'}>
-            <Box sx={style.paymentlink} >
-              <Box
+          <Box  
+           sx={{
+            background: zubgtext,
+            border: zubgtext
+          }}
+           className="!cursor-pointer px-8  py-3 !rounded-lg !my-10 "
+            onClick={() => setPaymentType('USDT')} variant={paymentType === 'USDT' ? 'contained' : 'outlined'}
+            >
+            <Box  >
+              <Box className="!bg-white !border !border-white !rounded-lg"
                 component="img"
                 src={usdt}
                 sx={{ width: "100px", height: "80px", borderRadius: "10px" }}
               ></Box>
-              <Typography variant="body1" color="initial">
+              <Typography className="!text-center !text-white !text-sm">
                 USDT
               </Typography>
             </Box>
@@ -676,134 +663,108 @@ function WalletRecharge() {
                 {fk.touched.amount && fk.errors.amount && (
                   <div className="error">{fk.errors.amount}</div>
                 )}
-                {/* {!deposit_req_data ? ( */}
+                
                 <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
                   Deposit
                 </Button>
-                {/* ) : (
-                <div style={style.paytmbtntwo} className="mt-5">
-                  <div className="flex w-full justify-between items-center">
-                    <span style={{ color: "white" }}>
-                      {fk.values.all_data?.t_id}
-                    </span>
-                    <div>
-                      <Button
-                        variant="contained"
-                        onClick={() =>
-                          window.open(deposit_req_data?.upi_deep_link, "_blank")
-                        }
-                      >
-                        Pay Now
-                      </Button>
-                      <span style={{ color: "white" }}>
-                        {" "}
-                        {show_time.split("_")?.[0]}:
-                        {show_time.split("_")?.[1]?.padEnd(2, "0")}
-                      </span>
-                    </div>
-                    <span style={{ color: "white" }}>
-                      {" "}
-                      {rupees} {fk.values.all_data?.amount}
-                    </span>
-                  </div>
-                  <div className="!h-[1px] w-full !bg-red-500 !mt-2"></div>
-                  <div className="flex w-full justify-between !text-[15px]">
-                    <span style={{ color: "white" }}>Status</span>
-                    <span style={{ color: "white" }}>Pending</span>
-                  </div>
-                  <div className="flex w-full justify-between !text-[12px]">
-                    <span style={{ color: "white" }}>Date</span>
-                    <span style={{ color: "white" }}>
-                      {moment(fk.values.all_data?.date).format("DD-MM-YYYY")}
-                    </span>
-                  </div>
-                  <div className="flex w-full justify-between !text-[12px]">
-                    <span style={{ color: "white" }}>Time</span>
-                    <span style={{ color: "white" }}>
-                      {moment(fk.values.all_data?.date).format("HH:mm:ss")}
-                    </span>
-                  </div>
-                </div>
-              )} */}
+               
               </Stack>
             </Box>
             {rechargeInstruction}
           </Box>) : (
           <Box>
-          
-                  <Box
-                    sx={{
-                      padding: "10px",
-                      width: "95%",
-                      margin: "auto",
-                      mt: "20px",
-                      background: zubgmid,
-                      borderRadius: "10px",
-                      mb: 2,
-                    }}
-                  >
-                    <Stack
-                      direction="row"
-                      sx={{ alignItems: "center", mb: "20px" }}
-                    >
-                      <Box component="img" width={30}></Box>
-                      <Typography
-                        variant="body1"
-                        color="initial"
-                        sx={{ fontSize: "20px ", color: "white", ml: "10px" }}
-                      >
-                        {" "}
-                        Select channel
-                      </Typography>
-                    </Stack>
-                    <Stack
 
-                      sx={{
+            {/* <Box
+              sx={{
+                padding: "10px",
+                width: "95%",
+                margin: "auto",
+                mt: "20px",
+                background: zubgmid,
+                borderRadius: "10px",
+                mb: 2,
+              }}
+            >
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", mb: "20px" }}
+              >
+                <Box component="img" width={30}></Box>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ fontSize: "20px ", color: "white", ml: "10px" }}
+                >
+                  {" "}
+                  Select channel
+                </Typography>
+              </Stack>
+              <Stack
 
-                        mt: "10px",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          width: "100%",
-                          background: zubgbackgrad,
-                          padding: "15px 20px",
-                          borderRadius: "10px",
-                          mb: "10px",
-                          "&>p": { fontSize: "14px", color: "white" },
-                        }}
-                      >
-                        <Typography variant="body1" color="initial">
-                          IMpay-QR
-                        </Typography>
-                        <Typography variant="body1" color="initial">
-                         Balance:100 - 50K
-                        </Typography>
-                        <Typography variant="body1" color="initial">
-                          3 %  Bonus
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          width: "100%",
-                          background: zubgbackgrad,
-                          padding: "15px 20px",
-                          borderRadius: "10px",
-                          mb: "10px",
-                          "&>p": { fontSize: "14px", color: "white" },
-                        }}
-                      >
-                        <Typography variant="body1" color="initial">
-                          TYpay-QR
-                        </Typography>
-                        <Typography variant="body1" color="initial">
-                          Balance:500 - 50K
-                        </Typography>
-                      </Box>
-                    </Stack>
-                  </Box>
-              
-             
+                sx={{
+
+                  mt: "10px",
+                }}
+              >
+
+                <Box
+                  sx={{
+                    width: "100%",
+                    background: zubgbackgrad,
+                    padding: "15px 20px",
+                    borderRadius: "10px",
+                    mb: "10px",
+                    "& > p": {
+                      fontSize: "14px",
+                      color: "white",
+                    },
+                    "&:hover": {
+                      background: "white",
+                      "& > p": {
+                        color: "black",
+                      },
+                    },
+                  }}
+                >
+                  <Typography variant="body1" color="initial">
+                    IMpay-QR
+                  </Typography>
+                  <Typography variant="body1" color="initial">
+                    Balance:100 - 50K
+                  </Typography>
+                  <Typography variant="body1" color="initial">
+                    3 %  Bonus
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    width: "100%",
+                    background: zubgbackgrad,
+                    padding: "15px 20px",
+                    borderRadius: "10px",
+                    mb: "10px",
+                    "& > p": {
+                      fontSize: "14px",
+                      color: "white",
+                    },
+                    "&:hover": {
+                      background: "white",
+                      "& > p": {
+                        color: "black",
+                      },
+                    },
+                  }}>
+                  <Typography variant="body1" color="initial">
+                    TYpay-QR
+                  </Typography>
+                  <Typography variant="body1" color="initial">
+                    Balance:500 - 50K
+                  </Typography>
+                </Box>
+              </Stack>
+            </Box> */}
+
+
             <Box
               sx={{
                 padding: "10px",
@@ -833,19 +794,50 @@ function WalletRecharge() {
                   type="number"
                   id="amount"
                   name="amount"
-                  value={fk.values.amount}
-                  onChange={fk.handleChange}
+                  value={formik.values.amount}
+                  onChange={formik.handleChange}
                   endAdornment={
                     <InputAdornment position="end">
-                      <IconButton edge="end">
-                        <CloseIcon />
-                      </IconButton>
+                      <div style={{ display: 'flex', alignItems: 'right' }}>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: 'white', mr: 1, display: 'flex', alignItems: 'center' }}
+                        >
+                         USDT
+                        </Typography>
+                        <IconButton edge="end">
+                          <CloseIcon style={{ color: 'white' }} />
+                        </IconButton>
+                      </div>
                     </InputAdornment>
                   }
                 />
+                <OutlinedInput
+                  fullWidth
+                  placeholder="Enter Amount "
+                  className="wallet-textfield !bg-red-500  mt-4"
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  value={Number(formik.values.amount || 0) * 92.5}
 
-
-                <Button sx={style.paytmbtntwo} >
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: 'white', mr: 1, display: 'flex', alignItems: 'center' }}
+                        >
+                          INR
+                        </Typography>
+                        <IconButton edge="end">
+                          <CloseIcon style={{ color: 'white' }} />
+                        </IconButton>
+                      </div>
+                    </InputAdornment>
+                  }
+                />
+             <Button sx={style.paytmbtntwo}  onClick={formik.handleSubmit}>
                   Deposit
                 </Button>
 
@@ -856,22 +848,7 @@ function WalletRecharge() {
         )}
 
         <CustomCircularProgress isLoading={loding} />
-        {/* deposit_req_data */}
-        {/* {true && (
-          <Dialog
-            open={true}
-            className=" !flex !items-center !justify-center lg:!bg-transparent !bg-white"
-          >
-            <div className="!bg-white">
-              <QRCode value={deposit_req_data?.upi_qr_code} />
-              <p className="!text-blue-600  !mt-2 !text-center !font-bold !text-lg">
-                {" "}
-                {show_time.split("_")?.[0]}:
-                {show_time.split("_")?.[1]?.padEnd(2, "0")}
-              </p>
-            </div>
-          </Dialog>
-        )} */}
+       
       </Container>
     </Layout>
   );
@@ -930,13 +907,13 @@ const style = {
     },
   },
   paymentBoxOuter: {
-    width: "95%",
-    margin: "auto",
+    // width: "50%",
+    // marginLeft: "5%",
     my: "20px",
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "space-between",
+    // display: "flex",
+    // flexWrap: "wrap",
+    // alignItems: "center",
+    // justifyContent: "space-between",
   },
   paytmbtn: {
     mb: 2,

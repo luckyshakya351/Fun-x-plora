@@ -79,13 +79,13 @@ function Promotion() {
         <Box sx={style.commitionboxOuter}>
           <Box sx={style.commitionbox}>
             <Typography variant="body1" sx={{ color: zubgtext }}>
-              {wallet?.total_turnover}
+              {data?.data?.yesterday_income}
             </Typography>
             <Typography variant="body1" sx={{ color: 'white' }}>
-              Total Turnover
+              Yesterday  Income
             </Typography>
             <Typography variant="body1" sx={{ color: zubgtext }}>
-              Upgrade the level to increase turnover
+              Upgrade the level to increase income
             </Typography>
           </Box>
         </Box>

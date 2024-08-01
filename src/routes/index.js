@@ -43,6 +43,7 @@ import TronScanPage from "../pages/trx/component/TronScanPage";
 import Wallet from "../pages/wallet/Wallet";
 import DepositeHistory from "../pages/wallet/component/DepositeHistory";
 import QRScreen from "../pages/wallet/component/QRScreen";
+import UsdtQR from "../pages/wallet/component/UsdtQR";
 import WalletRecharge from "../pages/wallet/component/WalletRecharge";
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
@@ -80,6 +81,10 @@ export const routes = [
     {
         path: "/wallet",
         component: <Wallet />
+    },
+    {
+        path: "/usdt",
+        component: <UsdtQR />
     },
     {
         path: "/bathistory",
