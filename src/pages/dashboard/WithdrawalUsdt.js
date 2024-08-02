@@ -19,7 +19,6 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { withdraw_amount_validation_schema } from "../../Shared/Validation";
 import { lightblue, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
 import cip from "../../assets/cip.png";
 import payment from "../../assets/images/deposit (2).png";
@@ -27,13 +26,12 @@ import playgame from "../../assets/images/playgame.jpg";
 import balance from "../../assets/images/send.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
 import Layout from "../../component/Layout/Layout";
-import usdt from "../../assets/payNameIcon1.png";
-import { BankListDetails, get_user_data_fn } from "../../services/apicalling";
+import { AddressListDetails, BankListDetails, get_user_data_fn } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
-function Withdrawl() {
+function WithdrawalUsdt() {
   const location = useLocation();
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
@@ -76,6 +74,7 @@ function Withdrawl() {
       );
 
       setAmount(response?.data?.data);
+      // console.log(response,"response")
     } catch (e) {
       toast(e?.message);
       console.log(e);
@@ -86,8 +85,8 @@ function Withdrawl() {
     walletamountFn();
   }, []);
   const { isLoading, data } = useQuery(
-    ["bank_list_details"],
-    () => BankListDetails(),
+    ["address_list_details"],
+    () => AddressListDetails(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -96,82 +95,50 @@ function Withdrawl() {
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
 
+
   const initialValues = {
-    amount: "",
-    description: "",
-    bank_id: "Select Bank",
+
+    amount:920,
+    withdrawal_add: "Select Address",
   };
 
   const fk = useFormik({
     initialValues: initialValues,
-    validationSchema: withdraw_amount_validation_schema,
     onSubmit: () => {
-      if (type) {
-        if (Number(amount?.cricket_wallet || 0) < Number(fk.values.amount || 0))
-          return toast("Your Wallet Amount is low");
-      } else {
-        if (amount?.winning < fk.values.amount)
-          return toast("Your winning amount is low.");
-      }
-      if (fk.values.bank_id === "Select Bank")
-        return toast("Select Bank Account");
-      if (Number(fk.values.amount) < 110 && Number(fk.values.amount) > 50000)
-        return toast("Amount shoulb be minimum 110 and maximum 50,000");
 
-      const data = result?.find((i) => i?.id === fk.values.bank_id);
+      if (fk.values.withdrawal_add === "Select Address")
+        return toast("Select Addres ");
+      if (Number(fk.values.amount) < 92*10 || Number(fk.values.amount) > 500*92)
+        return toast("Amount shoulb be minimum $10 and maximum $500");
+
       if (!data) return toast("Data not found");
-
-      const fd = new FormData();
-
-     
-      fd.append("type", type ? 2 : 1);
-      fd.append("Bankid", fk.values.bank_id);
-      fd.append("TransactionID", `${Date.now()}${user_id}`);
-      fd.append("Description", fk.values.description);
-      fd.append("Amount", fk.values.amount);
-      fd.append("Mobile", data?.mobile);
-      fd.append("user_id", user_id);
-
-    
-
-      Number(first_rechange) === 1
-        ? withdraw_payment_Function(fd)
-        : toast("You must be sure that , your first deposit is done.");
+      const reqbody = {
+        m_u_id: user_id,
+        withdrawal_add: fk.values.withdrawal_add,
+        m_w_amount:fk.values.amount
+    }
+    // console.log(reqbody)
+     withdraw_payment_Function(reqbody)
+       
     },
   });
 
-  const withdraw_payment_Function = async (fd) => {
+  const withdraw_payment_Function = async (reqbody) => {
     setloding(true);
     try {
-      const response = await axios.post(`${endpoint.withdraw_payment}`, fd);
+      const response = await axios.post(`${endpoint.withdrawal_request_usdt}`, reqbody);
 
-      if (response?.data?.msg === "Successfully Data Found") {
+      if (response?.data?.msg ) {
         walletamountFn();
         fk.handleReset();
         setOpenDialogBox(true);
-      } else {
-        if (response?.data?.msg === "") {
-          toast(
-            <div>
-              {response?.data?.msg} First, you have to place a bet of{" "}
-              <span className="!text-lg !text-[#FBA343] !font-bold">
-                {rupees}{" "}
-                {response?.data?.remaining_bet && response?.data?.remaining_bet}
-              </span>{" "}
-              rupees before you can withdraw
-            </div>
-          );
-        } else {
-          toast(response?.data?.msg);
-        }
-      }
+      } 
     } catch (e) {
       toast(e?.message);
       console.log(e);
     }
     setloding(false);
   };
-
 
 
   return (
@@ -300,43 +267,6 @@ function Withdrawl() {
           </Stack>
         </Box>
         <Box>
-        <Box className="!flex !justify-start !m-5 gap-5">
-          <Box
-          sx={{
-            background: zubgtext,
-            border: zubgtext
-          }}
-           className="!cursor-pointer p-3 !rounded-lg ">
-            <Box  component={NavLink}>
-              <Box
-                component="img"
-                src={cip}
-                className="!w-14 !ml-2"
-              ></Box>
-              <Typography className="!text-center !text-white !text-sm pt-1">
-               Bank Card
-              </Typography>
-            </Box>
-          </Box>
-          <Box
-          sx={{
-            background: zubgtext,
-            border: zubgtext
-          }}
-           className="!cursor-pointer p-3 px-8 !rounded-lg " 
-           onClick={()=>navigate('/Withdrawalusdt')}>
-            <Box >
-              <Box
-                component="img"
-                src={usdt}
-                className="!w-10 !ml-2"
-              ></Box>
-              <Typography className="!text-center !text-white !text-sm pt-1">
-               USDT
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
           <Box
             sx={{
 
@@ -350,18 +280,58 @@ function Withdrawl() {
               mb: 5,
             }}
           >
-            <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
+          
+            <Box mt={2}>
+
+             <div className="  my-2 mb-4">
+             <p className="!text-center !p-4 text-blue-600 cursor-pointer  border border-dashed border-gray-400"
+             onClick={()=>navigate("/addadressusdt")}> + Add Address</p>
+             </div>
+              <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
               <Box component="img" src={payment} width={30}></Box>
               <Typography
                 variant="body1"
                 color="initial"
                 sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
               >
-                Withdrawal amount
+                Select Amount of USDT
               </Typography>
             </Stack>
-            <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
             
+            <FormControl fullWidth sx={{ mt: "10px" }}>
+                <Stack direction="row" className="loginlabel">
+                  <Typography variant="h3" sx={{ color: zubgtext }}>
+                    Select address <span className="!text-red-600">*</span>
+                  </Typography>
+                </Stack>
+                <TextField
+                  select
+                  id="withdrawal_add"
+                  name="withdrawal_add"
+                  value={fk.values.withdrawal_add}
+                  onChange={fk.handleChange}
+                  className="withdrawalfield"
+                //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  InputProps={{
+                    style: {
+                      borderColor: 'red',
+                      borderWidth: "1px",
+                      color: lightblue,
+                      background: "#fff",
+                      borderRadius: "10px",
+                    },
+                  }}
+                >
+                  <MenuItem value={"Select Address"}>Select Address</MenuItem>
+                  {result?.map((i, index) => {
+                    return (
+                      <MenuItem value={i?.usdt_address}>
+                        {i?.usdt_address}
+                      </MenuItem>
+                    );
+                  })}
+                </TextField>
+              </FormControl>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
@@ -376,122 +346,27 @@ function Withdrawl() {
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
                   className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
-                {fk.touched.amount && fk.errors.amount && (
-                  <div className="error">{fk.errors.amount}</div>
-                )}
+               
               </FormControl>
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Bank name <span className="!text-red-600">*</span>
+                    Enter USDT <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
-                  select
-                  id="bank_id"
-                  name="bank_id"
-                  value={fk.values.bank_id}
-                  onChange={fk.handleChange}
+                  type="number"
+                  value={Number(Number(fk.values.amount) / 92)?.toFixed(4)}
+                  placeholder=" 00000 "
                   className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                  InputProps={{
-                    style: {
-                      borderColor: 'red',
-                      borderWidth: "1px",
-                      color: lightblue,
-                      background: "#fff",
-                      borderRadius: "10px",
-                    },
-                  }}
-                >
-                  <MenuItem value={"Select Bank"}>Select Bank</MenuItem>
-                  {result?.map((i, index) => {
-                    return (
-                      <MenuItem value={i?.id}>
-                        {i?.bank_name} ({i?.account})
-                      </MenuItem>
-                    );
-                  })}
-                </TextField>
-                {fk.touched.bank_id && fk.errors.bank_id && (
-                  <div className="error">{fk.errors.bank_id}</div>
-                )}
+                />
+            
               </FormControl>
 
-              {/* <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{color:zubgtext}}>
-                    IFSC code <span className="!text-red-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="ifsc"
-                  name="ifsc"
-                  type="text"
-                  value={fk.values.ifsc}
-                  onChange={fk.handleChange}
-                  placeholder="Enter IFSC code *"
-                  className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.ifsc && fk.errors.ifsc && (
-                  <div className="error">{fk.errors.ifsc}</div>
-                )}
-              </FormControl>
-              <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{color:zubgtext}}>
-                    Account number <span className="!text-red-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="account_number"
-                  name="account_number"
-                  type="text"
-                  value={fk.values.account_number}
-                  onChange={fk.handleChange}
-                  placeholder="Enter account number *"
-                  className="withdrawalfield"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.account_number && fk.errors.account_number && (
-                  <div className="error">{fk.errors.account_number}</div>
-                )}
-              </FormControl> */}
-              {/* <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Description <span className="!text-red-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  id="description"
-                  name="description"
-                  type="text"
-                  rows={3}
-                  multiline={true}
-                  value={fk.values.description}
-                  onChange={fk.handleChange}
-                  placeholder="Enter description *"
-                  className="withdrawalfield"
-                  InputProps={{
-                    style: {
-                      boxShadow: zubgshadow, background: '#fff', border: '1px solid red',
-                      color: lightblue, 
-                      "::placeholder": {
-                        color: lightblue, 
-                      },
-                    },
-                  }}
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                />
-                {fk.touched.description && fk.errors.description && (
-                  <div className="error">{fk.errors.description}</div>
-                )}
-              </FormControl> */}
+
               <Button
                 sx={style.paytmbtntwo}
                 type="submit"
@@ -539,7 +414,7 @@ function Withdrawl() {
               }}
             >
               {" "}
-              ₹ 0
+              $ 0
             </Typography>
             <Typography
               variant="body1"
@@ -594,7 +469,7 @@ function Withdrawl() {
                mx: 0.5,
              }}
            >
-            ₹ 110.00 - ₹ 50000.00 .{" "}
+          $10.00 - $500.00 .{" "}
            </Typography>
          </Stack>
           <Stack direction="row" alignItems="center" mt={1}>
@@ -655,7 +530,7 @@ function Withdrawl() {
   );
 }
 
-export default Withdrawl;
+export default WithdrawalUsdt;
 
 const style = {
   header: {

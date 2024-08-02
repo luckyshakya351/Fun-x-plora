@@ -1,23 +1,25 @@
-import { Box, Button, Container, Stack } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import * as React from "react";
-import QRCode from "react-qr-code";
-import { zubgback } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import usdt from "../../../assets/payNameIcon1.png";
 import toast from "react-hot-toast";
 import copy from "clipboard-copy";
-const UsdtQR = ({ deposit_req_data, address ,amount }) => {
+import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
+const UsdtQR = ({ deposit_req_data, address, amount }) => {
   const functionTOCopy = (value) => {
     copy(value);
-    toast.success("Copied to clipboard!");
+    toast.success("Copied to clipboard!", { id: 1 });
   };
+  const Amount = isNaN(Number(amount)) ? 'Invalid amount' : Number(amount).toFixed(2);
+  const navigate = useNavigate()
   return (
     <Layout footer={false}>
       <Container
         className="no-scrollbar"
         sx={{
-          //   background: zubgback,
           background: "white",
           width: "100%",
           height: "100vh",
@@ -25,26 +27,17 @@ const UsdtQR = ({ deposit_req_data, address ,amount }) => {
           mb: 4,
         }}
       >
-        
-          <p className="!text-center !text-red-800 font-bold !text-2xl my-5 ">My QR Code</p>
-       <div className="flex justify-center">
-       <img src={usdt} alt=""  className="w-10 !my-2"/>
-       </div>
-        <p className="!text-center !text-gray-600 font-bold !text-xl my-2 ">USDT</p>
+        <p className="!flex !justify-start !mt-5 !ml-2"><ArrowBack onClick={() => navigate('/dashboard')} className="!text-black !cursor-pointer" /></p>
+        <p className="!text-center !text-red-800 font-bold !text-2xl mb-5 -mt-6 ">My QR Code</p>
+        <div className="flex justify-center">
+          <img src={usdt} alt="" className="w-10 !my-2" />
+        </div>
+        <p className="!text-center !text-gray-600 font-bold !text-xl my-2">USDT {Amount}</p>
         <div
           className={`!text-black !bg-white !flex !flex-col justify-center items-center no-scrollbar`}
         >
-          <div className=" w-1/2 border border-gray-500 p-4">
-            <QRCode
-              style={{
-                height: "auto",
-                maxWidth: "100%",
-                width: "100%",
-                // background: "#FD565C",
-              }}
-              value={deposit_req_data}
-              viewBox={`#FD565C`}
-            />
+          <div className=" w-1/2 border border-gray-500 ">
+            <img src={deposit_req_data} alt="" />
           </div>
           <div className="">
             <p className="!bg-gray-300 mt-5 !rounded !text-sm px-2 py-1">
@@ -57,7 +50,6 @@ const UsdtQR = ({ deposit_req_data, address ,amount }) => {
                 onClick={() =>
                   functionTOCopy(
                     address
-
                   )
                 }
               >
@@ -96,7 +88,7 @@ const UsdtQR = ({ deposit_req_data, address ,amount }) => {
                 has been updated successfully
               </p>
             </>
-          )} */}
+          )}*/}
         </div>
       </Container>
     </Layout>
@@ -105,22 +97,3 @@ const UsdtQR = ({ deposit_req_data, address ,amount }) => {
 
 export default UsdtQR;
 
-const style = {
-  header: {
-    padding: "15px 8px",
-    background: zubgback,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    "& > p": {
-      fontSize: "20px",
-      fontWeight: "600",
-      textAlign: "center",
-      color: "white",
-    },
-    "& > a > svg": {
-      color: "white",
-      fontSize: "35px",
-    },
-  },
-};

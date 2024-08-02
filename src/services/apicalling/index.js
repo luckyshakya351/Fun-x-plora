@@ -219,6 +219,28 @@ export const depositHistoryFunction = async () => {
     console.log(e);
   }
 };
+export const depositHistoryUsdtFunction = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.deposit_history_usdt}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+export const depositHistoryUSDTFunction = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.deposit_history_usdt}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const withdrawlHistoryFunction = async () => {
   try {
     const response = await axios.get(
@@ -339,6 +361,18 @@ export const BankListDetails = async () => {
   try {
     const response = await axios.get(
       `${endpoint.get_bank_list}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+
+export const AddressListDetails = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.get_address_list}?m_u_id=${user_id}`
     );
     return response;
   } catch (e) {

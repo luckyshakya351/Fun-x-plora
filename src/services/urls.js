@@ -45,6 +45,13 @@ export const endpoint = {
   game_history: `${newdomain}/api/v1/colour_result`,
   my_history_all: `${newdomain}/api/v1/getbet-game-results`,
 
+//payment
+  payment: `${newdomain}/api/v1/payment`,
+  deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
+  withdrawal_request_usdt: `${newdomain1}/api/v1/withdrawl-request`,
+  withdrawal_address_usdt: `${newdomain1}/api/v1/add-usdt-address`,
+  get_address_list: `${newdomain1}/api/v1/usdt-address-record`,
+
 
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,
@@ -53,7 +60,6 @@ export const endpoint = {
   withdraw_payment: `${baseUrl}/api/payout-request`,
   get_name_by_referral_code: `${baseUrl}/api/get-user-reffral-name`,
   payment_request: `${baseUrl}/api/deposit-request`,
-  payment: `${newdomain1}/api/v1/payment`,
   registration_bonus: `${baseUrl}/api/welcom-bonus`,
   deposit_history: `${baseUrl}/api/deposit-history`,
   withdrawl_history: `${baseUrl}/api/withdrawl-history`,
@@ -70,7 +76,8 @@ export const endpoint = {
   all_withdrawl_user_list: `${baseUrl}/api/widthrol-user-list`,
   recharge_call_bakc: `${baseUrl}/api/deposits-user-request`,
   cricket_get_url_id_pass: `${baseUrl}/api/cricket-details`,
-
+ 
+  
   // trx api's
   // trx_game_history: `${baseUrl}/api/trx-auto-genrated-result`,
   // trx_game_bet: `${baseUrl}/api/trx-bet`,

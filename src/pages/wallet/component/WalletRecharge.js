@@ -441,6 +441,7 @@ async function payment(amnt) {
       <UsdtQR
         deposit_req_data={deposit_req_data_usdt}
         address={address}
+        amount={amount}
       />
     );
   }
@@ -819,7 +820,7 @@ async function payment(amnt) {
                   type="number"
                   id="amount"
                   name="amount"
-                  value={Number(formik.values.amount || 0) * 92.5}
+                  value={Number(formik.values.amount || 0) * 92}
 
                   endAdornment={
                     <InputAdornment position="end">

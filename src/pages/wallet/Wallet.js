@@ -30,9 +30,12 @@ import Layout from "../../component/Layout/Layout";
 import {walletamount } from "../../services/apicalling";
 
 function Wallet() {
+  
   const net_wallet_amount = useSelector(
     (state) => state.aviator.net_wallet_amount
-  );  const navigate = useNavigate();
+  ); 
+   const navigate = useNavigate();
+
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =
     React.useState(false);
 
@@ -43,7 +46,7 @@ function Wallet() {
       refetchOnWindowFocus:false
     });
     const amount = data?.data?.data || 0;
-  
+                   
   const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2),]
   const series2 = [
     (Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),
@@ -132,10 +135,10 @@ function Wallet() {
             >
               <Box component="img" src={wallet} width={50}></Box>
               <Typography variant="h2" color="initial" sx={{ color: zubgtext }}>
-                ₹{" "}
-                {Number(
-                  Number(net_wallet_amount?.wallet || 0) + Number(net_wallet_amount?.winning || 0)
+                ₹ {Number(
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
                 )?.toFixed(2)}
+                
               </Typography>
               <Typography
                 variant="body1"
@@ -347,6 +350,31 @@ function Wallet() {
                 <Typography variant="body1" color="initial" mt={1}>
                   DPST
                   history
+                </Typography>
+              </NavLink>
+            </Box>
+            <Box
+              sx={{
+                width: "24%",
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "center",
+                "&>a>p": {
+                  fontSize: "12px",
+                  color: "black",
+                  fontWeight: 600,
+                  textAlign: "center",
+                },
+                mt: "30px",
+                "&>a>img": { margin: "auto" },
+              }}
+            >
+              <NavLink to="/depositusdt">
+                <Box component="img" src={wdhistory} width={50}></Box>
+                <Typography variant="body1" color="initial" mt={1}>
+                  DPST USDT
+                  history 
                 </Typography>
               </NavLink>
             </Box>

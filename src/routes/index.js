@@ -17,8 +17,10 @@ import Notification from "../pages/account/Component/Notification";
 import SettingCenter from "../pages/account/Component/SettingCenter";
 import Activity from "../pages/activity/Activity";
 import Register from "../pages/auth/register/Register";
+import AddAddressUsdt from "../pages/dashboard/AddAddressUsdt";
 import Dashboard from "../pages/dashboard/Dashboard";
 import FundRequest from "../pages/dashboard/FundRequest";
+import WithdrawalUsdt from "../pages/dashboard/WithdrawalUsdt";
 import Withdrawl from "../pages/dashboard/Withdrawl";
 import MainPageOFIncome from "../pages/income/MainPageOFIncome";
 import DailyCashBackBonus from "../pages/income/incomeSubSection/DailyCashBackBonus";
@@ -42,6 +44,7 @@ import Trx from "../pages/trx/Trx";
 import TronScanPage from "../pages/trx/component/TronScanPage";
 import Wallet from "../pages/wallet/Wallet";
 import DepositeHistory from "../pages/wallet/component/DepositeHistory";
+import DepositeUsdt from "../pages/wallet/component/DepositeUsdt";
 import QRScreen from "../pages/wallet/component/QRScreen";
 import UsdtQR from "../pages/wallet/component/UsdtQR";
 import WalletRecharge from "../pages/wallet/component/WalletRecharge";
@@ -67,8 +70,21 @@ export const routes = [
         component: <Withdrawl />
     },
     {
+        path: "/Withdrawalusdt",
+        component: <WithdrawalUsdt />
+    },
+    {
+        path: "/addadressusdt",
+        component: <AddAddressUsdt />
+    },
+  
+    {
         path: "/depositHistory",
         component: <DepositeHistory />
+    },
+    {
+        path: "/depositusdt",
+        component: <DepositeUsdt />
     },
     {
         path: "/wallet/Recharge",
