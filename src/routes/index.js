@@ -43,6 +43,7 @@ import TeamReports from "../pages/promotion/component/TeamReport";
 import Trx from "../pages/trx/Trx";
 import TronScanPage from "../pages/trx/component/TronScanPage";
 import Wallet from "../pages/wallet/Wallet";
+import WithdrawalHistoryUSdt from "../pages/wallet/WithdrawalHistoryUsdt";
 import DepositeHistory from "../pages/wallet/component/DepositeHistory";
 import DepositeUsdt from "../pages/wallet/component/DepositeUsdt";
 import QRScreen from "../pages/wallet/component/QRScreen";
@@ -72,6 +73,10 @@ export const routes = [
     {
         path: "/Withdrawalusdt",
         component: <WithdrawalUsdt />
+    },
+    {
+        path: "/Withdrawalusdthistory",
+        component: <WithdrawalHistoryUSdt/>
     },
     {
         path: "/addadressusdt",

@@ -5,7 +5,7 @@ export const baseUrl = "https://admin.funxplora.com";
 // export const fron_end_main_domain = "https://sunlottery.fun";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain1 = "http://192.168.18.183:9000";
+// export const newdomain1 = "http://192.168.18.183:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -35,7 +35,7 @@ export const endpoint = {
   get_level: `${newdomain}/api/v1/get-level`,
   promotion_data: `${newdomain}/api/v1/promotiondata`,
   // wingo
-  // applybet: `${baseUrl}/api/bet`,
+  // applybet: `${baseUrl}/api/bet`,c
   // game_history: `${baseUrl}/api/colour_result`,
   // my_history: `${baseUrl}/api/getbet`,
   // my_history_all: `${baseUrl}/api/getbet-game-results`,
@@ -47,11 +47,11 @@ export const endpoint = {
 
 //payment
   payment: `${newdomain}/api/v1/payment`,
-  deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
-  withdrawal_request_usdt: `${newdomain1}/api/v1/withdrawl-request`,
-  withdrawal_address_usdt: `${newdomain1}/api/v1/add-usdt-address`,
-  get_address_list: `${newdomain1}/api/v1/usdt-address-record`,
-
+  deposit_history_usdt: `${newdomain}/api/v1/coin-payment-deposit-history`,
+  withdrawal_request_usdt: `${newdomain}/api/v1/withdrawl-request`,
+  withdrawal_address_usdt: `${newdomain}/api/v1/add-usdt-address`,
+  get_address_list: `${newdomain}/api/v1/usdt-address-record`,
+  withdrawl_usdt_history: `${newdomain}/api/v1/coin-payment-withdrawl-history`,
 
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,

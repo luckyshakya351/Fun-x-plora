@@ -48,7 +48,7 @@ refetchOnWindowFocus:false
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon />
             </Box>
-            <p>Daily Salary Bonus</p>
+            <p>Daily Salary </p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -73,7 +73,7 @@ refetchOnWindowFocus:false
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <p>Daily Salary Bonus</p>
+          <p>Daily Salary </p>
         </Box>
         <div className="no-scrollbar !mb-10">
           {res?.map((i) => {

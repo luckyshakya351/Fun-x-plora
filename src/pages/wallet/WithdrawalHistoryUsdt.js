@@ -13,13 +13,11 @@ import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
-import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
-import deposit from "../../../assets/images/list.png";
-import Layout from "../../../component/Layout/Layout";
-import {
-  withdrawlHistoryFunction
-} from "../../../services/apicalling";
+import CustomCircularProgress from "../../Shared/CustomCircularProgress";
+import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
+import deposit from "../../assets/images/list.png";
+import Layout from "../../component/Layout/Layout";
+import { withdrawlHistoryUSdtFunction } from "../../services/apicalling";
 
 function WithdrawalHistoryUSdt() {
   const navigate = useNavigate();
@@ -27,16 +25,16 @@ function WithdrawalHistoryUSdt() {
     navigate(-1);
   };
   const { isLoading, data } = useQuery(
-    ["deposit_history"],
-    () => withdrawlHistoryFunction(),
+    ["withdrwal_history"],
+    () => withdrawlHistoryUSdtFunction(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus:false
     }
   );
 
-  const res = data?.data?.data || 0
+  const res = data?.data?.data || []
 
   return (
     <Layout>
@@ -56,7 +54,7 @@ refetchOnWindowFocus:false
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <Typography variant="body1" color="initial">
-            Withdrawl history
+            Withdrawl USDT history
           </Typography>
           <Box></Box>
         </Box>
@@ -79,7 +77,7 @@ refetchOnWindowFocus:false
                 color="initial"
                 sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
               >
-                Withdrawl history
+                Withdrawl USDT history
               </Typography>
             </Stack>
             {res?.map((i) => {
@@ -144,7 +142,7 @@ refetchOnWindowFocus:false
                       Balance
                     </Typography>
                     <Typography variant="body1" color="initial">
-                      ₹ {i?.amount}
+                      ₹ {i?.amt}
                     </Typography>
                   </Stack>
                   <Stack
@@ -160,8 +158,8 @@ refetchOnWindowFocus:false
                       Date/Time
                     </Typography>
                     <Typography variant="body1" color="initial">
-                      {moment(i?.date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.date)?.format("HH:mm:ss")}
+                      {moment(i?.created_at)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.created_at)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>
                   <Stack
@@ -180,7 +178,7 @@ refetchOnWindowFocus:false
                       {i?.status}{" "}
                     </Typography>
                   </Stack>
-                  {i?.approve_date !== null && i?.approve_date !== "" && <Stack
+                  {i?.success_date !== null && i?.success_date !== "" && <Stack
                     direction="row"
                     sx={{
                       mb: "10px",
@@ -193,8 +191,8 @@ refetchOnWindowFocus:false
                       Success Date/Time
                     </Typography>
                     <Typography variant="body1" color="initial" className="!text-green-500">
-                      {moment(i?.approve_date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.approve_date)?.format("HH:mm:ss")}
+                      {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.success_date)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>}
                   <Stack
@@ -219,7 +217,7 @@ refetchOnWindowFocus:false
                       }}
                     >
                       <Typography variant="body1" color="initial">
-                        {i?.tran_id}
+                        {i?.order_id}
                       </Typography>
                       <IconButton>
                         <ContentCopyIcon sx={{ color: zubgtext }} />

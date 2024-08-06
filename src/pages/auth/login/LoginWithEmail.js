@@ -38,7 +38,10 @@ function LoginWithEmail() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
+   //attempt password code start
+  // const max_attempts = 5;
+  // const block_duration = 24 * 60 * 60 * 1000;
+ //attempt password code end
   const initialValue = {
     email: "",
     pass: "",
@@ -63,6 +66,19 @@ function LoginWithEmail() {
   });
 
   const loginFunction = async (reqbody) => {
+      //attempt password code start
+    // const currentTime = Date.now();
+    // let wrongAttempts = JSON.parse(localStorage.getItem('wrongAttempts')) || [];
+    // const lastAttemptTime = wrongAttempts.length > 0 ? wrongAttempts[wrongAttempts.length - 1].time : 0;
+    // const isBlocked = wrongAttempts.length >= max_attempts && (currentTime - lastAttemptTime) < block_duration;
+    // if (isBlocked) {
+    //   const remainingTimeMs = block_duration - (currentTime - lastAttemptTime);
+    //   const remainingHours = Math.ceil(remainingTimeMs / (1000 * 60 * 60));
+    //   toast.error(`Your account is blocked due to too many failed login attempts. Please try again in ${remainingHours} hours.`);
+    //   setloding(false);
+    //   return;
+    // } 
+    //attempt password code end
     setloding(true);
     try {
       const response = await axios.post(endpoint.login, reqbody, {
@@ -70,8 +86,7 @@ function LoginWithEmail() {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-      });
-
+      });  
       toast.success(response?.data?.msg);
       console.log(response);
       if (response?.data?.error === "200") {
@@ -85,7 +100,22 @@ function LoginWithEmail() {
         storeCookies();
         navigate("/dashboard");
         window.location.reload();
+         //attempt password code start
+        // localStorage.removeItem('wrongAttempts');
+        //attempt password code end
       }
+       //attempt password code start
+    //   else{
+    //     wrongAttempts.push({ time: currentTime });
+    //   localStorage.setItem('wrongAttempts', JSON.stringify(wrongAttempts));
+    //   if (wrongAttempts.length >= max_attempts) {
+    //     const blockUntil = currentTime + block_duration;
+    //     const blockDurationMs = blockUntil - currentTime;
+    //     const blockHours = Math.ceil(blockDurationMs / (1000 * 60 * 60));
+    //     toast.error(`Too many failed attempts. Your account is blocked for ${blockHours} hours.`);
+    //   }
+    // }
+    //attempt password code end
     } catch (e) {
       toast.error(e?.message);
       console.error(e);

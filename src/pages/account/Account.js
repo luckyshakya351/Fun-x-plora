@@ -366,7 +366,7 @@ function Account() {
               //   logo: balance1,
               // },
               {
-                 to: "/SettingCenter",
+                //  to: "/SettingCenter",
                  name: "Setting", 
                  logo: setting 
                 },
@@ -376,7 +376,7 @@ function Account() {
                 logo: notification1,
               },
               {
-                to: "/SettingCenter/LoginPassword",
+                // to: "/SettingCenter/LoginPassword",
                 name: "Change Password",
                 logo: user2,
               },

@@ -69,7 +69,7 @@ function TeamTradingBonus() {
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon />
             </Box>
-            <p>Daily Cashback Bonus</p>
+            <p>Level Income</p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -94,7 +94,7 @@ function TeamTradingBonus() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <p>Team Trading Bonus</p>
+          <p>Level Income</p>
         </Box>
         <div
           className="!flex !w-fullpx-5 justify-between py-1 items-center"
@@ -120,12 +120,11 @@ function TeamTradingBonus() {
                 setEndDate();
               }}
             >
-              {" "}
               <FilterAltOffIcon />{" "}
             </IconButton>
           ) : (
             <IconButton className="!pt-8">
-              <FilterAltIcon />{" "}
+              <FilterAltIcon />
             </IconButton>
           )}
 

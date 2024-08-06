@@ -252,6 +252,18 @@ export const withdrawlHistoryFunction = async () => {
     console.log(e);
   }
 };
+
+export const withdrawlHistoryUSdtFunction = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.withdrawl_usdt_history}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const registrationBonusFn = async () => {
   try {
     const response = await axios.get(

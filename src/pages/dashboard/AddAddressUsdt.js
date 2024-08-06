@@ -15,7 +15,6 @@ import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
-import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
 import { endpoint } from "../../services/urls";

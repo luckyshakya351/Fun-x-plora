@@ -189,7 +189,7 @@ function WalletRecharge() {
 
 
 const initialValuesss = {
-  amount: deposit_amount || 1,
+  amount: deposit_amount || 10,
 };
 
 const formik = useFormik({

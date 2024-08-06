@@ -97,7 +97,7 @@ function Register() {
   });
 
   const signupFunction = async (reqbody) => {
-    setloding(true);
+    // setloding(true);
     const fd = new FormData();
     fd.append("email", reqbody.email);
     fd.append("mobile", reqbody.mobile);
@@ -124,10 +124,14 @@ function Register() {
         sessionStorage.setItem("isAvailableCricketUser", true);
         storeCookies();
         swal({
-          title: "Registration Successful",
-          text: response?.data?.msg,
+          title:"Registration Successfully",
+          text: ` 
+          Email : ${fk?.values?.email}
+          Mobile : ${fk?.values?.mobile}
+          Password : ${fk?.values?.password} `,
+          // title: response?.data?.msg,
           icon: "success",
-          button: "OK",
+          button: "OK", 
         }).then(() => {
           navigate("/dashboard");
           document.location.reload();

@@ -169,7 +169,7 @@ function WithdrawalUsdt() {
           <Typography variant="body1" color="initial">
             Withdrawal
           </Typography>
-          <Box component={NavLink} to="/withdravalHistory">
+          <Box component={NavLink} to="/Withdrawalusdthistory">
             <HistoryIcon />
           </Box>
         </Box>

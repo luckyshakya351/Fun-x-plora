@@ -13,19 +13,19 @@ import Layout from "../../component/Layout/Layout";
 function MainPageOFIncome() {
 
   const data_array = [
-    {
-      to: "/account/income-main/registration-bonus",
-      name: "Sponsor Income",
-      logo: (
-        <CurrencyExchangeIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
-    },
+    // {
+    //   to: "/account/income-main/registration-bonus",
+    //   name: "Sponsor Income",
+    //   logo: (
+    //     <CurrencyExchangeIcon
+    //       className="!w-[40px] !h-[40px] !text-white"
+    //       color="#8f5206"
+    //     />
+    //   ),
+    // },
     {
       to: "/account/income-main/deposit-bonus",
-      name: "Deposit Bonus",
+      name: "Deposit Self Income",
       logo: (
         <PriceCheckIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -35,7 +35,7 @@ function MainPageOFIncome() {
     },
     {
       to: "/account/income-main/referral-bonus",
-      name: "Referral Bonus",
+      name: "Sponsor Income",
       logo: (
         <RedeemIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -44,7 +44,6 @@ function MainPageOFIncome() {
       ),
     },
     // {
-    //   to: "/account/income-main/daily-cash-back-bonus",
     //   name: "Daily Cashback Bonus",
     //   logo: (
     //     <LocalConvenienceStoreIcon
@@ -52,10 +51,11 @@ function MainPageOFIncome() {
     //       color="#8f5206"
     //     />
     //   ),
-    // },
+    // },  //   to: "/account/income-main/daily-cash-back-bonus",
+   
     {
       to: "/account/income-main/daily-salary-bonus",
-      name: "Daily Salary Bonus",
+      name: "Daily Salary ",
       logo: (
         <AccountBalanceIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -65,7 +65,7 @@ function MainPageOFIncome() {
     },
     {
       to: "/account/income-main/self-trading-bonus",
-      name: "Self Trading Bonus",
+      name: "Self Trade Income",
       logo: (
         <StoreIcon
           className="!w-[40px] !h-[40px] !text-white"
@@ -75,7 +75,7 @@ function MainPageOFIncome() {
     },
     {
       to: "/account/income-main/weekly-bonus",
-      name: "Weekly Bonus",
+      name: "Weekly Salary Income ",
       logo: (
         <Diversity2Outlined
           className="!w-[40px] !h-[40px] !text-white"
@@ -85,7 +85,7 @@ function MainPageOFIncome() {
     },
     {
       to: "/account/income-main/team-trading-bonus",
-      name: "Team Trading  Bonus",
+      name: "Level Income",
       logo: (
         <CardGiftcardIcon
           className="!w-[40px] !h-[40px] !text-white"
