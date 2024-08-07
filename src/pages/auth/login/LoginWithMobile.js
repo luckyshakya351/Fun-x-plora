@@ -72,7 +72,7 @@ function LoginWithMobile() {
       });
 
       toast.success(response?.data?.msg);
-      if (response?.data?.error === "200") {
+      if (response?.data?.msg === "Login Successfully") {
         const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
         localStorage.setItem("logindataen", value);
         sessionStorage.setItem("isAvailableUser", true);

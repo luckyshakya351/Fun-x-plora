@@ -18,7 +18,6 @@ import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
-// import * as uuid from "uuid";
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 import CryptoJS from "crypto-js";
@@ -30,11 +29,6 @@ import { endpoint } from "../../../services/urls";
 
 
 function LoginWithEmail() {
-  // const device_id = uuid.v4();
-  //login block start
-  // const [loginAttempts, setLoginAttempts] = useState(parseInt(sessionStorage.getItem('loginAttempts')) || 0);
-  // const [isBlocked, setIsBlocked] = useState(sessionStorage.getItem('isBlocked') === 'true');
-  //login block end
   const [loding, setloding] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
@@ -46,7 +40,6 @@ function LoginWithEmail() {
     email: "",
     pass: "",
     isAllowCheckBox: false,
-    // device_id: device_id || uuid.v4(),
   };
 
   const fk = useFormik({
@@ -57,7 +50,6 @@ function LoginWithEmail() {
         const reqbody = {
           username: fk.values.email || fk.values.mob,
           password: fk.values.pass,
-          // device_id: device_id,
         };
         console.log(reqbody);
         loginFunction(reqbody);
@@ -66,12 +58,6 @@ function LoginWithEmail() {
   });
 
   const loginFunction = async (reqbody) => {
-      //login block start
-    // if (isBlocked) {
-    //   toast.error("Your account is blocked. Please try again later.");
-    //   return;
-    // }
-      //login block end
     setloding(true);
     try {
       const response = await axios.post(endpoint.login, reqbody, {
@@ -81,14 +67,7 @@ function LoginWithEmail() {
         },
       });  
       toast.success(response?.data?.msg);
-      console.log(response);
-      if (response?.data?.error === "200") {
-         //login block start
-        // setLoginAttempts(0);
-        // sessionStorage.removeItem('loginAttempts');
-        // setIsBlocked(false);
-        // sessionStorage.removeItem('isBlocked');
-         //login block end
+      if (response?.data?.msg === "Login Successfully") {
         const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
         localStorage.setItem("logindataen", value);
         sessionStorage.setItem("isAvailableUser", true);
@@ -98,55 +77,12 @@ function LoginWithEmail() {
         navigate("/dashboard");
         window.location.reload();
       }
-      // else {
-      //     //login block start
-      //   const updatedAttempts = loginAttempts + 1;
-      //   setLoginAttempts(updatedAttempts);
-      //   sessionStorage.setItem('loginAttempts', updatedAttempts);
-
-      //   if (updatedAttempts >= 5) {
-      //     setIsBlocked(true);
-      //     sessionStorage.setItem('isBlocked', 'true');
-      //     sessionStorage.setItem('blockUntil', Date.now() + 24 * 60 * 60 * 1000); // Block for 24 hours
-      //     toast.error("Too many failed attempts. You are blocked for 24 hours.");
-      //   } else {
-      //     toast.error(response?.data?.msg || "Login failed");
-      //   }
-      // }
-        //login block end
     } catch (e) {
       toast.error(e?.message);
       console.error(e);
     }
     setloding(false);
   };
-
-  // const get_user_data = async (id) => {
-  //   console.log(id);
-  //   try {
-  //     const response = await axios.get(
-  //       `${endpoint.get_data_by_user_id}?id=${id}`,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "Access-Control-Allow-Origin": "*",
-  //         },
-  //       }
-  //     );
-  //     console.log(response, "This is response");
-  //     if (response?.data?.error === "200") {
-  //       localStorage.setItem(
-  //         "aviator_data",
-  //         JSON.stringify(response?.data?.data)
-  //       );
-  //     }
-  //     sessionStorage.setItem("isAvailableUser", true);
-  //     window.location.reload();
-  //   } catch (e) {
-  //     toast(e?.message);
-  //     console.error(e);
-  //   }
-  // };
 
   useEffect(() => {
     try {
@@ -159,20 +95,6 @@ function LoginWithEmail() {
     }
   }, []);
 
-  //login block start
-  // useEffect(() => {
-  //   const blockUntil = sessionStorage.getItem('blockUntil');
-  //   if (blockUntil && Date.now() < blockUntil) {
-  //     setIsBlocked(true);
-  //     sessionStorage.setItem('isBlocked', 'true');
-  //     toast.error("You are blocked. Please try again later.");
-  //   } else {
-  //     setIsBlocked(false);
-  //     sessionStorage.removeItem('isBlocked');
-  //     sessionStorage.removeItem('blockUntil');
-  //   }
-  // }, []);
-    //login block end
   return (
     <Box
       component="form"

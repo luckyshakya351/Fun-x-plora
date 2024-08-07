@@ -46,16 +46,6 @@ function Promotion() {
   );
   const result = data?.data?.data;
 
-  const level1Count = result?.filter(entry => entry.LEVEL === 1).length || 0;
-  const levelOneWithDeposit = result?.filter(level => level.LEVEL === 1 && Number(level.deposit_amount) > 0);
-  const depositmember = levelOneWithDeposit?.length;
-  const total_deposit = levelOneWithDeposit?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)
-
-  const levelCount = result?.filter(entry => entry.LEVEL !== 0).length || 0;
-  const levelWithDeposit = result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0);
-  const depositeallmember = levelWithDeposit?.length;
-  const alltotal_deposit = levelWithDeposit?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)
-
   
   const functionTOCopy = (value) => {
     console.log("function hit");
@@ -113,7 +103,7 @@ function Promotion() {
                   variant="body1"
 
                 >
-                  {level1Count || 0}
+                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -128,22 +118,21 @@ function Promotion() {
                   variant="body1"
 
                 >
-                  {depositmember || 0}
+                  {result?.filter(level => level.LEVEL === 1 && Number(level.deposit_amount) > 0).length || 0}
                 </Typography>
                 <Typography
                   variant="body1"
 
                 >
-
-                  Number of Deposit Members
+               Number of Deposit Members
                 </Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
 
-                >
-                  {total_deposit || 0}
+                > 
+                  {result?.filter((j)=>j?.LEVEL === 1)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0} 
                 </Typography>
                 <Typography
                   variant="body1"
@@ -158,7 +147,7 @@ function Promotion() {
             <Box sx={style.innerBoxStylestwo}>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" >
-                  {levelCount || 0}
+                  {result?.filter(entry => entry.LEVEL !== 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -167,7 +156,7 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" >
-                  {depositeallmember || 0}
+                  {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -176,7 +165,7 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" >
-                  {alltotal_deposit|| 0}
+                  {result?.filter((j)=>j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)|| 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -301,7 +290,7 @@ function Promotion() {
               <Box className="!text-white">
                 <EmojiPeopleOutlinedIcon />
                 <Typography variant="body1" >
-                  {level1Count || 0}
+                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Direct subordinate
@@ -310,7 +299,7 @@ function Promotion() {
               <Box className="!text-white">
                 <Groups2OutlinedIcon />
                 <Typography variant="body1" >
-                  {levelCount || 0}
+                  {result?.filter(entry => entry.LEVEL !== 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Team subordinates

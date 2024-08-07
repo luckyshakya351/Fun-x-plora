@@ -23,7 +23,6 @@ function TeamReports() {
     }
   );
   const result = data?.data?.data;
-  const level1Count = result?.filter(entry => entry.LEVEL === 1)|| 0;
   
   return (
     <Layout>
@@ -75,7 +74,7 @@ function TeamReports() {
               <span className="!col-span-2">Name</span>
               <span className="!col-span-2">Mobile No</span>
             </div>
-            {level1Count?.map((i, index) => {
+            {result?.filter((j)=>j?.LEVEL === 1)?.map((i, index) => {
               return (
                 <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-6   !place-items-center">
                   <span >{index + 1}</span>
