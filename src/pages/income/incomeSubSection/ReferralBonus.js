@@ -22,7 +22,7 @@ function ReferralBonus() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus:false
     }
   );
   const res = data?.data?.data;

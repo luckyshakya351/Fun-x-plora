@@ -22,6 +22,7 @@ import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { MygetdataFn,   walletamount } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
+import { DashboardRounded, Money  } from "@mui/icons-material";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -276,7 +277,26 @@ function Promotion() {
                 </Typography>
               </Stack>
             </Box>
-           
+            <Stack direction="row">
+              <Box className="!text-white">
+                <DashboardRounded />
+                <Typography variant="body1" >
+                  {data?.data?.this_week_income || 0}
+                </Typography>
+                <Typography variant="body1" >
+                 This Week
+                </Typography>
+              </Box>
+              <Box className="!text-white">
+                <Money />
+                <Typography variant="body1" >
+                  {data?.data?.total_commission || 0}
+                </Typography>
+                <Typography variant="body1" >
+                  Total Commission
+                </Typography>
+              </Box>
+            </Stack>
             <Stack direction="row">
               <Box className="!text-white">
                 <EmojiPeopleOutlinedIcon />
@@ -297,6 +317,7 @@ function Promotion() {
                 </Typography>
               </Box>
             </Stack>
+         
           </Box>
           <Box sx={style.promotionBoxOutertwo}></Box>
         </Box>

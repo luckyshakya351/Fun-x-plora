@@ -115,13 +115,13 @@ function WithdrawalHistoryUSdt() {
                     </Box>
                     <Box>
                       <Button
-                        sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${i?.status === "Success"
+                        sx={{ color: "green", textTransform: "capitalize"}}
+                        className={`${i?.m_w_status === "Approve"
                           ? "!text-green-500"
                           : "!text-red-500"
                           }`}
                       >
-                        {i?.status}
+                        {i?.m_w_status}
                       </Button>
                       <IconButton>
                         <ArrowForwardIcon sx={{ color: zubgtext }} />
@@ -142,7 +142,8 @@ function WithdrawalHistoryUSdt() {
                       Balance
                     </Typography>
                     <Typography variant="body1" color="initial">
-                      ₹ {i?.amt}
+                      {/* ₹  */}
+                      {i?.m_w_amount}
                     </Typography>
                   </Stack>
                   <Stack
@@ -158,8 +159,8 @@ function WithdrawalHistoryUSdt() {
                       Date/Time
                     </Typography>
                     <Typography variant="body1" color="initial">
-                      {moment(i?.created_at)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.created_at)?.format("HH:mm:ss")}
+                      {moment(i?.m_w_reqdate)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.m_w_reqdate)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>
                   <Stack
@@ -175,7 +176,7 @@ function WithdrawalHistoryUSdt() {
                       Status
                     </Typography>
                     <Typography variant="body1" color="initial">
-                      {i?.status}{" "}
+                      {i?.m_w_crypto_status}{" "}
                     </Typography>
                   </Stack>
                   {i?.success_date !== null && i?.success_date !== "" && <Stack
@@ -216,12 +217,12 @@ function WithdrawalHistoryUSdt() {
                         "&>p": { color: zubgtext },
                       }}
                     >
-                      <Typography variant="body1" color="initial">
-                        {i?.order_id}
+                      <Typography variant="body1" color="initial" >
+                        {i?.m_w_trans_id}
                       </Typography>
-                      <IconButton>
+                      {/* <IconButton>
                         <ContentCopyIcon sx={{ color: zubgtext }} />
-                      </IconButton>
+                      </IconButton> */}
                     </Stack>
                   </Stack>
                 </Box>

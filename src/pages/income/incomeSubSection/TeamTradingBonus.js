@@ -47,6 +47,7 @@ function TeamTradingBonus() {
           i?.l01_transection_type?.includes(filter)
       );
     }
+    
     return filter === "0"
       ? data?.data?.data
       : data?.data?.data?.filter((i) =>

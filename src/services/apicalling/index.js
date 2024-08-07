@@ -279,7 +279,7 @@ export const registrationBonusFn = async () => {
 export const team_trading_bonus_functoin = async () => {
   try {
     const response = await axios.get(
-      `${endpoint.team_trading_bonus}?user_id=${user_id}`
+      `${endpoint.team_trading_bonus}?id=${user_id}`
     );
     console.log(response);
     return response;

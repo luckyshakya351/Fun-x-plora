@@ -31,6 +31,10 @@ import { endpoint } from "../../../services/urls";
 
 function LoginWithEmail() {
   // const device_id = uuid.v4();
+  //login block start
+  // const [loginAttempts, setLoginAttempts] = useState(parseInt(sessionStorage.getItem('loginAttempts')) || 0);
+  // const [isBlocked, setIsBlocked] = useState(sessionStorage.getItem('isBlocked') === 'true');
+  //login block end
   const [loding, setloding] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
@@ -38,10 +42,6 @@ function LoginWithEmail() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-   //attempt password code start
-  // const max_attempts = 5;
-  // const block_duration = 24 * 60 * 60 * 1000;
- //attempt password code end
   const initialValue = {
     email: "",
     pass: "",
@@ -66,19 +66,12 @@ function LoginWithEmail() {
   });
 
   const loginFunction = async (reqbody) => {
-      //attempt password code start
-    // const currentTime = Date.now();
-    // let wrongAttempts = JSON.parse(localStorage.getItem('wrongAttempts')) || [];
-    // const lastAttemptTime = wrongAttempts.length > 0 ? wrongAttempts[wrongAttempts.length - 1].time : 0;
-    // const isBlocked = wrongAttempts.length >= max_attempts && (currentTime - lastAttemptTime) < block_duration;
+      //login block start
     // if (isBlocked) {
-    //   const remainingTimeMs = block_duration - (currentTime - lastAttemptTime);
-    //   const remainingHours = Math.ceil(remainingTimeMs / (1000 * 60 * 60));
-    //   toast.error(`Your account is blocked due to too many failed login attempts. Please try again in ${remainingHours} hours.`);
-    //   setloding(false);
+    //   toast.error("Your account is blocked. Please try again later.");
     //   return;
-    // } 
-    //attempt password code end
+    // }
+      //login block end
     setloding(true);
     try {
       const response = await axios.post(endpoint.login, reqbody, {
@@ -90,32 +83,37 @@ function LoginWithEmail() {
       toast.success(response?.data?.msg);
       console.log(response);
       if (response?.data?.error === "200") {
+         //login block start
+        // setLoginAttempts(0);
+        // sessionStorage.removeItem('loginAttempts');
+        // setIsBlocked(false);
+        // sessionStorage.removeItem('isBlocked');
+         //login block end
         const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
         localStorage.setItem("logindataen", value);
-        // localStorage.setItem("logindata", JSON.stringify(response?.data));
         sessionStorage.setItem("isAvailableUser", true);
         sessionStorage.setItem("isAvailableCricketUser", true);
-        // get_user_data(response?.data?.UserID);
         setloding(false);
         storeCookies();
         navigate("/dashboard");
         window.location.reload();
-         //attempt password code start
-        // localStorage.removeItem('wrongAttempts');
-        //attempt password code end
       }
-       //attempt password code start
-    //   else{
-    //     wrongAttempts.push({ time: currentTime });
-    //   localStorage.setItem('wrongAttempts', JSON.stringify(wrongAttempts));
-    //   if (wrongAttempts.length >= max_attempts) {
-    //     const blockUntil = currentTime + block_duration;
-    //     const blockDurationMs = blockUntil - currentTime;
-    //     const blockHours = Math.ceil(blockDurationMs / (1000 * 60 * 60));
-    //     toast.error(`Too many failed attempts. Your account is blocked for ${blockHours} hours.`);
-    //   }
-    // }
-    //attempt password code end
+      // else {
+      //     //login block start
+      //   const updatedAttempts = loginAttempts + 1;
+      //   setLoginAttempts(updatedAttempts);
+      //   sessionStorage.setItem('loginAttempts', updatedAttempts);
+
+      //   if (updatedAttempts >= 5) {
+      //     setIsBlocked(true);
+      //     sessionStorage.setItem('isBlocked', 'true');
+      //     sessionStorage.setItem('blockUntil', Date.now() + 24 * 60 * 60 * 1000); // Block for 24 hours
+      //     toast.error("Too many failed attempts. You are blocked for 24 hours.");
+      //   } else {
+      //     toast.error(response?.data?.msg || "Login failed");
+      //   }
+      // }
+        //login block end
     } catch (e) {
       toast.error(e?.message);
       console.error(e);
@@ -161,6 +159,20 @@ function LoginWithEmail() {
     }
   }, []);
 
+  //login block start
+  // useEffect(() => {
+  //   const blockUntil = sessionStorage.getItem('blockUntil');
+  //   if (blockUntil && Date.now() < blockUntil) {
+  //     setIsBlocked(true);
+  //     sessionStorage.setItem('isBlocked', 'true');
+  //     toast.error("You are blocked. Please try again later.");
+  //   } else {
+  //     setIsBlocked(false);
+  //     sessionStorage.removeItem('isBlocked');
+  //     sessionStorage.removeItem('blockUntil');
+  //   }
+  // }, []);
+    //login block end
   return (
     <Box
       component="form"

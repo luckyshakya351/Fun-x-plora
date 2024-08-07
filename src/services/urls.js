@@ -70,7 +70,7 @@ export const endpoint = {
   daily_salary_income: `${baseUrl}/api/daily-salay-income`,
   weekly_salary_income: `${baseUrl}/api/weekly-salay-income`,
   team_reward_bonus: `${baseUrl}/api/team-reward-bonus`,
-  team_trading_bonus: `${baseUrl}/api/team-trading-bonus`,
+  team_trading_bonus: `${newdomain}/api/v1/level-income`,
   add_bank_details: `${baseUrl}/api/bank-add`,
   get_bank_list: `${baseUrl}/api/user-bank-details`,
   all_withdrawl_user_list: `${baseUrl}/api/widthrol-user-list`,

@@ -19,6 +19,7 @@ import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Sha
 import Layout from "../../component/Layout/Layout";
 import { endpoint } from "../../services/urls";
 import CryptoJS from "crypto-js";
+import { useQueryClient } from "react-query";
 
 function AddAddressUsdt() {
     const login_data =
@@ -30,6 +31,7 @@ function AddAddressUsdt() {
         null;
 
     const user_id = login_data && JSON.parse(login_data)?.UserID;
+    const client = useQueryClient()
     const [lodint, setloding] = React.useState(false);
     const navigate = useNavigate();
     const goBack = () => {
@@ -60,6 +62,7 @@ function AddAddressUsdt() {
             if (response) {
                 toast.success(response?.data?.msg);
                 fk.handleReset();
+                client.refetchQueries("address_list_details")
                 navigate('/Withdrawalusdt')
             }
         } catch (error) {
