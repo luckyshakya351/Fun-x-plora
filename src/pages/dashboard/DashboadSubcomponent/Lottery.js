@@ -1,8 +1,7 @@
 import StartIcon from '@mui/icons-material/ArrowRightAlt';
 import CasinoIcon from '@mui/icons-material/Casino';
 import { Box, Button, Stack, Typography } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from 'react-router-dom';
 import "swiper/css";
 import "swiper/css/navigation";
@@ -11,7 +10,6 @@ import d5 from '../../../assets/images/5d.png';
 import k3 from '../../../assets/images/k3.png';
 import trx from '../../../assets/images/trx.png';
 import wingo from '../../../assets/images/wingo.png';
-import { endpoint } from "../../../services/urls";
 import { lightblue, zubgtext } from '../../../Shared/color';
 import { MyStatusFn } from '../../../services/apicalling';
 import { useQuery } from 'react-query';
