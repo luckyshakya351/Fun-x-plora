@@ -36,12 +36,25 @@ function LoginWithEmail() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  const [ipAddress, setIpAddress] = useState('');
+
+  useEffect(() => {
+      // Using a free IP API service
+      axios.get('https://api.ipify.org?format=json')
+          .then(response => {
+              setIpAddress(response.data.ip);
+          })
+          .catch(error => {
+              console.error('Error fetching IP address:', error);
+          });
+  }, []);
+
+
   const initialValue = {
     email: "",
     pass: "",
     isAllowCheckBox: false,
   };
-
   const fk = useFormik({
     initialValues: initialValue,
     validationSchema: LoginEmailSchemaValidaton,
@@ -50,6 +63,7 @@ function LoginWithEmail() {
         const reqbody = {
           username: fk.values.email || fk.values.mob,
           password: fk.values.pass,
+          ipAddress:ipAddress
         };
         console.log(reqbody);
         loginFunction(reqbody);

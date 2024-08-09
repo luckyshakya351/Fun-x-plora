@@ -244,7 +244,7 @@ export const depositHistoryUSDTFunction = async () => {
 export const withdrawlHistoryFunction = async () => {
   try {
     const response = await axios.get(
-      `${endpoint.withdrawl_history}?user_id=${user_id}`
+      `${endpoint.withdrawl_history}?user_id=2675`
     );
     return response;
   } catch (e) {
@@ -385,6 +385,18 @@ export const AddressListDetails = async () => {
   try {
     const response = await axios.get(
       `${endpoint.get_address_list}?m_u_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+
+export const MyStatusFn = async (gid) => {
+  try {
+    const response = await axios.get(
+      `${endpoint.get_status}`
     );
     return response;
   } catch (e) {

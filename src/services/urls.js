@@ -3,9 +3,9 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-// export const newdomain1 = "http://192.168.18.183:9000";
+export const newdomain = "http://192.168.18.183:9000";
 
-export const newdomain = "https://api.funxplora.com";
+// export const newdomain = "https://api.funxplora.com";
 
 export const domain = "https://funxplora-timer.onrender.com";
 
@@ -29,6 +29,7 @@ export const endpoint = {
   applybet: `${newdomain}/api/v1/bet`,
   game_history: `${newdomain}/api/v1/colour_result`,
   my_history_all: `${newdomain}/api/v1/getbet-game-results`,
+  get_status: `${newdomain}/api/v1/get-status`,
 
 //payment
   payment: `${newdomain}/api/v1/payment`,

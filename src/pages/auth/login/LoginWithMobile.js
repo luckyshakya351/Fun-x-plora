@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 // import * as uuid from "uuid";
@@ -37,9 +37,21 @@ function LoginWithMobile() {
   const [loding, setloding] = useState(false);
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const [ipAddress, setIpAddress] = useState('');
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    // Using a free IP API service
+    axios.get('https://api.ipify.org?format=json')
+        .then(response => {
+            setIpAddress(response.data.ip);
+        })
+        .catch(error => {
+            console.error('Error fetching IP address:', error);
+        });
+}, []);
 
   const initialValue = {
     mob: "",
@@ -55,6 +67,7 @@ function LoginWithMobile() {
       const reqbody = {
         username: fk.values.mob,
         password: fk.values.pass,
+        ipAddress:ipAddress
         // device_id: device_id,
       };
       loginFunction(reqbody);
@@ -94,7 +107,7 @@ function LoginWithMobile() {
   const [CountryCode, setCountryCode] = React.useState('+91');
 
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event) => {
     setCountryCode(event.target.value);
   };
 

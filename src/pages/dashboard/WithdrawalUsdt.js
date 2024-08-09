@@ -57,6 +57,7 @@ function WithdrawalUsdt() {
   const [lodint, setloding] = React.useState(false);
   const audioRefMusic = React.useRef(null);
   const [openDialogBox, setOpenDialogBox] = React.useState(false);
+  const [msg, setMsg] = React.useState("Your withdrawl amount will be add in your bank account within 24 Hrs.");
 
   React.useEffect(() => {
     !aviator_login_data && get_user_data_fn(dispatch);
@@ -98,7 +99,7 @@ function WithdrawalUsdt() {
 
   const initialValues = {
 
-    amount:920,
+    amount: 920,
     withdrawal_add: "Select Address",
   };
 
@@ -108,18 +109,18 @@ function WithdrawalUsdt() {
 
       if (fk.values.withdrawal_add === "Select Address")
         return toast("Select Addres ");
-      if (Number(fk.values.amount) < 92*10 || Number(fk.values.amount) > 500*92)
+      if (Number(fk.values.amount) < 92 * 10 || Number(fk.values.amount) > 500 * 92)
         return toast("Amount shoulb be minimum $10 and maximum $500");
 
       if (!data) return toast("Data not found");
       const reqbody = {
         m_u_id: user_id,
         withdrawal_add: fk.values.withdrawal_add,
-        m_w_amount:fk.values.amount
-    }
-    // console.log(reqbody)
-     withdraw_payment_Function(reqbody)
-       
+        m_w_amount: fk.values.amount
+      }
+      // console.log(reqbody)
+      withdraw_payment_Function(reqbody)
+
     },
   });
 
@@ -127,12 +128,17 @@ function WithdrawalUsdt() {
     setloding(true);
     try {
       const response = await axios.post(`${endpoint.withdrawal_request_usdt}`, reqbody);
-
-      if (response?.data?.msg ) {
+      if (response?.data?.msg === "Record save successfully") {
         walletamountFn();
         fk.handleReset();
         setOpenDialogBox(true);
-      } 
+
+      }
+      else {
+        fk.handleReset();
+        setOpenDialogBox(true);
+        setMsg(response?.data?.msg)
+      }
     } catch (e) {
       toast(e?.message);
       console.log(e);
@@ -280,25 +286,25 @@ function WithdrawalUsdt() {
               mb: 5,
             }}
           >
-          
+
             <Box mt={2}>
 
-             <div className="  my-2 mb-4">
-             <p className="!text-center !p-4 text-blue-600 cursor-pointer  border border-dashed border-gray-400"
-             onClick={()=>navigate("/addadressusdt")}> + Add Address</p>
-             </div>
+              <div className="  my-2 mb-4">
+                <p className="!text-center !p-4 text-blue-600 cursor-pointer  border border-dashed border-gray-400"
+                  onClick={() => navigate("/addadressusdt")}> + Add Address</p>
+              </div>
               <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-              <Box component="img" src={payment} width={30}></Box>
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
-              >
-                Select Amount of USDT
-              </Typography>
-            </Stack>
-            
-            <FormControl fullWidth sx={{ mt: "10px" }}>
+                <Box component="img" src={payment} width={30}></Box>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+                >
+                  Select Amount of USDT
+                </Typography>
+              </Stack>
+
+              <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
                     Select address <span className="!text-red-600">*</span>
@@ -311,7 +317,7 @@ function WithdrawalUsdt() {
                   value={fk.values.withdrawal_add}
                   onChange={fk.handleChange}
                   className="withdrawalfield"
-                //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   InputProps={{
                     style: {
                       borderColor: 'red',
@@ -348,7 +354,7 @@ function WithdrawalUsdt() {
                   className="withdrawalfield"
                 //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
-               
+
               </FormControl>
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
@@ -363,7 +369,7 @@ function WithdrawalUsdt() {
                   placeholder=" 00000 "
                   className="withdrawalfield"
                 />
-            
+
               </FormControl>
 
 
@@ -379,140 +385,139 @@ function WithdrawalUsdt() {
               </Button>
             </Box>
           </Box>
-          <Box 
-          
-          mt={3}
-          sx={{
+          <Box
 
-            padding: "10px",
-            width: "95%",
-            margin: "auto",
-            mt: "20px",
-            background: '#fff',
-            boxShadow: zubgshadow,
-            borderRadius: "10px",
-            mb: 5,
-          }}>
-          <Stack direction="row" alignItems="center" mt={1}
-            className="!text-bold ">
-            
-            <Typography
-              variant="body1"
-              color="initial"
-             className="!text-xs"
-            >
-           *   Need to bet{" "}
-            </Typography>
-            <Typography
-            className="!text-orange-500 !text-xs"
-              variant="body1"
-              color="initial"
-              sx={{
-                
-             
-                mx: 0.5,
-              }}
-            >
-              {" "}
-              $ 0
-            </Typography>
-            <Typography
-              variant="body1"
-              color="initial"
-              className="!text-xs"
-            >
-              {" "}
-              to be able to withdraw .{" "}
-            </Typography>
-          </Stack>
-      
-        
-          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold !text-xl">
-           
-            <Typography
-              variant="body1"
-              color="initial"
-             className="!text-xs"
-            >
-           *   Withdraw time{" "}
-            </Typography>
-            <Typography
-             className="!text-orange-500 !text-xs"
-              variant="body1"
-              color="initial"
-              sx={{
-                
-               
-                mx: 0.5,
-              }}
-            >
-              00:00-23:50.{" "}
-            </Typography>
-          </Stack>
-          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold !text-xl">
-           
-           <Typography
-             variant="body1"
-             color="initial"
-            className="!text-xs"
-           >
-          *   Withdraw Amount 
-           </Typography>
-           <Typography
-            className="!text-orange-500 !text-xs"
-             variant="body1"
-             color="initial"
-            
-             sx={{
-               
-              
-               mx: 0.5,
-             }}
-           >
-          $10.00 - $500.00 .{" "}
-           </Typography>
-         </Stack>
-          <Stack direction="row" alignItems="center" mt={1}>
-          
-            <Typography
-              variant="body1"
-              color="initial"
-             className="!text-xs"
-            >
-          *    Please confirm your beneficial account information before
-             withdrawing. 
-            </Typography>
-          </Stack>
-          <Stack direction="row" alignItems="center" mt={1}>
-          
-          <Typography
-            variant="body1"
-            color="initial"
-           className="!text-xs"
-          >
-        *    If your information is incorrect, our company will
-            not be liable for the amount of loss .{" "}
-          </Typography>
-        </Stack>
-          <Stack direction="row" alignItems="center" mt={1}   className="!text-bold ">
-           
-            <Typography
-              variant="body1"
-              color="initial"
-             className="!text-xs"
-            >
-            *  If your beneficial information is incorrect, please contact
-              customer service.
-            </Typography>
-          </Stack>
-        </Box>
+            mt={3}
+            sx={{
+
+              padding: "10px",
+              width: "95%",
+              margin: "auto",
+              mt: "20px",
+              background: '#fff',
+              boxShadow: zubgshadow,
+              borderRadius: "10px",
+              mb: 5,
+            }}>
+            <Stack direction="row" alignItems="center" mt={1}
+              className="!text-bold ">
+
+              <Typography
+                variant="body1"
+                color="initial"
+                className="!text-xs"
+              >
+                *   Need to bet{" "}
+              </Typography>
+              <Typography
+                className="!text-orange-500 !text-xs"
+                variant="body1"
+                color="initial"
+                sx={{
+
+
+                  mx: 0.5,
+                }}
+              >
+                {" "}
+                $ 0
+              </Typography>
+              <Typography
+                variant="body1"
+                color="initial"
+                className="!text-xs"
+              >
+                {" "}
+                to be able to withdraw .{" "}
+              </Typography>
+            </Stack>
+
+
+            <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
+
+              <Typography
+                variant="body1"
+                color="initial"
+                className="!text-xs"
+              >
+                *   Withdraw time{" "}
+              </Typography>
+              <Typography
+                className="!text-orange-500 !text-xs"
+                variant="body1"
+                color="initial"
+                sx={{
+
+
+                  mx: 0.5,
+                }}
+              >
+                00:00-23:50.{" "}
+              </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
+
+              <Typography
+                variant="body1"
+                color="initial"
+                className="!text-xs"
+              >
+                *   Withdraw Amount
+              </Typography>
+              <Typography
+                className="!text-orange-500 !text-xs"
+                variant="body1"
+                color="initial"
+
+                sx={{
+
+
+                  mx: 0.5,
+                }}
+              >
+                $10.00 - $500.00 .{" "}
+              </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" mt={1}>
+
+              <Typography
+                variant="body1"
+                color="initial"
+                className="!text-xs"
+              >
+                *    Please confirm your beneficial account information before
+                withdrawing.
+              </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" mt={1}>
+
+              <Typography
+                variant="body1"
+                color="initial"
+                className="!text-xs"
+              >
+                *    If your information is incorrect, our company will
+                not be liable for the amount of loss .{" "}
+              </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" mt={1} className="!text-bold ">
+
+              <Typography
+                variant="body1"
+                color="initial"
+                className="!text-xs"
+              >
+                *  If your beneficial information is incorrect, please contact
+                customer service.
+              </Typography>
+            </Stack>
+          </Box>
         </Box>
         <Dialog open={openDialogBox}>
           <div className="!p-5 !max-w-[300px]">
             <p className="!font-bold text-center flex-col">
               <span className="!text-lg">
-                Your withdrawl amount will be add in your bank account within 24
-                Hrs.
+              {msg}
               </span>
               <p className="!text-green-500">Thank You!</p>
               <Button

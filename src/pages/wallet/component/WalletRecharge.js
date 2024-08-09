@@ -6,9 +6,13 @@ import {
   Box,
   Button,
   Container,
+  FormControl,
   IconButton,
   InputAdornment,
+  InputLabel,
+  MenuItem,
   OutlinedInput,
+  Select,
   Stack,
   Typography,
 } from "@mui/material";
@@ -68,6 +72,7 @@ function WalletRecharge() {
   const [loding, setloding] = React.useState(false);
   const [deposit_req_data_usdt, setDeposit_req_data_usdt] = React.useState();
   const [address, setAddress] = React.useState("");
+  const [selectedGateway, setSelectedGateway] = React.useState('');
 
   const [amount, setAmount] = React.useState({
     wallet: 0,
@@ -135,6 +140,7 @@ function WalletRecharge() {
       fd.append("Name", user_name);
       fd.append("TransactionID", transaction_id);
 
+
       // return toast("We are upgrading for smooth and fast payin please wait...");
 
       paymentRequest(fd, fk.values.amount);
@@ -161,6 +167,7 @@ function WalletRecharge() {
     };
     const fdata = new FormData();
     fdata.append("user_id", reqbody.user_id);
+    fdata.append("type_gateway", selectedGateway === "Gateway1" ? "1" : "2");
     fdata.append("amount", reqbody.amount);
     fdata.append("transection_id", reqbody.transection_id);
     fdata.append("Deposit_type", deposit_amount ? Deposit_type : "Null");
@@ -197,7 +204,6 @@ const formik = useFormik({
   onSubmit: () => {
     const fd = new FormData();
     payment(formik.values.amount);
-
   },
 });
 async function payment(amnt) {
@@ -581,6 +587,8 @@ async function payment(amnt) {
             </Typography>
           </Stack>
         </Box>
+
+         
         <Box className="!flex !justify-start !mx-5 gap-5">
           <Box
           sx={{
@@ -620,8 +628,24 @@ async function payment(amnt) {
             </Box>
           </Box>
         </Box>
-        {paymentType === 'UPI' ? (
-          <Box>
+        {paymentType === 'UPI' ?  (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <FormControl sx={{ width: '500px' }}
+          className="!-ml-10">
+               <InputLabel>Select Gateway</InputLabel>
+            <Select
+              value={selectedGateway}
+              label="Select Gateway"
+              onChange={(e) => setSelectedGateway(e.target.value)}>
+              <MenuItem value="Gateway1">Gateway 1</MenuItem>
+              <MenuItem value="Gateway2">Gateway 2</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>):(
+          ""
+        )}
+   {(paymentType === 'UPI') ?  (
+        selectedGateway && <Box>
             <Box
               sx={{
                 padding: "10px",
@@ -674,99 +698,7 @@ async function payment(amnt) {
             {rechargeInstruction}
           </Box>) : (
           <Box>
-
-            {/* <Box
-              sx={{
-                padding: "10px",
-                width: "95%",
-                margin: "auto",
-                mt: "20px",
-                background: zubgmid,
-                borderRadius: "10px",
-                mb: 2,
-              }}
-            >
-              <Stack
-                direction="row"
-                sx={{ alignItems: "center", mb: "20px" }}
-              >
-                <Box component="img" width={30}></Box>
-                <Typography
-                  variant="body1"
-                  color="initial"
-                  sx={{ fontSize: "20px ", color: "white", ml: "10px" }}
-                >
-                  {" "}
-                  Select channel
-                </Typography>
-              </Stack>
-              <Stack
-
-                sx={{
-
-                  mt: "10px",
-                }}
-              >
-
-                <Box
-                  sx={{
-                    width: "100%",
-                    background: zubgbackgrad,
-                    padding: "15px 20px",
-                    borderRadius: "10px",
-                    mb: "10px",
-                    "& > p": {
-                      fontSize: "14px",
-                      color: "white",
-                    },
-                    "&:hover": {
-                      background: "white",
-                      "& > p": {
-                        color: "black",
-                      },
-                    },
-                  }}
-                >
-                  <Typography variant="body1" color="initial">
-                    IMpay-QR
-                  </Typography>
-                  <Typography variant="body1" color="initial">
-                    Balance:100 - 50K
-                  </Typography>
-                  <Typography variant="body1" color="initial">
-                    3 %  Bonus
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    width: "100%",
-                    background: zubgbackgrad,
-                    padding: "15px 20px",
-                    borderRadius: "10px",
-                    mb: "10px",
-                    "& > p": {
-                      fontSize: "14px",
-                      color: "white",
-                    },
-                    "&:hover": {
-                      background: "white",
-                      "& > p": {
-                        color: "black",
-                      },
-                    },
-                  }}>
-                  <Typography variant="body1" color="initial">
-                    TYpay-QR
-                  </Typography>
-                  <Typography variant="body1" color="initial">
-                    Balance:500 - 50K
-                  </Typography>
-                </Box>
-              </Stack>
-            </Box> */}
-
-
-            <Box
+          <Box
               sx={{
                 padding: "10px",
                 width: "95%",

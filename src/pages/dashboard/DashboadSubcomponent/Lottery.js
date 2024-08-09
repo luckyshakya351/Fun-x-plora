@@ -3,7 +3,7 @@ import CasinoIcon from '@mui/icons-material/Casino';
 import { Box, Button, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -13,22 +13,20 @@ import trx from '../../../assets/images/trx.png';
 import wingo from '../../../assets/images/wingo.png';
 import { endpoint } from "../../../services/urls";
 import { lightblue, zubgtext } from '../../../Shared/color';
+import { MyStatusFn } from '../../../services/apicalling';
+import { useQuery } from 'react-query';
 
 function Lottery() {
-  const [status, setStatus] = useState(false);
-
-  const getStatus = async () => {
-    try {
-      const res = await axios.get(endpoint.withdrawl_status);
-      setStatus(res?.data?.earning);
-    } catch (e) {
-      console.log(e);
+  const {data } = useQuery(
+    ["get_status"],
+    () => MyStatusFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
     }
-  };
-  const navigate = useNavigate()
-  useEffect(() => {
-    getStatus();
-  }, []);
+  );
+  const result = data?.data?.data
 
   return (
     <Box >
@@ -45,7 +43,7 @@ function Lottery() {
             <Box sx={{ ...style.gamenamebox }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', }}>
                 <Typography variant="h6" sx={{ fontWeight: '600' }} >Win Go</Typography>
-                <Button onClick={() => navigate('/win')} variant="text" color="primary" sx={{ ...style.playbutton }}> Go <StartIcon ml={2} /></Button>
+                <Button component={NavLink} to={result?.find((i)=>i?.title ==="wingo_status")?.longtext !=="0" && '/win'} variant="text" color="primary" sx={{ ...style.playbutton }}> Go <StartIcon ml={2} /></Button>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 1, ...style.maxwin }}>
                 <Typography variant="body2" sx={{ fontSize: '11px', }} >The Highest Bounus in history</Typography>
@@ -103,7 +101,7 @@ function Lottery() {
             <Box sx={{ ...style.gamenamebox }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', }}>
                 <Typography variant="h6" sx={{ fontWeight: '600' }} >TRX</Typography>
-                <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...style.playbutton }}> Go <StartIcon ml={2} /></Button>
+                <Button component={NavLink} to={result?.find((i)=>i?.title ==="trx_status")?.longtext !=="0" && '/trx'} variant="text" color="primary" sx={{ ...style.playbutton }}> Go <StartIcon ml={2} /></Button>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 1, ...style.maxwin }}>
                 <Typography variant="body2" sx={{ fontSize: '11px', }} >The Highest Bounus in history</Typography>

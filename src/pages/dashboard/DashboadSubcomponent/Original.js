@@ -1,19 +1,30 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid } from "../../../Shared/color";
 import go from "../../../assets/images/go.png";
 import scr1 from '../../../assets/images/src1.png';
 import kind from "../../../assets/images/win1/aviater.jpg";
+import { useQuery } from "react-query";
+import { MyStatusFn } from "../../../services/apicalling";
 
 const Original = () => {
-  const navigate = useNavigate();
 
+  const {data } = useQuery(
+    ["get_status"],
+    () => MyStatusFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+  const result = data?.data?.data
 
   return (
     <Box>
       <Box sx={style.root}>
-        <Box sx={style.roottwo} component={NavLink} to={"/playgame"}>
+        <Box sx={style.roottwo} component={NavLink} to={result?.find((i)=>i?.title==="aviator_staus")?.longtext !=="0" && '/playgame'}>
           <Box sx={{ width: "70%", height: "100%", position: 'relative' }}>
             <Box sx={{
               position: 'absolute', top: 0, left: '0', width: '100%', height: '100%', borderRadius: '10px 0px 0px 10px',

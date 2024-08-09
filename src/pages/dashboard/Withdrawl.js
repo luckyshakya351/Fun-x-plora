@@ -85,6 +85,7 @@ function Withdrawl() {
   React.useEffect(() => {
     walletamountFn();
   }, []);
+
   const { isLoading, data } = useQuery(
     ["bank_list_details"],
     () => BankListDetails(),
@@ -539,7 +540,7 @@ function Withdrawl() {
               }}
             >
               {" "}
-              ₹ 0
+              ₹ {amount?.need_amount_for_withdrawl}
             </Typography>
             <Typography
               variant="body1"

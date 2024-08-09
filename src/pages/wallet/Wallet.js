@@ -265,6 +265,7 @@ function Wallet() {
            
           </Stack>
           <Stack
+          className="!mb-20"
             direction="row"
             sx={{
               width: "100%",
@@ -403,7 +404,7 @@ function Wallet() {
             </Box>
           </Stack>
         </Box>
-        <Box
+        {/* <Box
           sx={{
             width: "100%",
             borderRadius: "10px ",
@@ -475,7 +476,7 @@ function Wallet() {
               </Typography>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
         {openDialogBoxHomeBanner && (
           <Dialog
             PaperProps={{ width: "500px", height: "500px" }}
