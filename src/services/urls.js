@@ -3,9 +3,9 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain = "http://192.168.18.183:9000";
+// export const newdomain = "http://192.168.18.183:9000";
 
-// export const newdomain = "https://api.funxplora.com";
+export const newdomain = "https://api.funxplora.com";
 
 export const domain = "https://funxplora-timer.onrender.com";
 
