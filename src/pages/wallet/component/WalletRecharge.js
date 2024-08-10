@@ -30,7 +30,7 @@ import {
   zubgbackgrad,
   zubgmid,
   zubgshadow,
-  zubgtext
+  zubgtext,
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
 import cip from "../../../assets/cip.png";
@@ -47,12 +47,11 @@ import { endpoint } from "../../../services/urls";
 import UsdtQR from "./UsdtQR";
 
 function WalletRecharge() {
-
   const dispatch = useDispatch();
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
-  const [paymentType, setPaymentType] = React.useState('UPI');
+  const [paymentType, setPaymentType] = React.useState("UPI");
   const deposit_amount = localStorage.getItem("amount_set");
   const Deposit_type = localStorage.getItem("Deposit_type");
   const server_provider = localStorage.getItem("server_provider");
@@ -72,7 +71,7 @@ function WalletRecharge() {
   const [loding, setloding] = React.useState(false);
   const [deposit_req_data_usdt, setDeposit_req_data_usdt] = React.useState();
   const [address, setAddress] = React.useState("");
-  const [selectedGateway, setSelectedGateway] = React.useState('');
+  const [selectedGateway, setSelectedGateway] = React.useState("");
 
   const [amount, setAmount] = React.useState({
     wallet: 0,
@@ -140,7 +139,6 @@ function WalletRecharge() {
       fd.append("Name", user_name);
       fd.append("TransactionID", transaction_id);
 
-
       // return toast("We are upgrading for smooth and fast payin please wait...");
 
       paymentRequest(fd, fk.values.amount);
@@ -180,7 +178,8 @@ function WalletRecharge() {
     }
     try {
       const res = await axios.post(`${endpoint.payment_request}`, fdata);
-      const qr_url = res?.data?.data && JSON.parse(res?.data?.data)?.upi_deep_link || "";
+      const qr_url =
+        (res?.data?.data && JSON.parse(res?.data?.data)?.upi_deep_link) || "";
       // const qr_url = JSON.parse(res?.data?.data) || "";
       console.log(res);
       if (qr_url) {
@@ -194,35 +193,34 @@ function WalletRecharge() {
     setloding(false);
   }
 
+  const initialValuesss = {
+    amount: deposit_amount || 10,
+  };
 
-const initialValuesss = {
-  amount: deposit_amount || 10,
-};
-
-const formik = useFormik({
-  initialValues: initialValuesss,
-  onSubmit: () => {
-    const fd = new FormData();
-    payment(formik.values.amount);
-  },
-});
-async function payment(amnt) {
-  setloding(true);
-  if (!amnt) {
-    toast("Please Enter the amount");
-    return;
+  const formik = useFormik({
+    initialValues: initialValuesss,
+    onSubmit: () => {
+      const fd = new FormData();
+      payment(formik.values.amount);
+    },
+  });
+  async function payment(amnt) {
+    setloding(true);
+    if (!amnt) {
+      toast("Please Enter the amount");
+      return;
+    }
+    const formdata = {
+      userid: Number(user_id),
+      amount: Number(amnt),
+    };
+    const response = await axios.post(`${endpoint.payment}`, formdata);
+    setDeposit_req_data_usdt(response?.data?.data?.qrcode_url);
+    setAddress(response?.data?.data?.address);
+    setAmount(response?.data?.data?.amount);
+    // console.log(response?.data?.data?.amount)
+    setloding(false);
   }
-  const formdata = {
-    userid: Number(user_id),
-    amount: Number(amnt)
-  }
-  const response = await axios.post(`${endpoint.payment}`, formdata);
-  setDeposit_req_data_usdt(response?.data?.data?.qrcode_url);
-  setAddress(response?.data?.data?.address)
-  setAmount(response?.data?.data?.amount)
-  // console.log(response?.data?.data?.amount)
-  setloding(false);
-}
 
   const audio = React.useMemo(() => {
     return (
@@ -240,7 +238,7 @@ async function payment(amnt) {
           width: "95%",
           margin: "auto",
           mt: "20px",
-          background: '#fff',
+          background: "#fff",
           borderRadius: "10px",
           mb: 5,
         }}
@@ -398,7 +396,7 @@ async function payment(amnt) {
             onClick={() => formik.setFieldValue("amount", 50)}
           >
             {" "}
-            $  50
+            $ 50
           </Button>
           <Button
             sx={style.paytmbtn}
@@ -412,26 +410,26 @@ async function payment(amnt) {
             onClick={() => formik.setFieldValue("amount", 500)}
           >
             {" "}
-            $  500
+            $ 500
           </Button>
           <Button
             sx={style.paytmbtn}
             onClick={() => formik.setFieldValue("amount", 1000)}
           >
             {" "}
-            $  1K
+            $ 1K
           </Button>
           <Button
             sx={style.paytmbtn}
             onClick={() => formik.setFieldValue("amount", 5000)}
           >
-
-          $   5K
+            $ 5K
           </Button>
         </Stack>
       </>
     );
   }, []);
+
   if (deposit_req_data) {
     window.open(deposit_req_data);
     // return (
@@ -550,8 +548,8 @@ async function payment(amnt) {
               {deposit_amount
                 ? Number(amount?.cricket_wallet || 0)?.toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -588,16 +586,17 @@ async function payment(amnt) {
           </Stack>
         </Box>
 
-         
         <Box className="!flex !justify-start !mx-5 gap-5">
           <Box
-          sx={{
-            background: zubgtext,
-            border: zubgtext
-          }}
-           className="!cursor-pointer px-8 py-3 !rounded-lg !my-10 "
-            onClick={() => setPaymentType('UPI')} variant={paymentType === 'UPI' ? 'contained' : 'outlined'}>
-            <Box  component={NavLink}>
+            sx={{
+              background: zubgtext,
+              border: zubgtext,
+            }}
+            className="!cursor-pointer px-8 py-3 !rounded-lg !my-10 "
+            onClick={() => setPaymentType("UPI")}
+            variant={paymentType === "UPI" ? "contained" : "outlined"}
+          >
+            <Box component={NavLink}>
               <Box
                 component="img"
                 src={payNameIcon2}
@@ -608,16 +607,18 @@ async function payment(amnt) {
               </Typography>
             </Box>
           </Box>
-          <Box  
-           sx={{
-            background: zubgtext,
-            border: zubgtext
-          }}
-           className="!cursor-pointer px-8  py-3 !rounded-lg !my-10 "
-            onClick={() => setPaymentType('USDT')} variant={paymentType === 'USDT' ? 'contained' : 'outlined'}
-            >
-            <Box  >
-              <Box className="!bg-white !border !border-white !rounded-lg"
+          <Box
+            sx={{
+              background: zubgtext,
+              border: zubgtext,
+            }}
+            className="!cursor-pointer px-8  py-3 !rounded-lg !my-10 "
+            onClick={() => setPaymentType("USDT")}
+            variant={paymentType === "USDT" ? "contained" : "outlined"}
+          >
+            <Box>
+              <Box
+                className="!bg-white !border !border-white !rounded-lg"
                 component="img"
                 src={usdt}
                 sx={{ width: "100px", height: "80px", borderRadius: "10px" }}
@@ -628,83 +629,89 @@ async function payment(amnt) {
             </Box>
           </Box>
         </Box>
-        {paymentType === 'UPI' ?  (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <FormControl sx={{ width: '500px' }}
-          className="!-ml-10">
-               <InputLabel>Select Gateway</InputLabel>
-            <Select
-              value={selectedGateway}
-              label="Select Gateway"
-              onChange={(e) => setSelectedGateway(e.target.value)}>
-              <MenuItem value="Gateway1">Gateway 1</MenuItem>
-              <MenuItem value="Gateway2">Gateway 2</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>):(
+        {paymentType === "UPI" ? (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <FormControl sx={{ width: "500px" }} className="!-ml-10">
+              <InputLabel>Select Gateway</InputLabel>
+              <Select
+                value={selectedGateway}
+                label="Select Gateway"
+                onChange={(e) => {
+                  setDeposit_req_data(null);
+                  setSelectedGateway(e.target.value);
+                }}
+              >
+                <MenuItem value="Gateway1">Gateway 1</MenuItem>
+                <MenuItem value="Gateway2">Gateway 2</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        ) : (
           ""
         )}
-   {(paymentType === 'UPI') ?  (
-        selectedGateway && <Box>
+        {paymentType === "UPI" ? (
+          selectedGateway && (
+            <Box>
+              <Box
+                sx={{
+                  padding: "10px",
+                  width: "95%",
+                  margin: "auto",
+                  mt: "20px",
+                  background: "#ffffff",
+                  boxShadow: zubgshadow,
+                  borderRadius: "10px",
+                  mb: 2,
+                }}
+              >
+                {payment_button}
+                <Stack
+                  direction="row"
+                  sx={{
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexWrap: "wrap",
+                    mt: "10px",
+                  }}
+                >
+                  <OutlinedInput
+                    fullWidth
+                    placeholder="Enter amount"
+                    className="wallet-textfield"
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    value={fk.values.amount}
+                    onChange={fk.handleChange}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton edge="end">
+                          <CloseIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                  {fk.touched.amount && fk.errors.amount && (
+                    <div className="error">{fk.errors.amount}</div>
+                  )}
+
+                  <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
+                    Deposit
+                  </Button>
+                </Stack>
+              </Box>
+              {rechargeInstruction}
+            </Box>
+          )
+        ) : (
+          <Box>
             <Box
               sx={{
                 padding: "10px",
                 width: "95%",
                 margin: "auto",
                 mt: "20px",
-                background: '#ffffff',
-                boxShadow: zubgshadow,
-                borderRadius: "10px",
-                mb: 2,
-              }}
-            >
-              {payment_button}
-              <Stack
-                direction="row"
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  flexWrap: "wrap",
-                  mt: "10px",
-                }}
-              >
-                <OutlinedInput
-                  fullWidth
-                  placeholder="Enter amount"
-                  className="wallet-textfield"
-                  type="number"
-                  id="amount"
-                  name="amount"
-                  value={fk.values.amount}
-                  onChange={fk.handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton edge="end">
-                        <CloseIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-                {fk.touched.amount && fk.errors.amount && (
-                  <div className="error">{fk.errors.amount}</div>
-                )}
-                
-                <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
-                  Deposit
-                </Button>
-               
-              </Stack>
-            </Box>
-            {rechargeInstruction}
-          </Box>) : (
-          <Box>
-          <Box
-              sx={{
-                padding: "10px",
-                width: "95%",
-                margin: "auto",
-                mt: "20px",
-                background: '#ffffff',
+                background: "#ffffff",
                 boxShadow: zubgshadow,
                 borderRadius: "10px",
                 mb: 2,
@@ -731,15 +738,20 @@ async function payment(amnt) {
                   onChange={formik.handleChange}
                   endAdornment={
                     <InputAdornment position="end">
-                      <div style={{ display: 'flex', alignItems: 'right' }}>
+                      <div style={{ display: "flex", alignItems: "right" }}>
                         <Typography
                           variant="body2"
-                          sx={{ color: 'white', mr: 1, display: 'flex', alignItems: 'center' }}
+                          sx={{
+                            color: "white",
+                            mr: 1,
+                            display: "flex",
+                            alignItems: "center",
+                          }}
                         >
-                         USDT
+                          USDT
                         </Typography>
                         <IconButton edge="end">
-                          <CloseIcon style={{ color: 'white' }} />
+                          <CloseIcon style={{ color: "white" }} />
                         </IconButton>
                       </div>
                     </InputAdornment>
@@ -753,27 +765,30 @@ async function payment(amnt) {
                   id="amount"
                   name="amount"
                   value={Number(formik.values.amount || 0) * 92}
-
                   endAdornment={
                     <InputAdornment position="end">
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
                         <Typography
                           variant="body2"
-                          sx={{ color: 'white', mr: 1, display: 'flex', alignItems: 'center' }}
+                          sx={{
+                            color: "white",
+                            mr: 1,
+                            display: "flex",
+                            alignItems: "center",
+                          }}
                         >
                           INR
                         </Typography>
                         <IconButton edge="end">
-                          <CloseIcon style={{ color: 'white' }} />
+                          <CloseIcon style={{ color: "white" }} />
                         </IconButton>
                       </div>
                     </InputAdornment>
                   }
                 />
-             <Button sx={style.paytmbtntwo}  onClick={formik.handleSubmit}>
+                <Button sx={style.paytmbtntwo} onClick={formik.handleSubmit}>
                   Deposit
                 </Button>
-
               </Stack>
             </Box>
             {rechargeInstruction}
@@ -781,7 +796,6 @@ async function payment(amnt) {
         )}
 
         <CustomCircularProgress isLoading={loding} />
-       
       </Container>
     </Layout>
   );
