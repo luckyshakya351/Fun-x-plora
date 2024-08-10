@@ -99,11 +99,14 @@ function Account() {
               </Typography>
               <Box component="img" src={namer} sx={{ width: "50px" }} />
             </Stack>
-
-            <Typography variant="body1" color="initial" sx={{ mt: 1 }}>
+         
+            <Typography variant="body1" color="initia nl" sx={{ mt: 1 }}>
               UID | {wallet?.username || 0}{" "}
               <ContentCopyOutlinedIcon sx={{ fontSize: "15px", ml: 2 }} />
             </Typography>
+            <p className="!ml-2">
+              MobileNo :  {wallet?.full_name || 0}{" "}
+            </p>
           </Box>
         </Stack>
         <Box sx={style.balanceContainer}>
@@ -338,23 +341,23 @@ function Account() {
             </Stack>
           </Stack>
         </Box>
-        <Box
-          // sx={{
-          //   width: "95%",
-          //   marginLeft: "2.5%",
-          //   borderRadius: "10px",
-          //   background: zubgmid,
-          //   padding: "10px",
-          //   mt: "20px",
-          //   "&>:nth-child(1)": {
-          //     color: "white",
-          //     fontSize: "15px",
-          //     fontWeight: "600",
-          //     mb: "25px",
-          //   },
-          // }}
+        {/* <Box
+          sx={{
+            width: "95%",
+            marginLeft: "2.5%",
+            borderRadius: "10px",
+            background: zubgmid,
+            padding: "10px",
+            mt: "20px",
+            "&>:nth-child(1)": {
+              color: "white",
+              fontSize: "15px",
+              fontWeight: "600",
+              mb: "25px",
+            },
+          }}
         >
-          {/* <Typography variant="body1" color="initial">
+          <Typography variant="body1" color="initial">
             Service center
           </Typography>
 
@@ -411,8 +414,8 @@ function Account() {
                 </Box>
               );
             })}
-          </div> */}
-        </Box>
+          </div>
+        </Box> */}
         <Box
           sx={{
             width: "95%",

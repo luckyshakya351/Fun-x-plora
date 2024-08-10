@@ -86,6 +86,7 @@ function WalletRecharge() {
 
   React.useEffect(() => {
     handlePlaySound();
+    
   }, []);
 
   React.useEffect(() => {
@@ -122,7 +123,7 @@ function WalletRecharge() {
   }, []);
 
   const initialValues = {
-    amount: deposit_amount || 110,
+    amount: deposit_amount || 0,
     all_data: { t_id: "", amount: "", date: "" },
   };
 
@@ -153,10 +154,10 @@ function WalletRecharge() {
 
   // sajid api
   async function paymentRequest(fd, amnt) {
-    setloding(true);
     if (!amnt) {
       toast("Please Enter the amount");
       return;
+     
     }
     const reqbody = {
       user_id: user_id,
@@ -318,42 +319,62 @@ function WalletRecharge() {
         >
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 500)}
-          >
+            onClick={() => {
+              setDeposit_req_data(null);
+              fk.setFieldValue("amount", 500);
+            }}
+            >
             {" "}
             ₹ 500
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 1000)}
+            onClick={() =>
+              {
+                setDeposit_req_data(null);
+                fk.setFieldValue("amount", 1000)}
+              } 
           >
             {" "}
             ₹ 1K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 5000)}
+            onClick={() =>{
+              setDeposit_req_data(null); 
+              fk.setFieldValue("amount", 5000)}
+            } 
           >
             {" "}
             ₹ 5K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 10000)}
+            onClick={() =>{
+              setDeposit_req_data(null); 
+              fk.setFieldValue("amount", 10000)}
+            } 
+           
           >
             {" "}
             ₹ 10K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 15000)}
+            onClick={() =>{
+              setDeposit_req_data(null); 
+              fk.setFieldValue("amount", 15000)}
+            } 
           >
             {" "}
             ₹ 15K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => fk.setFieldValue("amount", 20000)}
+            onClick={() =>{
+              setDeposit_req_data(null); 
+              fk.setFieldValue("amount", 20000)}
+            } 
           >
             {" "}
             ₹ 20K
@@ -393,7 +414,9 @@ function WalletRecharge() {
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => formik.setFieldValue("amount", 50)}
+
+            onClick={() => 
+              formik.setFieldValue("amount", 50)}
           >
             {" "}
             $ 50
@@ -630,14 +653,15 @@ function WalletRecharge() {
           </Box>
         </Box>
         {paymentType === "UPI" ? (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <FormControl sx={{ width: "500px" }} className="!-ml-10">
+          <Box sx={{ display: "flex", justifyContent: "start" }}>
+            <FormControl 
+            className="!w-80 lg:!w-96 !mb-10 !mx-6"> 
               <InputLabel>Select Gateway</InputLabel>
               <Select
                 value={selectedGateway}
                 label="Select Gateway"
                 onChange={(e) => {
-                  setDeposit_req_data(null);
+                  setDeposit_req_data(null);           
                   setSelectedGateway(e.target.value);
                 }}
               >
