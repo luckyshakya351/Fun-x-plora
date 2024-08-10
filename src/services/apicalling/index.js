@@ -244,7 +244,7 @@ export const depositHistoryUSDTFunction = async () => {
 export const withdrawlHistoryFunction = async () => {
   try {
     const response = await axios.get(
-      `${endpoint.withdrawl_history}?user_id=2675`
+      `${endpoint.withdrawl_history}?user_id=${user_id}`
     );
     return response;
   } catch (e) {
