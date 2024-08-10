@@ -74,7 +74,7 @@ function ReferralBonus() {
             return (
               <div className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
                 <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}>{i?.l01_transection_type?.split(" ")?.[i?.l01_transection_type?.split(" ")?.length-1]}</span>
+                  <span style={{ color: zubgtext }}>{i?.l01_transection_type}</span>
                   <span className="!text-green-400 !text-lg">
                     {i?.l01_amount}
                   </span>

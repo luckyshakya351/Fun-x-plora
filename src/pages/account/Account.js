@@ -339,34 +339,30 @@ function Account() {
           </Stack>
         </Box>
         <Box
-          sx={{
-            width: "95%",
-            marginLeft: "2.5%",
-            borderRadius: "10px",
-            background: zubgmid,
-            padding: "10px",
-            mt: "20px",
-            "&>:nth-child(1)": {
-              color: "white",
-              fontSize: "15px",
-              fontWeight: "600",
-              mb: "25px",
-            },
-          }}
+          // sx={{
+          //   width: "95%",
+          //   marginLeft: "2.5%",
+          //   borderRadius: "10px",
+          //   background: zubgmid,
+          //   padding: "10px",
+          //   mt: "20px",
+          //   "&>:nth-child(1)": {
+          //     color: "white",
+          //     fontSize: "15px",
+          //     fontWeight: "600",
+          //     mb: "25px",
+          //   },
+          // }}
         >
-          <Typography variant="body1" color="initial">
+          {/* <Typography variant="body1" color="initial">
             Service center
           </Typography>
 
           <div className="!w-full !grid !grid-cols-3 !place-items-center">
             {[
-              // {
-              //   to: "/account/income-main",
-              //   name: "Income",
-              //   logo: balance1,
-              // },
+             
               {
-                //  to: "/SettingCenter",
+                 to: "/SettingCenter",
                  name: "Setting", 
                  logo: setting 
                 },
@@ -376,7 +372,7 @@ function Account() {
                 logo: notification1,
               },
               {
-                // to: "/SettingCenter/LoginPassword",
+                to: "/SettingCenter/LoginPassword",
                 name: "Change Password",
                 logo: user2,
               },
@@ -415,7 +411,7 @@ function Account() {
                 </Box>
               );
             })}
-          </div>
+          </div> */}
         </Box>
         <Box
           sx={{

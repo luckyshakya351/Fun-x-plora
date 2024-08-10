@@ -32,11 +32,10 @@ function WithdravalHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus:false
     }
   );
-
-  const res = data?.data?.data?.filter((i) => i?.type === "Winzo")
+ const res = data?.data?.data?.filter((i) => i?.type === "Winzo")
 
   return (
     <Layout>
