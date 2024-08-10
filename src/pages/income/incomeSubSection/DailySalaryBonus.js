@@ -32,6 +32,22 @@ refetchOnWindowFocus:false
     }
   );
   const res = data?.data?.data;
+  const [time, setTime] = React.useState(48 * 60 * 60);
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(prevTime => {
+        if (prevTime <= 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  const hours = Math.floor(time / 3600);
+  const minutes = Math.floor((time % 3600) / 60);
+  const seconds = time % 60;
   if (!isLoading && !res)
     return (
       <Layout>
@@ -50,9 +66,19 @@ refetchOnWindowFocus:false
             </Box>
             <p>Daily Salary </p>
           </Box>
-          <div>
-            <img className="" src={nodatafoundimage} />
-          </div>
+         
+    <div>
+     
+      <div className="flex flex-col items-center justify-center min-h-screen   !text-black">
+      <h1 className="text-4xl font-bold my-4">There will be Income Genrate After this :- </h1>
+      <div className="text-6xl font-mono">
+        {hours.toString().padStart(2, '0')}:
+        {minutes.toString().padStart(2, '0')}:
+        {seconds.toString().padStart(2, '0')}
+      </div>
+    </div>
+     
+    </div>
         </Container>
       </Layout>
     );
@@ -75,7 +101,15 @@ refetchOnWindowFocus:false
           </Box>
           <p>Daily Salary </p>
         </Box>
-        <div className="no-scrollbar !mb-10">
+        <div className="flex flex-col items-center justify-center min-h-screen -mt-10  !text-black">
+      <h1 className="text-xl font-bold my-4">There Income will be  Generate After this :- </h1>
+      <div className="text-6xl font-mono">
+        {hours.toString().padStart(2, '0')}:
+        {minutes.toString().padStart(2, '0')}:
+        {seconds.toString().padStart(2, '0')}
+      </div>
+    </div>
+        {/* <div className="no-scrollbar !mb-10">
           {res?.map((i) => {
             return (
               <div className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
@@ -93,14 +127,12 @@ refetchOnWindowFocus:false
                   </span>
                 </div>
                 <div className="!w-full !flex !justify-between">
-                  {/* <span style={{ color: zubgtext }} className=" !text-[12px]">
-                    {i?.l01_type}
-                  </span> */}
+                 
                 </div>
               </div>
             );
           })}
-        </div>
+        </div> */}
       </Container>
     </Layout>
   );

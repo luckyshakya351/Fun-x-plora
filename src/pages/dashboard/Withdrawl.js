@@ -7,6 +7,8 @@ import {
   Container,
   Dialog,
   FormControl,
+  IconButton,
+  InputAdornment,
   MenuItem,
   Stack,
   TextField,
@@ -28,11 +30,12 @@ import balance from "../../assets/images/send.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
 import Layout from "../../component/Layout/Layout";
 import usdt from "../../assets/payNameIcon1.png";
-import { BankListDetails, get_user_data_fn } from "../../services/apicalling";
+import { BankListDetails, get_user_data_fn, MyProfileDataFn } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 function Withdrawl() {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -62,7 +65,7 @@ function Withdrawl() {
 
   React.useEffect(() => {
     !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
+  }, []); 
 
   const navigate = useNavigate();
   const goBack = () => {
@@ -99,7 +102,7 @@ function Withdrawl() {
 
   const initialValues = {
     amount: "",
-    description: "",
+    password: "",
     bank_id: "Select Bank",
   };
 
@@ -119,6 +122,10 @@ function Withdrawl() {
       if (Number(fk.values.amount) < 110 && Number(fk.values.amount) > 50000)
         return toast("Amount shoulb be minimum 110 and maximum 50,000");
 
+      if (fk.values.password !== profiledata?.password) {
+        toast.error(" password is incorrect");
+        return;
+      }
       const data = result?.find((i) => i?.id === fk.values.bank_id);
       if (!data) return toast("Data not found");
 
@@ -131,8 +138,8 @@ function Withdrawl() {
       fd.append("Amount", fk.values.amount);
       fd.append("Mobile", data?.mobile);
       fd.append("user_id", user_id);
+      fd.append("passowrd", fk.values.password);
 
-    
 
       Number(first_rechange) === 1
         ? withdraw_payment_Function(fd)
@@ -171,9 +178,25 @@ function Withdrawl() {
     }
     setloding(false);
   };
+  const [showoldPassword, setShowoldPassword] = React.useState(false);
+  const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
 
 
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  const {  data: profile } = useQuery(
+    ["myprofile"],
+    () => MyProfileDataFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
 
+  const profiledata = profile?.data?.data || [];
+  
   return (
     <Layout>
       {React.useMemo(() => {
@@ -420,7 +443,51 @@ function Withdrawl() {
                   <div className="error">{fk.errors.bank_id}</div>
                 )}
               </FormControl>
+          
+              <FormControl fullWidth sx={{ mt: "10px" }}>
+      <Stack direction="row" className="loginlabel">
+        <Typography variant="h3" sx={{ color: zubgtext }}>
+          Password <span className="!text-red-600">*</span>
+        </Typography>
+      </Stack>
 
+      <TextField
+        sx={{
+          '& fieldset': {
+            borderColor: '#FE0000',
+            borderWidth: '2px',
+            borderRadius: '8px',
+          },
+          '& input': {
+            borderColor: '#FE0000',
+          },
+        }}
+        placeholder="Enter password"
+        name="password"
+        className="withdrawalfield"
+        value={fk.values.password}
+        onChange={fk.handleChange}
+        onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+        type={showoldPassword ? "text" : "password"}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowoldPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showoldPassword ? 
+                  <VisibilityOff sx={{ color: zubgtext }} /> : 
+                  <Visibility sx={{ color: zubgtext }} />
+                }
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+    </FormControl>
               {/* <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{color:zubgtext}}>
@@ -516,7 +583,7 @@ function Withdrawl() {
             background: '#fff',
             boxShadow: zubgshadow,
             borderRadius: "10px",
-            mb: 5,
+            mb: 10,
           }}>
           <Stack direction="row" alignItems="center" mt={1}
             className="!text-bold ">
