@@ -105,7 +105,7 @@ function Account() {
               <ContentCopyOutlinedIcon sx={{ fontSize: "15px", ml: 2 }} />
             </Typography>
             <p className="!ml-2">
-              MobileNo :  {wallet?.full_name || 0}{" "}
+              MobileNo :  {wallet?.mob_no || 0}{" "}
             </p>
           </Box>
         </Stack>
