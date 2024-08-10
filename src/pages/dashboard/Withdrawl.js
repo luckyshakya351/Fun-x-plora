@@ -123,7 +123,6 @@ function Withdrawl() {
       if (!data) return toast("Data not found");
 
       const fd = new FormData();
-
      
       fd.append("type", type ? 2 : 1);
       fd.append("Bankid", fk.values.bank_id);
