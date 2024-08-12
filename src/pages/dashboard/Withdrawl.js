@@ -135,6 +135,10 @@ function Withdrawl() {
       fd.append("Mobile", data?.mobile);
       fd.append("user_id", user_id);
       fd.append("password", fk.values.password);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 41b939a7f472bcfa437793f0405116114dc8d6ae
 
       Number(first_rechange) === 1
         ? withdraw_payment_Function(fd)
