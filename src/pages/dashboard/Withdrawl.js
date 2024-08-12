@@ -138,7 +138,7 @@ function Withdrawl() {
       fd.append("Amount", fk.values.amount);
       fd.append("Mobile", data?.mobile);
       fd.append("user_id", user_id);
-      fd.append("passowrd", fk.values.password);
+      fd.append("password", fk.values.password);
 
 
       Number(first_rechange) === 1
