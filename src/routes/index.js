@@ -38,6 +38,7 @@ import Invitaton from "../pages/promotion/component/Invitaton";
 import PromotionRule from "../pages/promotion/component/PromotionRule";
 import RobateRetio from "../pages/promotion/component/RebateRatio";
 import Subordinate from "../pages/promotion/component/Subordinate";
+import SubordinateIncome from "../pages/promotion/component/SubordinateIncome";
 import TeamData from "../pages/promotion/component/TeamData";
 import TeamReports from "../pages/promotion/component/TeamReport";
 import Trx from "../pages/trx/Trx";
@@ -222,6 +223,10 @@ export const routes = [
     {
         path: "/account/income-main",
         component: <MainPageOFIncome />
+    },
+    {
+        path: "/promotion/SubordinateIncome",
+        component: <SubordinateIncome />
     },
     {
         path: "/account/income-main/registration-bonus",

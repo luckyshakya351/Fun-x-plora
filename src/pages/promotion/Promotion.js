@@ -135,10 +135,7 @@ function Promotion() {
                   {result?.filter((j)=>j?.LEVEL === 1)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0} 
                 </Typography>
                 <Typography
-                  variant="body1"
-
-                >
-
+                  variant="body1" >
                   Deposit amount
                 </Typography>
               </Box>
@@ -209,6 +206,19 @@ function Promotion() {
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" >
                   Subordinate data
+                </Typography>
+              </Stack>
+              <Stack direction="row">
+                <ArrowForwardIosOutlinedIcon />
+              </Stack>
+            </Box>
+          </NavLink>
+          <NavLink to="/promotion/SubordinateIncome">
+            <Box sx={style.invitbox}>
+              <Stack direction="row">
+                <Box component="img" src={donut}></Box>
+                <Typography variant="body1" >
+                  Subordinate Income
                 </Typography>
               </Stack>
               <Stack direction="row">

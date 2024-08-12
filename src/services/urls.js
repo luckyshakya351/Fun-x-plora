@@ -3,12 +3,11 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-// export const newdomain = "http://192.168.18.183:9000";
+export const newdomain1 = "http://192.168.18.183:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
 export const domain = "https://funxplora-timer.onrender.com";
-
 export const support_mail = "";
 export const telegram_url = "https://t.me/+9c__nUH79PtiYzBl";
 export const facebook_url = "https://www.facebook.com/people/Funxplora-Gaming/61561351673648/";
@@ -82,4 +81,7 @@ export const endpoint = {
   jackpod_my_history: `${newdomain}/api/v1/my-history-jackpod`,
   jackpod_game_history: `${newdomain}/api/v1/game-history-jackpod`,
   change_password: `${newdomain}/api/v1/change-password`,
+
+  //income
+  subordinate_data: `${newdomain1}/api/v1/get-subordinate-data-funx`,
 };

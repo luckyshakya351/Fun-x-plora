@@ -27,26 +27,26 @@ import wallet from "../../assets/images/wallet (5).png";
 import withdrow from "../../assets/images/withdraw.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import {walletamount } from "../../services/apicalling";
+import { walletamount } from "../../services/apicalling";
 
 function Wallet() {
-  
+
   const net_wallet_amount = useSelector(
     (state) => state.aviator.net_wallet_amount
-  ); 
-   const navigate = useNavigate();
+  );
+  const navigate = useNavigate();
 
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =
     React.useState(false);
 
-    const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      retryOnMount:false,
-      refetchOnWindowFocus:false
-    });
-    const amount = data?.data?.data || 0;
-                   
+  const { isLoading, data } = useQuery(["walletamount"], () => walletamount(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retryOnMount: false,
+    refetchOnWindowFocus: false
+  });
+  const amount = data?.data?.data || 0;
+
   const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2),]
   const series2 = [
     (Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),
@@ -138,7 +138,7 @@ function Wallet() {
                 ₹ {Number(
                   Number(amount?.wallet || 0) + Number(amount?.winning || 0)
                 )?.toFixed(2)}
-                
+
               </Typography>
               <Typography
                 variant="body1"
@@ -163,7 +163,7 @@ function Wallet() {
               borderRadius: "10px",
             }}
           >
-          
+
             <Stack
               direction="row"
               sx={{
@@ -175,7 +175,7 @@ function Wallet() {
             >
               <Box sx={{ width: "50%", position: "relative" }}>
                 <Typography
-                
+
                   variant="body1"
                   color="initial"
                   sx={{
@@ -194,7 +194,7 @@ function Wallet() {
                   series={series}
                   type="radialBar"
                   height={150}
-                  
+
                 />
                 <Box
                   sx={{
@@ -262,9 +262,9 @@ function Wallet() {
                 </Box>
               </Box>
             </Stack>
-           
+
           </Stack>
-          <Stack
+          {/* <Stack
           className="!mb-20"
             direction="row"
             sx={{
@@ -402,81 +402,42 @@ function Wallet() {
                 </Typography>
               </NavLink>
             </Box>
-          </Stack>
+          </Stack> */}
+          <div className="!mb-20">
+          <NavLink to="/wallet/Recharge">
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <p className=" mt-4">Deposit</p>
+                <Box component="img" src={rechargeIcon} width={50}></Box>
+            </div>
+            </NavLink>
+            <NavLink to="/Withdrawal">
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <p className=" mt-4">Withdrawal</p>
+              <Box component="img" src={withdrow} width={50}></Box>
+            </div>
+            </NavLink>
+            <NavLink to="/depositHistory">
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <p className=" mt-4">Deposit history</p>
+                <Box component="img" src={wdhistory} width={50}></Box>
+            </div>
+            </NavLink>
+            <NavLink to="/withdravalHistory">
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <p className=" mt-4">Withdrawal history</p>
+             <Box component="img" src={deposite} width={50}></Box>  
+            </div>
+            </NavLink>
+            <NavLink to="/depositusdt">
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <p className=" mt-4">Deposit USDT history</p>
+           <Box component="img" src={wdhistory} width={50}></Box>
+           </div>
+            </NavLink>
+          </div>
+
         </Box>
-        {/* <Box
-          sx={{
-            width: "100%",
-            borderRadius: "10px ",
-            padding: "20px",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            mb: "50px",
-          }}
-        >
-          <Box sx={style.wthui}>
-            <Box>
-              <Typography variant="body1" color="initial">
-                0.000
-              </Typography>
-              <Typography variant="body1" color="initial">
-                FXP
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={style.wthui}>
-            <Box>
-              <Typography variant="body1" color="initial">
-                0.000
-              </Typography>
-              <Typography variant="body1" color="initial">
-                FXP
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={style.wthui}>
-            <Box>
-              <Typography variant="body1" color="initial">
-                0.000
-              </Typography>
-              <Typography variant="body1" color="initial">
-                FXP
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={style.wthui}>
-            <Box>
-              <Typography variant="body1" color="initial">
-                0.000
-              </Typography>
-              <Typography variant="body1" color="initial">
-                FXP
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={style.wthui}>
-            <Box>
-              <Typography variant="body1" color="initial">
-                0.000
-              </Typography>
-              <Typography variant="body1" color="initial">
-                FXP
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={style.wthui}>
-            <Box>
-              <Typography variant="body1" color="initial">
-                0.000
-              </Typography>
-              <Typography variant="body1" color="initial">
-                FXP
-              </Typography>
-            </Box>
-          </Box>
-        </Box> */}
+
         {openDialogBoxHomeBanner && (
           <Dialog
             PaperProps={{ width: "500px", height: "500px" }}
