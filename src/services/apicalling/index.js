@@ -264,6 +264,8 @@ export const withdrawlHistoryUSdtFunction = async () => {
     console.log(e);
   }
 };
+
+
 export const registrationBonusFn = async () => {
   try {
     const response = await axios.get(
@@ -405,3 +407,14 @@ export const MyStatusFn = async (gid) => {
   }
 };
 
+export const TransferwithdrawlHistoryFunction = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.transfer_wallet_history}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};

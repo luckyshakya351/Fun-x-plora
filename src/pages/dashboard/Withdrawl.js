@@ -105,6 +105,7 @@ function Withdrawl() {
     amount: "",
     password: "",
     bank_id: "",
+    select_wallet:"",
   };
 
   const fk = useFormik({
@@ -135,6 +136,7 @@ function Withdrawl() {
       fd.append("Mobile", data?.mobile);
       fd.append("user_id", user_id);
       fd.append("password", fk.values.password);
+      fd.append("select_wallet", fk.values.select_wallet);
 
       Number(first_rechange) === 1
         ? withdraw_payment_Function(fd)
@@ -387,6 +389,40 @@ function Withdrawl() {
                   <div className="error">{fk.errors.amount}</div>
                 )}
               </FormControl>
+              <Box>
+              <FormControl fullWidth sx={{ mt: "10px" }}>
+                <Stack direction="row" className="loginlabel">
+                  <Typography variant="h3" sx={{ color: zubgtext }}>
+                    Select Wallet <span className="!text-red-600">*</span>
+                  </Typography>
+                </Stack>
+                <TextField
+                  select
+                  id="select_wallet"
+                  name="select_wallet"
+                  value={fk.values.select_wallet}
+                  onChange={fk.handleChange}
+                  className="withdrawalfield"
+                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  InputProps={{
+                    style: {
+                      borderColor: 'red',
+                      borderWidth: "1px",
+                      color: lightblue,
+                      background: "#fff",
+                      borderRadius: "10px",
+                    },
+                  }}
+                >
+                  <MenuItem value="Working Wallet">Working Wallet</MenuItem>
+                   <MenuItem value="Main Wallet">Main Wallet</MenuItem>
+                </TextField>
+              </FormControl>
+              {fk.touched.select_wallet && fk.errors.select_wallet && (
+                  <div className="error">{fk.errors.select_wallet}</div>
+                )}
+              </Box>
+             
               <Box mt={3}>
                 <FormControl fullWidth>
                   <Stack direction="row" className="loginlabel">

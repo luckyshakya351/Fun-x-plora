@@ -3,7 +3,7 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain1 = "http://192.168.18.183:9000";
+export const newdomain1 = "http://192.168.1.26:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -19,7 +19,7 @@ export const endpoint = {
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/user_register`,
-  userwallet: `${newdomain}/api/v1/userwallet`,
+  userwallet: `${newdomain1}/api/v1/userwallet`,
   top11winner: `${baseUrl}/api/winning-list`,
   openbannerUrl: `${baseUrl}/popup`,
   profiledata: `${baseUrl}/api/profileapi`,
@@ -84,4 +84,7 @@ export const endpoint = {
 
   //income
   subordinate_data: `${newdomain1}/api/v1/get-subordinate-data-funx`,
+  commission_data: `${newdomain1}/api/v1/get-commisssion-data-funx`,
+  tranfer_wallet:`${newdomain1}/api/v1/transfer-amount-from-working-wallet-to-main-wallet`,
+  transfer_wallet_history:`${newdomain1}/api/v1/transfer-history-from-working-wallet-to-main-wallet`
 };

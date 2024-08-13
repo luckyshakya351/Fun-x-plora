@@ -25,6 +25,8 @@ import wdhistory from "../../assets/images/list.png";
 import deposite from "../../assets/images/manuscript.png";
 import wallet from "../../assets/images/wallet (5).png";
 import withdrow from "../../assets/images/withdraw.png";
+import wallettransfer from "../../assets/images/wallet (4).png";
+import wallettransfer1 from "../../assets/images/wallet (1).png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
@@ -48,9 +50,8 @@ function Wallet() {
   const amount = data?.data?.data || 0;
 
   const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2),]
-  const series2 = [
-    (Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),
-  ];
+  const series2 = [ (Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),];
+  const series1 = [(Number(Number(amount?.working_wallet || 0) % 100) || 0)?.toFixed(2),];
 
   const [options] = React.useState({
     colors: ["#E71D1E", "red", "green"],
@@ -207,7 +208,7 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                    {series}%
+                    {amount?.wallet}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -215,6 +216,51 @@ function Wallet() {
                     sx={{ color: "white", fontWeight: "600" }}
                   >
                     Bonus Amount
+                  </Typography>
+                </Box>
+              </Box>
+              <Box sx={{ width: "50%", position: "relative" }}>
+                <Typography
+
+                  variant="body1"
+                  color="initial"
+                  sx={{
+                    position: "absolute",
+                    left: "39%",
+                    top: "32%",
+                    fontSize: "15px",
+                    fontWeight: "400",
+                    color: "white",
+                  }}
+                >
+                  {series1}%
+                </Typography>
+                <ReactApexChart
+                  options={options}
+                  series={series1}
+                  type="radialBar"
+                  height={150}
+
+                />
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    "&>p": { fontSize: "13px", fontWeight: 500 },
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    {amount?.working_wallet}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    sx={{ color: "white", fontWeight: "600" }}
+                  >
+                    Working Amount
                   </Typography>
                 </Box>
               </Box>
@@ -250,7 +296,7 @@ function Wallet() {
                     color="initial"
                     sx={{ color: "white", fontWeight: "600" }}
                   >
-                    {series2}%
+                    {amount?.winning}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -264,172 +310,46 @@ function Wallet() {
             </Stack>
 
           </Stack>
-          {/* <Stack
-          className="!mb-20"
-            direction="row"
-            sx={{
-              width: "100%",
-              justifyContent: "space-between",
-              alignItems: "baseline",
-              backgroundImage: `url(${bgms})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 100%",
-              borderRadius: "10px",
-              padding: "40px 10px",
-              mt: 3,
-            }}
-          >
-            <Box
-              sx={{
-                width: "24%",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-
-                "&>a>p": {
-                  fontSize: "12px",
-                  color: "black",
-                  fontWeight: 600,
-                  textAlign: "center",
-                },
-                mt: "30px",
-                "&>a>img": { margin: "auto" },
-                mt: "30px",
-              }}
-            >
-              <NavLink to="/wallet/Recharge">
-                <Box component="img" src={rechargeIcon} width={50}></Box>
-                <Typography variant="body1" color="initial" mt={1}>
-                  Deposit
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box
-              sx={{
-                width: "24%",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-                "&>a>p": {
-                  fontSize: "12px",
-                  color: "black",
-                  fontWeight: 600,
-                  textAlign: "center",
-                },
-                mt: "30px",
-                "&>a>img": { margin: "auto" },
-              }}
-            >
-              <NavLink to="/Withdrawal">
-                <Box component="img" src={withdrow} width={50}></Box>
-                <Typography variant="body1" color="initial" mt={1}>
-                  Withdraw
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box
-              sx={{
-                width: "24%",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-                "&>a>p": {
-                  fontSize: "12px",
-                  color: "black",
-                  fontWeight: 600,
-                  textAlign: "center",
-                },
-                mt: "30px",
-                "&>a>img": { margin: "auto" },
-              }}
-            >
-              <NavLink to="/depositHistory">
-                <Box component="img" src={wdhistory} width={50}></Box>
-                <Typography variant="body1" color="initial" mt={1}>
-                  DPST
-                  history
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box
-              sx={{
-                width: "24%",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-                "&>a>p": {
-                  fontSize: "12px",
-                  color: "black",
-                  fontWeight: 600,
-                  textAlign: "center",
-                },
-                mt: "30px",
-                "&>a>img": { margin: "auto" },
-              }}
-            >
-              <NavLink to="/depositusdt">
-                <Box component="img" src={wdhistory} width={50}></Box>
-                <Typography variant="body1" color="initial" mt={1}>
-                  DPST USDT
-                  history 
-                </Typography>
-              </NavLink>
-            </Box>
-            <Box
-              sx={{
-                width: "24%",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-                "&>a>p": {
-                  fontSize: "12px",
-                  color: "black",
-                  fontWeight: 600,
-                  textAlign: "center",
-                },
-                "&>a>img": { margin: "auto" },
-              }}
-            >
-              <NavLink to="/withdravalHistory">
-                <Box component="img" src={deposite} width={50}></Box>
-                <Typography variant="body1" color="initial" mt={1}>
-                  WDRL history
-                </Typography>
-              </NavLink>
-            </Box>
-          </Stack> */}
+       
           <div className="!mb-20">
           <NavLink to="/wallet/Recharge">
-            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-2 m-1 mt-2 " >
             <p className=" mt-4">Deposit</p>
                 <Box component="img" src={rechargeIcon} width={50}></Box>
             </div>
             </NavLink>
             <NavLink to="/Withdrawal">
-            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-2 m-1 mt-2 " >
             <p className=" mt-4">Withdrawal</p>
-              <Box component="img" src={withdrow} width={50}></Box>
+              <Box component="img" src={withdrow} className="!text-blue-600" width={50}></Box>
+            </div>
+            </NavLink>
+            <NavLink to="/transfer">
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-2 m-1 mt-2 " >
+            <p className=" mt-4">W to M Wallet Transfer </p>
+              <Box component="img" src={wallettransfer} width={50}></Box>
+            </div>
+            </NavLink>
+            <NavLink to="/transferhistory">
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-2 m-1 mt-2 " >
+            <p className=" mt-4">W to M Wallet Transfer History </p>
+              <Box component="img" src={wallettransfer1} width={50}></Box>
             </div>
             </NavLink>
             <NavLink to="/depositHistory">
-            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-2 m-1 mt-2 " >
             <p className=" mt-4">Deposit history</p>
                 <Box component="img" src={wdhistory} width={50}></Box>
             </div>
             </NavLink>
             <NavLink to="/withdravalHistory">
-            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-2 m-1 mt-2 " >
             <p className=" mt-4">Withdrawal history</p>
              <Box component="img" src={deposite} width={50}></Box>  
             </div>
             </NavLink>
             <NavLink to="/depositusdt">
-            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-4 m-1 mt-5 " >
+            <div className="!flex !justify-between bg-gray-200 rounded-xl px-5 py-2 m-1 mt-2 " >
             <p className=" mt-4">Deposit USDT history</p>
            <Box component="img" src={wdhistory} width={50}></Box>
            </div>
