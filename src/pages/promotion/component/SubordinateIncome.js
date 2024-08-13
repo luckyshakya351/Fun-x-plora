@@ -15,10 +15,8 @@ import Calendar from './Calender';
 import CryptoJS from "crypto-js";
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { useFormik } from 'formik';
 import { endpoint } from '../../../services/urls';
-import { MygetdataFn } from '../../../services/apicalling';
-import { useQuery } from 'react-query';
+import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import moment from 'moment';
 
 function SubordinateIncome() {
@@ -33,7 +31,6 @@ function SubordinateIncome() {
     const handleDateSelect = (date) => {
         setSelectedDate(moment(date)?.format("YYYY-MM-DD"));
     };
-
     const login_data =
         (localStorage.getItem("logindataen") &&
             CryptoJS.AES.decrypt(
@@ -41,32 +38,27 @@ function SubordinateIncome() {
                 "anand"
             )?.toString(CryptoJS.enc.Utf8)) ||
         null;
-
-    const user_id = login_data && JSON.parse(login_data)?.UserID;
-
-  
-   const subordinate_data = async () => {
-            setLoading(true);
+        const user_id = login_data && JSON.parse(login_data)?.UserID;
+        
+const reqbody = {
+            user_main_id: user_id || "",
+            level_no: Number(selectedLevel) || 0,
+            in_date: selectedDate,
+        };
+    const subordinate_data = async () => {
+      setLoading(true);
             try {
-                const reqbody = {
-                    user_main_id: user_id || "",
-                    level_no: Number(selectedLevel) || 0,
-                    in_date: selectedDate,
-                };
                 const response = await axios.post(`${endpoint.subordinate_data}`, reqbody);
                 if (response?.data?.msg === "Data get successfully") {
                     setData(response.data?.data);
-           
-
                 } else {
                     toast.error('Data not found');
                 }
             } catch (e) {
                 toast.error(e?.message || 'An error occurred');
-            } finally {
-                setLoading(false);
             }
-        };
+              setLoading(false);
+         };
  React.useEffect(() => {
          subordinate_data();
     }, [selectedLevel, selectedDate, user_id]);
@@ -74,6 +66,7 @@ function SubordinateIncome() {
     return (
         <Layout>
             <Container sx={{ background: zubgback, width: '100%' }}>
+            {/* <CustomCircularProgress isLoading={loding} /> */}
                 <Box sx={style.header}>
                     <Box component={NavLink} to='/promotion/'>
                         <KeyboardArrowLeftOutlinedIcon />
