@@ -31,12 +31,12 @@ export const endpoint = {
   get_status: `${newdomain}/api/v1/get-status`,
 
 //payment
-  payment: `${newdomain}/api/v1/payment`,
-  deposit_history_usdt: `${newdomain}/api/v1/coin-payment-deposit-history`,
-  withdrawal_request_usdt: `${newdomain}/api/v1/withdrawl-request`,
-  withdrawal_address_usdt: `${newdomain}/api/v1/add-usdt-address`,
-  get_address_list: `${newdomain}/api/v1/usdt-address-record`,
-  withdrawl_usdt_history: `${newdomain}/api/v1/coin-payment-withdrawl-history`,
+  payment: `${newdomain1}/api/v1/payment`,
+  deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
+  withdrawal_request_usdt: `${newdomain1}/api/v1/withdrawl-request`,
+  withdrawal_address_usdt: `${newdomain1}/api/v1/add-usdt-address`,
+  get_address_list: `${newdomain1}/api/v1/usdt-address-record`,
+  withdrawl_usdt_history: `${newdomain1}/api/v1/coin-payment-withdrawl-history`,
 
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,

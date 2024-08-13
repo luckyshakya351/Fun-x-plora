@@ -1,5 +1,5 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
@@ -15,6 +15,9 @@ function ReferralBonus() {
   const goBack = () => {
     navigate(-1);
   };
+  const [visibleRows, setVisibleRows] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const { isLoading, data } = useQuery(
     ["referral_bonus"],
@@ -26,6 +29,25 @@ function ReferralBonus() {
     }
   );
   const res = data?.data?.data;
+  
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  React.useEffect(() => {
+    setVisibleRows(
+      res?.slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage
+      )
+    );
+  }, [page, rowsPerPage, res]);
+
   if (!isLoading && !res)
     return (
       <Layout>
@@ -52,51 +74,66 @@ function ReferralBonus() {
     );
   return (
     <Layout>
-      <Container
-        sx={{
-          background: zubgback,
-          width: "100%",
-          height: "100vh",
-          overflow: "auto",
-          mb: 5,
-        }}
-        className="no-scrollbar"
-      >
-        <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <p>Sponsor Income</p>
+    <Container
+      sx={{
+        background: zubgback,
+        width: "100%",
+        height: "100vh",
+        overflow: "auto",
+        mb: 5,
+      }}
+    >
+      <CustomCircularProgress isLoading={isLoading} />
+      <Box sx={style.header}>
+        <Box component={NavLink} onClick={goBack}>
+          <KeyboardArrowLeftOutlinedIcon />
         </Box>
-        <div className="no-scrollbar !mb-10">
-          {res?.map((i) => {
-            return (
-              <div className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2" style={{ background: zubgwhite, boxShadow: zubgshadow }}>
-                <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}>{i?.l01_transection_type}</span>
-                  <span className="!text-green-400 !text-lg">
-                    {i?.l01_amount}
-                  </span>
-                </div>
-                <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}></span>
-                  <span className="!text-yellow-600 font-bold !text-[12px]">
-                    {moment(i?.l01_date)?.format("DD-MM-YYYY")}{" "}
-                    {moment(i?.l01_date)?.format("HH:mm:ss")}
-                  </span>
-                </div>
-                <div className="!w-full !flex !justify-between">
-                  {/* <span style={{ color: zubgtext }} className=" !text-[12px]">
-                    {i?.l01_type}
-                  </span> */}
-                </div>
-              </div>
-            );
-          })}
+        <p>Sponsor Income</p>
+      </Box>
+      <div className="!overflow-x-auto">
+        <Table  sx={{background: zubgwhite, boxShadow: zubgshadow }}>
+          <TableHead>
+            <TableRow >
+            <TableCell  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
+             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date</TableCell>
+              <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
+              <TableCell  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {visibleRows?.map((i , index ) => (
+              <TableRow key={i?.id}>
+                <TableCell  className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index+1}</TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                  {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
+                </TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+       <Box className="paginationTable !mb-10">
+        <TablePagination
+          sx={{
+            background: zubgtext,
+            color: "white",
+            borderRadius: "10px",
+            marginTop: "10px",
+          }}
+          rowsPerPageOptions={[10,15 ,25,35 ]}
+          component="div"
+          count={res?.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Rows"
+        />
+      </Box>
         </div>
-      </Container>
-    </Layout>
+    </Container>
+  </Layout>
   );
 }
 

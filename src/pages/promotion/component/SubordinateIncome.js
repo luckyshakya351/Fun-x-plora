@@ -26,12 +26,24 @@ function SubordinateIncome() {
     const [selectedDate, setSelectedDate] = React.useState(moment(Date.now())?.format("YYYY-MM-DD"));
     const [data, setData] = React.useState(null);
     const [selectedLevel, setSelectedLevel] = React.useState("1");
-    const toggleDrawer = () => { setIsOpen(!isOpen); };
+    const toggleDrawer = () => { setIsOpen(!isOpen); }
     const toggleDrawer1 = () => { setIsOpen1(!isOpen1); };
 
     const handleDateSelect = (date) => {
-        setSelectedDate(dayjs(date)?.format("YYYY-MM-DD"));
+        const selected = dayjs(date)?.format("YYYY-MM-DD");
+        const today = dayjs().format("YYYY-MM-DD");
+
+        if (dayjs(selected).isAfter(today)) {
+            toast.error('Future dates are not allowed. Please select today or an earlier date');
+            return;
+        }
+
+        setSelectedDate(selected);
+
+        // setSelectedDate(dayjs(date)?.format("YYYY-MM-DD"));
+        
     };
+
     const login_data =
         (localStorage.getItem("logindataen") &&
             CryptoJS.AES.decrypt(
@@ -39,36 +51,36 @@ function SubordinateIncome() {
                 "anand"
             )?.toString(CryptoJS.enc.Utf8)) ||
         null;
-        const user_id = login_data && JSON.parse(login_data)?.UserID;
-        
-        const reqbody = {
-            user_main_id: user_id || "",
-            level_no: Number(selectedLevel) || 0,
-            in_date: selectedDate,
-        };
+    const user_id = login_data && JSON.parse(login_data)?.UserID;
+
+    const reqbody = {
+        user_main_id: user_id || "",
+        level_no: Number(selectedLevel) || 0,
+        in_date: selectedDate,
+    };
     const subordinate_data = async () => {
-      setLoading(true);
-            try {
-                const response = await axios.post(`${endpoint.subordinate_data}`, reqbody);
-                toast(response?.data?.msg)
-                if (response?.data?.msg === "Data get successfully") {
-                    setData(response.data?.data);
-                } else {
-                    toast.error('Data not found');
-                }
-            } catch (e) {
-                toast.error(e?.message || 'An error occurred');
+        setLoading(true);
+        try {
+            const response = await axios.post(`${endpoint.subordinate_data}`, reqbody);
+            toast(response?.data?.msg, [-1])
+            if (response?.data?.msg === "Data get successfully") {
+                setData(response.data?.data);
+            } else {
+                toast.error('Data not found');
             }
-              setLoading(false);
-         };
- React.useEffect(() => {
-         subordinate_data();
+        } catch (e) {
+            toast.error(e?.message || 'An error occurred');
+        }
+        setLoading(false);
+    };
+    React.useEffect(() => {
+        subordinate_data();
     }, [selectedLevel, selectedDate, user_id]);
-   
+
     return (
         <Layout>
             <Container sx={{ background: zubgback, width: '100%' }}>
-            <CustomCircularProgress isLoading={loding} />
+                <CustomCircularProgress isLoading={loding} />
                 <Box sx={style.header}>
                     <Box component={NavLink} to='/promotion/'>
                         <KeyboardArrowLeftOutlinedIcon />
@@ -79,29 +91,15 @@ function SubordinateIncome() {
                 <Stack direction="row" justifyContent={"space-between"} className='!mt-5 !mx-3'>
                     <Box className="!border !w-1/2 !p-2 mr-4 !flex !justify-between "
                         onClick={toggleDrawer} >
-                          <ArrowDropDown />
+                        Level {selectedLevel}   <ArrowDropDown />
                     </Box>
                     <Box className="!border !w-1/2 !p-2 !flex !justify-between"
                         onClick={toggleDrawer1}>
-                       {selectedDate} <ArrowDropDown />
+                        {selectedDate} <ArrowDropDown />
                     </Box>
                 </Stack>
                 <Box sx={style.subcordinateBox} className="!mb-20">
-                    <Stack direction="row" sx={{ width: "100%" }}>
-                        <Box sx={style.subordinatesleft}>
-                            <EmojiPeopleOutlinedIcon />
-                            <Typography variant="body1" >
-
-                                Direct subordinates
-                            </Typography>
-                        </Box>
-                        <Box sx={style.subordinatesRight}>
-                            <Groups2OutlinedIcon />
-                            <Typography variant="body1" >
-                                Team subordinates
-                            </Typography>
-                        </Box>
-                    </Stack>
+                   
                     <Box sx={style.boxStyles}>
                         <Box sx={style.innerBoxStyles}>
                             <Box sx={style.subcordinatelist}>
@@ -109,32 +107,32 @@ function SubordinateIncome() {
                                     variant="body1"
 
                                 >
-                     {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.deposit) > 0).length || 0}
-              
+                                    {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.deposit) > 0).length || 0}
+
                                 </Typography>
                                 <Typography
                                     variant="body1">
-                                    Deposite members
+                                    Deposite number
                                 </Typography>
                             </Box>
                             <Box sx={style.subcordinatelist}>
                                 <Typography
                                     variant="body1" >
-                              {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.betting) > 0).length || 0}
-                           </Typography>
+                                    {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.betting) > 0).length || 0}
+                                </Typography>
                                 <Typography
                                     variant="body1" >
                                     Number of bettors
                                 </Typography>
                             </Box>
-                           
+
                         </Box>
 
                         <Box sx={style.innerBoxStylestwo}>
                             <Box sx={style.subcordinatelist}>
                                 <Typography variant="body1" >
-                                {data?.filter((j)=>j?.lev_id === Number(selectedLevel))?.reduce((a,b)=>a+Number(b?.deposit||0 ),0) || 0} 
-              
+                                    {data?.filter((j) => j?.lev_id === Number(selectedLevel))?.reduce((a, b) => a + Number(b?.deposit || 0), 0) || 0}
+
                                 </Typography>
                                 <Typography variant="body1" >
 
@@ -143,20 +141,20 @@ function SubordinateIncome() {
                             </Box>
                             <Box sx={style.subcordinatelist}>
                                 <Typography variant="body1" >
-                                {data?.filter((j)=>j?.lev_id === Number(selectedLevel))?.reduce((a,b)=>a+Number(b?.betting||0 ),0) || 0} 
+                                    {data?.filter((j) => j?.lev_id === Number(selectedLevel))?.reduce((a, b) => a + Number(b?.betting || 0), 0) || 0}
                                 </Typography>
                                 <Typography variant="body1" >
 
                                     Total Bet
                                 </Typography>
                             </Box>
-                          
+
                         </Box>
                     </Box>
                     {data?.map((item) => {
                         return (<>
                             <Typography className='!border-b !border-gray-400 !my-5 !text-xl'>UID : {item?.mem_id}
-                              </Typography>
+                            </Typography>
                             <Box className="!mx-1 !text-gray-500">
                                 <Stack direction="row" justifyContent={"space-between"}>
                                     <Typography>Level</Typography>
@@ -174,7 +172,7 @@ function SubordinateIncome() {
                                     <Typography>Commission </Typography>
                                     <Typography>{item?.commisiion || 0}</Typography>
                                 </Stack>
-                               
+
                             </Box>
                         </>)
                     })}
@@ -204,7 +202,7 @@ function SubordinateIncome() {
                 {/* date */}
                 <div className={`drawer ${isOpen1 ? 'open' : ''} !pb-20 px-1`}>
                     <div className='!flex flex-col justify-between my-5'>
-                        <Calendar onDateSelect={handleDateSelect} selectedDate={selectedDate}  className="!mt-10" />
+                        <Calendar onDateSelect={handleDateSelect} selectedDate={selectedDate} className="!mt-10" />
 
                         <div className='!flex justify-between px-5'>
                             <p className=' !cursor-pointer' onClick={toggleDrawer1} >Cancel</p>

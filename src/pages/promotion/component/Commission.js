@@ -87,10 +87,10 @@ function Commission() {
                  <div className ="flex flex-col  text-gray-500 justify-center shadow-xl rounded-lg  bg-gray-100  p-3">
                    <p className='text-gray-500'>Settlement successfully </p>
                    <p className='text-gray-500'>{item?.satelment_date || 0}</p>
-                   The commision has been automatically credited to your balance
+                   The commission has been automatically credited to your balance
                 </div>
                     <div className ="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
-                   <p className='text-gray-400'>Number of</p>
+                   <p className='text-gray-400'>Number of bettors</p>
                    <p className='font-bold'>{item?.num_of_betters || 0}</p>
                 </div>
                 <div className ="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">

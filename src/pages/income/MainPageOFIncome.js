@@ -5,105 +5,46 @@ import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import RedeemIcon from "@mui/icons-material/Redeem";
 import StoreIcon from "@mui/icons-material/Store";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
-function MainPageOFIncome() {
 
+function MainPageOFIncome() {
   const data_array = [
-    // {
-    //   to: "/account/income-main/registration-bonus",
-    //   name: "Sponsor Income",
-    //   logo: (
-    //     <CurrencyExchangeIcon
-    //       className="!w-[40px] !h-[40px] !text-white"
-    //       color="#8f5206"
-    //     />
-    //   ),
-    // },
     {
       to: "/account/income-main/deposit-bonus",
       name: "Deposit Self Income",
-      logo: (
-        <PriceCheckIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
+      logo: <PriceCheckIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
     },
     {
       to: "/account/income-main/referral-bonus",
       name: "Sponsor Income",
-      logo: (
-        <RedeemIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
+      logo: <RedeemIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
     },
-    // {
-    //   name: "Daily Cashback Bonus",
-    //   logo: (
-    //     <LocalConvenienceStoreIcon
-    //       className="!w-[40px] !h-[40px] !text-white"
-    //       color="#8f5206"
-    //     />
-    //   ),
-    // },  //   to: "/account/income-main/daily-cash-back-bonus",
-   
     {
       to: "/account/income-main/daily-salary-bonus",
-      name: "Daily Salary ",
-      logo: (
-        <AccountBalanceIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
+      name: "Daily Salary",
+      logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
     },
     {
       to: "/account/income-main/self-trading-bonus",
       name: "Self Trade Income",
-      logo: (
-        <StoreIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
+      logo: <StoreIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
     },
     {
       to: "/account/income-main/weekly-bonus",
-      name: "Weekly Salary Income ",
-      logo: (
-        <Diversity2Outlined
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
+      name: "Weekly Salary Income",
+      logo: <Diversity2Outlined className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
     },
     {
       to: "/account/income-main/team-trading-bonus",
       name: "Level Income",
-      logo: (
-        <CardGiftcardIcon
-          className="!w-[40px] !h-[40px] !text-white"
-          color="#8f5206"
-        />
-      ),
+      logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
     },
-    // {
-    //   to: "/account/income-main/team-reward-bonus",
-    //   name: "Team Reward Bonus",
-    //   logo: (
-    //     <Diversity2Icon
-    //       className="!w-[40px] !h-[40px] !text-white"
-    //       color="#8f5206"
-    //     />
-    //   ),
-    // },
   ];
+
   return (
     <Layout>
       <Container
@@ -117,50 +58,51 @@ function MainPageOFIncome() {
       >
         <Box
           sx={{
-            width: "95%",
-            marginLeft: "2.5%",
+            width: "100%",
             borderRadius: "10px",
-            background: zubgtext,
-            padding: "10px",
-            mt: "20px",
-            "&>:nth-child(1)": {
-              color: "white",
-              fontSize: "15px",
-              fontWeight: "600",
-              mb: "25px",
-            },
+            // background: zubgtext,
+          
           }}
         >
-          <Typography variant="body1" color="initial">
+         <Typography className="!bg-red-600 p-3 "
+          variant="body1" color="initial" sx={{ color: "white", fontSize: "20px", fontWeight: "600" }}>
             Income
           </Typography>
+        
 
-          <div className="!w-full !grid !grid-cols-3 !place-items-center">
-            {data_array?.map((i) => {
-              return (
-                <Box
-                  component={NavLink}
-                  to={i.to}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mb: "10px",
-                    "&>p": {
-                      color: "white",
-                      fontSize: "14px",
-                      fontWeight: "500",
-                      mt: "5px",
-                    },
-                  }}
-                >
-                  <p>{i?.logo}</p>
-                  <p className="lg:!whitespace-nowrap !text-center">{i.name}</p>
-                </Box>
-              );
-            })}
-          </div>
+          <TableContainer  className="!bg-blue-400">
+            <Table >
+              <TableHead>
+                <TableRow>
+                <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>S.No</TableCell>
+                  <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>Icon</TableCell>
+                  <TableCell className="!border !text-xs !border-r !border-white  !text-center"  sx={{ color: "white", fontWeight: "600" }}>Name</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data_array.map((item ,index) => (
+                  <TableRow key={item.name}>
+                    <TableCell className="!border !text-xs !border-r !border-white  !text-center">
+                      <NavLink style={{ textDecoration: 'none', color: 'white' }}>
+                        {index+1}
+                      </NavLink>
+                    </TableCell>
+                    <TableCell className="!border !text-xs !border-r !border-white  !text-center">
+                      <NavLink to={item.to} style={{ textDecoration: '', color: 'white' }}>
+                        {item.name}
+                      </NavLink>
+                    </TableCell>
+                    <TableCell className="!border !text-xs !border-r !border-white  !text-center">
+                      <NavLink to={item.to}>
+                        {item.logo}
+                      </NavLink>
+                    </TableCell>
+                  
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
       </Container>
     </Layout>
@@ -168,6 +110,7 @@ function MainPageOFIncome() {
 }
 
 export default MainPageOFIncome;
+
 
 const style = {
   header: {

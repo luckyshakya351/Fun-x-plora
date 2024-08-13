@@ -389,7 +389,7 @@ function Withdrawl() {
                   <div className="error">{fk.errors.amount}</div>
                 )}
               </FormControl>
-              <Box>
+              <Box mt={3}>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>

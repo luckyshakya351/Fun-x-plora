@@ -45,9 +45,6 @@ function WithdrawalUsdt() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  const first_rechange =
-    aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
-
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [amount, setAmount] = React.useState({
     wallet: 0,
@@ -101,6 +98,7 @@ function WithdrawalUsdt() {
 
     amount: 920,
     withdrawal_add: "Select Address",
+    select_wallet:"",
   };
 
   const fk = useFormik({
@@ -116,7 +114,8 @@ function WithdrawalUsdt() {
       const reqbody = {
         m_u_id: user_id,
         withdrawal_add: fk.values.withdrawal_add,
-        m_w_amount: fk.values.amount
+        m_w_amount: fk.values.amount,
+        select_wallet: fk.values.select_wallet
       }
       // console.log(reqbody)
       withdraw_payment_Function(reqbody)
@@ -338,6 +337,37 @@ function WithdrawalUsdt() {
                   })}
                 </TextField>
               </FormControl>
+              <Box >
+              <FormControl fullWidth sx={{ mt: "10px" }}>
+                <Stack direction="row" className="loginlabel">
+                  <Typography variant="h3" sx={{ color: zubgtext }}>
+                    Select Wallet <span className="!text-red-600">*</span>
+                  </Typography>
+                </Stack>
+                <TextField
+                  select
+                  id="select_wallet"
+                  name="select_wallet"
+                  value={fk.values.select_wallet}
+                  onChange={fk.handleChange}
+                  className="withdrawalfield"
+                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  InputProps={{
+                    style: {
+                      borderColor: 'red',
+                      borderWidth: "1px",
+                      color: lightblue,
+                      background: "#fff",
+                      borderRadius: "10px",
+                    },
+                  }}
+                >
+                  <MenuItem value="Working Wallet">Working Wallet</MenuItem>
+                   <MenuItem value="Main Wallet">Main Wallet</MenuItem>
+                </TextField>
+              </FormControl>
+            
+              </Box>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>

@@ -1,5 +1,3 @@
-import CachedIcon from "@mui/icons-material/Cached";
-import CloseIcon from "@mui/icons-material/Close";
 import HistoryIcon from "@mui/icons-material/History";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
@@ -9,10 +7,7 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  InputLabel,
-  MenuItem,
   OutlinedInput,
-  Select,
   Stack,
   TextField,
   Typography,
@@ -33,9 +28,6 @@ import {
   zubgtext,
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
-import cip from "../../../assets/cip.png";
-import playgame from "../../../assets/images/playgame.jpg";
-import balance from "../../../assets/images/send.png";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
