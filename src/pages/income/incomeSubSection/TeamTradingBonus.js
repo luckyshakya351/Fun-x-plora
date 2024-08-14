@@ -1,7 +1,7 @@
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Container, IconButton } from "@mui/material";
+import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow ,IconButton} from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
@@ -26,6 +26,10 @@ function TeamTradingBonus() {
   const [filter, setFilter] = React.useState("0");
   const [startDate, setStartDate] = React.useState(null);
   const [endDate, setEndDate] = React.useState(null);
+  
+  const [visibleRows, setVisibleRows] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const { isLoading, data } = useQuery(
     ["team_trading_bonus"],
@@ -54,6 +58,26 @@ function TeamTradingBonus() {
           i?.l01_transection_type?.includes(filter)
         );
   }, [filter, data?.data?.data, startDate && endDate]);
+
+  
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  React.useEffect(() => {
+    setVisibleRows(
+      res?.slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage
+      )
+    );
+  }, [page, rowsPerPage, res]);
+
   if (!isLoading && !res)
     return (
       <Layout>
@@ -153,32 +177,47 @@ function TeamTradingBonus() {
           </select>
         </div>
 
-        <div className="no-scrollbar !mb-10">
-          {res?.map((i) => {
-            return (
-              <div
-                className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2"
-                style={{ background: zubgwhite, boxShadow: zubgshadow }}
-              >
-                <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}>
-                    {i?.l01_transection_type}
-                  </span>
-                  <span className="!text-green-800 !text-lg">
-                    {i?.l01_amount?.toFixed(2)}
-                  </span>
-                </div>
-                <div className="!w-full !flex !justify-between">
-                  <span style={{ color: zubgtext }}></span>
-                  <span className="!text-yellow-600  !text-[12px]">
-                    {moment(i?.l01_date)?.format("DD-MM-YYYY")}{" "}
-                    {moment(i?.l01_date)?.format("HH:mm:ss")}
-                  </span>
-                </div>
-                <div className="!w-full !flex !justify-between"></div>
-              </div>
-            );
-          })}
+        <div className="!overflow-x-auto">
+        <Table  sx={{background: zubgwhite, boxShadow: zubgshadow }}>
+          <TableHead>
+            <TableRow >
+            <TableCell  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
+             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date</TableCell>
+              <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
+              <TableCell  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {visibleRows?.map((i , index ) => (
+              <TableRow key={i?.id}>
+                <TableCell  className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index+1}</TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                  {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
+                </TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+       <Box className="paginationTable !mb-10">
+        <TablePagination
+          sx={{
+            background: zubgtext,
+            color: "white",
+            borderRadius: "10px",
+            marginTop: "10px",
+          }}
+          rowsPerPageOptions={[10,15 ,25,35 ]}
+          component="div"
+          count={res?.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Rows"
+        />
+      </Box>
         </div>
       </Container>
     </Layout>

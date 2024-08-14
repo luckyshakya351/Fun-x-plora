@@ -33,6 +33,7 @@ import TeamRewardBonus from "../pages/income/incomeSubSection/TeamRewardBonus";
 import TeamTradingBonus from "../pages/income/incomeSubSection/TeamTradingBonus";
 import WeeklySalaryBonus from "../pages/income/incomeSubSection/WeeklySalaryBonus";
 import Promotion from "../pages/promotion/Promotion";
+import Commission from "../pages/promotion/component/Commission";
 import CustomerLine from "../pages/promotion/component/CustomerLine";
 import Invitaton from "../pages/promotion/component/Invitaton";
 import PromotionRule from "../pages/promotion/component/PromotionRule";
@@ -50,6 +51,8 @@ import DepositeUsdt from "../pages/wallet/component/DepositeUsdt";
 import QRScreen from "../pages/wallet/component/QRScreen";
 import UsdtQR from "../pages/wallet/component/UsdtQR";
 import WalletRecharge from "../pages/wallet/component/WalletRecharge";
+import WalletTransfer from "../pages/wallet/component/WalletTransfer";
+import WalletTransferHistory from "../pages/wallet/component/WalletTransferHistory";
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
 import Win from "../pages/win/win";
@@ -173,6 +176,14 @@ export const routes = [
         component: <Win />
     },
     {
+        path: "/transfer",
+        component: <WalletTransfer />
+    },
+    {
+        path: "/transferhistory",
+        component: <WalletTransferHistory />
+    },
+    {
         path: "/promotion",
         component: <Promotion />
     },
@@ -227,6 +238,10 @@ export const routes = [
     {
         path: "/promotion/SubordinateIncome",
         component: <SubordinateIncome />
+    },
+    {
+        path: "/promotion/Commission",
+        component: <Commission/>
     },
     {
         path: "/account/income-main/registration-bonus",

@@ -3,7 +3,7 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain1 = "http://192.168.18.183:9000";
+export const newdomain1 = "http://192.168.1.26:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -19,7 +19,7 @@ export const endpoint = {
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/user_register`,
-  userwallet: `${newdomain}/api/v1/userwallet`,
+  userwallet: `${newdomain1}/api/v1/userwallet`,
   top11winner: `${baseUrl}/api/winning-list`,
   openbannerUrl: `${baseUrl}/popup`,
   profiledata: `${baseUrl}/api/profileapi`,
@@ -31,12 +31,12 @@ export const endpoint = {
   get_status: `${newdomain}/api/v1/get-status`,
 
 //payment
-  payment: `${newdomain}/api/v1/payment`,
-  deposit_history_usdt: `${newdomain}/api/v1/coin-payment-deposit-history`,
-  withdrawal_request_usdt: `${newdomain}/api/v1/withdrawl-request`,
-  withdrawal_address_usdt: `${newdomain}/api/v1/add-usdt-address`,
-  get_address_list: `${newdomain}/api/v1/usdt-address-record`,
-  withdrawl_usdt_history: `${newdomain}/api/v1/coin-payment-withdrawl-history`,
+  payment: `${newdomain1}/api/v1/payment`,
+  deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
+  withdrawal_request_usdt: `${newdomain1}/api/v1/withdrawl-request`,
+  withdrawal_address_usdt: `${newdomain1}/api/v1/add-usdt-address`,
+  get_address_list: `${newdomain1}/api/v1/usdt-address-record`,
+  withdrawl_usdt_history: `${newdomain1}/api/v1/coin-payment-withdrawl-history`,
 
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,
@@ -84,4 +84,7 @@ export const endpoint = {
 
   //income
   subordinate_data: `${newdomain1}/api/v1/get-subordinate-data-funx`,
+  commission_data: `${newdomain1}/api/v1/get-commisssion-data-funx`,
+  tranfer_wallet:`${newdomain1}/api/v1/transfer-amount-from-working-wallet-to-main-wallet`,
+  transfer_wallet_history:`${newdomain1}/api/v1/transfer-history-from-working-wallet-to-main-wallet`
 };

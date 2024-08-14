@@ -226,6 +226,19 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
+          <NavLink to="/promotion/Commission">
+            <Box sx={style.invitbox}>
+              <Stack direction="row">
+                <Box component="img" src={donut}></Box>
+                <Typography variant="body1" >
+                Commission Income
+                </Typography>
+              </Stack>
+              <Stack direction="row">
+                <ArrowForwardIosOutlinedIcon />
+              </Stack>
+            </Box>
+          </NavLink>
           <NavLink to="/account/income-main">
             <Box sx={style.invitbox}>
               <Stack direction="row">
