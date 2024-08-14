@@ -88,24 +88,24 @@ const JackpotGameHistory = ({ gid }) => {
   if (isLoading)
     return (
       <div className="!w-full  flex justify-center">
-        <CircularProgress  />
+        <CircularProgress />
       </div>
     );
   return (
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
-        <Typography variant="body1" color="initial">
+        <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px" }}
+            sx={{ marginRight: "10px", filter: 'grayscale(1)' }}
           ></Box>
           {gid === "1"
             ? "One GO Record"
             : gid === "2"
-            ? "Three Go Record"
-            : "Five Go Record"}
+              ? "Three Go Record"
+              : "Five Go Record"}
         </Typography>
       </Stack>
       <TableContainer sx={{ borderRadius: "7px" }}>
@@ -150,7 +150,7 @@ const JackpotGameHistory = ({ gid }) => {
           <TableBody>
             {visibleRows?.map((i) => {
               return (
-                <TableRow className="!w-[95%]">
+                <TableRow className="!w-[95%]" style={{ background: '#0D0335' }}>
                   <TableCell
                     className="!text-white"
                     sx={{
@@ -170,14 +170,15 @@ const JackpotGameHistory = ({ gid }) => {
                     </p>
                   </TableCell>
                   <TableCell
+                    className="!text-white"
                     sx={{
                       padding: " 10px 5px",
-                      fontsize: " 13px",
                       borderBottom: `1px solid ${lightblue}`,
                     }}
                   >
                     <span>
                       <LiveHelpIcon
+                        sx={{ width: '20px' }}
                         className="!text-[#FBA343] cursor-pointer"
                         onClick={() =>
                           navigate("/trx/tron-scan", {
@@ -188,18 +189,19 @@ const JackpotGameHistory = ({ gid }) => {
                         }
                       />
                     </span>
-                    <span>{i?.tr_number}</span>
+                    <span style={{ fontsize: '12px' }}>{i?.tr_number}</span>
                   </TableCell>
                   <TableCell
+                    className="!text-white"
                     sx={{
                       padding: " 10px 5px",
-                      fontsize: " 13px",
                       borderBottom: `1px solid ${lightblue}`,
                     }}
                   >
-                    <span>{i?.tr_block_time}</span>
+                    <span style={{ fontsize: '12px !important' }}>{i?.tr_block_time}</span>
                   </TableCell>
                   <TableCell
+                    className="!text-white"
                     sx={{
                       padding: " 10px 5px",
                       fontsize: " 13px",
@@ -216,37 +218,35 @@ const JackpotGameHistory = ({ gid }) => {
                     }}
                   >
                     <span
-                      className={`slot-id ${
-                        String(i?.tr41_slot_id)?.slice(0, 3) === "300"
-                          ? "bg-gradient-to-tl from-red-400 to-red-900"
-                          : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
+                      className={`slot-id ${String(i?.tr41_slot_id)?.slice(0, 3) === "300"
+                        ? "bg-gradient-to-tl from-red-400 to-red-900"
+                        : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
                           ? "!bg-gradient-to-t from-violet-400 to-violet-900"
                           : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                          ? "bg-gradient-to-t from-green-400 to-green-900"
-                          : ""
-                      } transparentColor font-bold  text-lg !px-1`}
+                            ? "bg-gradient-to-t from-green-400 to-green-900"
+                            : ""
+                        } transparentColor font-bold  text-lg !px-1`}
                     >
                       {`${i?.tr41_slot_id?.toString()?.slice(-1) || ""}`}
                     </span>
 
                     <span
-                      className={`slot-id ${
-                        String(i?.tr41_slot_id)?.slice(0, 3) === "300"
-                          ? "bg-gradient-to-tl from-red-400 to-red-900"
-                          : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
+                      className={`slot-id ${String(i?.tr41_slot_id)?.slice(0, 3) === "300"
+                        ? "bg-gradient-to-tl from-red-400 to-red-900"
+                        : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
                           ? "!bg-gradient-to-t from-violet-400 to-violet-900"
                           : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                          ? "bg-gradient-to-t from-green-400 to-green-900"
-                          : ""
-                      } transparentColor font-bold  text-lg !px-1`}
+                            ? "bg-gradient-to-t from-green-400 to-green-900"
+                            : ""
+                        } transparentColor font-bold  text-lg !px-1`}
                     >
                       {String(i?.tr41_slot_id)?.slice(0, 3) === "300"
                         ? "R"
                         : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
-                        ? "V"
-                        : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                        ? "G"
-                        : ""}
+                          ? "V"
+                          : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
+                            ? "G"
+                            : ""}
                     </span>
                   </TableCell>
                 </TableRow>
@@ -255,7 +255,7 @@ const JackpotGameHistory = ({ gid }) => {
           </TableBody>
         </Table>
 
-        <Box className="paginationTable !w-full mb-32">
+        <Box className="paginationTable !w-full " mb={4}>
           <TablePagination
             sx={{ background: zubgtext, color: "white", width: "100%" }}
             rowsPerPageOptions={[5, 10]}

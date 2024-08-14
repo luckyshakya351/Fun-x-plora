@@ -60,7 +60,7 @@ function WinOneMin({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: '#FCFEFB',
+              background: '#0D0335',
               boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
@@ -139,7 +139,7 @@ function WinOneMin({ gid }) {
                   setdialog_type("green");
                 }}
               >
-                 Green
+                Green
               </Button>
               <Button
                 className="greemviolet"
@@ -148,7 +148,7 @@ function WinOneMin({ gid }) {
                   setdialog_type("voilet");
                 }}
               >
-                 Violet
+                Violet
               </Button>
               <Button
                 className="greemred"
@@ -157,7 +157,7 @@ function WinOneMin({ gid }) {
                   setdialog_type("red");
                 }}
               >
-                 Red
+                Red
               </Button>
             </Box>
             {/* pridictcolor */}
@@ -170,6 +170,7 @@ function WinOneMin({ gid }) {
                 borderRadius: "10px",
                 position: "relative",
                 padding: "10px",
+                background: '#8bc34a5e',
               }}
             >
               <Box
@@ -235,7 +236,7 @@ function WinOneMin({ gid }) {
               <Button variant="outlined" color="primary" onClick={generateRandomType}>
                 Random
               </Button>
-            
+
               {[1, 5, 10, 20, 50, 100]?.map((i) => (
                 <IconButton
                   key={i}
@@ -251,7 +252,7 @@ function WinOneMin({ gid }) {
             <div className="!w-full !grid grid-cols-2 gap-2 !mt-2">
               <Button
                 sx={{ py: "10px" }}
-                className="!bg-[#FBB13B] !text-white"
+                className="!bg-[#63BA0E] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
                   setdialog_type("big");
@@ -260,7 +261,7 @@ function WinOneMin({ gid }) {
                 Big
               </Button>
               <Button
-                className="!bg-[#EE1285] !text-white"
+                className="!bg-[#6DA7F4] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
                   setdialog_type("small");
@@ -332,7 +333,7 @@ function WinOneMin({ gid }) {
           type={dialog_type}
           gid={gid}
           net_wallet_amount={net_wallet_amount}
-          random={value} 
+          random={value}
         />
       )}
     </Box>

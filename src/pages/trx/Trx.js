@@ -27,8 +27,14 @@ import Jackpot from "./component/WinOneMin/Jackpot";
 import { walletamount } from "../../services/apicalling";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+import theme from "../../utils/theme";
+import asistant from "../../assets/images/asistant.png";
+import backbtn from "../../assets/images/backBtn.png";
+import music from "../../assets/images/music.png";
+import musicoff from "../../assets/images/musicoff.png";
 
 function Win() {
+  const [musicicon, setmusicicon] = useState(true);
   const navigate = useNavigate();
   const client = useQueryClient();
   const [Tab, setTab] = useState(1);
@@ -50,17 +56,6 @@ function Win() {
     }, 1000);
   }, [dummycounter]);
 
-  // const { isLoading: walletloding, data: walletdata } = useQuery(
-  //   ["walletamount_aviator"],
-  //   () => walletamount(),
-  //   {
-  //     refetchOnMount: false,
-  //     refetchOnReconnect: false,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
-
-  // net_wallet_amount = walletdata?.data?.data || 0;
 
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
@@ -84,20 +79,49 @@ function Win() {
   }, []);
 
   return (
-    <Layout header={true} footer={true}>
+    <Layout header={false} footer={true}>
       <Container sx={styles.root}>
         <Box sx={{ position: "relative", overflow: "hidden" }}>
-          <Box className="wingosx"></Box>
-          <Box sx={{ padding: 2, position: "relative" }}>
-          <Box>
-            <KeyboardArrowLeftOutlinedIcon className="!text-white !cursor-pointer" onClick={()=>navigate(-1)}/>
+          <Box
+            sx={{
+              padding: 1,
+              background:
+                theme.palette.primary.main,
+              px: 3,
+            }}
+          >
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+            >
+              <NavLink to="/dashboard">
+                <Box component="img" src={backbtn} width={25}></Box>
+              </NavLink>
+              <Stack direction="row">
+                <NavLink to={"/CustomerService"}>
+                  <Box
+                    component="img"
+                    src={asistant}
+                    width={25}
+                    sx={{ mr: 2 }}
+                  ></Box>
+                </NavLink>
+                <NavLink onClick={() => setmusicicon(!musicicon)}>
+                  {musicicon === true ? (
+                    <Box component="img" src={music} width={25}></Box>
+                  ) : (
+                    <Box component="img" src={musicoff} width={25}></Box>
+                  )}
+                </NavLink>
+              </Stack>
+            </Stack>
           </Box>
+          <Box sx={{ padding: 2, position: "relative", background: theme.palette.secondary.main, }}>
             <Box
               sx={{
-                padding: "25px 10px",
+                padding: "20px 10px",
                 background: "#fff",
                 borderRadius: "20px",
-                my: 2,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -114,7 +138,7 @@ function Win() {
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                      Number(net_wallet_amount?.winning || 0) || 0
+                    Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
                 <div className="mx-1 rotate_refresh_image" id="refresh_button">
@@ -167,8 +191,8 @@ function Win() {
 
           <Box
             sx={{
-              background:
-                "linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important",
+              mt: 2,
+              background: "#0D0335",
               boxShadow: zubgshadow,
               width: "95%",
               marginLeft: "2.5%",
@@ -176,7 +200,7 @@ function Win() {
               position: "relative",
             }}
           >
-            <Stack direction="row">
+            <Stack direction="row" sx={{ borderRadius: '10px' }}>
               <Box
                 component={NavLink}
                 onClick={() => setTab(1)}
@@ -231,7 +255,7 @@ function Win() {
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
                 <Typography className='!pb-4' variant="h3" color="initial">
-                 JACKPOT
+                  JACKPOT
                 </Typography>
               </Box>
             </Stack>
@@ -264,7 +288,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, my: "74px" },
+  root: { background: zubgback, },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

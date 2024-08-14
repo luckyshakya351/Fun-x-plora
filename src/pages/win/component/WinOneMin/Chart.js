@@ -79,7 +79,7 @@ const Chart = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px" }}
+            sx={{ marginRight: "10px", filter: 'grayscale(2)' }}
           ></Box>{" "}
           Statistic(last 100 Periods)
         </Typography>
@@ -102,7 +102,7 @@ const Chart = ({ gid }) => {
                     {i?.gamesno}
                   </span>
                   {/* // main box of chart form 0 to 9 */}
-                  <Box className="flex items-center justify-between !w-[70%]"  >
+                  <Box className="flex items-center justify-between !w-[70%]" style={{ py: 1 }} >
                     {/* /// 0   //// */}
                     <div id={`zero${indexi}`} className={`${i?.number === "0"
                       ? "!z-20"

@@ -52,7 +52,7 @@ const Jackpotmyhistory = ({ gid }) => {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [page, rowsPerPage,  my_history?.data?.data]
+    [page, rowsPerPage, my_history?.data?.data]
   );
 
   if (isLoading)
@@ -70,7 +70,7 @@ const Jackpotmyhistory = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px" }}
+            sx={{ marginRight: "10px", filter: 'grayscale(1)' }}
           ></Box>
           {gid === "1"
             ? " My One GO Record"
@@ -83,26 +83,26 @@ const Jackpotmyhistory = ({ gid }) => {
         {visibleRows?.map((i) => {
           return (
             <div>
-              <Accordion className="!rounded-lg" disableElevation>
+              <Accordion className="!rounded-lg" disableElevation sx={{ background: '#180F3F' }}>
                 <AccordionSummary
                   disableElevation
                   expandIcon={<ArrowDownwardIcon className="" />}
                   aria-controls="panel1-content"
                   id="panel1-header"
                   sx={{
-                    background: "#fff",
+                    background: "#180F3F",
                     color: zubgtext,
-                    borderBottom: "1px solid red",
+                    borderRadius: '5px'
                   }}
                 >
                   <div className="!w-full !flex !justify-between">
                     <p className=" ">{i?.gamesno}</p>
                     <p
                       className={`${i?.status === "0"
-                          ? "!text-red-400"
-                          : i?.status === "1"
-                            ? "!text-green-400"
-                            : "!text-red-400"
+                        ? "!text-red-400"
+                        : i?.status === "1"
+                          ? "!text-green-400"
+                          : "!text-red-400"
                         }`}
                     >
                       {i?.status === "0"
@@ -113,10 +113,10 @@ const Jackpotmyhistory = ({ gid }) => {
                     </p>
                     <span
                       className={`${i?.status === "0"
-                          ? "!text-red-400"
-                          : i?.status === "1"
-                            ? "!text-green-400"
-                            : "!text-red-400"
+                        ? "!text-red-400"
+                        : i?.status === "1"
+                          ? "!text-green-400"
+                          : "!text-red-400"
                         }`}
                     >
                       {" "}
@@ -180,12 +180,12 @@ const Jackpotmyhistory = ({ gid }) => {
 
                         <span
                           className={`slot-id ${String(i?.result)?.slice(0, 3) === "300"
-                              ? "bg-gradient-to-tl from-red-400 to-red-900"
-                              : String(i?.result)?.slice(0, 3) === "200"
-                                ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                                : String(i?.result)?.slice(0, 3) === "100"
-                                  ? "bg-gradient-to-t from-green-400 to-green-900"
-                                  : ""
+                            ? "bg-gradient-to-tl from-red-400 to-red-900"
+                            : String(i?.result)?.slice(0, 3) === "200"
+                              ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                              : String(i?.result)?.slice(0, 3) === "100"
+                                ? "bg-gradient-to-t from-green-400 to-green-900"
+                                : ""
                             } transparentColor font-bold  text-lg !px-1`}
                         >
                           {String(i?.result)?.slice(0, 3) === "300"
@@ -198,12 +198,12 @@ const Jackpotmyhistory = ({ gid }) => {
                         </span>
                         <span
                           className={`slot-id ${String(i?.result)?.slice(0, 3) === "300"
-                              ? "bg-gradient-to-tl from-red-400 to-red-900"
-                              : String(i?.result)?.slice(0, 3) === "200"
-                                ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                                : String(i?.result)?.slice(0, 3) === "100"
-                                  ? "bg-gradient-to-t from-green-400 to-green-900"
-                                  : ""
+                            ? "bg-gradient-to-tl from-red-400 to-red-900"
+                            : String(i?.result)?.slice(0, 3) === "200"
+                              ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                              : String(i?.result)?.slice(0, 3) === "100"
+                                ? "bg-gradient-to-t from-green-400 to-green-900"
+                                : ""
                             } transparentColor font-bold  text-lg `}
                         >
                           {
@@ -212,7 +212,7 @@ const Jackpotmyhistory = ({ gid }) => {
                             )?.number
                           }
 
-                    
+
                         </span>
                       </div>
                     ) : (
@@ -224,12 +224,12 @@ const Jackpotmyhistory = ({ gid }) => {
                     </span>
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
                       <span className={`slot-id ${String(i?.number)?.slice(0, 3) === "300"
-                          ? "bg-gradient-to-tl from-red-400 to-red-900"
-                          : String(i?.number)?.slice(0, 3) === "200"
-                            ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                            : String(i?.number)?.slice(0, 3) === "100"
-                              ? "bg-gradient-to-t from-green-400 to-green-900"
-                              : ""
+                        ? "bg-gradient-to-tl from-red-400 to-red-900"
+                        : String(i?.number)?.slice(0, 3) === "200"
+                          ? "!bg-gradient-to-t from-violet-400 to-violet-900"
+                          : String(i?.number)?.slice(0, 3) === "100"
+                            ? "bg-gradient-to-t from-green-400 to-green-900"
+                            : ""
                         } transparentColor font-bold  text-lg !px-1`}> {i?.color}</span>
                     </div>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
@@ -237,10 +237,10 @@ const Jackpotmyhistory = ({ gid }) => {
                     </span>
                     <span
                       className={`${i?.status === "0"
-                          ? "!text-red-400"
-                          : i?.status === "1"
-                            ? "!text-green-400"
-                            : "!text-red-400"
+                        ? "!text-red-400"
+                        : i?.status === "1"
+                          ? "!text-green-400"
+                          : "!text-red-400"
                         } bg-white !bg-opacity-10 py-1 px-2`}
                     >
                       {i?.status === "0"
@@ -273,7 +273,7 @@ const Jackpotmyhistory = ({ gid }) => {
         })}
       </div>
 
-      <Box className="paginationTable mb-32">
+      <Box className="paginationTable " mb={10}>
         <TablePagination
           sx={{
             background: zubgtext,
@@ -281,7 +281,7 @@ const Jackpotmyhistory = ({ gid }) => {
             borderRadius: "10px",
             marginTop: "10px",
           }}
-          rowsPerPageOptions={[ 5, 10]}
+          rowsPerPageOptions={[5, 10]}
           component="div"
           count={my_history_data?.length}
           rowsPerPage={rowsPerPage}

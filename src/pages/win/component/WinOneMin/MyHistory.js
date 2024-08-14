@@ -49,7 +49,7 @@ const MyHistory = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px" }}
+            sx={{ marginRight: "10px", filter: 'grayscale(2)' }}
           ></Box>
           {gid === "1"
             ? " My One GO Record"
@@ -59,16 +59,16 @@ const MyHistory = ({ gid }) => {
         </Typography>
       </Stack>
       <div className="flex flex-col gap-[2px]">
-     
+
         {visibleRows?.map((i) => {
           return (
             <div>
-              <Accordion className="!rounded-lg">
+              <Accordion className="!rounded-lg" sx={{ background: '#180F3F' }}>
                 <AccordionSummary
                   expandIcon={<ArrowDownwardIcon sx={{ color: zubgtext, }} />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}
+                  sx={{ background: '#180F3F', color: zubgtext, borderRadius: '5px', }}
                 >
                   <div className="!w-full !flex !justify-between">
                     <p style={{ color: zubgtext, }}>{i?.gamesno}</p>
@@ -99,7 +99,7 @@ const MyHistory = ({ gid }) => {
                     </span>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: '#fff', color: zubgtext, borderBottom: '1px solid red' }}>
+                <AccordionDetails sx={{ background: '#fff', color: zubgtext, }}>
                   <p className={`!text-green-400 !font-semibold !text-lg`}>
                     Period Detail
                   </p>
@@ -264,15 +264,16 @@ const MyHistory = ({ gid }) => {
         })}
       </div>
 
-      <Box className="paginationTable mb-32">
+      <Box className="paginationTable ">
         <TablePagination
           sx={{
             background: zubgtext,
             color: "white",
             borderRadius: "0px 0px 10px 10px",
             padding: 1,
+            overflow: 'hidden',
           }}
-          rowsPerPageOptions={[5,10]}
+          rowsPerPageOptions={[5, 10]}
           component="div"
           count={my_history_data?.length}
           rowsPerPage={rowsPerPage}

@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
@@ -45,7 +45,7 @@ const GameHistory = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px" }}
+            sx={{ marginRight: "10px", filter: 'grayscale(1)' }}
           ></Box>
           {gid === "1"
             ? "One GO Record"
@@ -82,7 +82,7 @@ const GameHistory = ({ gid }) => {
           <TableBody >
             {visibleRows?.map((i) => {
               return (
-                <TableRow className="!w-[95%]">
+                <TableRow className="!w-[95%]" sx={{ background: '#0D0335' }}>
                   <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <p
                       style={{ fontWeight: 700, fontSize: '12px', color: zubgtext }}
@@ -103,13 +103,13 @@ const GameHistory = ({ gid }) => {
                         }
                       />
                     </span>
-                    <span>{i?.tr_number}</span>
+                    <span style={{ color: 'white' }}>{i?.tr_number}</span>
                   </TableCell>
                   <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
-                    <span>{i?.tr_block_time}</span>
+                    <span style={{ color: 'white' }}>{i?.tr_block_time}</span>
                   </TableCell>
                   <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
-                    <span>{i?.tr_hashno}</span>
+                    <span style={{ color: 'white' }}> {i?.tr_hashno}</span>
                   </TableCell>
 
                   <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
@@ -139,10 +139,10 @@ const GameHistory = ({ gid }) => {
                         }
                 transparentColor font-bold  text-lg
                 `}
-                    >
+                      style={{ color: 'white' }}>
                       {Number(i?.tr41_slot_id)}
                     </span>
-                    <span> {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}</span>
+                    <span style={{ color: 'white' }}> {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}</span>
                   </TableCell>
                 </TableRow>
               );
@@ -150,7 +150,7 @@ const GameHistory = ({ gid }) => {
           </TableBody>
         </Table>
 
-        <Box className="paginationTable !w-full mb-32">
+        <Box className="paginationTable !w-full " mb={4}>
           <TablePagination
             sx={{ background: zubgtext, color: "white", width: "100%" }}
             rowsPerPageOptions={[5, 10]}

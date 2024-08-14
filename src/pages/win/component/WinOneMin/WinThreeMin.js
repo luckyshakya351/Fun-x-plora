@@ -298,7 +298,7 @@ function WinThreeMin({ gid }) {
         {React.useMemo(() => {
           return (
             <>
-              <Box sx={{ background: theme.palette.secondary.main, borderRadius: "10px", overflow: 'hidden' }}>
+              <Box sx={{ background: theme.palette.secondary.main, borderRadius: "10px", overflow: 'hidden', mt: 2 }}>
                 <Stack direction="row">
                   <Box
                     component={NavLink}

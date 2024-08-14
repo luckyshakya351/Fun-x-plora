@@ -409,12 +409,14 @@ img {
   width: 100%;
   border-bottom: 2px solid transparent;
   text-align: center;
-  /* background: red !important; */
+  background: #0D0335 !important;
+  border-radius: 10px;
 }
 
 .activewinNav {
-  background-color: var(--lightyellow) !important;
+  background: linear-gradient(157deg, #63BA0E 0%, #0D0335 100%) !important;
   border-radius: 5px;
+  border: .01333rem solid #63BA0E;
 }
 
 
@@ -441,8 +443,11 @@ img {
   align-items: center;
   justify-content: center;
   margin: auto;
-  padding: 10px 0px;
+  padding: 15px;
   width: 100%;
+  background: #0D0335;
+
+  overflow: hidden;
 }
 
 .activewinNavtwo {
@@ -633,7 +638,7 @@ img {
   width: 95%;
   margin-left: 2.5%;
   border-radius: 7px;
-  padding: 15px 0px !important;
+  padding-bottom: 15px 0px !important;
   margin-bottom: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -642,7 +647,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 15px;
 }
 
 .onegotextbox>p {
@@ -1740,4 +1745,35 @@ td {
 
 .wingonavactive>p:nth-child(3) {
   color: #63BA0E;
+}
+
+
+.circles {
+  position: absolute;
+  height: 270px;
+  width: 450px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle-1 {
+  position: absolute;
+  top: -50px;
+  border-radius: 50%;
+  background: radial-gradient(#006db3, #29b6f6);
+  left: 10px;
+  height: 160px;
+  width: 160px;
+}
+
+.circle-2 {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(#006db3, #29b6f6);
+  right: 40px;
+  top: 80px;
+  opacity: 0.8;
+  height: 160px;
+  width: 160px;
 }

@@ -80,7 +80,7 @@ const Chart = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px" }}
+            sx={{ marginRight: "10px", filter: 'grayscale(2)' }}
           ></Box>{" "}
           Statistic(last 100 Periods)
         </Typography>
@@ -92,9 +92,9 @@ const Chart = ({ gid }) => {
               return (
                 <Box
                   sx={{
-                    background: zubgback,
-                    padding: "10px",
-                    borderBottom: "1px solid white",
+                    background: '#180F3F',
+                    padding: "10px ",
+                    borderBottom: "1px solid #63BA0E",
                   }}
                 >
                   <div className="flex justify-between">
@@ -106,11 +106,10 @@ const Chart = ({ gid }) => {
                     {/* // main box of chart form 0 to 9 */}
                     <Box className="flex items-center justify-between !w-[80%]  lg:!w-[70%]">
                       {/* /// 0   //// */}
-                      <div id={`zero${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "0"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`zero${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "0"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "0"
                             ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white"
@@ -122,11 +121,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 1   //// */}
-                      <div id={`one${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "1"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`one${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "1"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "1"
                             ? "!bg-[#4bef98] !text-white"
@@ -138,11 +136,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 2   //// */}
-                      <div id={`two${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "2"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`two${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "2"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "2"
                             ? "!bg-[#f1494c] !text-white"
@@ -154,11 +151,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 3   //// */}
-                      <div id={`three${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "3"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`three${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "3"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "3"
                             ? "!bg-[#46eb93] !text-white"
@@ -170,11 +166,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 4   //// */}
-                      <div id={`four${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "4"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`four${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "4"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "4"
                             ? "!bg-[#ed4b4e] !text-white"
@@ -186,11 +181,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 5   //// */}
-                      <div id={`five${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "5"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`five${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "5"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "5"
                             ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
@@ -202,11 +196,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 6   //// */}
-                      <div id={`six${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "6"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`six${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "6"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "6"
                             ? "!bg-[#f54b4e] !text-white"
@@ -218,11 +211,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 7   //// */}
-                      <div id={`seven${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "7"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`seven${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "7"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "7"
                             ? "!bg-[#4af499] !text-white"
@@ -234,11 +226,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 8   //// */}
-                      <div id={`eight${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "8"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`eight${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "8"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "8"
                             ? "!bg-[#eb494c] !text-white"
@@ -250,11 +241,10 @@ const Chart = ({ gid }) => {
                         </Typography>
                       </div>
                       {/* /// 9   //// */}
-                      <div id={`nine${indexi}`} className={`${
-                     String(Number(element?.tr41_slot_id)) === "9"
-                          ? "!z-20"
-                          : "!z-[-10px]"
-                      }`}>
+                      <div id={`nine${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "9"
+                        ? "!z-20"
+                        : "!z-[-10px]"
+                        }`}>
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "9"
                             ? "!bg-[#4cf199] !text-white"
@@ -307,7 +297,7 @@ const Chart = ({ gid }) => {
         </div>
       </div>
 
-      <Box className="paginationTable">
+      <Box className="paginationTable" mb={10}>
         <TablePagination
           sx={{
             background: zubgtext,

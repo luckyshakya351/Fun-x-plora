@@ -50,6 +50,7 @@ import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
 import Notification from "./Notification";
+import trximg from "../../assets/images/f233fc5431d2b61e65327cc77d9bb1f8.png";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -224,11 +225,13 @@ function Dashboard() {
     },
     {
       name: "Aviator",
+
       img: aviator_game_image,
     },
     {
-      name: "Sports",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_20240110061915xrqy.png",
+      name: "Trx",
+      url: 'trx',
+      img: trximg,
     },
     {
       name: "Slots",

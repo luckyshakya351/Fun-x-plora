@@ -78,8 +78,7 @@ function Jackpot({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: "white",
-              // boxShadow: zubgshadow,
+              background: "#0D0335",
               padding: "10px",
               borderRadius: "10px",
               position: "relative",
@@ -147,25 +146,28 @@ function Jackpot({ gid }) {
             <Box
               sx={{
                 width: "100%",
-                my: "20px",
-                // background: zubgwhite,
-                // boxShadow: zubgshadow,
+                mt: "20px",
+                background: '#8bc34a5e',
                 borderRadius: "10px",
                 position: "relative",
                 padding: "10px",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
               }}
-              className=" grid grid-cols-3 "
+            // className=" grid grid-cols-3 "
             >
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  gap: "20px",
+                  justifyContent: "space-around",
+                  width: "33%",
+
                 }}
                 className=""
               >
-                <div className="w-[28%] m-1 ">
+                <div style={{}}>
                   {[
                     { nogreen: 0, img: g0 },
                     { nogreen: 1, img: pr11 },
@@ -174,9 +176,10 @@ function Jackpot({ gid }) {
                     { nogreen: 4, img: g4 },
                   ]?.map((i) => {
                     return (
-                      <div className="!h-12 !w-12">
+                      <div className="">
                         <img
-                          className="!cursor-pointer h-full w-full object-cover"
+                          style={{ width: '40px', marginBottom: '10px', }}
+                          className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
                             setjackpot_bit_dialog_box(true);
@@ -188,7 +191,7 @@ function Jackpot({ gid }) {
                     );
                   })}
                 </div>
-                <div className="w-[28%] m-1">
+                <div className="">
                   {[
                     { nogreen: 5, img: g5 },
                     { nogreen: 6, img: g6 },
@@ -197,9 +200,10 @@ function Jackpot({ gid }) {
                     { nogreen: 9, img: pr9 },
                   ]?.map((i) => {
                     return (
-                      <div className="!h-12 !w-12">
+                      <div className="">
                         <img
-                          className="!cursor-pointer h-full w-full object-cover"
+                          style={{ width: '40px', marginBottom: '10px', }}
+                          className="!cursor-pointer object-cover"
                           src={i?.img}
                           onClick={() => {
                             setjackpot_bit_dialog_box(true);
@@ -217,12 +221,13 @@ function Jackpot({ gid }) {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  gap: "20px",
+                  justifyContent: "space-around",
+                  width: "33%",
+
                 }}
                 className=""
               >
-                <div className="w-[28%] m-1">
+                <div >
                   {[
                     { noviolet: 0, img: v0 },
                     { noviolet: 1, img: v1 },
@@ -231,9 +236,10 @@ function Jackpot({ gid }) {
                     { noviolet: 4, img: v4 },
                   ]?.map((i) => {
                     return (
-                      <div className="!h-12 !w-12">
+                      <div className="">
                         <img
-                          className="!cursor-pointer h-full w-full object-cover"
+                          style={{ width: '40px', marginBottom: '10px', }}
+                          className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
                             setjackpot_bit_dialog_box(true);
@@ -245,7 +251,7 @@ function Jackpot({ gid }) {
                     );
                   })}
                 </div>
-                <div className="w-[28%] m-1">
+                <div >
                   {[
                     { noviolet: 5, img: v5 },
                     { noviolet: 6, img: v6 },
@@ -254,9 +260,10 @@ function Jackpot({ gid }) {
                     { noviolet: 9, img: v9 },
                   ]?.map((i) => {
                     return (
-                      <div className="!h-12 !w-12">
+                      <div className="">
                         <img
-                          className="!cursor-pointer h-full w-full object-cover"
+                          style={{ width: '40px', marginBottom: '10px', }}
+                          className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
                             setjackpot_bit_dialog_box(true);
@@ -274,12 +281,13 @@ function Jackpot({ gid }) {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  gap: "20px",
+                  justifyContent: "space-around",
+                  width: "33%",
+
                 }}
                 className=""
               >
-                <div className="w-[28%] m-1 ">
+                <div >
                   {[
                     { nored: 0, img: r0 },
                     { nored: 1, img: r1 },
@@ -288,9 +296,10 @@ function Jackpot({ gid }) {
                     { nored: 4, img: pr4 },
                   ]?.map((i) => {
                     return (
-                      <div className="!h-12 !w-12">
+                      <div className="">
                         <img
-                          className="!cursor-pointer h-full w-full object-cover"
+                          style={{ width: '40px', marginBottom: '10px', }}
+                          className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
                             setjackpot_bit_dialog_box(true);
@@ -302,7 +311,7 @@ function Jackpot({ gid }) {
                     );
                   })}
                 </div>
-                <div className="w-[28%] m-1">
+                <div className="">
                   {[
                     { nored: 5, img: r5 },
                     { nored: 6, img: pr6 },
@@ -311,9 +320,10 @@ function Jackpot({ gid }) {
                     { nored: 9, img: r9 },
                   ]?.map((i) => {
                     return (
-                      <div className="!h-12 !w-12">
+                      <div className="">
                         <img
-                          className="!cursor-pointer h-full w-full object-cover"
+                          style={{ width: '40px', marginBottom: '10px', }}
+                          className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
                             setjackpot_bit_dialog_box(true);

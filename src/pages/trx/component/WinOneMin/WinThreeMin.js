@@ -59,7 +59,7 @@ function WinThreeMin({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: '#FCFEFB',
+              background: '#0D0335',
               boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
@@ -126,6 +126,7 @@ function WinThreeMin({ gid }) {
                 alignItems: "center",
                 justifyContent: "space-between",
                 mb: "20px",
+
                 "&>button": { width: "32%", padding: "10px 10px " },
               }}
             >
@@ -168,6 +169,7 @@ function WinThreeMin({ gid }) {
                 borderRadius: "10px",
                 position: "relative",
                 padding: "10px",
+                background: '#8bc34a5e',
               }}
             >
               <Box
@@ -248,7 +250,7 @@ function WinThreeMin({ gid }) {
             <div className="!w-full !grid grid-cols-2 gap-2 !mt-2">
               <Button
                 sx={{ py: "10px" }}
-                className="!bg-[#FBB13B] !text-white"
+                className="!bg-[#63BA0E] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
                   setdialog_type("big");
@@ -257,7 +259,7 @@ function WinThreeMin({ gid }) {
                 Big
               </Button>
               <Button
-                className="!bg-[#EE1285] !text-white"
+                className="!bg-[#6DA7F4] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
                   setdialog_type("small");
