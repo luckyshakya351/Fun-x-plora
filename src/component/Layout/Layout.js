@@ -12,7 +12,7 @@ function Layout(props) {
     <Box
       // background: '#202020',
       sx={{
-        background: "#F6F7FE",
+        background: "#0D0335",
         // backgroundImage: 'url("https://res.cloudinary.com/do7kimovl/image/upload/v1709834065/mobielTheme1_dbtwmp.jpg")',
         backgroundSize: "cover", // You can adjust the background size as needed
         backgroundPosition: "center", // You can adjust the background position as needed

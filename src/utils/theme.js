@@ -6,7 +6,7 @@ const theme = createTheme({
     MuiContainer: {
       styleOverrides: {
         root: {
-          maxWidth: '575px !important',
+          maxWidth: '450px !important',
           padding: '0px !important',
         }
       },
@@ -14,8 +14,10 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#6CB4EE',
-      // main: '#E71D1E',
+      main: '#63BA0E',
+    },
+    secondary: {
+      main: '#160D3D',
     }
   }
 });

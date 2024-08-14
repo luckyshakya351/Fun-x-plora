@@ -33,9 +33,13 @@ import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
 import { lightblue, zubgtext } from "../../../Shared/color";
-import logo from "../../../assets/images/fun.jpg";
+// import logo from "../../../assets/images/fun.jpg";
+import logo from "../../../assets/—Pngtree—ink splash pattern_6020336 (1).png";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
+import logbg from '../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+
 
 function Register() {
   const url = new URL(window.location.href);
@@ -124,14 +128,14 @@ function Register() {
         sessionStorage.setItem("isAvailableCricketUser", true);
         storeCookies();
         swal({
-          title:"Registration Successfully",
+          title: "Registration Successfully",
           text: ` 
           Email : ${fk?.values?.email}
           Mobile : ${fk?.values?.mobile}
           Password : ${fk?.values?.password} `,
           // title: response?.data?.msg,
           icon: "success",
-          button: "OK", 
+          button: "OK",
         }).then(() => {
           navigate("/dashboard");
           document.location.reload();
@@ -169,7 +173,10 @@ function Register() {
   const result = data?.data?.data;
 
   return (
-    <Container sx={{ background: "#FAF9F6" }}>
+    <Container sx={{
+      background: '#0D0335', height: '100%',
+      backgroundImage: `url(${logbg})`, backgroundSize: '100% 100%',
+    }}>
       <Box sx={style.authheader}>
         <Box
           sx={{
@@ -178,31 +185,10 @@ function Register() {
             borderRadius: "10px",
           }}
         >
-          <Box sx={style.flexbetween}>
-            <Box component={NavLink} sx={{ width: "20%" }}>
-              {/* <ArrowBackIosIcon sx={style.icon} /> */}
-            </Box>
-            <Box sx={{ width: "60%" }}>
-              <Box component="img" src={logo} sx={style.logocss}></Box>
-            </Box>
-            <Box component={NavLink} sx={{ width: "20%" }}>
-              <Box sx={{ ...style.flexcenter, float: "right" }}></Box>
-            </Box>
+          <Box sx={{ width: '100%', }}>
+            <Box component='img' src={logo} sx={style.logocss}></Box>
           </Box>
 
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "600", fontSize: "18px", color: "white" }}
-          >
-            Register{" "}
-          </Typography>
-          <Typography
-            variant="body2"
-            mb={1}
-            sx={{ fontWeight: "400", fontSize: "12px", color: "white" }}
-          >
-            Please register by phone number or email
-          </Typography>
         </Box>
       </Box>
       <Box sx={style.authform} component="form">
@@ -227,7 +213,7 @@ function Register() {
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mb: 1 }}>
               <PersonOutlineIcon sx={style.icon} />{" "}
-              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+              <Typography variant="body1" ml={1} sx={{ color: "#63BA0E" }}>
                 Name
               </Typography>
             </Box>
@@ -250,27 +236,14 @@ function Register() {
         <FormControl fullWidth>
           <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
             <PhoneAndroidIcon sx={style.icon} />{" "}
-            <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+            <Typography variant="body1" ml={1} sx={{ color: "#63BA0E" }}>
               {" "}
               Phone number
             </Typography>
           </Box>
           <Box sx={{ ...style.flexbetween }}>
-            <Select
-              sx={{ ...style.selectinput }}
-              mr={2}
-              value={CountryCode}
-              onChange={handleChange}
-              displayEmpty
-              inputProps={{ "aria-label": "Without label" }}
-            >
-              <MenuItem value="+91" selected>
-                {" "}
-                + 91
-              </MenuItem>
-            </Select>
             <TextField
-              sx={{ ...style.normalinput, width: "80%" }}
+              sx={{ ...style.normalinput, width: "100%" }}
               ml={2}
               id="mob"
               name="mobile"
@@ -290,7 +263,7 @@ function Register() {
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
               <MarkEmailReadIcon sx={style.icon} />{" "}
-              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+              <Typography variant="body1" ml={1} sx={{ color: "#63BA0E" }}>
                 E-mail
               </Typography>
             </Box>
@@ -313,7 +286,7 @@ function Register() {
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
               <PhonelinkLockIcon sx={style.icon} />{" "}
-              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+              <Typography variant="body1" ml={1} sx={{ color: "#63BA0E" }}>
                 Set password
               </Typography>
             </Box>
@@ -351,7 +324,7 @@ function Register() {
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
               <PhonelinkLockIcon sx={style.icon} />{" "}
-              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+              <Typography variant="body1" ml={1} sx={{ color: "#63BA0E" }}>
                 Confirm password
               </Typography>
             </Box>
@@ -390,7 +363,7 @@ function Register() {
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
               <ReceiptIcon sx={style.icon} />{" "}
-              <Typography variant="body1" ml={1} sx={{ color: "red" }}>
+              <Typography variant="body1" ml={1} sx={{ color: "#63BA0E" }}>
                 Referral Code
               </Typography>
             </Box>
@@ -412,17 +385,17 @@ function Register() {
                 <div className="error">Invalid Referral Id</div>
               )
             ) : null}
-           
+
           </FormControl>
         </Box>
-        <Box mt={1}>
+        {/* <Box mt={1}>
           <FormControl fullWidth>
             <FormControlLabel
               required
               control={
                 <Checkbox
                   checked={fk.values.privacy_policy}
-                  sx={{ color: zubgtext, fontSize: "12px", fontWeight: "500" }}
+                  sx={{ color: 'white', fontSize: "12px", fontWeight: "500" }}
                   onClick={() =>
                     fk.setFieldValue(
                       "privacy_policy",
@@ -434,17 +407,40 @@ function Register() {
               label="I have read and agree 【Privacy Agreement】"
             />
           </FormControl>
-        </Box>
-        <Stack>
-          <NavLink to="/register">
-            <Button className="goldbtn" onClick={fk.handleSubmit}>
-              Register
-            </Button>
-          </NavLink>
-          <NavLink to="/">
-            <Button className=" goldborderbtn">Log in</Button>
-          </NavLink>
-        </Stack>
+        </Box> */}
+        <Stack direction='row' justifyContent={'space-between'} mt={5}>
+          <Box
+            component={NavLink}
+            to='/'
+            sx={{
+              width: '48%',
+            }} >
+            <a class="playstore-button" href="#">
+              <HowToRegIcon />
+              <span class="texts">
+                <span class="text-1">Back to</span>
+                <span class="text-2">Login </span>
+              </span>
+            </a>
+          </Box>
+          <button class="cssbuttons-io-button" onClick={fk.handleSubmit} >
+            Register
+            <div class="icon">
+              <svg
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+          </button>
+        </Stack >
       </Box>
       <CustomCircularProgress isLoading={loding} />
     </Container>
@@ -454,7 +450,6 @@ function Register() {
 export default Register;
 
 const style = {
-  authheader: { background: lightblue, py: 1 },
   flexcenterstart: {
     display: "flex",
     alignItems: "center",
@@ -470,7 +465,7 @@ const style = {
     "&>div": {
       border: "none",
       borderRadius: "10px",
-      color: lightblue,
+      color: '#63BA0E',
     },
     "&>div>input": {
       padding: "10px !important",
@@ -499,15 +494,15 @@ const style = {
     },
   },
   icon: { color: zubgtext },
-  logocss: { width: "100px", margin: "auto" },
+  logocss: { width: '200px', margin: 'auto', borderRadius: '5px' },
   flexcoloumcenter: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
   },
-  authform: { width: "100%", pb: 3 },
-  registerheader: { borderBottom: `2px solid ${zubgtext}`, py: 2 },
+  authform: { width: "100%", pb: 2 },
+  registerheader: { borderBottom: `2px solid ${zubgtext}`, },
   "&>p": { color: `${zubgtext} !important`, fontSize: "18px", mt: 1 },
   selectinput: {
     width: "18%",
@@ -516,7 +511,7 @@ const style = {
     "&>div": {
       border: "none",
       borderRadius: "10px",
-      color: lightblue,
+      color: '#63BA0E',
       padding: "10px 0px 10px 5px !important",
     },
     "&>fieldset": {
@@ -528,7 +523,7 @@ const style = {
   passwordinput: {
     borderRadius: "10px",
     backgroundColor: "#fff",
-    "&>input": { padding: "10px", color: lightblue },
+    "&>input": { padding: "10px", color: '#63BA0E' },
     "&>fieldset": { border: "none" },
     "&>:hover": {
       backgroundColor: "#fff",

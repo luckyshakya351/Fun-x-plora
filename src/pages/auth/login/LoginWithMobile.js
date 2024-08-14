@@ -8,12 +8,10 @@ import {
   FormControlLabel,
   IconButton,
   InputAdornment,
-  MenuItem,
   OutlinedInput,
-  Select,
   Stack,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -21,14 +19,16 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 // import * as uuid from "uuid";
+import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import CryptoJS from 'crypto-js';
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginMobileSchemaValidaton } from "../../../Shared/Validation";
-import { lightblue, zubgmid, zubgtext } from "../../../Shared/color";
+import { lightblue, zubgtext } from "../../../Shared/color";
+import inputfield from '../../../assets/inputfield.a3159d8d15fb018d06f4.png';
 import { endpoint } from "../../../services/urls";
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 
 function LoginWithMobile() {
@@ -37,7 +37,7 @@ function LoginWithMobile() {
   const [loding, setloding] = useState(false);
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const [ipAddress, setIpAddress] = useState('');
+  const [ipAddress, setIpAddress] = useState('');
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -45,13 +45,13 @@ function LoginWithMobile() {
   useEffect(() => {
     // Using a free IP API service
     axios.get('https://api.ipify.org?format=json')
-        .then(response => {
-            setIpAddress(response.data.ip);
-        })
-        .catch(error => {
-            console.error('Error fetching IP address:', error);
-        });
-}, []);
+      .then(response => {
+        setIpAddress(response.data.ip);
+      })
+      .catch(error => {
+        console.error('Error fetching IP address:', error);
+      });
+  }, []);
 
   const initialValue = {
     mob: "",
@@ -67,7 +67,7 @@ function LoginWithMobile() {
       const reqbody = {
         username: fk.values.mob,
         password: fk.values.pass,
-        ipAddress:ipAddress
+        ipAddress: ipAddress
         // device_id: device_id,
       };
       loginFunction(reqbody);
@@ -148,34 +148,23 @@ function LoginWithMobile() {
       }}
       onSubmit={fk.handleSubmit}
     >
-      <Box mt={2}>
+      <Box mt={5} mb={3}>
         <FormControl fullWidth>
-          <Box sx={{ ...style.flexcenterstart, my: 1, }}>
-            <PhoneAndroidIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Phone number</Typography>
-          </Box>
-          <Box sx={{ ...style.flexbetween, }}>
-            <Select
-              sx={{ ...style.selectinput }}
-              mr={2}
-              value={CountryCode}
-              onChange={handleChange}
-              displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value="+91" selected> + 91</MenuItem>
-            </Select>
 
-            <TextField
-              ml={2}
-              id="mob"
-              name="mob"
-              type="number"
-              value={fk.values.mob}
-              onChange={fk.handleChange}
-              onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-              placeholder='Enter Phone Number'
-              sx={{ ...style.normalinput, width: '80%', }}
-            />
+          <Box sx={{ ...style.flexbetween, }}>
+            <FormControl sx={style.inputfield2} fullWidth>
+              <PhoneAndroidIcon sx={style.inputimg2} />
+              <TextField
+                ml={2}
+                id="mob"
+                name="mob"
+                type="number"
+                value={fk.values.mob}
+                onChange={fk.handleChange}
+                onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                placeholder='Enter Phone Number'
+              />
+            </FormControl>
           </Box>
           {fk.touched.mob && fk.errors.mob ? (
             <div className="error">{fk.errors.mob}</div>
@@ -186,11 +175,9 @@ function LoginWithMobile() {
           )}
         </FormControl>
       </Box>
-      <Box mt={3}>
-        <FormControl fullWidth>
-          <Box sx={{ ...style.flexcenterstart, mb: 1, }}>
-            <HttpsOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Password</Typography>
-          </Box>
+      <Box mt={3} mb={3}>
+        <FormControl fullWidth sx={style.passwordfield2}>
+          <HttpsOutlinedIcon sx={style.inputimg2} />
           <OutlinedInput
             id="pass"
             name="pass"
@@ -222,7 +209,7 @@ function LoginWithMobile() {
           )}
         </FormControl>
       </Box>
-      <Box mt={1}>
+      {/* <Box mt={1}>
         <FormControl fullWidth>
           <FormControlLabel
             required
@@ -239,17 +226,41 @@ function LoginWithMobile() {
             sx={{ color: zubgtext, fontSize: '12px', fontWeight: '500' }}
           />
         </FormControl>
-      </Box>
-      <Stack mt={0}>
-        <Stack >
-          <NavLink to='/' >
-            <Button className='goldbtn' onClick={fk.handleSubmit}>Log in</Button>
-          </NavLink>
-          <NavLink to='/register'>
-            <Button className='goldborderbtn'>Register</Button>
-          </NavLink>
-        </Stack>
-      </Stack>
+      </Box> */}
+      <Stack direction='row' justifyContent={'space-between'}>
+        <Box
+          component={NavLink}
+          to='/register'
+          sx={{
+            width: '48%',
+          }} >
+          <a class="playstore-button" href="#">
+            <HowToRegIcon />
+            <span class="texts">
+              <span class="text-1">Register ON</span>
+              <span class="text-2">FunXplora</span>
+            </span>
+          </a>
+        </Box>
+        <button class="cssbuttons-io-button" onClick={fk.handleSubmit} >
+          Login
+          <div class="icon">
+            <svg
+              height="24"
+              width="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+        </button>
+
+      </Stack >
       <CustomCircularProgress isLoading={loding} />
     </Box>
   );
@@ -259,49 +270,85 @@ export default LoginWithMobile;
 
 
 const style = {
+  inputfield2: {
+    width: '100%', position: 'relative', mb: '10px', filter: 'hue-rotate(100deg)',
+    backgroundImage: `url(${inputfield})`,
+    backgroundSize: '100% 100%',
+    '&>div': { padding: '12px', border: 'none' },
+    '&>div>div>input': { width: '80%', color: 'white', padding: '20px 10px', paddingLeft: '24%', },
+    '&>div>div>input::placeholder': { color: 'white' },
+    '&>div>div>fieldset': { border: 'none' },
+    '&>div>div>button>svg': { mr: '20px' },
+    '@media (min-width: 320px)': {
+      '&>div': { padding: '5px', },
+    },
+    '@media (min-width: 360px)': {
+      '&>div': { padding: '8px', },
+    },
+    '@media (min-width: 400px)': {
+      '&>div': { padding: '12px', },
+    },
+    '@media (min-width: 425px)': {
+      '&>div': { padding: '15px', },
+    },
+  },
+  passwordfield2: {
+    width: '100%', position: 'relative', mb: '10px', filter: 'hue-rotate(100deg)',
+    backgroundImage: `url(${inputfield})`,
+    backgroundSize: '100% 100%',
+    '&>div': { padding: '12px', background: '#ff000000' },
+    '&>div>input': { color: 'white', padding: '20px', paddingLeft: '24%' },
+    '&>div>div>button>svg': { mr: '20px' },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+    '@media (min-width: 320px)': {
+      '&>div': { padding: '5px', },
+    },
+    '@media (min-width: 360px)': {
+      '&>div': { padding: '8px', },
+    },
+    '@media (min-width: 400px)': {
+      '&>div': { padding: '12px', },
+    },
+    '@media (min-width: 425px)': {
+      '&>div': { padding: '15px', },
+    },
+  },
+  inputimg2: {
+    position: 'absolute',
+    zIndex: 10,
+    width: '30px',
+    top: '30%',
+    left: '7%',
+    fontSize: '35px',
+    color: '#bb00006b',
+    '@media (min-width: 320px)': {
+      left: '6%',
+    },
+    '@media (min-width: 360px)': {
+      left: '7%',
+    },
+    '@media (min-width: 425px)': {
+      left: '7.5%',
+      top: '31.5%',
+    },
+  },
   flexcenterstart: {
     display: 'flex',
     alignItems: 'center',
   },
-  normalinput: {
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
-      color: 'red',
 
-    },
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
-      color: lightblue
-    },
-    '&>div>input': {
-      padding: '10px !important'
-    },
-    '&>div>fieldset': {
-      border: 'none !important',
-      borderRadius: '10px',
-      marginLeft: '20px',
-    },
-
-  },
   flexbetween: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between;',
-  },
-  passwordinput: {
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>input': { padding: '10px', color: lightblue },
-    '&>fieldset': { border: 'none' },
-    // '&>div>button>svg': { padding: '10px', color: 'red' },
-    // '&>div>button': { padding: '0px', },
-    '&>:hover': {
-      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
-    },
   },
   icon: { color: zubgtext },
   selectinput: {

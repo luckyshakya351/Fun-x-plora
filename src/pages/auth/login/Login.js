@@ -12,10 +12,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { lightblue, lightyellow } from '../../../Shared/color';
-import logo from "../../../assets/images/fun.jpg";
+// import logo from "../../../assets/fun.27036251210ce8ec4ad4.png";
+import logo from "../../../assets/—Pngtree—ink splash pattern_6020336 (1).png";
 import LoginWithEmail from '../login/LoginWithEmail';
 import LoginWithMobile from '../login/LoginWithMobile';
-
+import logbg from '../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png';
+import custom from "../../../assets/custom.png";
 
 function Login() {
 
@@ -43,63 +45,41 @@ function Login() {
   };
 
   return (
-    <Container sx={{ background: '#FAF9F6', minHeight: '100vh' }}>
-      <Box sx={style.authheader}>
-        <Box
-          sx={{
-            width: "95%",
-            marginLeft: "2.5%",
-            borderRadius: "10px",
-          }}
-        >
-          <Box sx={style.flexbetween}>
-            <Box component={NavLink} sx={{ width: '20%' }}>
+    <Container sx={{
+      background: '#0D0335', height: '100vh',
+      backgroundImage: `url(${logbg})`, backgroundSize: '100% 100%',
+    }}>
 
-            </Box>
-            <Box sx={{ width: '60%', }}>
-              <Box component='img' src={logo} sx={style.logocss}></Box>
-            </Box>
-            <Box component={NavLink} sx={{ width: '20%' }}>
-              <Box sx={{ ...style.flexcenter, float: 'right' }}>
-              </Box>
-            </Box>
-          </Box>
-          <Typography variant="h6" sx={{ fontWeight: '600', fontSize: '18px', color: 'white' }}  > Log in </Typography>
-          <Typography variant="body2" sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>Please log in with your phone number or email</Typography>
-          <Typography variant="body2" mb={1} sx={{ fontWeight: '400', fontSize: '12px', color: 'white' }}>If you forget your password, please contact customer service</Typography>
-        </Box>
-      </Box>
       <Box
         sx={{
-          my: 2,
+
           width: "95%",
           marginLeft: "2.5%",
           borderRadius: "10px",
         }}
       >
-
+        <Box sx={{ width: '100%', }}>
+          <Box component='img' src={logo} sx={style.logocss}></Box>
+        </Box>
 
         <Box sx={style.authform} component='form'>
           <Box sx={{ width: "100%" }}>
             <Tabs value={value} onChange={handleChange} sx={{ width: "100%", }}>
               <Tab value="two" sx={{ width: "50% !important", }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
-                  <PhoneAndroidIcon sx={{ color: value === 'two' ? lightblue : lightyellow, }} />
-
-                  <Typography variant="body1" sx={{ color: value === 'two' ? lightblue : lightyellow, fontSize: '14px', }}>Log in with phone</Typography>
+                  {/* <PhoneAndroidIcon sx={{ color: value === 'two' ? lightblue : lightyellow, }} /> */}
+                  <Typography variant="body1" sx={{ color: value === 'two' ? lightyellow : lightblue, fontSize: '14px', }}>Log in with phone</Typography>
                 </Box>
               }
               />
 
               <Tab value="one" sx={{ width: "50% !important" }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
-                  <MarkEmailReadIcon sx={{ color: value === 'one' ? lightblue : lightyellow, }} />
-                  <Typography variant="body1" sx={{ color: value === 'one' ? lightblue : lightyellow, fontSize: '14px', }}>Log in with email</Typography>
+                  {/* <MarkEmailReadIcon sx={{ color: value === 'one' ? lightblue : lightyellow, }} /> */}
+                  <Typography variant="body1" sx={{ color: value === 'one' ? lightyellow : lightblue, fontSize: '14px', }}>Log in with email</Typography>
                 </Box>
               }
               />
-
-
             </Tabs>
           </Box>
           {
@@ -114,7 +94,24 @@ function Login() {
           }
         </Box>
       </Box>
-
+      <Box
+        sx={{ width: "80%", margin: "auto", mt: 3 }}
+        component={NavLink}
+        to="/CustomerService"
+      >
+        <Box
+          component="img"
+          src={custom}
+          sx={{ width: "50px", margin: "auto", filter: 'hue-rotate(60deg)', }}
+        ></Box>
+        <Typography
+          variant="body1"
+          color="white"
+          sx={{ textAlign: "center", mt: 1 }}
+        >
+          Customer Service
+        </Typography>
+      </Box>
     </Container>
   );
 }
@@ -122,8 +119,8 @@ function Login() {
 export default Login;
 
 const style = {
-  authheader: { background: lightblue, py: 1, },
-  logocss: { width: '100px', margin: 'auto', },
+  authheader: { background: '#0D0335', py: 1, },
+  logocss: { width: '200px', margin: 'auto', borderRadius: '5px' },
   flagcss: { width: '30px' },
   icon: { fontSize: "18px", color: 'white' },
   authform: { width: '100%' },
