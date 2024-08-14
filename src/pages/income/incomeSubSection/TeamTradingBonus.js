@@ -182,7 +182,7 @@ function TeamTradingBonus() {
           <TableHead>
             <TableRow >
             <TableCell  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
-             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date</TableCell>
+             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
               <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
               <TableCell  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
             </TableRow>

@@ -3,7 +3,7 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain1 = "http://192.168.1.26:9000";
+export const newdomain1 = "http://192.168.1.11:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -52,8 +52,8 @@ export const endpoint = {
   referral_bonus: `${baseUrl}/api/refral-bonus`,
   daily_self_bet_income: `${baseUrl}/api/daily-self-bet-income`,
   daily_wallet_income: `${baseUrl}/api/daily-wallet-income`,
-  daily_salary_income: `${baseUrl}/api/daily-salay-income`,
-  weekly_salary_income: `${baseUrl}/api/weekly-salay-income`,
+  daily_salary_income: `${newdomain1}/api/v1/daily-salary-icome`,
+  weekly_salary_income: `${newdomain1}/api/v1/weekly-salary-icome`,
   team_reward_bonus: `${baseUrl}/api/team-reward-bonus`,
   team_trading_bonus: `${newdomain}/api/v1/level-income`,
   add_bank_details: `${baseUrl}/api/bank-add`,
