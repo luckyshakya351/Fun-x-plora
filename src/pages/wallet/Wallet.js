@@ -162,7 +162,7 @@ function Wallet() {
               <Box component="img" src={wallet} width={50} sx={{ filter: 'brightness(0.1)' }}></Box>
               <Typography variant="h2" color="initial" sx={{ color: 'white' }}>
                 ₹ {Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)+ Number(amount?.working_wallet || 0)
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0) + Number(amount?.working_wallet || 0)
                 )?.toFixed(2)}
 
               </Typography>
@@ -223,7 +223,7 @@ function Wallet() {
                     color: "white",
                     textAlign: 'center !important',
                     ml: '-3%',
-                    mt: '5%',
+                    mt: '1%',
                   }}
                 >
                   {series}
@@ -271,7 +271,7 @@ function Wallet() {
                     fontWeight: "400",
                     color: "white",
                     ml: '-3%',
-                    mt: '5%',
+                    mt: '1%',
                   }}
                 >
                   {series1}
@@ -317,7 +317,7 @@ function Wallet() {
                     fontSize: "15px",
                     fontWeight: "400",
                     ml: '-3%',
-                    mt: '5%',
+                    mt: '1%',
                   }}
                 >
                   {series2}
