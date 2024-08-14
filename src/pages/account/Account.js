@@ -44,6 +44,7 @@ import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
+import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 
 function Account() {
   const location = useLocation();
@@ -98,6 +99,11 @@ function Account() {
                 {wallet?.full_name}
               </Typography>
               <Box component="img" src={namer} sx={{ width: "50px" }} />
+              <Box className="">
+                {wallet?.transaction_status === 0 ?
+                <ArrowDownward className="!text-red-800 !font-extrabold  !text-4xl"/>
+              : <ArrowUpward className="!text-green-800 !font-extrabold  !text-4xl"/>}
+              </Box>
             </Stack>
          
             <Typography variant="body1" color="initia nl" sx={{ mt: 1 }}>

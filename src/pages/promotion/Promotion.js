@@ -72,7 +72,7 @@ function Promotion() {
             <Typography variant="body1" sx={{ color: zubgtext }}>
               {data?.data?.yesterday_income}
             </Typography>
-            <Typography variant="body1" sx={{ color: 'white' }}>
+            <Typography variant="body1" sx={{ color: 'black' }}>
               Yesterday  Income
             </Typography>
             <Typography variant="body1" sx={{ color: zubgtext }}>
@@ -101,6 +101,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
+                   className="!text-black"
 
                 >
                   {result?.filter(entry => entry.LEVEL === 1).length || 0}
@@ -116,6 +117,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
+                   className="!text-black"
 
                 >
                   {result?.filter(level => level.LEVEL === 1 && Number(level.deposit_amount) > 0).length || 0}
@@ -130,6 +132,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
+                   className="!text-black"
 
                 > 
                   {result?.filter((j)=>j?.LEVEL === 1)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0} 
@@ -143,7 +146,8 @@ function Promotion() {
 
             <Box sx={style.innerBoxStylestwo}>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" >
+                <Typography variant="body1" 
+                 className="!text-black">
                   {result?.filter(entry => entry.LEVEL !== 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
@@ -152,7 +156,8 @@ function Promotion() {
                 </Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" >
+                <Typography variant="body1"
+                 className="!text-black" >
                   {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
@@ -161,7 +166,8 @@ function Promotion() {
                 </Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" >
+                <Typography variant="body1"
+                 className="!text-black" >
                   {result?.filter((j)=>j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)|| 0}
                 </Typography>
                 <Typography variant="body1" >

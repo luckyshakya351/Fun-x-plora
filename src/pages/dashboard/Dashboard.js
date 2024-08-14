@@ -491,7 +491,7 @@ function Dashboard() {
                   Winning information
                 </Typography>
               </Stack>
-              {winnner_data?.slice(3, 8)?.map((i, index) => {
+              {winnner_data?.slice(5, 8)?.map((i, index) => {
                 return (
                   <Stack
                     key={index}
@@ -522,8 +522,13 @@ function Dashboard() {
                       sx={styles.winnername}
                     >
                       <p className="!flex !flex-col" style={{ color: 'white' }}>
-                        <span>tanve***</span>
-                        <span>fun@859***</span>
+                      {i?.email
+                          ? i.email.split("@")[0].substring(0, 2) +
+                          "**" +
+                          (i.email.split("@")[0].length > 2
+                            ? i.email.split("@")[0].substring(2, 4)
+                            : "")
+                          : "**"}
                       </p>
                     </Typography>
                     <Box sx={styles.winnerbannerouter}>
@@ -576,14 +581,20 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                    {"**"}
+                  {winnner_data?.[0]?.email
+                          ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(0, 2) +
+                          "**" +
+                          (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
+                            ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(2, 4)
+                            : "")
+                          : "**"}
                   </Typography>
                   <Typography
                     variant="body1"
 
                     sx={styles.winningamount}
                   >
-                    ₹ 3582.00
+                    ₹ {winnner_data?.[0]?.win}
                   </Typography>
                 </Box>
               </Box>
@@ -614,14 +625,20 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                    {"**"}
+                  {winnner_data?.[2]?.email
+                          ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(0, 2) +
+                          "**" +
+                          (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
+                            ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(2, 4)
+                            : "")
+                          : "**"}
                   </Typography>
                   <Typography
                     variant="body1"
 
                     sx={styles.winningamount}
                   >
-                    ₹ 92583.00
+                    ₹  {winnner_data?.[1]?.win}
                   </Typography>
                 </Box>
               </Box>
@@ -652,14 +669,20 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                    {"**"}
+                  {winnner_data?.[2]?.email
+                          ? winnner_data?.[2]?.email?.split("@")?.[0]?.substring(0, 2) +
+                          "**" +
+                          (winnner_data?.[2]?.email?.split("@")?.[0]?.length > 2
+                            ? winnner_data?.[2]?.email?.split("@")?.[0]?.substring(2, 4)
+                            : "")
+                          : "**"}
                   </Typography>
                   <Typography
                     variant="body1"
 
                     sx={styles.winningamount}
                   >
-                    ₹ 89652.00
+                   ₹ {winnner_data?.[2]?.win}
                   </Typography>
                 </Box>
               </Box>
@@ -667,7 +690,7 @@ function Dashboard() {
           </Box>
 
           <Box sx={styles.wininfoouter} pb={5}>
-            {winnner_data?.slice(1, 3)?.map((i, index) => {
+            {winnner_data?.slice(3,5)?.map((i, index) => {
               return (
                 <Stack
                   key={index}
@@ -698,8 +721,13 @@ function Dashboard() {
                     sx={styles.winnername}
                   >
                     <p className="!flex !flex-col" style={{ color: 'white' }}>
-                      <span>tanve***</span>
-                      <span>fun@859***</span>
+                    {i?.email
+                          ? i.email.split("@")[0].substring(0, 2) +
+                          "**" +
+                          (i.email.split("@")[0].length > 2
+                            ? i.email.split("@")[0].substring(2, 4)
+                            : "")
+                          : "**"}
                     </p>
                   </Typography>
                   <Box sx={styles.winnerbannerouter}>
@@ -730,7 +758,7 @@ function Dashboard() {
               );
             })}
           </Box>
-          <Box sx={styles.wininfoouter} >
+          {/* <Box sx={styles.wininfoouter} >
             <Stack direction={"row"} sx={{ alignItems: "center", mb: 2, }}>
               <Box
                 sx={{
@@ -809,7 +837,7 @@ function Dashboard() {
                 </Stack>
               );
             })}
-          </Box>
+          </Box> */}
           {poicy && !lodingBanner && (
             <Dialog
               open={poicy}

@@ -338,7 +338,7 @@ export const dailySalaryIncomeFn = async () => {
   //
   try {
     const response = await axios.get(
-      `${endpoint.daily_salary_income}?user_id=${user_id}`
+      `${endpoint.daily_salary_income}?id=${user_id}`
     );
     return response;
   } catch (e) {
@@ -350,7 +350,7 @@ export const WeeklySalaryIncomeFn = async () => {
   //
   try {
     const response = await axios.get(
-      `${endpoint.weekly_salary_income}?user_id=${user_id}`
+      `${endpoint.weekly_salary_income}?id=${user_id}`
     );
     return response;
   } catch (e) {

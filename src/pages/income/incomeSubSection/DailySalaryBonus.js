@@ -1,8 +1,5 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import {
-  Box,
-  Container
-} from "@mui/material";
+import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
@@ -21,6 +18,10 @@ function DailySalaryBonus() {
   const goBack = () => {
     navigate(-1);
   };
+  
+  const [visibleRows, setVisibleRows] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const { isLoading, data } = useQuery(
     ["daily_salary_bonus"],
@@ -32,22 +33,24 @@ refetchOnWindowFocus:false
     }
   );
   const res = data?.data?.data;
-  const [time, setTime] = React.useState(48 * 60 * 60);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(prevTime => {
-        if (prevTime <= 1) {
-          clearInterval(interval);
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = time % 60;
+    setVisibleRows(
+      res?.slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage
+      )
+    );
+  }, [page, rowsPerPage, res]);
+
   if (!isLoading && !res)
     return (
       <Layout>
@@ -64,51 +67,76 @@ refetchOnWindowFocus:false
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon />
             </Box>
-            <p>Daily Salary </p>
+            <p>Daily Salary  Bonus</p>
           </Box>
-         
-    <div>
-     
-      <div className="flex flex-col items-center justify-center min-h-screen   !text-black">
-      <h1 className="text-4xl font-bold my-4">There will be Income Genrate After this :- </h1>
-      <div className="text-6xl font-mono">
-        {hours.toString().padStart(2, '0')}:
-        {minutes.toString().padStart(2, '0')}:
-        {seconds.toString().padStart(2, '0')}
-      </div>
-    </div>
-     
-    </div>
+          <div>
+            <img className="" src={nodatafoundimage} />
+          </div>
         </Container>
       </Layout>
     );
   return (
-    <Layout>
-      <Container
-        sx={{
-          background: zubgback,
-          width: "100%",
-          height: "100vh",
-          overflow: "auto",
-          mb: 5,
-        }}
-        className="no-scrollbar"
-      >
-        <CustomCircularProgress isLoading={isLoading} />
-        <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
-            <KeyboardArrowLeftOutlinedIcon />
-          </Box>
-          <p>Daily Salary </p>
+        <Layout>
+    <Container
+      sx={{
+        background: zubgback,
+        width: "100%",
+        height: "100vh",
+        overflow: "auto",
+        mb: 5,
+      }}
+    >
+      <CustomCircularProgress isLoading={isLoading} />
+      <Box sx={style.header}>
+        <Box component={NavLink} onClick={goBack}>
+          <KeyboardArrowLeftOutlinedIcon />
         </Box>
-        <div className="flex flex-col items-center justify-center min-h-screen -mt-10  !text-black">
-      <h1 className="text-xl font-bold my-4">There Income will be  Generate After this :- </h1>
-      <div className="text-6xl font-mono">
-        {hours.toString().padStart(2, '0')}:
-        {minutes.toString().padStart(2, '0')}:
-        {seconds.toString().padStart(2, '0')}
-      </div>
-    </div>
+        <p>Daily Salary</p>
+      </Box>
+      <div className="!overflow-x-auto">
+        <Table  sx={{background: zubgwhite, boxShadow: zubgshadow }}>
+          <TableHead>
+            <TableRow >
+            <TableCell  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
+             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
+              <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
+              <TableCell  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {visibleRows?.map((i , index ) => (
+              <TableRow key={i?.id}>
+                <TableCell  className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index+1}</TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                  {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
+                </TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
+                <TableCell  className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+       <Box className="paginationTable !mb-10">
+        <TablePagination
+          sx={{
+            background: zubgtext,
+            color: "white",
+            borderRadius: "10px",
+            marginTop: "10px",
+          }}
+          rowsPerPageOptions={[10,15 ,25,35 ]}
+          component="div"
+          count={res?.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Rows"
+        />
+      </Box>
+        </div>
+        
+       
         {/* <div className="no-scrollbar !mb-10">
           {res?.map((i) => {
             return (
@@ -133,8 +161,9 @@ refetchOnWindowFocus:false
             );
           })}
         </div> */}
-      </Container>
-    </Layout>
+    </Container>
+  </Layout>
+     
   );
 }
 

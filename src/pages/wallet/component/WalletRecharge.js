@@ -7,11 +7,14 @@ import {
   Button,
   Container,
   FormControl,
+  FormControlLabel,
   IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
   OutlinedInput,
+  Radio,
+  RadioGroup,
   Select,
   Stack,
   Typography,
@@ -609,11 +612,12 @@ function WalletRecharge() {
           </Stack>
         </Box>
 
-        <Box className="!flex !justify-start !mx-5 gap-5">
+        <Box className="!flex !justify-start !mx-5 gap-5  !-my-5">
           <Box
             sx={{
               background: zubgtext,
               border: zubgtext,
+            
             }}
             className="!cursor-pointer px-8 py-3 !rounded-lg !my-10 "
             onClick={() => setPaymentType("UPI")}
@@ -654,7 +658,7 @@ function WalletRecharge() {
         </Box>
         {paymentType === "UPI" ? (
           <Box sx={{ display: "flex", justifyContent: "start" }}>
-            <FormControl 
+            {/* <FormControl 
             className="!w-80 lg:!w-96 !mb-10 !mx-6"> 
               <InputLabel>Select Gateway</InputLabel>
               <Select
@@ -668,7 +672,40 @@ function WalletRecharge() {
                 <MenuItem value="Gateway1">Gateway 1</MenuItem>
                 <MenuItem value="Gateway2">Gateway 2</MenuItem>
               </Select>
-            </FormControl>
+            </FormControl> */}
+           <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                mb: 5,
+                ml:5
+              }}
+            >
+         
+              <RadioGroup
+                row
+                value={selectedGateway}
+                onChange={(e) => {
+                  setDeposit_req_data(null);           
+                  setSelectedGateway(e.target.value);
+                }}
+              >
+                <Typography className="!mt-2 !mr-5  !font-bold">Select :</Typography>
+                <FormControlLabel
+                  value="Gateway1"
+                  control={<Radio />}
+                  label="Flex"
+                />
+                <FormControlLabel
+                  value="Gateway2"
+                  control={<Radio />}
+                  label="PYT-PAY"
+                />
+              </RadioGroup>
+            </Box>
+
+
           </Box>
         ) : (
           ""
