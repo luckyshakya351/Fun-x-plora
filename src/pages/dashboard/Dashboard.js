@@ -724,7 +724,7 @@ function Dashboard() {
               );
             })}
           </Box>
-          <Box sx={styles.wininfoouter} sx={{ pb: 5 }}>
+          <Box sx={styles.wininfoouter} >
             <Stack direction={"row"} sx={{ alignItems: "center", mb: 2, }}>
               <Box
                 sx={{
@@ -924,6 +924,7 @@ const styles = {
     mt: "20px",
     borderRadius: "10px",
     position: "relative",
+    pb: 5,
   },
   winnername: { fontSize: "12px", fontWeight: 400, mx: 1 },
   winner1: {
