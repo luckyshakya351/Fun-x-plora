@@ -54,7 +54,7 @@ function WithdrawalHistoryUSdt() {
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <Typography variant="body1" color="initial">
-            Withdrawl USDT history
+          Withdrawal USDT history
           </Typography>
           <Box></Box>
         </Box>
@@ -77,7 +77,7 @@ function WithdrawalHistoryUSdt() {
                 color="initial"
                 sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
               >
-                Withdrawl USDT history
+                Withdrawal USDT history
               </Typography>
             </Stack>
             {res?.map((i) => {
@@ -102,23 +102,13 @@ function WithdrawalHistoryUSdt() {
                       borderBottom: "1px solid white",
                     }}
                   >
-                    <Box>
-                      <Button
-                        sx={{
-                          background: zubgmid,
-                          color: "white",
-                          textTransform: "capitalize",
-                        }}
-                      >
-                        Withdrawl
-                      </Button>
-                    </Box>
+                   <Box></Box>
                     <Box>
                       <Button
                         sx={{ color: "green", textTransform: "capitalize"}}
                         className={`${i?.m_w_status === "Approve"
-                          ? "!text-green-500"
-                          : "!text-red-500"
+                          ? "!text-green-500 !text-[15px]"
+                          : "!text-red-500 !text-[15px]"
                           }`}
                       >
                         {i?.m_w_status}
@@ -132,16 +122,16 @@ function WithdrawalHistoryUSdt() {
                   <Stack
                     direction="row"
                     sx={{
-                      mb: "10px",
+                      mb: "5px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" color="initial"  className="!text-[15px]">
                       Balance
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" color="initial"  className="!text-[15px]">
                       {/* ₹  */}
                       {i?.m_w_amount}
                     </Typography>
@@ -149,16 +139,16 @@ function WithdrawalHistoryUSdt() {
                   <Stack
                     direction="row"
                     sx={{
-                      mb: "10px",
+                      mb: "5px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" color="initial"  className="!text-[15px]">
                       Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" color="initial"  className="!text-[15px]">
                       {moment(i?.m_w_reqdate)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.m_w_reqdate)?.format("HH:mm:ss")}
                     </Typography>
@@ -166,32 +156,32 @@ function WithdrawalHistoryUSdt() {
                   <Stack
                     direction="row"
                     sx={{
-                      mb: "10px",
+                      mb: "5px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" color="initial"  className="!text-[15px]">
                       Status
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" color="initial"  className="!text-[15px]">
                       {i?.m_w_crypto_status}{" "}
                     </Typography>
                   </Stack>
                   {i?.success_date !== null && i?.success_date !== "" && <Stack
                     direction="row"
                     sx={{
-                      mb: "10px",
+                      mb: "5px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
-                      Success Date/Time
+                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                      Success D/T
                     </Typography>
-                    <Typography variant="body1" color="initial" className="!text-green-500">
+                    <Typography variant="body1" color="initial" className="zubgtext !text-[15px]" >
                       {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.success_date)?.format("HH:mm:ss")}
                     </Typography>
@@ -199,36 +189,66 @@ function WithdrawalHistoryUSdt() {
                   <Stack
                     direction="row"
                     sx={{
-                      mb: "10px",
+                      mb: "5px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       Trans number
                     </Typography>
                     <Stack
                       direction="row"
                       sx={{
-                        mb: "10px",
+                        mb: "5px",
                         alignItems: "center",
                         justifyContent: "space-between",
                         "&>p": { color: zubgtext },
                       }}
                     >
-                      <Typography variant="body1" color="initial" >
+                      <Typography variant="body1" color="initial"  className="!text-[15px]">
                         {i?.m_w_trans_id}
                       </Typography>
+                      
                       {/* <IconButton>
                         <ContentCopyIcon sx={{ color: zubgtext }} />
                       </IconButton> */}
                     </Stack>
                   </Stack>
+                  <Stack
+                  
+                    direction="row"
+                    sx={{
+                      mb: "5px",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      "&>p": { color: zubgtext },
+                    }}
+                  >
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                    Address
+                    </Typography>
+                    <Stack
+                      direction="row"
+                      sx={{
+                        mb: "5px",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        "&>p": { color: zubgtext },
+                      }}
+                    >
+                      <Typography variant="body1" color="initial" className="!text-[15px] " >
+                     <p>   {i?.withdrawal_add?.substring(0,20)}</p>
+                     <p>
+                           {i?.withdrawal_add?.substring(20)}
+                        </p>
+                      </Typography>
+                    </Stack>
+                  </Stack>
                 </Box>
               );
             })}
-            {/* <Button sx={style.paytmbtntwo}>All history</Button> */}
           </Box>
         </Box>
       </Container>

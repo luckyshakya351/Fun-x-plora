@@ -174,7 +174,7 @@ function SubordinateIncome() {
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
                                     <Typography>Commission </Typography>
-                                    <Typography>{item?.commisiion || 0}</Typography>
+                                    <Typography>{item?.commission || 0}</Typography>
                                 </Stack>
 
                             </Box>
