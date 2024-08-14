@@ -19,10 +19,11 @@ import pr5 from "../../../../assets/images/5.png";
 import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
+import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun, net_wallet_amount_function ,trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import { dummycounterFun, net_wallet_amount_function, trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
 import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
@@ -32,7 +33,7 @@ import toast from "react-hot-toast";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const TwoMinCountDown = ({ fk,setBetNumber }) => {
+const TwoMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const dispatch = useDispatch();
   const client = useQueryClient();
@@ -81,12 +82,12 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       //     threemin?.split("_")?.[1] === "2") &&
       //   threemin?.split("_")?.[0] === "0"
       // )
-        // handlePlaySound();
+      // handlePlaySound();
       // if (
       //   threemin?.split("_")?.[1] === "1" &&
       //   threemin?.split("_")?.[0] === "0"
       // )
-        // handlePlaySoundLast();
+      // handlePlaySoundLast();
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
         threemin?.split("_")?.[0] === "0" // 0 index means min
@@ -197,18 +198,22 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     refetchOnWindowFocus: false,
   });
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0  &&  dispatch(dummycounterFun());
-  },[my_history?.data?.data])
+    (Number(show_this_three_min_time_sec) >= 58 || Number(show_this_three_min_time_sec) === 0) && Number(show_this_three_min_time_min) === 0 && dispatch(dummycounterFun());
+  }, [my_history?.data?.data])
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(net_wallet_amount_function(data?.data?.data))
-  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)])
 
 
   return (
-    <Box className="countdownbg" sx={{ background: zubgmid, }}>
+    <Box className="countdownbg" sx={{
+      backgroundImage: `url(${winback})`,
+      backgroundSize: '100% 100%',
+      backgroundRepeat: 'no-repeat',
+    }}>
       {React.useMemo(() => {
         return (
           <>

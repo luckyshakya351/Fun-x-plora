@@ -9,9 +9,10 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import CustomCircularProgress from "../../../../Shared/CustomCircularProgress";
-import { lightblue, zubgback,  zubgtext } from "../../../../Shared/color";
+import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
 import history from '../../../../assets/images/list.png';
 import { useSelector } from "react-redux";
+import theme from "../../../../utils/theme";
 
 
 const GameHistory = ({ gid }) => {
@@ -37,11 +38,11 @@ const GameHistory = ({ gid }) => {
     [page, rowsPerPage, game_history_data]
   );
 
-  
+
   return (
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
-        <Typography variant="body1" color="initial" sx={{ color: `${zubgtext} !important` }}>
+        <Typography variant="body1" color="initial" sx={{ color: `${theme.palette.primary.main} !important` }}>
           <Box component='img' src={history} width={25} sx={{ marginRight: '10px' }}></Box>
           {gid === "1"
             ? "One GO Record"
@@ -51,7 +52,7 @@ const GameHistory = ({ gid }) => {
         </Typography>
       </Stack>
       <TableContainer >
-        <Table sx={{ maxWidth: 575, background: zubgback, color: "white" }} className="wintable" aria-label="simple table">
+        <Table sx={{ maxWidth: 400, background: zubgback, color: "white" }} className="wintable" aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>Period</TableCell>
@@ -63,20 +64,20 @@ const GameHistory = ({ gid }) => {
           <TableBody>
             {visibleRows?.map((i) => {
               return (
-                <TableRow>
+                <TableRow sx={{ background: '#180F3F' }}>
                   <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
                     <span
-                      style={{ color: zubgtext, fontWeight: 700, fontSize: '13px' }}
+                      style={{ color: 'white', fontWeight: 600, fontSize: '12px' }}
                     >
                       {i?.gamesno}
                     </span>
 
                   </TableCell>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 1px', borderBottom: `1px solid ${lightblue}` }}>
                     <span
                       className={`
                 ${(i?.number === "0" &&
-                          "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                          "!bg-gradient-to-t from-red-500 to-violet-400") ||
                         (i?.number === "5" &&
                           "!bg-gradient-to-t from-violet-400 to-green-400") ||
                         ((i?.number === "1" ||
@@ -175,11 +176,11 @@ const GameHistory = ({ gid }) => {
           </TableBody>
         </Table>
 
-        <Box className="paginationTable !w-full mb-32">
+        <Box className="paginationTable !w-full ">
           <TablePagination
             sx={{
-              background: zubgtext, color: 'white',
-             
+              background: zubgtext, color: 'white', overflow: 'hidden',
+              mb: 2,
             }}
             rowsPerPageOptions={[5, 10]}
             component="div"

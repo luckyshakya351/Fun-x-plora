@@ -22,7 +22,7 @@ export const bgcolorlight = '#3F3F3F !important'
 
 export const zubgback = '#F6F7FE';
 // export const zubgtext = '#F02257';
-export const zubgtext = '#FE0000';
+export const zubgtext = '#63BA0E';
 export const zubggray = '#6CB4EE';
 
 export const zubgshadow = ' rgba(149, 157, 165, 0.2) 0px 8px 24px';
@@ -41,7 +41,7 @@ export const zubgcrickgred = "#005543";
 export const zubgcricklight = "#00B55E";
 
 export const lightgreen = "#8BE68B";
-export const lightblue = "#6CB4EE";
-export const lightyellow = "#FFC300";
+export const lightblue = "#fff";
+export const lightyellow = "#63BA0E";
 
 

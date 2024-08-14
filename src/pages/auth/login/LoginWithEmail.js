@@ -11,7 +11,8 @@ import {
   OutlinedInput,
   Stack,
   TextField,
-  Typography,
+  Typography, FormLabel, FormGroup, FormHelperText,
+  FilledInput,
 } from "@mui/material";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -26,6 +27,8 @@ import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginEmailSchemaValidaton } from "../../../Shared/Validation";
 import { lightblue, zubgtext } from "../../../Shared/color";
 import { endpoint } from "../../../services/urls";
+import inputfield from '../../../assets/inputfield.a3159d8d15fb018d06f4.png'
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 
 function LoginWithEmail() {
@@ -39,14 +42,14 @@ function LoginWithEmail() {
   const [ipAddress, setIpAddress] = useState('');
 
   useEffect(() => {
-      // Using a free IP API service
-      axios.get('https://api.ipify.org?format=json')
-          .then(response => {
-              setIpAddress(response.data.ip);
-          })
-          .catch(error => {
-              console.error('Error fetching IP address:', error);
-          });
+    // Using a free IP API service
+    axios.get('https://api.ipify.org?format=json')
+      .then(response => {
+        setIpAddress(response.data.ip);
+      })
+      .catch(error => {
+        console.error('Error fetching IP address:', error);
+      });
   }, []);
 
 
@@ -63,7 +66,7 @@ function LoginWithEmail() {
         const reqbody = {
           username: fk.values.email || fk.values.mob,
           password: fk.values.pass,
-          ipAddress:ipAddress
+          ipAddress: ipAddress
         };
         console.log(reqbody);
         loginFunction(reqbody);
@@ -79,7 +82,8 @@ function LoginWithEmail() {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-      });  
+      });
+
       toast.success(response?.data?.msg);
       if (response?.data?.msg === "Login Successfully") {
         const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
@@ -111,7 +115,7 @@ function LoginWithEmail() {
 
   return (
     <Box
-      component="form"
+      // component="form"
       sx={{
         width: "95%",
         marginLeft: "2.5%",
@@ -119,15 +123,10 @@ function LoginWithEmail() {
       }}
       onSubmit={fk.handleSubmit}
     >
-      <Box mt={2}>
-        <Box sx={{ ...style.flexcenterstart, my: 1, }}>
-          <MarkEmailReadOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}>Email </Typography>
-        </Box>
-        <Box sx={{ ...style.flexbetween, }}>
-
+      <Box mt={5} mb={3}>
+        <FormControl sx={style.inputfield2} fullWidth>
+          <MarkEmailReadOutlinedIcon sx={style.inputimg2} />
           <TextField
-            sx={{ ...style.normalinput, width: '100%', }}
-            ml={2}
             placeholder='please input your email'
             id="email"
             type="email"
@@ -136,18 +135,17 @@ function LoginWithEmail() {
             onChange={fk.handleChange}
             onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
           />
-          <br />
+        </FormControl>
+        <br />
 
-        </Box>
+
       </Box>
       {fk.touched.email && fk.errors.email && (
-        <div className="error">{fk.errors.email}</div>
+        <div className="error" style={{ textAlign: 'center' }}>{fk.errors.email}</div>
       )}
-      <Box mt={3}>
-        <FormControl fullWidth>
-          <Box sx={{ ...style.flexcenterstart, mb: 1, }}>
-            <HttpsOutlinedIcon sx={style.icon} /> <Typography variant="body1" ml={1} sx={{ color: 'red' }}> Password</Typography>
-          </Box>
+      <Box mt={3} mb={3}>
+        <FormControl fullWidth sx={style.passwordfield2}>
+          <HttpsOutlinedIcon sx={style.inputimg2} />
           <OutlinedInput
             id="pass"
             name="pass"
@@ -155,7 +153,6 @@ function LoginWithEmail() {
             onChange={fk.handleChange}
             placeholder="Enter password"
             onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-            sx={{ ...style.passwordinput, width: '100%', }}
             type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">
@@ -165,11 +162,7 @@ function LoginWithEmail() {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {showPassword ? (
-                    <VisibilityOff sx={{ color: lightblue, fontSize: "25px !important" }} />
-                  ) : (
-                    <Visibility sx={{ color: lightblue, fontSize: "25px !important" }} />
-                  )}
+                  {showPassword ? <VisibilityOff sx={{ color: '#fff2f2' }} /> : <Visibility sx={{ color: '#fff2f2' }} />}
                 </IconButton>
               </InputAdornment>
             }
@@ -177,35 +170,43 @@ function LoginWithEmail() {
 
         </FormControl>
         {fk.touched.pass && fk.errors.pass && (
-          <div className="error">{fk.errors.pass}</div>
+          <div className="error" style={{ textAlign: 'center' }}>{fk.errors.pass}</div>
         )}
       </Box>
-      <Box mt={1}>
-        <FormControl fullWidth>
-          <FormControlLabel
-            required
-            onClick={() =>
-              fk.setFieldValue("isAllowCheckBox", !fk.values.isAllowCheckBox)
-            }
-            control={
-              <Checkbox
-                checked={fk.values.isAllowCheckBox}
-                sx={{ color: zubgtext }}
-              />
-            }
-            label="Remember password"
-            sx={{ color: zubgtext, fontSize: '12px', fontWeight: '500' }}
-          />
-        </FormControl>
-      </Box>
-      <Stack >
-        <NavLink to='/' >
-          <Button className='goldbtn' onClick={fk.handleSubmit} >Log in</Button>
-        </NavLink>
-        <NavLink to='/register'>
-          <Button className='goldborderbtn'>Register</Button>
-        </NavLink>
-      </Stack>
+
+      <Stack direction='row' justifyContent={'space-between'}>
+        <Box
+          component={NavLink}
+          to='/register'
+          sx={{
+            width: '48%',
+          }} >
+          <a class="playstore-button" href="#">
+            <HowToRegIcon />
+            <span class="texts">
+              <span class="text-1">Register ON</span>
+              <span class="text-2">FunXplora</span>
+            </span>
+          </a>
+        </Box>
+        <button class="cssbuttons-io-button" onClick={fk.handleSubmit} >
+          Login
+          <div class="icon">
+            <svg
+              height="24"
+              width="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+        </button>
+      </Stack >
       <CustomCircularProgress isLoading={loding} />
     </Box >
   );
@@ -214,50 +215,84 @@ function LoginWithEmail() {
 export default LoginWithEmail;
 
 const style = {
+  inputfield2: {
+    width: '100%', position: 'relative', mb: '10px', filter: 'hue-rotate(100deg)',
+    backgroundImage: `url(${inputfield})`,
+    backgroundSize: '100% 100%',
+    '&>div': { padding: '12px', border: 'none' },
+    '&>div>div>input': { width: '80%', color: 'white', padding: '20px 10px', paddingLeft: '24%', },
+    '&>div>div>input::placeholder': { color: 'white' },
+    '&>div>div>fieldset': { border: 'none' },
+    '&>div>div>button>svg': { mr: '20px' },
+    '@media (min-width: 320px)': {
+      '&>div': { padding: '5px', },
+    },
+    '@media (min-width: 360px)': {
+      '&>div': { padding: '8px', },
+    },
+    '@media (min-width: 400px)': {
+      '&>div': { padding: '12px', },
+    },
+    '@media (min-width: 425px)': {
+      '&>div': { padding: '15px', },
+    },
+  },
+  passwordfield2: {
+    width: '100%', position: 'relative', mb: '10px', filter: 'hue-rotate(100deg)',
+    backgroundImage: `url(${inputfield})`,
+    backgroundSize: '100% 100%',
+    '&>div': { padding: '12px', background: '#ff000000' },
+    '&>div>input': { color: 'white', padding: '20px', paddingLeft: '24%' },
+    '&>div>div>button>svg': { mr: '20px' },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+    '@media (min-width: 320px)': {
+      '&>div': { padding: '5px', },
+    },
+    '@media (min-width: 360px)': {
+      '&>div': { padding: '8px', },
+    },
+    '@media (min-width: 400px)': {
+      '&>div': { padding: '12px', },
+    },
+    '@media (min-width: 425px)': {
+      '&>div': { padding: '15px', },
+    },
+  },
+  inputimg2: {
+    position: 'absolute',
+    zIndex: 10,
+    width: '30px',
+    top: '30%',
+    left: '7%',
+    fontSize: '35px',
+    color: '#bb00006b',
+    '@media (min-width: 320px)': {
+      left: '6%',
+    },
+    '@media (min-width: 360px)': {
+      left: '7%',
+    },
+    '@media (min-width: 425px)': {
+      left: '7.5%',
+      top: '31.5%',
+    },
+  },
   flexcenterstart: {
     display: 'flex',
     alignItems: 'center',
-  },
-  normalinput: {
-    borderRadius: '10px',
-    backgroundColor: '#ffffff',
-    '&>input': { color: `${lightblue} !important` },
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
-      color: lightblue,
-
-    },
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
-      color: `${lightblue} !important`
-    },
-    '&>div>input': {
-      padding: '10px !important'
-    },
-    '&>div>fieldset': {
-      border: 'none !important',
-      borderRadius: '10px',
-      marginLeft: '20px',
-    },
-
   },
   flexbetween: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between;',
-  },
-  passwordinput: {
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>input': { padding: '10px', color: lightblue },
-    '&>fieldset': { border: 'none' },
-    // '&>div>button>svg': { padding: '10px', color: 'red' },
-    // '&>div>button': { padding: '0px', },
-    '&>:hover': {
-      backgroundColor: '#fff', borderRadius: '10px 0px 0px 10px'
-    },
   },
   icon: { color: 'red' },
 }

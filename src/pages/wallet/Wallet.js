@@ -137,7 +137,7 @@ function Wallet() {
               <Box component="img" src={wallet} width={50}></Box>
               <Typography variant="h2" color="initial" sx={{ color: zubgtext }}>
                 ₹ {Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)+ Number(amount?.working_wallet || 0)
                 )?.toFixed(2)}
 
               </Typography>
@@ -188,7 +188,7 @@ function Wallet() {
                     color: "white",
                   }}
                 >
-                  {series}%
+                  {series}
                 </Typography>
                 <ReactApexChart
                   options={options}
@@ -233,7 +233,7 @@ function Wallet() {
                     color: "white",
                   }}
                 >
-                  {series1}%
+                  {series1}
                 </Typography>
                 <ReactApexChart
                   options={options}
@@ -277,7 +277,7 @@ function Wallet() {
                     fontWeight: "400",
                   }}
                 >
-                  {series2}%
+                  {series2}
                 </Typography>
                 <ReactApexChart
                   options={options}

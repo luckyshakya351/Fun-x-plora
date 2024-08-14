@@ -15,13 +15,14 @@ import pr22 from "../../../../assets/images/22.png";
 import pr33 from "../../../../assets/images/33.png";
 import pr4 from "../../../../assets/images/4.png";
 import pr5 from "../../../../assets/images/5.png";
+import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
 import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun, net_wallet_amount_function ,trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import { dummycounterFun, net_wallet_amount_function, trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
 import { changeImages } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
 import { zubgmid } from "../../../../Shared/color";
@@ -33,7 +34,7 @@ import toast from "react-hot-toast";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const OneMinCountDown = ({ fk,setBetNumber }) => {
+const OneMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const [one_min_time, setOne_min_time] = useState(0);
@@ -71,32 +72,32 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
 
   React.useEffect(() => {
     const handleOneMin = (onemin) => {
-   
+
       setOne_min_time(onemin);
       setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
-     
+
       }
-      
+
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
       }
-   
+
       if (onemin === 0) {
         client.refetchQueries("myAllhistory_1");
         client.refetchQueries("walletamount");
         client.refetchQueries("gamehistory_wingo_1");
-        
+
         // dispatch(dummycounterFun());
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
-    
+
     socket.on("onemin", handleOneMin);
     return () => {
-      socket.off("onemin", handleOneMin); 
+      socket.off("onemin", handleOneMin);
     };
   }, []);
 
@@ -105,7 +106,7 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
   });
-  
+
   const { data: my_history } = useQuery(
     ["myAllhistory_1"],
     () => My_All_HistoryFn(1),
@@ -148,14 +149,14 @@ const OneMinCountDown = ({ fk,setBetNumber }) => {
     dispatch(trx_game_history_data_function(game_history?.data?.data));
   }, [game_history?.data?.data]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(net_wallet_amount_function(data?.data?.data))
-  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)])
 
-React.useEffect(()=>{
-  dispatch(trx_my_history_data_function(my_history?.data?.data));
-  one_min_time>=58 ||one_min_time===0 &&  dispatch(dummycounterFun());
-},[my_history?.data?.data])
+  React.useEffect(() => {
+    dispatch(trx_my_history_data_function(my_history?.data?.data));
+    one_min_time >= 58 || one_min_time === 0 && dispatch(dummycounterFun());
+  }, [my_history?.data?.data])
   const handlePlaySound = async () => {
     try {
       if (audioRefMusic?.current?.pause) {
@@ -183,7 +184,11 @@ React.useEffect(()=>{
   };
 
   return (
-    <Box className="countdownbg" sx={{ background: zubgmid, }}>
+    <Box className="countdownbg" sx={{
+      backgroundImage: `url(${winback})`,
+      backgroundSize: '100% 100%',
+      backgroundRepeat: 'no-repeat',
+    }}>
       {React.useMemo(() => {
         return (
           <>

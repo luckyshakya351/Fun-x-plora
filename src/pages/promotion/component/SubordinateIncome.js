@@ -105,6 +105,7 @@ function SubordinateIncome() {
                             <Box sx={style.subcordinatelist}>
                                 <Typography
                                     variant="body1"
+                                     className="!text-black"
 
                                 >
                                     {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.deposit) > 0).length || 0}
@@ -117,7 +118,8 @@ function SubordinateIncome() {
                             </Box>
                             <Box sx={style.subcordinatelist}>
                                 <Typography
-                                    variant="body1" >
+                                    variant="body1" 
+                                    className="!text-black">
                                     {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.betting) > 0).length || 0}
                                 </Typography>
                                 <Typography
@@ -130,7 +132,8 @@ function SubordinateIncome() {
 
                         <Box sx={style.innerBoxStylestwo}>
                             <Box sx={style.subcordinatelist}>
-                                <Typography variant="body1" >
+                                <Typography variant="body1" 
+                                 className="!text-black">
                                     {data?.filter((j) => j?.lev_id === Number(selectedLevel))?.reduce((a, b) => a + Number(b?.deposit || 0), 0) || 0}
 
                                 </Typography>
@@ -140,7 +143,8 @@ function SubordinateIncome() {
                                 </Typography>
                             </Box>
                             <Box sx={style.subcordinatelist}>
-                                <Typography variant="body1" >
+                                <Typography variant="body1"
+                                 className="!text-black" >
                                     {data?.filter((j) => j?.lev_id === Number(selectedLevel))?.reduce((a, b) => a + Number(b?.betting || 0), 0) || 0}
                                 </Typography>
                                 <Typography variant="body1" >
@@ -153,7 +157,7 @@ function SubordinateIncome() {
                     </Box>
                     {data?.map((item) => {
                         return (<>
-                            <Typography className='!border-b !border-gray-400 !my-5 !text-xl'>UID : {item?.mem_id}
+                            <Typography className='!border-b !border-gray-400 !my-5 !text-xl'>UID : {item?.userid}
                             </Typography>
                             <Box className="!mx-1 !text-gray-500">
                                 <Stack direction="row" justifyContent={"space-between"}>
@@ -176,9 +180,8 @@ function SubordinateIncome() {
                             </Box>
                         </>)
                     })}
-
-
-                </Box>
+ 
+               </Box>
                 <div className={`drawer ${isOpen ? 'open' : ''} !pb-10`}>
                     <div className='!flex justify-between m-5'>
                         <p onClick={toggleDrawer} className='!cursor-pointer'>Cancel</p>
