@@ -3,7 +3,7 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain1 = "http://192.168.1.26:9000";
+export const newdomain1 = "http://192.168.1.11:9000";
 
 export const newdomain = "https://api.funxplora.com";
 
@@ -30,7 +30,7 @@ export const endpoint = {
   my_history_all: `${newdomain}/api/v1/getbet-game-results`,
   get_status: `${newdomain}/api/v1/get-status`,
 
-//payment
+  //payment
   payment: `${newdomain1}/api/v1/payment`,
   deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
   withdrawal_request_usdt: `${newdomain1}/api/v1/withdrawl-request`,
@@ -85,6 +85,6 @@ export const endpoint = {
   //income
   subordinate_data: `${newdomain1}/api/v1/get-subordinate-data-funx`,
   commission_data: `${newdomain1}/api/v1/get-commisssion-data-funx`,
-  tranfer_wallet:`${newdomain1}/api/v1/transfer-amount-from-working-wallet-to-main-wallet`,
-  transfer_wallet_history:`${newdomain1}/api/v1/transfer-history-from-working-wallet-to-main-wallet`
+  tranfer_wallet: `${newdomain1}/api/v1/transfer-amount-from-working-wallet-to-main-wallet`,
+  transfer_wallet_history: `${newdomain1}/api/v1/transfer-history-from-working-wallet-to-main-wallet`
 };

@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { RxCross2 } from "react-icons/rx";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
@@ -219,6 +219,7 @@ function Dashboard() {
   const game_data = [
     {
       name: "Wingo",
+      url: 'win',
       img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_202401100619315n2k.png",
     },
     {
@@ -402,52 +403,54 @@ function Dashboard() {
           >
             {game_data?.map((i) => {
               return (
-                <Box
-                  sx={{
-                    marginBottom: "10px",
-                    width: "95%",
-                    borderRadius: "7px 7px 7px 7px !important",
-                    overflow: "hidden",
-                  }}
-                >
-                  <a
-                    onClick={() => {
-                      if (
-                        i.name === "Slots" ||
-                        i.name === "Popular" ||
-                        i.name === "Casino"
+                <Box component={NavLink} to={`/${i?.url}`}>
+                  <Box
+                    sx={{
+                      marginBottom: "10px",
+                      width: "95%",
+                      borderRadius: "7px 7px 7px 7px !important",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <a
+                      onClick={() => {
+                        if (
+                          i.name === "Slots" ||
+                          i.name === "Popular" ||
+                          i.name === "Casino"
 
-                      )
-                        return toast("Comming Soon !", { id: 1 });
-                      scrollToSection("games");
-                      settype_of_game(i?.name);
-                    }}
-                    href={`#${i?.name}`}
-                    style={{
-                      backgroundImage: `url(${bgms})`,
-                      filter: 'hue-rotate(45deg)',
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "100% 100%",
-                      padding: "15px 15px 15px 15px",
-                      borderRadius: "7px 7px 0px 0px !important",
-                    }}
-                    className="cursor-pointer   flex flex-col items-center justify-center"
-                  >
-                    <img style={{ filter: 'hue-rotate(311deg)' }} className="w-[90px] h-[90px] " src={i?.img} />
-                  </a>
-                  <p
-                    className="!text-sm font-bold"
-                    style={{
-                      color: "white",
-                      background: lightyellow,
-                      width: "100%",
-                      textAlign: "center",
-                      padding: "5px 0px",
-                      borderRadius: "0px 0px 7px 7px !important",
-                    }}
-                  >
-                    {i?.name}
-                  </p>
+                        )
+                          return toast("Comming Soon !", { id: 1 });
+                        scrollToSection("games");
+                        settype_of_game(i?.name);
+                      }}
+                      href={`${i?.name}`}
+                      style={{
+                        backgroundImage: `url(${bgms})`,
+                        filter: 'hue-rotate(45deg)',
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "100% 100%",
+                        padding: "15px 15px 15px 15px",
+                        borderRadius: "7px 7px 0px 0px !important",
+                      }}
+                      className="cursor-pointer   flex flex-col items-center justify-center"
+                    >
+                      <img style={{ filter: 'hue-rotate(311deg)' }} className="w-[90px] h-[90px] " src={i?.img} />
+                    </a>
+                    <p
+                      className="!text-sm font-bold"
+                      style={{
+                        color: "white",
+                        background: lightyellow,
+                        width: "100%",
+                        textAlign: "center",
+                        padding: "5px 0px",
+                        borderRadius: "0px 0px 7px 7px !important",
+                      }}
+                    >
+                      {i?.name}
+                    </p>
+                  </Box>
                 </Box>
               );
             })}
@@ -503,7 +506,7 @@ function Dashboard() {
                       <Box
                         component={"img"}
                         src={imageSources[index]}
-                        alt={`Profile ${index + 1}`}
+                        alt={`Profile ${index + 1} `}
                         width={45}
                         height={45}
                         sx={styles.winnerprofile}
@@ -679,7 +682,7 @@ function Dashboard() {
                     <Box
                       component={"img"}
                       src={imageSources[index]}
-                      alt={`Profile ${index + 1}`}
+                      alt={`Profile ${index + 1} `}
                       width={45}
                       height={45}
                       sx={styles.winnerprofile}
@@ -759,7 +762,7 @@ function Dashboard() {
                     <Box
                       component={"img"}
                       src={imageSources[index]}
-                      alt={`Profile ${index + 1}`}
+                      alt={`Profile ${index + 1} `}
                       width={45}
                       height={45}
                       sx={styles.winnerprofile}
@@ -811,7 +814,7 @@ function Dashboard() {
               keepMounted
               onClose={handleClosepolicy}
               aria-describedby="alert-dialog-slide-description"
-              PaperProps={{ className: `!max-w-[500px] ${gray}` }}
+              PaperProps={{ className: `!max - w - [500px] ${gray} ` }}
             >
               <div
                 style={{
@@ -845,7 +848,7 @@ function Dashboard() {
         </Container>
       </Box>
       <CustomCircularProgress isLoading={isLoading || isLoading} />
-    </Layout>
+    </Layout >
   );
 }
 

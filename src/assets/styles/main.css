@@ -64,7 +64,7 @@ img {
 
 
 .activeNav>h3 {
-  color: #E71D1E !important;
+  color: #63BA0E !important;
   font-weight: 700;
 }
 
@@ -140,7 +140,7 @@ img {
 .loginfields>div>input {
   background-color: transparent !important;
   border-radius: 5px;
-  border: 1px solid #E71D1E !important;
+  border: 1px solid #63BA0E !important;
 }
 
 .loginfields>div>input.MuiInputBase-input {
@@ -166,7 +166,7 @@ img {
 .loginfieldspass {
   background: transparent !important;
   border-radius: 5px !important;
-  border: 1px solid #E71D1E;
+  border: 1px solid #63BA0E;
   padding: 0px 10px;
 }
 
@@ -194,7 +194,7 @@ img {
 }
 
 .loginfieldsres>div>input.MuiInputBase-input::placeholder {
-  color: #E71D1E !important;
+  color: #63BA0E !important;
   font-size: 13px;
 }
 
@@ -267,8 +267,9 @@ img {
   margin: 0 !important;
   line-height: 1 !important;
   margin-bottom: 5px !important;
-  font-size: 20px !important;
+  font-size: 17px !important;
   font-weight: 600 !important;
+  text-align: center;
 }
 
 .b-val2 {
@@ -425,9 +426,9 @@ img {
 
 
 .Winnavtow h3 {
-  font-size: 14px;
-  font-weight: 600;
-  color: #E71D1E !important
+  font-size: 13px;
+  font-weight: 500;
+  color: white !important
 }
 
 .Winnavtow>img {
@@ -445,8 +446,8 @@ img {
 }
 
 .activewinNavtwo {
-  background: #6CB4EE;
-  border-radius: 5px;
+  background: #63BA0E;
+
   padding: 15px;
 }
 
@@ -460,7 +461,7 @@ img {
 .countdownbg {
   background-size: 100% 100%;
   background-position: center;
-  padding: 15px 10px;
+  padding: 10px 10px;
   margin-top: 20px;
   width: 95%;
   margin-left: 2.5%;
@@ -470,7 +471,7 @@ img {
 .countdownbgtrx {
   background-size: 100% 100%;
   background-position: center;
-  padding: 15px 10px;
+  padding: 10px 10px;
   margin-top: 20px;
   width: 95%;
   margin-left: 2.5%;
@@ -536,7 +537,7 @@ img {
   justify-content: center;
   font-style: 16px;
   font-weight: 700;
-  color: #E71D1E;
+  color: #63BA0E;
 }
 
 .timerBoxone {
@@ -550,7 +551,7 @@ img {
   justify-content: center;
   font-style: 16px;
   font-weight: 700;
-  color: #E71D1E;
+  color: #63BA0E;
   clip-path: polygon(29% 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0 36%) !important;
 }
 
@@ -565,7 +566,7 @@ img {
   justify-content: center;
   font-style: 16px;
   font-weight: 700;
-  color: #E71D1E;
+  color: #63BA0E;
   clip-path: polygon(0 0, 100% 0, 100% 0, 100% 64%, 71% 100%, 0 100%) !important;
 }
 
@@ -584,7 +585,7 @@ img {
 }
 
 .greemred {
-  background: #E71D1E !important;
+  background: #63BA0E !important;
   color: white !important;
   text-transform: capitalize !important;
   border-radius: 10px 0px 10px 0px !important;
@@ -631,9 +632,8 @@ img {
 .tableBox_wingo {
   width: 95%;
   margin-left: 2.5%;
-  background-color: #ffffff !important;
-  border-radius: 10px;
-  padding: 10px 5px !important;
+  border-radius: 7px;
+  padding: 15px 0px !important;
   margin-bottom: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -658,7 +658,7 @@ img {
 }
 
 .wintable>thead {
-  background: #E71D1E;
+  background: #63BA0E;
 }
 
 
@@ -671,7 +671,7 @@ img {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #E71D1E;
+  background-color: #63BA0E;
 }
 
 .WincircleTwo {
@@ -710,6 +710,8 @@ img {
   font-weight: 800 !important;
   font-size: 20px !important;
 }
+
+
 
 .paginationTable>nav {
   display: flex;
@@ -785,7 +787,7 @@ img {
 .charttableheadingBox {
   border-bottom: 1px solid white !important;
   padding: 10px 0px;
-  background: #E71D1E;
+  background: #63BA0E;
 }
 
 .circleNumberbody {
@@ -879,7 +881,7 @@ img {
 }
 
 .dialog-header-policy {
-  background: #E71D1E !important;
+  background: #63BA0E !important;
   color: #ffffff !important;
   border: 0 !important;
   display: flex !important;
@@ -932,8 +934,8 @@ img {
 }
 
 .bat-price-input-box>button {
-  border: 1px solid #E71D1E;
-  color: #E71D1E;
+  border: 1px solid #63BA0E;
+  color: #63BA0E;
   border-radius: 0;
   border-radius: 5px;
   width: 35px;
@@ -950,7 +952,7 @@ img {
   width: 100%;
   padding: 0.5rem 0.75rem;
   line-height: 1.17333rem;
-  color: #E71D1E;
+  color: #63BA0E;
   background-color: white;
   border-radius: 0.26667rem;
   border: 0 !important;
@@ -1024,7 +1026,7 @@ img {
   flex-direction: row;
   flex-wrap: wrap;
   border-radius: 15px 15px 0px 0px;
-  background: #E71D1E;
+  background: #63BA0E;
   scrollbar-color: transparent transparent;
   color: white;
 }
@@ -1034,7 +1036,7 @@ img {
 }
 
 .dialog-text>p {
-  color: #E71D1E !important;
+  color: #63BA0E !important;
   font-size: 11px;
   font-weight: 300;
   margin-bottom: 5px;
@@ -1055,11 +1057,11 @@ img {
 .search>input {
   background-color: var(--lightyellow) !important;
   border-radius: 10px;
-  color: #E71D1E;
+  color: #63BA0E;
 }
 
 .search>input.MuiInputBase-input::placeholder {
-  color: #E71D1E !important;
+  color: #63BA0E !important;
 }
 
 .search>fieldset {
@@ -1258,7 +1260,7 @@ img {
 }
 
 .wallet-textfield {
-  background-color: #E71D1E !important;
+  background-color: #63BA0E !important;
   border-radius: 10px;
   text-align: center;
 }
@@ -1445,7 +1447,7 @@ img {
 .offline-indicator {
   width: 20px;
   height: 20px;
-  background-color: #E71D1E;
+  background-color: #63BA0E;
   border-radius: 50%;
   animation: blink 1s infinite;
 }
@@ -1521,7 +1523,7 @@ img {
 
 
 .yellowbtn {
-  background: #E71D1E !important;
+  background: #63BA0E !important;
   color: white !important;
   text-transform: capitalize !important;
   border-radius: 19px !important;
@@ -1530,21 +1532,22 @@ img {
 }
 
 .redbtn {
-  background: #E71D1E !important;
+  background: #63BA0E !important;
   color: white !important;
   text-transform: capitalize !important;
   border-radius: 19px !important;
-  padding: 7px 36px !important;
-  margin-top: 20px !important;
+  padding: 5px 36px !important;
+  margin-top: 15px !important;
 }
 
 .greenbtn {
-  background: var(--lightgreen) !important;
-  color: white !important;
+  background: transparent;
+  color: #63BA0E !important;
   text-transform: capitalize !important;
   border-radius: 19px !important;
-  padding: 7px 36px !important;
-  margin-top: 20px !important;
+  padding: 5px 36px !important;
+  margin-top: 15px !important;
+  border: 2px solid #63BA0E !important;
 }
 
 
@@ -1552,7 +1555,7 @@ img {
 .wingosx {
   overflow: hidden;
   position: absolute;
-  background: linear-gradient(90deg, #dd2224 0%, #ff504a 100%);
+  background: #0D0335;
   width: 100%;
   height: 500px;
   z-index: 0;
@@ -1564,7 +1567,7 @@ img {
 }
 
 .icobtn {
-  background: var(--lightyellow) !important;
+  background: #63BA0E !important;
   border: navajowhite !important;
   color: white !important;
   width: 35px !important;
@@ -1695,4 +1698,46 @@ td {
 .text-2 {
   font-size: 15px;
   font-weight: 600;
+}
+
+.wingonav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px 0px;
+}
+
+.wingonav>img {
+  filter: grayscale(1)
+}
+
+.wingonav>p:nth-child(2) {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 3px;
+  color: white;
+}
+
+.wingonav>p:nth-child(3) {
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+}
+
+.wingonavactive {
+  background: linear-gradient(157deg, #63BA0E 0%, #0D0335 100%) !important;
+  border-radius: 10px;
+  border: .01333rem solid #63BA0E;
+}
+
+.wingonavactive>img {
+  filter: hue-rotate(45deg) !important;
+}
+
+.wingonavactive>p:nth-child(2) {
+  color: #63BA0E;
+}
+
+.wingonavactive>p:nth-child(3) {
+  color: #63BA0E;
 }

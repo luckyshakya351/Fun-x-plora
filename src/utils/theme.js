@@ -6,7 +6,7 @@ const theme = createTheme({
     MuiContainer: {
       styleOverrides: {
         root: {
-          maxWidth: '450px !important',
+          maxWidth: '400px !important',
           padding: '0px !important',
         }
       },

@@ -20,6 +20,7 @@ import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
 import OneMinCountDown from "./OneMinCountDown";
 import { useSelector } from "react-redux";
+import theme from "../../../../utils/theme";
 
 function WinOneMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);
@@ -66,8 +67,8 @@ function WinOneMin({ gid }) {
             sx={{
               width: "95%",
               marginLeft: "2.5%",
-              my: "20px",
-              background: "#FCFEFB",
+              mt: "20px",
+              background: '#0D0335',
               boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
@@ -142,7 +143,7 @@ function WinOneMin({ gid }) {
                   setdialog_type("green");
                 }}
               >
-               Green
+                Green
               </Button>
               <Button
                 className="greemviolet"
@@ -151,7 +152,7 @@ function WinOneMin({ gid }) {
                   setdialog_type("voilet");
                 }}
               >
-               Violet
+                Violet
               </Button>
               <Button
                 className="greemred"
@@ -160,12 +161,12 @@ function WinOneMin({ gid }) {
                   setdialog_type("red");
                 }}
               >
-               Red
+                Red
               </Button>
             </Box>
             {/* pridictcolor */}
             <Box
-              sx={{ padding: "10px", background: "#fff", borderRadius: "10px" }}
+              sx={{ padding: "10px", background: "#8bc34a5e", borderRadius: "10px" }}
             >
               <Box
                 sx={{
@@ -242,7 +243,7 @@ function WinOneMin({ gid }) {
                 <IconButton
                   key={i}
                   color="primary"
-                  className={`icobtn ${value === i ? "bg-green-600" : "bg-yellow-400"} cursor-pointer text-white`}
+                  className={`icobtn ${value === i ? "bg-green-600" : "bg-green-400"} cursor-pointer text-white`}
                   onClick={() => setValue(i)}
                 >
                   {i}X
@@ -254,7 +255,7 @@ function WinOneMin({ gid }) {
             <div className="!w-full !grid grid-cols-2 gap-2 !mt-2">
               <Button
                 sx={{ py: "10px" }}
-                className="!bg-[#FBB13B] !text-white"
+                className="!bg-[#63BA0E] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
                   setdialog_type("big");
@@ -263,7 +264,7 @@ function WinOneMin({ gid }) {
                 Big
               </Button>
               <Button
-                className="!bg-[#EE1285] !text-white"
+                className="!bg-[#6DA7F4] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
                   setdialog_type("small");
@@ -284,7 +285,7 @@ function WinOneMin({ gid }) {
         {React.useMemo(() => {
           return (
             <>
-              <Box sx={{ background: "#fff", borderRadius: "10px" }}>
+              <Box sx={{ background: theme.palette.secondary.main, borderRadius: "10px", overflow: 'hidden' }}>
                 <Stack direction="row">
                   <Box
                     component={NavLink}
@@ -320,7 +321,7 @@ function WinOneMin({ gid }) {
                     </Typography>
                   </Box>
                 </Stack>
-              </Box>
+              </Box >
             </>
           );
         }, [TabTwo])}
@@ -328,17 +329,19 @@ function WinOneMin({ gid }) {
         {TabTwo === 2 && <Chart gid={gid} />}
         {TabTwo === 3 && <MyHistory gid={gid} />}
       </Box>
-      {apply_bit_dialog_box && Number(timing) >= 10 && (
-        <ApplyBetDialogBox
-          apply_bit_dialog_box={apply_bit_dialog_box}
-          setapply_bit_dialog_box={setapply_bit_dialog_box}
-          type={dialog_type}
-          gid={gid}
-          net_wallet_amount={net_wallet_amount}
-          random={value}
-        />
-      )}
-    </Box>
+      {
+        apply_bit_dialog_box && Number(timing) >= 10 && (
+          <ApplyBetDialogBox
+            apply_bit_dialog_box={apply_bit_dialog_box}
+            setapply_bit_dialog_box={setapply_bit_dialog_box}
+            type={dialog_type}
+            gid={gid}
+            net_wallet_amount={net_wallet_amount}
+            random={value}
+          />
+        )
+      }
+    </Box >
   );
 }
 

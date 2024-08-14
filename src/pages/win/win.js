@@ -7,28 +7,32 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import VolumeUpIcon from "@mui/icons-material/VolumeUpOutlined";
 import * as React from "react";
 import { useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import asistant from "../../assets/images/asistant.png";
+import backbtn from "../../assets/images/backBtn.png";
+import music from "../../assets/images/music.png";
+import musicoff from "../../assets/images/musicoff.png";
 import refresh from "../../assets/images/refresh.png";
-import {
-  default as Timeactive,
-  default as Timeinactive,
-} from "../../assets/images/time-.png";
+import Timeactive from "../../assets/images/time-.png";
+import Timeinactive from "../../assets/images/new/download (7).png";
 import Layout from "../../component/Layout/Layout";
+import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import theme from "../../utils/theme";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
-import { walletamount } from "../../services/apicalling";
-import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+
 
 function Win() {
   const client = useQueryClient();
+  const [musicicon, setmusicicon] = useState(true);
   const navigate = useNavigate();
   const [Tab, setTab] = useState(1);
   const [opendialogbox, setOpenDialogBox] = useState(false);
@@ -49,19 +53,6 @@ function Win() {
       }
     }, 1000);
   }, [dummycounter]);
-
-
-  // const { isLoading: walletloding, data: walletdata } = useQuery(
-  //   ["walletamount_aviator"],
-  //   () => walletamount(),
-  //   {
-  //     refetchOnMount: false,
-  //     refetchOnReconnect: false,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
-
-  // net_wallet_amount = walletdata?.data?.data || 0;
 
 
   function refreshFunctionForRotation() {
@@ -86,44 +77,75 @@ function Win() {
   }, []);
 
   return (
-    <Layout header={true}>
+    <Layout header={false}>
       <Container sx={styles.root}>
-        <Box sx={{ position: "relative", overflow: "hidden" }}>
-          <Box className="wingosx"></Box>
-          <Box sx={{ padding: 2, position: "relative" }}>
-          <Box>
-            <KeyboardArrowLeftOutlinedIcon className="!text-white !cursor-pointer" onClick={()=>navigate(-1)}/>
-          </Box>
+        <Box
+          sx={{
+            padding: 1,
+            background:
+              theme.palette.primary.main,
+            px: 3,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{ alignItems: "center", justifyContent: "space-between" }}
+          >
+            <NavLink to="/dashboard">
+              <Box component="img" src={backbtn} width={25}></Box>
+            </NavLink>
+            <Stack direction="row">
+              <NavLink to={"/CustomerService"}>
+                <Box
+                  component="img"
+                  src={asistant}
+                  width={25}
+                  sx={{ mr: 2 }}
+                ></Box>
+              </NavLink>
+              <NavLink onClick={() => setmusicicon(!musicicon)}>
+                {musicicon === true ? (
+                  <Box component="img" src={music} width={25}></Box>
+                ) : (
+                  <Box component="img" src={musicoff} width={25}></Box>
+                )}
+              </NavLink>
+            </Stack>
+          </Stack>
+        </Box>
+        <Box sx={{ position: "relative", overflow: "hidden", background: '#0D0335', py: 2, }}>
+          <Box sx={{ px: 2, pb: 2, position: "relative" }}>
             <Box
               sx={{
-                padding: "25px 10px",
+                padding: "15px 10px",
                 background: "#fff",
-                borderRadius: "20px",
-                my: 2,
+                borderRadius: "10px",
+                my: 0,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Box display="flex" alignItems="center" ml={5}>
+              <Box display="flex" alignItems="end" ml={5}>
                 <Typography
                   variant="body1"
                   color="initial"
                   className="b-val"
-                  sx={{ color: zubgtext }}
+                  sx={{ color: 'black' }}
                 >
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                      Number(net_wallet_amount?.winning || 0) || 0
+                    Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
-                <div className="mx-1 rotate_refresh_image" id="refresh_button">
+                <div className="mx-4 rotate_refresh_image" id="refresh_button" style={{ mb: '5px !important', ml: '10px !important' }}>
                   <img
+                    style={{ mb: '5px', ml: '10px' }}
                     src={refresh}
                     className="!w-6"
-                    ml={2}
+                    ml={3}
                     onClick={() => {
                       refreshFunctionForRotation();
                     }}
@@ -136,7 +158,7 @@ function Win() {
                   variant="body1"
                   color="initial"
                   className="b-val2"
-                  sx={{ color: zubgtext }}
+                  sx={{ color: theme.palette.secondary.light }}
                 >
                   Walllet balance
                 </Typography>
@@ -148,7 +170,7 @@ function Win() {
                 sx={{ width: "100%" }}
               >
                 <Button
-                  variant="text"
+                  variant="outlined"
                   color="primary"
                   className="greenbtn"
                   onClick={() => navigate("/wallet/Recharge")}
@@ -166,65 +188,104 @@ function Win() {
               </Box>
             </Box>
           </Box>
-          <Box
+          <Stack
+            direction="row"
             sx={{
-              background:
-                "linear-gradient(90deg, #dd2224 0%, #ff504a 100%) !important",
-              boxShadow: zubgshadow,
-              width: "95%",
-              marginLeft: "2.5%",
-              borderRadius: "10px",
-              position: "relative",
+              alignItems: "center",
+              justifyContent: "space-between",
+              px: 1,
+              py: 1,
+              background: "#FFFBE8",
+              borderRadius: "10PX",
+              // mt: 2,
+              // mb: 2,
+              mx: 2,
             }}
           >
-            <Stack direction="row">
-              <Box
-                component={NavLink}
-                onClick={() => setTab(1)}
-                className={Tab === 1 ? "activewinNav Winnav" : "Winnav"}
-              >
-                {Tab === 1 ? (
-                  <Box component="img" src={Timeinactive} width={60}></Box>
-                ) : (
-                  <Box component="img" src={Timeactive} width={60}></Box>
-                )}
-                <Typography variant="h3" color="initial">
-                  Win Go <br />
-                  1Min
-                </Typography>
-              </Box>
-              <Box
-                component={NavLink}
-                onClick={() => setTab(2)}
-                className={Tab === 2 ? "activewinNav Winnav" : " Winnav"}
-              >
-                {Tab === 2 ? (
-                  <Box component="img" src={Timeinactive} width={60}></Box>
-                ) : (
-                  <Box component="img" src={Timeactive} width={60}></Box>
-                )}
-                <Typography variant="h3" color="initial">
-                  Win Go
-                  <br />
-                  3Min
-                </Typography>
-              </Box>
-              <Box
-                component={NavLink}
-                onClick={() => setTab(3)}
-                className={Tab === 3 ? "activewinNav Winnav" : " Winnav"}
-              >
-                {Tab === 3 ? (
-                  <Box component="img" src={Timeinactive} width={60}></Box>
-                ) : (
-                  <Box component="img" src={Timeactive} width={60}></Box>
-                )}
-                <Typography variant="h3" color="initial">
-                  Win Go <br />
-                  5Min
-                </Typography>
-              </Box>
-            </Stack>
+            <VolumeUpIcon sx={{ color: theme.palette.primary.main, mr: 1 }} />
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={{
+                fontWeight: 500,
+                fontSize: "10px",
+                mr: 1,
+                textAlign: "center",
+                color: theme.palette.primary.main,
+              }}
+            >
+              1.All recharge methods only available in RECHARGE menu on OFFICIAL
+            </Typography>
+            <Typography sx={{ background: theme.palette.secondary.main }} className=" !text-white !text-xs rounded-2xl px-2 py-1 !flex justify-center">
+              <WhatshotIcon fontSize="small" /> Details
+            </Typography>
+          </Stack>
+        </Box>
+        <Box
+          sx={{
+            width: "95%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            margin: "auto",
+            background: theme.palette.secondary.main,
+            borderRadius: "10PX",
+            mt: 2,
+          }}
+        >
+          <Box sx={{ width: "30%" }}>
+            <NavLink
+              className={Tab === 1 ? " wingonavactive wingonav" : " wingonav"}
+              onClick={() => setTab(1)}
+            >
+              {Tab === 1 ? (
+                <Box component="img" src={Timeinactive} width={50}></Box>
+              ) : (
+                <Box component="img" src={Timeactive} width={50}></Box>
+              )}
+              <Typography variant="body1" color="initial">
+                Win Go
+              </Typography>
+              <Typography variant="body1" color="initial">
+                1 Min
+              </Typography>
+            </NavLink>
+          </Box>
+          <Box sx={{ width: "30%" }}>
+            <NavLink
+              className={Tab === 2 ? " wingonavactive wingonav" : " wingonav"}
+              onClick={() => setTab(2)}
+            >
+              {Tab === 2 ? (
+                <Box component="img" src={Timeinactive} width={50}></Box>
+              ) : (
+                <Box component="img" src={Timeactive} width={50}></Box>
+              )}
+              <Typography variant="body1" color="initial">
+                Win Go
+              </Typography>
+              <Typography variant="body1" color="initial">
+                3 Min
+              </Typography>
+            </NavLink>
+          </Box>
+          <Box sx={{ width: "30%" }}>
+            <NavLink
+              className={Tab === 3 ? " wingonavactive wingonav" : " wingonav"}
+              onClick={() => setTab(3)}
+            >
+              {Tab === 3 ? (
+                <Box component="img" src={Timeinactive} width={50}></Box>
+              ) : (
+                <Box component="img" src={Timeactive} width={50}></Box>
+              )}
+              <Typography variant="body1" color="initial">
+                Win Go
+              </Typography>
+              <Typography variant="body1" color="initial">
+                5 Min
+              </Typography>
+            </NavLink>
           </Box>
         </Box>
         {Tab === 1 && <WinOneMin gid="1" />}
@@ -253,7 +314,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, mt: "74px" },
+  root: {},
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",
@@ -290,13 +351,13 @@ const styles = {
     fontSize: "14px",
     color: "white !important",
     textTransform: "capitalize",
-    fontWeight: "400",
+    fontWeight: "500",
   },
   supportButton: {
     fontSize: "14px",
     color: "white !important",
     textTransform: "capitalize",
-    fontWeight: "400",
+    fontWeight: "500",
   },
   socialButtonIcon: {
     margin: "auto",
@@ -317,7 +378,7 @@ const styles = {
   socialButtonText: {
     color: "white !important",
     textTransform: "capitalize",
-    fontWeight: "400",
+    fontWeight: "500",
     fontSize: "14px",
   },
   gameImage: {
@@ -335,7 +396,7 @@ const styles = {
   },
   gameDescription: {
     fontSize: "15px",
-    fontWeight: "400",
+    fontWeight: "500",
     color: "white !important",
     mt: 2,
     transition: "all 0.3s",

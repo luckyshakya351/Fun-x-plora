@@ -21,6 +21,7 @@ import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
+import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
 import {
   dummycounterFun,
   net_wallet_amount_function,
@@ -85,9 +86,9 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       //     fivemin?.split("_")?.[1] === "2") &&
       //   fivemin?.split("_")?.[0] === "0"
       // )
-        // handlePlaySound();
+      // handlePlaySound();
       // if (fivemin?.split("_")?.[1] === "1" && fivemin?.split("_")?.[0] === "0")
-        // handlePlaySoundLast();
+      // handlePlaySoundLast();
 
       if (
         Number(fivemin?.split("_")?.[1]) <= 10 && // this is for sec
@@ -154,10 +155,10 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       console.log(e);
     }
   };
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
-  },[my_history?.data?.data])
+    (Number(show_this_three_min_time_sec) >= 58 || Number(show_this_three_min_time_sec) === 0) && Number(show_this_three_min_time_min) === 0 && dispatch(dummycounterFun());
+  }, [my_history?.data?.data])
 
   React.useEffect(() => {
     dispatch(
@@ -183,8 +184,12 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
 
 
   return (
-    <Box className="countdownbg" sx={{ background: zubgmid }}>
-     
+    <Box className="countdownbg" sx={{
+      backgroundImage: `url(${winback})`,
+      backgroundSize: '100% 100%',
+      backgroundRepeat: 'no-repeat',
+    }}>
+
       <Box
         sx={{
           display: "flex",
