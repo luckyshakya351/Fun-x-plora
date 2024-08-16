@@ -167,15 +167,15 @@ function LoginWithMobile() {
             </FormControl>
           </Box>
           {fk.touched.mob && fk.errors.mob ? (
-            <div className="error">{fk.errors.mob}</div>
+            <div className="error" style={{ textAlign: 'center' }}>{fk.errors.mob}</div>
           ) : (
             String(fk.values.mob)?.includes(".") && (
-              <div className="error">Dot not allowed in mob no</div>
+              <div className="error" style={{ textAlign: 'center' }}>Dot not allowed in mob no</div>
             )
           )}
         </FormControl>
       </Box>
-      <Box mt={3} mb={3}>
+      <Box mt={3} >
         <FormControl fullWidth sx={style.passwordfield2}>
           <HttpsOutlinedIcon sx={style.inputimg2} />
           <OutlinedInput
@@ -204,11 +204,11 @@ function LoginWithMobile() {
               </InputAdornment>
             }
           />
-          {fk.touched.pass && fk.errors.pass && (
-            <div className="error">{fk.errors.pass}</div>
-          )}
         </FormControl>
       </Box>
+      {fk.touched.pass && fk.errors.pass && (
+        <div className="error" style={{ textAlign: 'center' }}>{fk.errors.pass}</div>
+      )}
       {/* <Box mt={1}>
         <FormControl fullWidth>
           <FormControlLabel
@@ -227,7 +227,7 @@ function LoginWithMobile() {
           />
         </FormControl>
       </Box> */}
-      <Stack direction='row' justifyContent={'space-between'}>
+      <Stack direction='row' justifyContent={'space-between'} mt={3}>
         <Box
           component={NavLink}
           to='/register'

@@ -123,7 +123,7 @@ function LoginWithEmail() {
       }}
       onSubmit={fk.handleSubmit}
     >
-      <Box mt={5} mb={3}>
+      <Box mt={5} >
         <FormControl sx={style.inputfield2} fullWidth>
           <MarkEmailReadOutlinedIcon sx={style.inputimg2} />
           <TextField
