@@ -11,7 +11,6 @@ import {
 import * as React from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
@@ -32,9 +31,6 @@ import theme from "../../utils/theme";
 
 function Wallet() {
 
-  const net_wallet_amount = useSelector(
-    (state) => state.aviator.net_wallet_amount
-  );
   const navigate = useNavigate();
 
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =

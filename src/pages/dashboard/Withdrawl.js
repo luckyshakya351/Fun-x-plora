@@ -23,7 +23,14 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
-import { lightblue, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
+import {
+  lightblue,
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgshadow,
+  zubgtext,
+} from "../../Shared/color";
 import cip from "../../assets/cip.png";
 import payment from "../../assets/images/deposit (2).png";
 import bgms from "../../assets/images/bgs.jpg";
@@ -97,7 +104,7 @@ function Withdrawl() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
@@ -105,7 +112,7 @@ function Withdrawl() {
     amount: "",
     password: "",
     bank_id: "",
-    select_wallet:"",
+    select_wallet: "",
   };
 
   const fk = useFormik({
@@ -123,8 +130,9 @@ function Withdrawl() {
       if (Number(fk.values.amount) < 110 && Number(fk.values.amount) > 50000)
         return toast("Amount shoulb be minimum 110 and maximum 50,000");
 
-      const data = result?.find((i) => i?.id === 1);
-      if (!data) return toast("Data not found");
+      const data = result?.[0];
+      //  result?.find((i) => i?.id === 1);
+      if (!data) return toast("Bank Not Added.");
 
       const fd = new FormData();
 
@@ -237,10 +245,14 @@ function Withdrawl() {
               overflow: "hidden",
             }}
           ></Box>
-          <Stack direction="row" sx={{
-            alignItems: "center", position: 'relative',
-            zIndex: 10,
-          }}>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              position: "relative",
+              zIndex: 10,
+            }}
+          >
             <Box component="img" src={balance} width={50}></Box>
             <Typography
               variant="body1"
@@ -265,7 +277,7 @@ function Withdrawl() {
                 fontWeight: "600",
                 color: "white",
                 mr: "10px",
-                position: 'relative',
+                position: "relative",
                 zIndex: 10,
               }}
             >
@@ -273,32 +285,44 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
-            <CachedIcon sx={{
-              color: "white", position: 'relative',
-              zIndex: 10,
-            }} />
+            <CachedIcon
+              sx={{
+                color: "white",
+                position: "relative",
+                zIndex: 10,
+              }}
+            />
           </Stack>
           <Stack
             direction="row"
             sx={{
               alignItems: "center",
               justifyContent: "space-between",
-              mt: "20px", position: 'relative',
+              mt: "20px",
+              position: "relative",
               zIndex: 10,
             }}
           >
-            <Box component="img" src={cip} width={50} sx={{
-              position: 'relative',
-              zIndex: 10,
-            }}></Box>
+            <Box
+              component="img"
+              src={cip}
+              width={50}
+              sx={{
+                position: "relative",
+                zIndex: 10,
+              }}
+            ></Box>
             <Typography
               variant="body1"
               color="initial"
               sx={{
-                fontSize: "14px ", color: "white", ml: "10px", position: 'relative',
+                fontSize: "14px ",
+                color: "white",
+                ml: "10px",
+                position: "relative",
                 zIndex: 10,
               }}
             >
@@ -311,15 +335,12 @@ function Withdrawl() {
             <Box
               sx={{
                 background: zubgtext,
-                border: zubgtext
+                border: zubgtext,
               }}
-              className="!cursor-pointer p-3 !rounded-lg ">
+              className="!cursor-pointer p-3 !rounded-lg "
+            >
               <Box component={NavLink}>
-                <Box
-                  component="img"
-                  src={cip}
-                  className="!w-14 !ml-2"
-                ></Box>
+                <Box component="img" src={cip} className="!w-14 !ml-2"></Box>
                 <Typography className="!text-center !text-white !text-sm pt-1">
                   Bank Card
                 </Typography>
@@ -328,16 +349,13 @@ function Withdrawl() {
             <Box
               sx={{
                 background: zubgtext,
-                border: zubgtext
+                border: zubgtext,
               }}
               className="!cursor-pointer p-3 px-8 !rounded-lg "
-              onClick={() => navigate('/Withdrawalusdt')}>
-              <Box >
-                <Box
-                  component="img"
-                  src={usdt}
-                  className="!w-10 !ml-2"
-                ></Box>
+              onClick={() => navigate("/Withdrawalusdt")}
+            >
+              <Box>
+                <Box component="img" src={usdt} className="!w-10 !ml-2"></Box>
                 <Typography className="!text-center !text-white !text-sm pt-1">
                   USDT
                 </Typography>
@@ -346,12 +364,11 @@ function Withdrawl() {
           </Box>
           <Box
             sx={{
-
               padding: "10px",
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: '#fff',
+              background: "#fff",
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
@@ -368,7 +385,6 @@ function Withdrawl() {
               </Typography>
             </Stack>
             <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
-
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
@@ -390,39 +406,39 @@ function Withdrawl() {
                 )}
               </FormControl>
               <Box mt={3}>
-              <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Select Wallet <span className="!text-red-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  select
-                  id="select_wallet"
-                  name="select_wallet"
-                  value={fk.values.select_wallet}
-                  onChange={fk.handleChange}
-                  className="withdrawalfield"
-                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                  InputProps={{
-                    style: {
-                      borderColor: 'red',
-                      borderWidth: "1px",
-                      color: lightblue,
-                      background: "#fff",
-                      borderRadius: "10px",
-                    },
-                  }}
-                >
-                  <MenuItem value="Working Wallet">Working Wallet</MenuItem>
-                   <MenuItem value="Main Wallet">Main Wallet</MenuItem>
-                </TextField>
-              </FormControl>
-              {fk.touched.select_wallet && fk.errors.select_wallet && (
+                <FormControl fullWidth sx={{ mt: "10px" }}>
+                  <Stack direction="row" className="loginlabel">
+                    <Typography variant="h3" sx={{ color: zubgtext }}>
+                      Select Wallet <span className="!text-red-600">*</span>
+                    </Typography>
+                  </Stack>
+                  <TextField
+                    select
+                    id="select_wallet"
+                    name="select_wallet"
+                    value={fk.values.select_wallet}
+                    onChange={fk.handleChange}
+                    className="withdrawalfield !text-green-600"
+                    //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                    InputProps={{
+                      style: {
+                        borderColor: "red",
+                        borderWidth: "1px",
+                        color: "green",
+                        background: "#fff",
+                        borderRadius: "10px",
+                      },
+                    }}
+                  >
+                    <MenuItem value="Working Wallet">Working Wallet</MenuItem>
+                    <MenuItem value="Main Wallet">Main Wallet</MenuItem>
+                  </TextField>
+                </FormControl>
+                {fk.touched.select_wallet && fk.errors.select_wallet && (
                   <div className="error">{fk.errors.select_wallet}</div>
                 )}
               </Box>
-             
+
               <Box mt={3}>
                 <FormControl fullWidth>
                   <Stack direction="row" className="loginlabel">
@@ -430,14 +446,15 @@ function Withdrawl() {
                       Password <span className="!text-red-600">*</span>
                     </Typography>
                   </Stack>
-                  <OutlinedInput className="!border !border-red-500 !rounded-xl !text-blue-400"
+                  <OutlinedInput
+                    className="!border !border-red-500 !rounded-xl !text-blue-400"
                     id="password"
                     name="password"
                     value={fk.values.password}
                     onChange={fk.handleChange}
                     placeholder="Enter password"
                     onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                    sx={{ width: '100%', }}
+                    sx={{ width: "100%" }}
                     type={showoldPassword ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
@@ -448,15 +465,24 @@ function Withdrawl() {
                           edge="end"
                         >
                           {showoldPassword ? (
-                            <VisibilityOff sx={{ color: zubgtext, fontSize: "25px !important" }} />
+                            <VisibilityOff
+                              sx={{
+                                color: zubgtext,
+                                fontSize: "25px !important",
+                              }}
+                            />
                           ) : (
-                            <Visibility sx={{ color: zubgtext, fontSize: "25px !important" }} />
+                            <Visibility
+                              sx={{
+                                color: zubgtext,
+                                fontSize: "25px !important",
+                              }}
+                            />
                           )}
                         </IconButton>
                       </InputAdornment>
                     }
                   />
-
                 </FormControl>
                 {fk.touched.password && fk.errors.password && (
                   <div className="error">{fk.errors.password}</div>
@@ -475,92 +501,78 @@ function Withdrawl() {
             </Box>
           </Box>
           <Box
-
             mt={3}
             sx={{
-
               padding: "10px",
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: '#fff',
+              background: "#fff",
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 10,
-            }}>
-            <Stack direction="row" alignItems="center" mt={1}
-              className="!text-bold ">
-
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                *   Need to bet{" "}
+            }}
+          >
+            <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold "
+            >
+              <Typography variant="body1" color="initial" className="!text-xs">
+                * Need to bet{" "}
               </Typography>
               <Typography
                 className="!text-orange-500 !text-xs"
                 variant="body1"
                 color="initial"
                 sx={{
-
-
                   mx: 0.5,
                 }}
               >
                 {" "}
                 ₹ {amount?.need_amount_for_withdrawl}
               </Typography>
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
+              <Typography variant="body1" color="initial" className="!text-xs">
                 {" "}
                 to be able to withdraw .{" "}
               </Typography>
             </Stack>
 
-
-            <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
-
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                *   Withdraw time{" "}
+            <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold !text-xl"
+            >
+              <Typography variant="body1" color="initial" className="!text-xs">
+                * Withdraw time{" "}
               </Typography>
               <Typography
                 className="!text-orange-500 !text-xs"
                 variant="body1"
                 color="initial"
                 sx={{
-
-
                   mx: 0.5,
                 }}
               >
                 00:00-23:50.{" "}
               </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
-
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                *   Withdraw Amount
+            <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold !text-xl"
+            >
+              <Typography variant="body1" color="initial" className="!text-xs">
+                * Withdraw Amount
               </Typography>
               <Typography
                 className="!text-orange-500 !text-xs"
                 variant="body1"
                 color="initial"
-
                 sx={{
-
-
                   mx: 0.5,
                 }}
               >
@@ -568,35 +580,25 @@ function Withdrawl() {
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                *    Please confirm your beneficial account information before
+              <Typography variant="body1" color="initial" className="!text-xs">
+                * Please confirm your beneficial account information before
                 withdrawing.
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                *    If your information is incorrect, our company will
-                not be liable for the amount of loss .{" "}
+              <Typography variant="body1" color="initial" className="!text-xs">
+                * If your information is incorrect, our company will not be
+                liable for the amount of loss .{" "}
               </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" mt={1} className="!text-bold ">
-
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                *  If your beneficial information is incorrect, please contact
+            <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold "
+            >
+              <Typography variant="body1" color="initial" className="!text-xs">
+                * If your beneficial information is incorrect, please contact
                 customer service.
               </Typography>
             </Stack>
