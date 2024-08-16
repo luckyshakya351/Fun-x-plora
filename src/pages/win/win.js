@@ -1,4 +1,6 @@
+import VolumeUpIcon from "@mui/icons-material/VolumeUpOutlined";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
 import {
   Box,
   Button,
@@ -7,7 +9,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import VolumeUpIcon from "@mui/icons-material/VolumeUpOutlined";
 import * as React from "react";
 import { useState } from "react";
 import { useQueryClient } from "react-query";
@@ -17,17 +18,15 @@ import asistant from "../../assets/images/asistant.png";
 import backbtn from "../../assets/images/backBtn.png";
 import music from "../../assets/images/music.png";
 import musicoff from "../../assets/images/musicoff.png";
+import Timeinactive from "../../assets/images/new/download (7).png";
 import refresh from "../../assets/images/refresh.png";
 import Timeactive from "../../assets/images/time-.png";
-import Timeinactive from "../../assets/images/new/download (7).png";
 import Layout from "../../component/Layout/Layout";
-import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
 import theme from "../../utils/theme";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
 
 
 function Win() {

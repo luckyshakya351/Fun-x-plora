@@ -15,20 +15,15 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
-  zubgback,
-  zubggray,
-  zubgtext
+  zubggray
 } from "../../Shared/color";
-import bgms from "../../assets/images/bgs.jpg";
-import rechargeIcon from "../../assets/images/new/download (8).png";
-import wdhistory from "../../assets/images/new/download (9).png";
+import logo from "../../assets/funXplora-8-13-2024 (1).png";
 import deposite from "../../assets/images/new/download (10).png";
 import wallet from "../../assets/images/new/download (11).png";
-import logo from "../../assets/funXplora-8-13-2024 (1).png";
-import withdrow from "../../assets/images/withdraw.png";
 import wallettransfer from "../../assets/images/new/download (12).png";
 import wallettransfer1 from "../../assets/images/new/download (13).png";
 import d14 from "../../assets/images/new/download (14).png";
+import rechargeIcon from "../../assets/images/new/download (8).png";
 
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";

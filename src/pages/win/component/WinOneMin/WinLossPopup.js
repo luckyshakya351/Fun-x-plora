@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import axios from "axios";
+import CryptoJS from "crypto-js";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 import CustomCircularProgress from "../../../../Shared/CustomCircularProgress";
 import Loss from "../../../../assets/images/loss.png";
 import win from "../../../../assets/images/winnner.png";
@@ -15,9 +16,6 @@ import six from "../../../../assets/trximage/6.png";
 import seven from "../../../../assets/trximage/7.png";
 import eight from "../../../../assets/trximage/8.png";
 import nine from "../../../../assets/trximage/9.png";
-import { endpoint } from "../../../../services/urls";
-import CryptoJS from "crypto-js";
-import { useSelector } from "react-redux";
 const WinLossPopup = ({ gid }) => {
   let array = [zero, one, two, three, four, five, six, seven, eight, nine];
   const login_data =

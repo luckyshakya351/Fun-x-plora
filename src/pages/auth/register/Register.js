@@ -34,7 +34,7 @@ import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { signupSchemaValidataon } from "../../../Shared/Validation";
 import { lightblue, zubgtext } from "../../../Shared/color";
 // import logo from "../../../assets/images/fun.jpg";
-import logo from "../../../assets/—Pngtree—ink splash pattern_6020336 (1).png";
+import logo from "../../../assets/loginlogo.png";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import logbg from '../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png';

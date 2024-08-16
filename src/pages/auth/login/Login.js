@@ -1,5 +1,3 @@
-import MarkEmailReadIcon from '@mui/icons-material/MarkEmailReadOutlined';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import {
   Box,
   Container,
@@ -8,29 +6,19 @@ import {
   Typography
 } from "@mui/material";
 import CryptoJS from 'crypto-js';
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { lightblue, lightyellow } from '../../../Shared/color';
 // import logo from "../../../assets/fun.27036251210ce8ec4ad4.png";
-import logo from "../../../assets/—Pngtree—ink splash pattern_6020336 (1).png";
+import custom from "../../../assets/custom.png";
+import logo from "../../../assets/loginlogo.png";
+import logbg from '../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png';
 import LoginWithEmail from '../login/LoginWithEmail';
 import LoginWithMobile from '../login/LoginWithMobile';
-import logbg from '../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png';
-import custom from "../../../assets/custom.png";
 
 function Login() {
-
-
   const navigate = useNavigate()
-  const [Nav, setNav] = useState(1);
-
-  const dispatch = useDispatch()
-  const aviator_login_data = useSelector(
-    (state) => state.aviator.aviator_login_data
-  );
-
-
   const logindata = localStorage.getItem("logindataen") && CryptoJS.AES.decrypt(localStorage.getItem("logindataen"), "anand")?.toString(CryptoJS.enc.Utf8) || null
 
   useEffect(() => {
