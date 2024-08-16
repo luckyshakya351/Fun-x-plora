@@ -1777,3 +1777,8 @@ td {
   height: 160px;
   width: 160px;
 }
+
+.css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+  color: white;
+  font-size: 11px;
+}
