@@ -11,7 +11,6 @@ import {
 import * as React from "react";
 import ReactApexChart from "react-apexcharts";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
@@ -32,9 +31,6 @@ import theme from "../../utils/theme";
 
 function Wallet() {
 
-  const net_wallet_amount = useSelector(
-    (state) => state.aviator.net_wallet_amount
-  );
   const navigate = useNavigate();
 
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =
@@ -53,7 +49,7 @@ function Wallet() {
   const series1 = [(Number(Number(amount?.working_wallet || 0) % 100) || 0)?.toFixed(2),];
 
   const [options] = React.useState({
-    colors: ["#E71D1E", "red", "green"],
+    colors: ["#63BA0E", "red", "green"],
     chart: {
       height: 150,
       type: "radialBar",
@@ -69,7 +65,7 @@ function Wallet() {
           },
         },
         stroke: {
-          colors: ["#E71D1E"],
+          colors: ["#63BA0E"],
         },
       },
       radialBar: {
@@ -168,7 +164,7 @@ function Wallet() {
               >
                 Total balance
               </Typography>
-              <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} sx={{ width: '100%', padding: 2 }}>
+              <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} sx={{ width: '100%', padding: '0px 16px 16px' }}>
                 <div class="visa_info">
                   <img style={{ width: '50px' }} src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" alt="" />
                 </div>

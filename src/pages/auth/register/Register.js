@@ -388,14 +388,14 @@ function Register() {
 
           </FormControl>
         </Box>
-        {/* <Box mt={1}>
+        <Box mt={1}>
           <FormControl fullWidth>
             <FormControlLabel
               required
               control={
                 <Checkbox
                   checked={fk.values.privacy_policy}
-                  sx={{ color: 'white', fontSize: "12px", fontWeight: "500" }}
+                  sx={{ color: 'white', fontSize: "12px", fontWeight: "500", '&>label>div>span': { color: 'white' } }}
                   onClick={() =>
                     fk.setFieldValue(
                       "privacy_policy",
@@ -407,8 +407,8 @@ function Register() {
               label="I have read and agree 【Privacy Agreement】"
             />
           </FormControl>
-        </Box> */}
-        <Stack direction='row' justifyContent={'space-between'} mt={5}>
+        </Box>
+        <Stack direction='row' justifyContent={'space-between'} mt={2}>
           <Box
             component={NavLink}
             to='/'

@@ -55,7 +55,7 @@ function WithdravalHistory() {
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <Typography variant="body1" color="initial">
-            Withdrawal history
+            Withdrawl history
           </Typography>
           <Box></Box>
         </Box>

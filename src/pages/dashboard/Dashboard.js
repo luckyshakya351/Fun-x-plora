@@ -594,7 +594,7 @@ function Dashboard() {
 
                     sx={styles.winningamount}
                   >
-                    ₹ {winnner_data?.[0]?.win}
+                    ₹ {Number(winnner_data?.[0]?.win)?.toFixed(2)}
                   </Typography>
                 </Box>
               </Box>
@@ -638,7 +638,7 @@ function Dashboard() {
 
                     sx={styles.winningamount}
                   >
-                    ₹  {winnner_data?.[1]?.win}
+                    ₹  {Number(winnner_data?.[1]?.win)?.toFixed(2)}
                   </Typography>
                 </Box>
               </Box>
@@ -682,7 +682,7 @@ function Dashboard() {
 
                     sx={styles.winningamount}
                   >
-                   ₹ {winnner_data?.[2]?.win}
+                   ₹ {Number(winnner_data?.[2]?.win)?.toFixed(2)}
                   </Typography>
                 </Box>
               </Box>
@@ -838,7 +838,7 @@ function Dashboard() {
               );
             })}
           </Box> */}
-          {poicy && !lodingBanner && (
+          {/* {poicy && !lodingBanner && (
             <Dialog
               open={poicy}
               TransitionComponent={Transition}
@@ -875,11 +875,11 @@ function Dashboard() {
                 )}
               </DialogContent>
             </Dialog>
-          )}
+          )} */}
         </Container>
       </Box>
       <CustomCircularProgress isLoading={isLoading || isLoading} />
-    </Layout >
+    </Layout>
   );
 }
 
