@@ -112,13 +112,13 @@ function Withdrawl() {
     initialValues: initialValues,
     validationSchema: withdraw_amount_validation_schema,
     onSubmit: () => {
-      if (type) {
-        if (Number(amount?.cricket_wallet || 0) < Number(fk.values.amount || 0))
-          return toast("Your Wallet Amount is low");
-      } else {
-        if (amount?.winning < fk.values.amount)
-          return toast("Your winning amount is low.");
-      }
+      // if (type) {
+      //   if (Number(amount?.cricket_wallet || 0) < Number(fk.values.amount || 0))
+      //     return toast("Your Wallet Amount is low");
+      // } else {
+      //   if (amount?.winning < fk.values.amount)
+      //     return toast("Your winning amount is low.");
+      // }
 
       if (Number(fk.values.amount) < 110 && Number(fk.values.amount) > 50000)
         return toast("Amount shoulb be minimum 110 and maximum 50,000");
@@ -390,7 +390,7 @@ function Withdrawl() {
                 )}
               </FormControl>
               <Box mt={3}>
-              <FormControl fullWidth sx={{ mt: "10px" }}>
+              <FormControl fullWidth sx={{ mt: "10px" }} cl>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
                     Select Wallet <span className="!text-red-600">*</span>
@@ -402,20 +402,20 @@ function Withdrawl() {
                   name="select_wallet"
                   value={fk.values.select_wallet}
                   onChange={fk.handleChange}
-                  className="withdrawalfield"
+                  className="withdrawalfield !text-black"
                   //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                   InputProps={{
                     style: {
                       borderColor: 'red',
                       borderWidth: "1px",
-                      color: lightblue,
+                      color: lightblue ,
                       background: "#fff",
                       borderRadius: "10px",
                     },
                   }}
                 >
                   <MenuItem value="Working Wallet">Working Wallet</MenuItem>
-                   <MenuItem value="Main Wallet">Main Wallet</MenuItem>
+                   <MenuItem  value="Main Wallet">Main Wallet</MenuItem>
                 </TextField>
               </FormControl>
               {fk.touched.select_wallet && fk.errors.select_wallet && (
