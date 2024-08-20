@@ -89,7 +89,7 @@ function WalletRecharge() {
 
   React.useEffect(() => {
     handlePlaySound();
-    
+
   }, []);
 
   React.useEffect(() => {
@@ -124,6 +124,7 @@ function WalletRecharge() {
   React.useEffect(() => {
     walletamountFn();
   }, []);
+
 
   const initialValues = {
     amount: deposit_amount || 0,
@@ -160,7 +161,7 @@ function WalletRecharge() {
     if (!amnt) {
       toast("Please Enter the amount");
       return;
-     
+
     }
     const reqbody = {
       user_id: user_id,
@@ -326,58 +327,62 @@ function WalletRecharge() {
               setDeposit_req_data(null);
               fk.setFieldValue("amount", 500);
             }}
-            >
+          >
             {" "}
             ₹ 500
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() =>
-              {
-                setDeposit_req_data(null);
-                fk.setFieldValue("amount", 1000)}
-              } 
+            onClick={() => {
+              setDeposit_req_data(null);
+              fk.setFieldValue("amount", 1000)
+            }
+            }
           >
             {" "}
             ₹ 1K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() =>{
-              setDeposit_req_data(null); 
-              fk.setFieldValue("amount", 5000)}
-            } 
+            onClick={() => {
+              setDeposit_req_data(null);
+              fk.setFieldValue("amount", 5000)
+            }
+            }
           >
             {" "}
             ₹ 5K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() =>{
-              setDeposit_req_data(null); 
-              fk.setFieldValue("amount", 10000)}
-            } 
-           
+            onClick={() => {
+              setDeposit_req_data(null);
+              fk.setFieldValue("amount", 10000)
+            }
+            }
+
           >
             {" "}
             ₹ 10K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() =>{
-              setDeposit_req_data(null); 
-              fk.setFieldValue("amount", 15000)}
-            } 
+            onClick={() => {
+              setDeposit_req_data(null);
+              fk.setFieldValue("amount", 15000)
+            }
+            }
           >
             {" "}
             ₹ 15K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() =>{
-              setDeposit_req_data(null); 
-              fk.setFieldValue("amount", 20000)}
-            } 
+            onClick={() => {
+              setDeposit_req_data(null);
+              fk.setFieldValue("amount", 20000)
+            }
+            }
           >
             {" "}
             ₹ 20K
@@ -418,7 +423,7 @@ function WalletRecharge() {
           <Button
             sx={style.paytmbtn}
 
-            onClick={() => 
+            onClick={() =>
               formik.setFieldValue("amount", 50)}
           >
             {" "}
@@ -465,7 +470,15 @@ function WalletRecharge() {
     //     show_time={show_time}
     //   />
     // );
-  }
+  } React.useEffect(() => {
+    if (paymentType === "UPI" && fk.values.amount > 1000) {
+      setSelectedGateway("Gateway1");
+    }
+    else {
+      setSelectedGateway("Gateway2");
+    }
+  }, [fk.values.amount, paymentType]);
+
   if (paymentType !== "UPI" && deposit_req_data_usdt && address) {
     return (
       <UsdtQR
@@ -574,8 +587,8 @@ function WalletRecharge() {
               {deposit_amount
                 ? Number(amount?.cricket_wallet || 0)?.toFixed(2)
                 : Number(
-                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                  )?.toFixed(2)}
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -617,7 +630,7 @@ function WalletRecharge() {
             sx={{
               background: zubgtext,
               border: zubgtext,
-            
+
             }}
             className="!cursor-pointer px-8 py-3 !rounded-lg !my-10 "
             onClick={() => setPaymentType("UPI")}
@@ -658,51 +671,38 @@ function WalletRecharge() {
         </Box>
         {paymentType === "UPI" ? (
           <Box sx={{ display: "flex", justifyContent: "start" }}>
-            {/* <FormControl 
-            className="!w-80 lg:!w-96 !mb-10 !mx-6"> 
-              <InputLabel>Select Gateway</InputLabel>
-              <Select
-                value={selectedGateway}
-                label="Select Gateway"
-                onChange={(e) => {
-                  setDeposit_req_data(null);           
-                  setSelectedGateway(e.target.value);
-                }}
-              >
-                <MenuItem value="Gateway1">Gateway 1</MenuItem>
-                <MenuItem value="Gateway2">Gateway 2</MenuItem>
-              </Select>
-            </FormControl> */}
-           <Box
+            <Box
+              className="!text-black"
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                mb: 5,
-                ml:5
+                mb: 0,
+                ml: 5
               }}
             >
-         
-              <RadioGroup
-                row
-                value={selectedGateway}
-                onChange={(e) => {
-                  setDeposit_req_data(null);           
-                  setSelectedGateway(e.target.value);
-                }}
-              >
-                <Typography className="!mt-2 !mr-5  !font-bold">Select :</Typography>
-                <FormControlLabel
-                  value="Gateway1"
-                  control={<Radio />}
-                  label="Flex"
-                />
-                <FormControlLabel
-                  value="Gateway2"
-                  control={<Radio />}
-                  label="PYT-PAY"
-                />
-              </RadioGroup>
+              <FormControl component="fieldset">
+                <RadioGroup
+                  row
+                  value={selectedGateway}
+                  onChange={(e) => {
+                    setDeposit_req_data(null);           
+                    setSelectedGateway(e.target.value);
+                  }}
+                >
+                  <Typography className="!mt-2  !font-bold">Select :</Typography>
+                  <div style={{ display: 'flex', alignItems: 'center' , marginRight: '16px' }}>
+                    <Radio value="Gateway2" />
+                    <Typography> Flex</Typography>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Radio value="Gateway1" />
+                    <Typography>PYT-PAY</Typography>
+                  </div>
+                 
+                </RadioGroup>
+              </FormControl>
+             
             </Box>
 
 
@@ -711,59 +711,57 @@ function WalletRecharge() {
           ""
         )}
         {paymentType === "UPI" ? (
-          selectedGateway && (
-            <Box>
-              <Box
+          <Box>
+            <Box
+              sx={{
+                padding: "10px",
+                width: "95%",
+                margin: "auto",
+                mt: "10px",
+                background: "#ffffff",
+                boxShadow: zubgshadow,
+                borderRadius: "10px",
+                mb: 2,
+              }}
+            >
+              {payment_button}
+              <Stack
+                direction="row"
                 sx={{
-                  padding: "10px",
-                  width: "95%",
-                  margin: "auto",
-                  mt: "20px",
-                  background: "#ffffff",
-                  boxShadow: zubgshadow,
-                  borderRadius: "10px",
-                  mb: 2,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  mt: "10px",
                 }}
               >
-                {payment_button}
-                <Stack
-                  direction="row"
-                  sx={{
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                    mt: "10px",
-                  }}
-                >
-                  <OutlinedInput
-                    fullWidth
-                    placeholder="Enter amount"
-                    className="wallet-textfield"
-                    type="number"
-                    id="amount"
-                    name="amount"
-                    value={fk.values.amount}
-                    onChange={fk.handleChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton edge="end">
-                          <CloseIcon />
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                  {fk.touched.amount && fk.errors.amount && (
-                    <div className="error">{fk.errors.amount}</div>
-                  )}
+                <OutlinedInput
+                  fullWidth
+                  placeholder="Enter amount"
+                  className="wallet-textfield"
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  value={fk.values.amount}
+                  onChange={fk.handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton edge="end">
+                        <CloseIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                {fk.touched.amount && fk.errors.amount && (
+                  <div className="error">{fk.errors.amount}</div>
+                )}
 
-                  <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
-                    Deposit
-                  </Button>
-                </Stack>
-              </Box>
-              {rechargeInstruction}
+                <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
+                  Deposit
+                </Button>
+              </Stack>
             </Box>
-          )
+            {rechargeInstruction}
+          </Box>
         ) : (
           <Box>
             <Box
