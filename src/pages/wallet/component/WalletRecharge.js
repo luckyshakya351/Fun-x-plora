@@ -119,6 +119,7 @@ function WalletRecharge() {
     walletamountFn();
   }, []);
 
+
   const initialValues = {
     amount: deposit_amount || 0,
     all_data: { t_id: "", amount: "", date: "" },
@@ -462,7 +463,15 @@ function WalletRecharge() {
     //     show_time={show_time}
     //   />
     // );
-  }
+  } React.useEffect(() => {
+    if (paymentType === "UPI" && fk.values.amount > 1000) {
+      setSelectedGateway("Gateway1");
+    }
+    else {
+      setSelectedGateway("Gateway2");
+    }
+  }, [fk.values.amount, paymentType]);
+
   if (paymentType !== "UPI" && deposit_req_data_usdt && address) {
     return (
       <UsdtQR
@@ -625,22 +634,8 @@ function WalletRecharge() {
         </Box>
         {paymentType === "UPI" ? (
           <Box sx={{ display: "flex", justifyContent: "start" }}>
-            {/* <FormControl 
-            className="!w-80 lg:!w-96 !mb-10 !mx-6"> 
-              <InputLabel>Select Gateway</InputLabel>
-              <Select
-                value={selectedGateway}
-                label="Select Gateway"
-                onChange={(e) => {
-                  setDeposit_req_data(null);           
-                  setSelectedGateway(e.target.value);
-                }}
-              >
-                <MenuItem value="Gateway1">Gateway 1</MenuItem>
-                <MenuItem value="Gateway2">Gateway 2</MenuItem>
-              </Select>
-            </FormControl> */}
             <Box
+              className="!text-black"
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -683,59 +678,57 @@ function WalletRecharge() {
           ""
         )}
         {paymentType === "UPI" ? (
-          selectedGateway && (
-            <Box>
-              <Box
+          <Box>
+            <Box
+              sx={{
+                padding: "10px",
+                width: "95%",
+                margin: "auto",
+                mt: "10px",
+                background: theme.palette.secondary.light,
+                boxShadow: zubgshadow,
+                borderRadius: "10px",
+                mb: 2,
+              }}
+            >
+              {payment_button}
+              <Stack
+                direction="row"
                 sx={{
-                  padding: "10px",
-                  width: "95%",
-                  margin: "auto",
-                  mt: "20px",
-                  background: theme.palette.primary.main,
-                  boxShadow: zubgshadow,
-                  borderRadius: "10px",
-                  mb: 2,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  mt: "10px",
                 }}
               >
-                {payment_button}
-                <Stack
-                  direction="row"
-                  sx={{
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                    mt: "10px",
-                  }}
-                >
-                  <OutlinedInput
-                    fullWidth
-                    placeholder="Enter amount"
-                    className="wallet-textfield"
-                    type="number"
-                    id="amount"
-                    name="amount"
-                    value={fk.values.amount}
-                    onChange={fk.handleChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton edge="end">
-                          <CloseIcon />
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                  {fk.touched.amount && fk.errors.amount && (
-                    <div className="error">{fk.errors.amount}</div>
-                  )}
+                <OutlinedInput
+                  fullWidth
+                  placeholder="Enter amount"
+                  className="wallet-textfield"
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  value={fk.values.amount}
+                  onChange={fk.handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton edge="end">
+                        <CloseIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                {fk.touched.amount && fk.errors.amount && (
+                  <div className="error">{fk.errors.amount}</div>
+                )}
 
-                  <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
-                    Deposit
-                  </Button>
-                </Stack>
-              </Box>
-              {rechargeInstruction}
+                <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
+                  Deposit
+                </Button>
+              </Stack>
             </Box>
-          )
+            {rechargeInstruction}
+          </Box>
         ) : (
           <Box>
             <Box

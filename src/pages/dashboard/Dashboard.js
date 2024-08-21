@@ -886,7 +886,7 @@ function Dashboard() {
 export default Dashboard;
 
 const styles = {
-  root: { background: "#0D0335", pb: 6 },
+  root: { background: "#0F092A", pb: 6 },
   dashboardTitle: { textAlign: "center", color: "#E71D1E !important", fontSize: "21px", fontWeight: "500", },
   swiperImage: { width: "100%", height: "auto" },
   depositWithdrawContainer: { alignItems: "center", justifyContent: "space-between", mt: 4, width: "95%", marginLeft: "2.5%", },
