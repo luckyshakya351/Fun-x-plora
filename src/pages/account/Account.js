@@ -1,3 +1,4 @@
+import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
@@ -17,34 +18,28 @@ import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
-  zubgback,
   zubgmid,
   zubgtext
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import edit from "../../assets/images/banking.png";
+import edit from "../../assets/quickpay.png";
 import card from "../../assets/images/card-payment.png";
 import casino from "../../assets/images/casino.png";
-import customer from "../../assets/images/customer-service.png";
 import gift from "../../assets/images/gift-box-with-a-bow.png";
 import graph from "../../assets/images/graph (1).png";
-import hand from "../../assets/images/hand.png";
 import balance from "../../assets/images/logotwhite.png";
-import notification1 from "../../assets/images/notification.png";
-import user2 from "../../assets/images/password (1).png";
 import bgms from "../../assets/images/playgame.jpg";
 import dp1 from "../../assets/images/pr.png";
-import setting from "../../assets/images/settings (1).png";
 import trans from "../../assets/images/translate.png";
 import namer from "../../assets/images/vip.png";
-import s from "../../assets/images/wallet (1).png";
-import dpt from "../../assets/images/wallet (3).png";
-import wtd from "../../assets/images/withdraw.png";
+import s from "../../assets/wdhistory.png";
+import dpt from "../../assets/withdrow.png";
+import wtd from "../../assets/rechargeIcon.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
-import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
+import theme from "../../utils/theme";
 
 function Account() {
   const location = useLocation();
@@ -54,7 +49,7 @@ function Account() {
   const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
-  const {isLoading, data:amount} = useQuery(["walletamount"], () => walletamount(), {
+  const { isLoading, data: amount } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
@@ -95,44 +90,45 @@ function Account() {
           </Box>
           <Box sx={style.userInfo}>
             <Stack direction="row" alignItems="center">
-              <Typography variant="" color="initial" sx={{ mr: 2 }}>
+              <Typography variant="" sx={{ mr: 2, color: 'white', }}>
                 {wallet?.full_name}
               </Typography>
               <Box component="img" src={namer} sx={{ width: "50px" }} />
               <Box className="">
                 {wallet?.transaction_status === 0 ?
-                <ArrowDownward className="!text-red-800 !font-extrabold  !text-4xl"/>
-              : <ArrowUpward className="!text-green-800 !font-extrabold  !text-4xl"/>}
+                  <ArrowDownward className="!text-red-800 !font-extrabold  !text-4xl" />
+                  : <ArrowUpward className="!text-green-800 !font-extrabold  !text-4xl" />}
               </Box>
             </Stack>
-         
+
             <Typography variant="body1" color="initia nl" sx={{ mt: 1 }}>
               UID | {wallet?.username || 0}{" "}
               <ContentCopyOutlinedIcon sx={{ fontSize: "15px", ml: 2 }} />
             </Typography>
-            <p className="!ml-2">
+            <p className="!ml-2" style={{ color: 'white', marginTop: '8px' }}>
               Mobile No :  {wallet?.mob_no || 0}{" "}
             </p>
           </Box>
         </Stack>
         <Box sx={style.balanceContainer}>
-          <Stack direction="row" sx={{ alignItems: "center" }}>
+          <Stack direction="row" sx={{ alignItems: "center", }}>
             <Box component="img" src={balance} sx={style.cardImage} />
+
+          </Stack>
+          <Stack direction="row" sx={{ alignItems: "center", mt: "10px", justifyContent: 'space-between' }}>
             <Typography variant="body1" color="initial" sx={style.balanceText}>
               Total Balance
             </Typography>
-          </Stack>
-          <Stack direction="row" sx={{ alignItems: "center", mt: "10px" }}>
             <Typography variant="body1" color="initial" sx={style.totalBalance}>
               ₹
               {(
                 Number(
                   Number(wallet?.winning || 0) +
-                    Number(wallet?.wallet || 0)
+                  Number(wallet?.wallet || 0)
                 ) || 0
-              )?.toFixed(0)}
+              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
             </Typography>
-            <CachedIcon sx={style.cachedIcon} />
+
           </Stack>
           <Stack
             direction="row"
@@ -175,7 +171,7 @@ function Account() {
           </Box>
         </Box>
         <Box sx={style.actionContainer} >
-          <Box
+          {/* <Box
             sx={{
               width: "50%",
               height: "100%",
@@ -205,15 +201,15 @@ function Account() {
                 <p className="!text-[10px]">My betting history</p>
               </Box>
             </Stack>
-          </Box>
+          </Box> */}
           <Box
             sx={{
-              width: "50%",
+              width: "100%%",
               height: "100%",
             }}
           >
             <Stack direction="row" sx={{ alignItems: "center" }}
-            component={NavLink} to={"/account/income-main"}>
+              component={NavLink} to={"/account/income-main"}>
               <Box
                 component="img"
                 src={card}
@@ -247,7 +243,7 @@ function Account() {
               borderRadius: "10px",
             }}
           >
-            <Stack
+            {/* <Stack
               component={NavLink}
               to="/gift"
               direction="row"
@@ -263,22 +259,22 @@ function Account() {
                 <Box
                   component="img"
                   src={gift}
-                  sx={{ width: "30px", height: "30px", marginRight: "10px" }}
+                  sx={{ width: "30px", height: "30px", marginRight: "10px", filter: 'hue-rotate(135deg)' }}
                 ></Box>
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{ color: zubgtext, fontSize: "13px", fontWeight: "600" }}
+                  sx={{ color: 'white', fontSize: "13px", fontWeight: "600" }}
                 >
                   Gifts
                 </Typography>
               </Stack>
               <Box>
                 <KeyboardDoubleArrowRightIcon
-                  sx={{ color: zubgtext, fontSize: "23px", fontWeight: "600" }}
+                  sx={{ color: 'white', fontSize: "23px", fontWeight: "600" }}
                 />
               </Box>
-            </Stack>
+            </Stack> */}
             <Stack
               component={NavLink}
               to="/gamestaticks"
@@ -295,19 +291,19 @@ function Account() {
                 <Box
                   component="img"
                   src={graph}
-                  sx={{ width: "25px", height: "25px", marginRight: "10px" }}
+                  sx={{ width: "25px", height: "25px", marginRight: "10px", filter: 'hue-rotate(135deg)' }}
                 ></Box>
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{ color: zubgtext, fontSize: "13px", fontWeight: "600" }}
+                  sx={{ color: 'white', fontSize: "13px", fontWeight: "600" }}
                 >
                   Game statistics
                 </Typography>
               </Stack>
               <Box>
                 <KeyboardDoubleArrowRightIcon
-                  sx={{ color: zubgtext, fontSize: "23px", fontWeight: "600" }}
+                  sx={{ color: 'white', fontSize: "23px", fontWeight: "600" }}
                 />
               </Box>
             </Stack>
@@ -327,19 +323,19 @@ function Account() {
                 <Box
                   component="img"
                   src={trans}
-                  sx={{ width: "25px", height: "25px", marginRight: "10px" }}
+                  sx={{ width: "25px", height: "25px", marginRight: "10px", filter: 'hue-rotate(135deg)' }}
                 ></Box>
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{ color: zubgtext, fontSize: "13px", fontWeight: "600" }}
+                  sx={{ color: 'white', fontSize: "13px", fontWeight: "600" }}
                 >
                   Language
                 </Typography>
               </Stack>
               <Box>
                 <Typography
-                  sx={{ color: zubgtext, fontSize: "13px", fontWeight: "500" }}
+                  sx={{ color: 'white', fontSize: "13px", fontWeight: "500" }}
                 >
                   English
                 </Typography>
@@ -467,7 +463,7 @@ function Account() {
 export default Account;
 
 const style = {
-  container: { background: zubgback, mb: "64px" },
+  container: { background: theme.palette.secondary.main, mb: "64px" },
   header: {
     alignItems: "center",
     paddingTop: "20px",
@@ -494,15 +490,16 @@ const style = {
       fontWeight: "400",
       color: "white",
       padding: "0px 20px",
-      background: zubgmid,
+      background: zubgtext,
       borderRadius: "20px",
     },
   },
   rankImage: { width: "100px", height: "100px" },
   balanceContainer: {
-    backgroundImage: `url(${bgms})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 100%",
+    // backgroundImage: `url(${bgms})`,
+    // backgroundRepeat: "no-repeat",
+    // backgroundSize: "100% 100%",
+    background: zubgtext,
     borderRadius: "10px",
     padding: "20px",
     width: "95%",
@@ -513,7 +510,6 @@ const style = {
     fontSize: "16px",
     fontWeight: "500",
     color: "white",
-    marginLeft: "10px",
   },
   totalBalance: {
     fontSize: "30px",
@@ -521,7 +517,7 @@ const style = {
     color: "white",
     marginRight: "10px",
   },
-  cachedIcon: { color: "white" },
+  cachedIcon: { color: "white", ml: 1 },
   cardImage: { width: "70px" },
   cardNumber: { fontSize: "14px", color: "white", marginLeft: "10px" },
   actionContainer: {
@@ -533,14 +529,16 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    background: theme.palette.secondary.light,
   },
   actionBox: { width: "20%" },
-  actionImage: { width: "30px", height: "30px", margin: "auto" },
+  actionImage: { width: "30px", height: "30px", margin: "auto", filter: 'hue-rotate(45deg)' },
   actionText: {
-    color: zubgtext,
+    color: 'white',
     textAlign: "center",
     fontSize: "14px",
     fontWeight: "500",
+    mt: '4px',
   },
   actionContainertwo: {
     flexDirection: "column",

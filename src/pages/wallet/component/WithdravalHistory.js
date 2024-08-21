@@ -15,11 +15,12 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
-import deposit from "../../../assets/images/list.png";
+import deposit from "../../../assets/check.png";
 import Layout from "../../../component/Layout/Layout";
 import {
   withdrawlHistoryFunction
 } from "../../../services/apicalling";
+import theme from "../../../utils/theme";
 
 function WithdravalHistory() {
   const navigate = useNavigate();
@@ -32,16 +33,16 @@ function WithdravalHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
- const res = data?.data?.data?.filter((i) => i?.type === "Winzo")
+  const res = data?.data?.data?.filter((i) => i?.type === "Winzo")
 
   return (
     <Layout>
       <Container
         sx={{
-          background: zubgback,
+          background: theme.palette.secondary.main,
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -54,7 +55,7 @@ function WithdravalHistory() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" >
             Withdrawl history
           </Typography>
           <Box></Box>
@@ -64,19 +65,17 @@ function WithdravalHistory() {
           <Box
             sx={{
               padding: "10px",
-              background: zubgwhite,
-              boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
               mt: 3,
             }}
           >
-            <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
+            <Stack direction="row" sx={{ alignItems: "center", mb: 3, }}>
               <Box component="img" src={deposit} width={30}></Box>
               <Typography
                 variant="body1"
-                color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+
+                sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
               >
                 Withdrawal history
               </Typography>
@@ -106,7 +105,7 @@ function WithdravalHistory() {
                     <Box>
                       <Button
                         sx={{
-                          background: zubgmid,
+                          background: theme.palette.primary.light,
                           color: "white",
                           textTransform: "capitalize",
                         }}
@@ -139,10 +138,10 @@ function WithdravalHistory() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       Balance
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       ₹ {i?.amount}
                     </Typography>
                   </Stack>
@@ -155,10 +154,10 @@ function WithdravalHistory() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       {moment(i?.date)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.date)?.format("HH:mm:ss")}
                     </Typography>
@@ -172,10 +171,10 @@ function WithdravalHistory() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       Status
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       {i?.status}{" "}
                     </Typography>
                   </Stack>
@@ -188,10 +187,10 @@ function WithdravalHistory() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       Success Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial" className="!text-green-500">
+                    <Typography variant="body1" className="!text-green-500">
                       {moment(i?.approve_date)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.approve_date)?.format("HH:mm:ss")}
                     </Typography>
@@ -205,7 +204,7 @@ function WithdravalHistory() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" >
                       Trans number
                     </Typography>
                     <Stack
@@ -217,7 +216,7 @@ function WithdravalHistory() {
                         "&>p": { color: zubgtext },
                       }}
                     >
-                      <Typography variant="body1" color="initial">
+                      <Typography variant="body1" >
                         {i?.tran_id}
                       </Typography>
                       <IconButton>

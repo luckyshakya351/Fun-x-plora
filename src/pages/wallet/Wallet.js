@@ -230,20 +230,20 @@ function Wallet() {
                 <Box
                   sx={{
                     textAlign: "center",
-                    "&>p": { fontSize: "13px", fontWeight: 500 },
+                    "&>p": { fontSize: "11px", fontWeight: 500 },
                   }}
                 >
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "600" }}
+                    sx={{ color: "white", fontWeight: "500" }}
                   >
                     {amount?.wallet}
                   </Typography>
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "600" }}
+                    sx={{ color: "white", fontWeight: "500" }}
                   >
                     Bonus Amount
                   </Typography>
@@ -277,20 +277,20 @@ function Wallet() {
                 <Box
                   sx={{
                     textAlign: "center",
-                    "&>p": { fontSize: "13px", fontWeight: 500 },
+                    "&>p": { fontSize: "11px", fontWeight: 500 },
                   }}
                 >
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "600" }}
+                    sx={{ color: "white", fontWeight: "500" }}
                   >
                     {amount?.working_wallet}
                   </Typography>
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "600" }}
+                    sx={{ color: "white", fontWeight: "500", fontSize: '11px' }}
                   >
                     Working Amount
                   </Typography>
@@ -322,20 +322,20 @@ function Wallet() {
                 <Box
                   sx={{
                     textAlign: "center",
-                    "&>p": { fontSize: "13px", fontWeight: 500 },
+                    "&>p": { fontSize: "11px", fontWeight: 500 },
                   }}
                 >
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "600" }}
+                    sx={{ color: "white", fontWeight: "500" }}
                   >
                     {amount?.winning}
                   </Typography>
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "600", fontSize: '11px' }}
+                    sx={{ color: "white", fontWeight: "500", fontSize: '11px' }}
                   >
                     Winning Amount
                   </Typography>
@@ -349,7 +349,7 @@ function Wallet() {
             <Box sx={{
               display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', '&>a': { width: '33%', },
               '&>a>div': { display: 'flex', flexDirection: 'column-reverse', alignItems: 'center', alignItems: 'center', padding: '5px' },
-              'a>div>p': { textAlign: 'center', fontSize: '13px', color: 'white' },
+              'a>div>p': { textAlign: 'center', fontSize: '11px', color: 'white' },
               '&>a>div>img': { width: '30px', filter: 'hue-rotate(45deg)' },
             }}>
               <NavLink to="/wallet/Recharge">
@@ -361,7 +361,7 @@ function Wallet() {
               <NavLink to="/Withdrawal">
                 <div className=" " >
                   <p className=" mt-4">Withdrawal</p>
-                  <Box component="img" src={wallettransfer1} className="!text-blue-600" width={50}></Box>
+                  <Box component="img" src={wallettransfer1} className="!text-blue-500" width={50}></Box>
                 </div>
               </NavLink>
               <NavLink to="/transfer">
@@ -432,7 +432,7 @@ const style = {
     justifyContent: "space-between",
     "& > p": {
       fontSize: "20px",
-      fontWeight: "600",
+      fontWeight: "500",
       textAlign: "center",
       color: "white",
     },
@@ -451,6 +451,6 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    "&>div>p": { color: "white", fontWeight: 600 },
+    "&>div>p": { color: "white", fontWeight: 500 },
   },
 };

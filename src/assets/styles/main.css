@@ -13,7 +13,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #F6F7FE !important;
+  background-color: #0D0335 !important;
 }
 
 a {
@@ -1265,7 +1265,7 @@ img {
 }
 
 .wallet-textfield {
-  background-color: #63BA0E !important;
+  background-color: #160D3D !important;
   border-radius: 10px;
   text-align: center;
 }
@@ -1282,26 +1282,25 @@ img {
 
 .wallet-textfield>fieldset {
   border: none;
-  border: 1px solid white;
+  /* border: 1px solid white; */
 }
 
 
 .withdrawalfield>div>input {
-  background-color: #fff !important;
+  background-color: #ffffff26 !important;
   border-radius: 10px;
-  border: 1px solid red;
 }
 
 .withdrawalfield>div>input.MuiInputBase-input {
-  color: var(--lightblue) !important;
+  color: white !important;
 }
 
 .withdrawalfield>div>input.MuiInputBase-input::placeholder {
-  color: var(--lightblue) !important;
+  color: white !important;
 }
 
 .withdrawalfield>div>input::placeholder {
-  color: var(--lightblue);
+  color: white;
 }
 
 .withdrawalfield>div>fieldset {
@@ -1488,9 +1487,8 @@ img {
 
 .goldborderbtn {
   color: WHITE !important;
-  border: 1px solid var(--lightblue) !important;
-  background: var(--lightblue) !important;
-
+  border: #63BA0E !important;
+  background: #63BA0E !important;
   width: 85% !important;
   margin-left: 7.5% !important;
   margin-top: 20px !important;

@@ -15,12 +15,13 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
-import deposit from "../../../assets/images/list.png";
+import deposit from "../../../assets/check.png";
 import Layout from "../../../component/Layout/Layout";
 import gmbg from "../../../assets/images/gmbg.jpg";
 import {
   depositHistoryFunction
 } from "../../../services/apicalling";
+import theme from "../../../utils/theme";
 
 function DepositeHistory() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function DepositeHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data?.filter((i) => i?.tr15_depo_type === "Winzo")
@@ -66,10 +67,9 @@ refetchOnWindowFocus:false
           <Box
             sx={{
               padding: "10px",
-              background: zubgwhite,
-              borderRadius: "10px",
+              background: theme.palette.secondary.dark,
               mb: 5,
-              mt: 2,
+              pt: 3,
             }}
           >
             <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
@@ -77,7 +77,7 @@ refetchOnWindowFocus:false
               <Typography
                 variant="body1"
                 color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+                sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
               >
                 Deposit history
               </Typography>
@@ -89,9 +89,8 @@ refetchOnWindowFocus:false
                     mb: 2,
                     padding: "15px",
                     borderRadius: "10px",
-                    border: `1px solid #ff00422b`,
                     background: zubgback,
-                    boxShadow: zubgshadow,
+
                   }}
                 >
                   <Stack
@@ -106,7 +105,7 @@ refetchOnWindowFocus:false
                     <Box>
                       <Button
                         sx={{
-                          background: zubgmid,
+                          background: theme.palette.primary.light,
                           color: 'white',
                           textTransform: "capitalize",
                         }}

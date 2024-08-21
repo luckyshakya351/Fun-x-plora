@@ -25,7 +25,6 @@ function Footer() {
         position: "fixed",
         bottom: "0px",
         width: "100%",
-        backgroundColor: 'transparent',
         zIndex: 10000,
       }}
     >
@@ -122,6 +121,7 @@ const style = {
     padding: "15px 10px 3px 10px",
     maxWidth: "400px",
     margin: "auto",
+    // backgroundColor: '#0E0435',
   },
   icon: { fontSize: "25px", "&>path": { color: "white !important" } },
   text: { fontSize: "13px", fontWeight: 500, color: theme.palette.secondary.dark, },

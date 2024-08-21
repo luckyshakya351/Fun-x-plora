@@ -16,6 +16,7 @@ import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from
 import deposit from "../../../assets/images/banking.png";
 import Layout from "../../../component/Layout/Layout";
 import { BankListDetails } from "../../../services/apicalling";
+import theme from "../../../utils/theme";
 function AddedBankDetailList() {
   const navigate = useNavigate();
   const goBack = () => {
@@ -31,7 +32,7 @@ function AddedBankDetailList() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
@@ -42,7 +43,7 @@ refetchOnWindowFocus:false
     <Layout>
       <Container
         sx={{
-          background: zubgback,
+          background: theme.palette.secondary.main,
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -54,7 +55,7 @@ refetchOnWindowFocus:false
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" sx={{ color: 'white' }} >
             Added Bank Details
           </Typography>
           <Box></Box>
@@ -67,19 +68,17 @@ refetchOnWindowFocus:false
               width: "95%",
               margin: "auto",
               mt: 2,
-              background: zubgwhite,
-              boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
             }}
           >
-            <div className="!flex !w-full !justify-between">
-              <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-                <Box component="img" src={deposit} width={30}></Box>
+            <div className="!flex !w-full !justify-between !align-center" style={{ alignItems: 'center', marginBottom: "20px" }}>
+              <Stack direction="row" sx={{ alignItems: "center", }}>
+                <Box component="img" src={deposit} width={30} sx={{ filter: 'hue-rotate(136deg)' }}></Box>
                 <Typography
                   variant="body1"
-                  color="initial"
-                  sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+
+                  sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
                 >
                   Pre Added Banks
                 </Typography>
@@ -88,7 +87,7 @@ refetchOnWindowFocus:false
                 className="!flex !items-center !cursor-pointer"
                 onClick={() => navigate("/add-bank-details")}
               >
-                <span style={{ color: zubgtext }}>Add New</span>
+                <span style={{ color: 'white' }}>Add New</span>
                 <IconButton>
                   <Add sx={{ color: zubgtext }} />
                 </IconButton>
@@ -102,16 +101,15 @@ refetchOnWindowFocus:false
                     mb: 2,
                     padding: "15px",
                     borderRadius: "10px",
-                    border: "1px solid white",
-                    background: zubgback,
+                    background: theme.palette.primary.main,
                   }}
                 >
                   <div className="flex !justify-between">
                     <IconButton>
-                      <AccountBalanceIcon sx={{ color: zubgtext }} />
+                      <AccountBalanceIcon sx={{ color: 'white' }} />
                     </IconButton>
                     <IconButton onClick={() => navigate("/add-bank-details")}>
-                      <Edit sx={{ color: zubgtext }} />
+                      <Edit sx={{ color: 'white' }} />
                     </IconButton>
                   </div>
                   <Divider className="!bg-red-100 !text-red-100 !bg-opacity-20" />
@@ -121,13 +119,13 @@ refetchOnWindowFocus:false
                       marginTop: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       Account Holder Name
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       {i?.holder_name}
                     </Typography>
                   </Stack>
@@ -136,13 +134,13 @@ refetchOnWindowFocus:false
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       Email
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       {i?.email}
                     </Typography>
                   </Stack>
@@ -151,13 +149,13 @@ refetchOnWindowFocus:false
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       Bank Name
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       {i?.bank_name}
                     </Typography>
                   </Stack>
@@ -166,13 +164,13 @@ refetchOnWindowFocus:false
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       Mobile No
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       {i?.mobile}
                     </Typography>
                   </Stack>
@@ -181,13 +179,13 @@ refetchOnWindowFocus:false
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       IFSC Code
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       {i?.ifsc}
                     </Typography>
                   </Stack>
@@ -196,13 +194,13 @@ refetchOnWindowFocus:false
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
+                      "&>p": { color: 'white' },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       Account Number
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography variant="body1" sx={{ color: 'white' }} >
                       {i?.account}
                     </Typography>
                   </Stack>

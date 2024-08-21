@@ -8,7 +8,7 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback,  zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { zubgback, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import { MygetdataFn } from "../../../services/apicalling";
 
@@ -23,7 +23,7 @@ function TeamReports() {
     }
   );
   const result = data?.data?.data;
-  
+
   return (
     <Layout>
       <Container
@@ -48,7 +48,7 @@ function TeamReports() {
         </Box>
         <Box sx={{ paddingTop: 2 }}>
           <Box
-          className="!mb-10"
+            className="!mb-10"
             sx={{
               background: zubgwhite,
               boxShadow: zubgshadow,
@@ -74,7 +74,7 @@ function TeamReports() {
               <span className="!col-span-2">Name</span>
               <span className="!col-span-2">Mobile No</span>
             </div>
-            {result?.filter((j)=>j?.LEVEL === 1)?.map((i, index) => {
+            {result?.filter((j) => j?.LEVEL === 1)?.map((i, index) => {
               return (
                 <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-6   !place-items-center">
                   <span >{index + 1}</span>

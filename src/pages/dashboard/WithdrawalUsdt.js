@@ -26,7 +26,7 @@ import playgame from "../../assets/images/playgame.jpg";
 import balance from "../../assets/images/send.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
 import Layout from "../../component/Layout/Layout";
-import { AddressListDetails,  get_user_data_fn } from "../../services/apicalling";
+import { AddressListDetails, get_user_data_fn } from "../../services/apicalling";
 import { endpoint } from "../../services/urls";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -98,19 +98,22 @@ function WithdrawalUsdt() {
 
     amount: 920,
     withdrawal_add: "Select Address",
-    select_wallet:"",
+    select_wallet: "Select Wallet",
   };
 
   const fk = useFormik({
+    enableReinitialize: true,
     initialValues: initialValues,
     onSubmit: () => {
 
       if (fk.values.withdrawal_add === "Select Address")
-        return toast("Select Addres ");
+        return toast("Select Address ");
       if (Number(fk.values.amount) < 92 * 10 || Number(fk.values.amount) > 500 * 92)
         return toast("Amount shoulb be minimum $10 and maximum $500");
 
-      if (!data) return toast("Data not found");
+      if (fk.values.select_wallet === "Select Wallet")
+        return toast("Select Wallet ");
+
       const reqbody = {
         m_u_id: user_id,
         withdrawal_add: fk.values.withdrawal_add,
@@ -316,18 +319,18 @@ function WithdrawalUsdt() {
                   value={fk.values.withdrawal_add}
                   onChange={fk.handleChange}
                   className="withdrawalfield"
-                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  placeholder="abcd"
                   InputProps={{
                     style: {
                       borderColor: 'red',
                       borderWidth: "1px",
-                      color: lightblue,
+                      color: '#0E0435',
                       background: "#fff",
                       borderRadius: "10px",
                     },
                   }}
                 >
-                  <MenuItem value={"Select Address"}>Select Address</MenuItem>
+                  <MenuItem value={"Select Address"} >Select Address</MenuItem>
                   {result?.map((i, index) => {
                     return (
                       <MenuItem value={i?.usdt_address}>
@@ -338,35 +341,36 @@ function WithdrawalUsdt() {
                 </TextField>
               </FormControl>
               <Box >
-              <FormControl fullWidth sx={{ mt: "10px" }}>
-                <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Select Wallet <span className="!text-red-600">*</span>
-                  </Typography>
-                </Stack>
-                <TextField
-                  select
-                  id="select_wallet"
-                  name="select_wallet"
-                  value={fk.values.select_wallet}
-                  onChange={fk.handleChange}
-                  className="withdrawalfield"
-                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                  InputProps={{
-                    style: {
-                      borderColor: 'red',
-                      borderWidth: "1px",
-                      color: lightblue,
-                      background: "#fff",
-                      borderRadius: "10px",
-                    },
-                  }}
-                >
-                  <MenuItem value="Working Wallet">Working Wallet</MenuItem>
-                   <MenuItem value="Main Wallet">Main Wallet</MenuItem>
-                </TextField>
-              </FormControl>
-            
+                <FormControl fullWidth sx={{ mt: "10px" }}>
+                  <Stack direction="row" className="loginlabel">
+                    <Typography variant="h3" sx={{ color: zubgtext }}>
+                      Select Wallet <span className="!text-red-600">*</span>
+                    </Typography>
+                  </Stack>
+                  <TextField
+                    select
+                    id="select_wallet"
+                    name="select_wallet"
+                    value={fk.values.select_wallet}
+                    onChange={fk.handleChange}
+                    className="withdrawalfield"
+                    //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                    InputProps={{
+                      style: {
+                        borderColor: 'red',
+                        borderWidth: "1px",
+                        color: 'black',
+                        background: "#fff",
+                        borderRadius: "10px",
+                      },
+                    }}
+                  >
+                    <MenuItem value={"Select Wallet"} >Select Wallet</MenuItem>
+                    <MenuItem value="Working Wallet">Working Wallet</MenuItem>
+                    <MenuItem value="Main Wallet">Main Wallet</MenuItem>
+                  </TextField>
+                </FormControl>
+
               </Box>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
@@ -378,6 +382,8 @@ function WithdrawalUsdt() {
                   id="amount"
                   name="amount"
                   type="number"
+
+
                   value={fk.values.amount}
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
@@ -547,7 +553,7 @@ function WithdrawalUsdt() {
           <div className="!p-5 !max-w-[300px]">
             <p className="!font-bold text-center flex-col">
               <span className="!text-lg">
-              {msg}
+                {msg}
               </span>
               <p className="!text-green-500">Thank You!</p>
               <Button
@@ -561,7 +567,7 @@ function WithdrawalUsdt() {
           </div>
         </Dialog>
       </Container>
-    </Layout>
+    </Layout >
   );
 }
 

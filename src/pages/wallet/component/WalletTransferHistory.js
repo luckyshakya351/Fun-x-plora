@@ -15,11 +15,12 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
-import deposit from "../../../assets/images/list.png";
+import deposit from "../../../assets/check.png";
 import Layout from "../../../component/Layout/Layout";
 import {
-    TransferwithdrawlHistoryFunction,
+  TransferwithdrawlHistoryFunction,
 } from "../../../services/apicalling";
+import theme from "../../../utils/theme";
 
 function WalletTransferHistory() {
   const navigate = useNavigate();
@@ -32,16 +33,16 @@ function WalletTransferHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
- const res = data?.data?.data || []
+  const res = data?.data?.data || []
 
   return (
     <Layout>
       <Container
         sx={{
-          background: zubgback,
+          background: theme.palette.secondary.main,
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -64,8 +65,6 @@ function WalletTransferHistory() {
           <Box
             sx={{
               padding: "10px",
-              background: zubgwhite,
-              boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
               mt: 3,
@@ -76,7 +75,7 @@ function WalletTransferHistory() {
               <Typography
                 variant="body1"
                 color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+                sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
               >
                 Wallet Transfer history
               </Typography>
@@ -104,18 +103,17 @@ function WalletTransferHistory() {
                     }}
                   >
                     <Box>
-                  
-                    </Box>
-                    <Box>
                       <Button
-                        sx={{ color: "green", textTransform: "capitalize" }}
+                        sx={{ color: '#63BA0E', textTransform: "capitalize" }}
                         className=
-                          "!text-green-500"
-                         
-                         
+                        "!text-green-500"
+
+
                       >
                         Success
                       </Button>
+                    </Box>
+                    <Box>
                       <IconButton>
                         <ArrowForwardIcon sx={{ color: zubgtext }} />
                       </IconButton>
@@ -168,10 +166,10 @@ function WalletTransferHistory() {
                       Status
                     </Typography>
                     <Typography variant="body1" color="initial">
-                     Success
+                      Success
                     </Typography>
                   </Stack>
-                
+
                   <Stack
                     direction="row"
                     sx={{

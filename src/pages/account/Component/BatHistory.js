@@ -50,7 +50,7 @@ function BatHistorys() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -101,10 +101,10 @@ refetchOnWindowFocus:false
           <Box component={NavLink} onClick={() => goBack()}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" sx={{ color: 'white' }}>
             Bet history
           </Typography>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" sx={{ color: 'white' }}>
             {" "}
           </Typography>
         </Box>
@@ -152,7 +152,7 @@ refetchOnWindowFocus:false
                 onClick={() => setSelectedGame(i.item)}
               >
                 <Box component="img" src={i.img} sx={{ height: "55px" }}></Box>
-                <p className="!text-center " sx={{ color: zubgtext }}>{i.item}</p>
+                <p className="!text-center " sx={{ color: 'white' }}>{i.item}</p>
               </Box>
             );
           })}
@@ -205,7 +205,7 @@ refetchOnWindowFocus:false
             sx={{ background: zubgtext }}
           >
             <Stack direction="row" className="onegotextbox">
-              <Typography variant="body1" color="initial">
+              <Typography variant="body1" sx={{ color: 'white' }}>
                 {selectedGameOption === "Win Go 1 Min"
                   ? " My One GO Record"
                   : selectedGameOption === "Win Go 3 Min"

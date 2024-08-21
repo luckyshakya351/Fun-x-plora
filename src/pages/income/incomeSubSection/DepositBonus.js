@@ -22,6 +22,7 @@ import {
   depositBonusFn,
 } from "../../../services/apicalling";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
+import theme from "../../../utils/theme";
 
 function DepositBonus() {
   const [visibleRows, setVisibleRows] = React.useState([]);
@@ -31,14 +32,14 @@ function DepositBonus() {
   const goBack = () => {
     navigate(-1);
   };
- 
+
   const { isLoading, data } = useQuery(
     ["deposit_bonus"],
     () => depositBonusFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data;
@@ -88,66 +89,67 @@ function DepositBonus() {
 
   return (
     <Layout>
-    <Container
-      sx={{
-        background: zubgback,
-        width: "100%",
-        height: "100vh",
-        overflow: "auto",
-        mb: 5,
-      }}
-    >
-      <CustomCircularProgress isLoading={isLoading} />
-      <Box sx={style.header}>
-        <Box component={NavLink} onClick={goBack}>
-          <KeyboardArrowLeftOutlinedIcon />
+      <Container
+        sx={{
+          background: zubgback,
+          width: "100%",
+          height: "100vh",
+          overflow: "auto",
+          mb: 5,
+        }}
+      >
+        <CustomCircularProgress isLoading={isLoading} />
+        <Box sx={style.header}>
+          <Box component={NavLink} onClick={goBack}>
+            <KeyboardArrowLeftOutlinedIcon />
+          </Box>
+          <p>Deposit Self Income</p>
+          <Box></Box>
         </Box>
-        <p>Deposit Self Income</p>
-      </Box>
-      <div className="!overflow-x-auto">
-        <Table  sx={{background: zubgwhite, boxShadow: zubgshadow }}>
-          <TableHead>
-            <TableRow >
-            <TableCell  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
-             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
-              <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
-              <TableCell  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {visibleRows?.map((i , index ) => (
-              <TableRow key={i?.id}>
-                <TableCell  className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index+1}</TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">
-                  {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
-                </TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+        <div className="!overflow-x-auto">
+          <Table sx={{ background: theme.palette.secondary.light, boxShadow: zubgshadow, color: 'white' }}>
+            <TableHead>
+              <TableRow >
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
+                <TableCell sx={{ color: 'white' }} className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-       <Box className="paginationTable !mb-10">
-        <TablePagination
-          sx={{
-            background: zubgtext,
-            color: "white",
-            borderRadius: "10px",
-            marginTop: "10px",
-          }}
-          rowsPerPageOptions={[10,15 ,25,35 ]}
-          component="div"
-          count={res?.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage="Rows"
-        />
-      </Box>
+            </TableHead>
+            <TableBody>
+              {visibleRows?.map((i, index) => (
+                <TableRow key={i?.id}>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index + 1}</TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                    {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <Box className="paginationTable !mb-10">
+            <TablePagination
+              sx={{
+                background: zubgtext,
+                color: "white",
+                borderRadius: "10px",
+                marginTop: "10px",
+              }}
+              rowsPerPageOptions={[10, 15, 25, 35]}
+              component="div"
+              count={res?.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              labelRowsPerPage="Rows"
+            />
+          </Box>
         </div>
-    </Container>
-  </Layout>
+      </Container>
+    </Layout>
   );
 }
 

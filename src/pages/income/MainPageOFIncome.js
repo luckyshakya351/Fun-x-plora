@@ -10,6 +10,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
+import theme from "../../utils/theme";
 
 function MainPageOFIncome() {
   const data_array = [
@@ -61,30 +62,30 @@ function MainPageOFIncome() {
             width: "100%",
             borderRadius: "10px",
             // background: zubgtext,
-          
+
           }}
         >
-         <Typography className="!bg-red-600 p-3 "
-          variant="body1" color="initial" sx={{ color: "white", fontSize: "20px", fontWeight: "600" }}>
+          <Typography
+            variant="body1" color="initial" sx={{ color: "white", fontSize: "20px", fontWeight: "600", background: zubgtext, textAlign: 'center', padding: '10px' }}>
             Income
           </Typography>
-        
 
-          <TableContainer  className="!bg-blue-400">
+
+          <TableContainer sx={{ background: theme.palette.secondary.light }}>
             <Table >
               <TableHead>
                 <TableRow>
-                <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>S.No</TableCell>
+                  <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>S.No</TableCell>
                   <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>Icon</TableCell>
-                  <TableCell className="!border !text-xs !border-r !border-white  !text-center"  sx={{ color: "white", fontWeight: "600" }}>Name</TableCell>
+                  <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>Name</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data_array.map((item ,index) => (
+                {data_array.map((item, index) => (
                   <TableRow key={item.name}>
                     <TableCell className="!border !text-xs !border-r !border-white  !text-center">
                       <NavLink style={{ textDecoration: 'none', color: 'white' }}>
-                        {index+1}
+                        {index + 1}
                       </NavLink>
                     </TableCell>
                     <TableCell className="!border !text-xs !border-r !border-white  !text-center">
@@ -97,7 +98,7 @@ function MainPageOFIncome() {
                         {item.logo}
                       </NavLink>
                     </TableCell>
-                  
+
                   </TableRow>
                 ))}
               </TableBody>

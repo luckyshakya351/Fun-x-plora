@@ -8,6 +8,7 @@ const theme = createTheme({
         root: {
           maxWidth: '400px !important',
           padding: '0px !important',
+          background: '#0E0435',
         }
       },
     }

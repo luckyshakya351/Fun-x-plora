@@ -18,6 +18,7 @@ import { endpoint } from '../../../services/urls';
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import moment from 'moment';
 import dayjs from 'dayjs';
+import theme from '../../../utils/theme';
 
 function SubordinateIncome() {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -41,7 +42,7 @@ function SubordinateIncome() {
         setSelectedDate(selected);
 
         // setSelectedDate(dayjs(date)?.format("YYYY-MM-DD"));
-        
+
     };
 
     const login_data =
@@ -79,7 +80,7 @@ function SubordinateIncome() {
 
     return (
         <Layout>
-            <Container sx={{ background: zubgback, width: '100%' }}>
+            <Container sx={{ background: theme.palette.secondary.light, width: '100%', padding: '10px', }}>
                 <CustomCircularProgress isLoading={loding} />
                 <Box sx={style.header}>
                     <Box component={NavLink} to='/promotion/'>
@@ -88,24 +89,24 @@ function SubordinateIncome() {
                     <Typography variant="body1" color="initial">Subordinates Income</Typography>
                     <Typography variant="body1" color="initial"> </Typography>
                 </Box>
-                <Stack direction="row" justifyContent={"space-between"} className='!mt-5 !mx-3'>
-                    <Box className="!border !w-1/2 !p-2 mr-4 !flex !justify-between "
+                <Stack direction="row" justifyContent={"space-between"} className='!mt-5 !mx-3 ' sx={{ pb: 2 }}>
+                    <Box className="!border !w-1/2 !p-2 mr-4 !flex !justify-between " sx={{ color: 'white' }}
                         onClick={toggleDrawer} >
                         Level {selectedLevel}   <ArrowDropDown />
                     </Box>
-                    <Box className="!border !w-1/2 !p-2 !flex !justify-between"
+                    <Box className="!border !w-1/2 !p-2 !flex !justify-between" sx={{ color: 'white' }}
                         onClick={toggleDrawer1}>
                         {selectedDate} <ArrowDropDown />
                     </Box>
                 </Stack>
                 <Box sx={style.subcordinateBox} className="!mb-20">
-                   
+
                     <Box sx={style.boxStyles}>
                         <Box sx={style.innerBoxStyles}>
                             <Box sx={style.subcordinatelist}>
                                 <Typography
                                     variant="body1"
-                                     className="!text-black"
+                                    sx={{ color: 'white' }}
 
                                 >
                                     {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.deposit) > 0).length || 0}
@@ -118,8 +119,8 @@ function SubordinateIncome() {
                             </Box>
                             <Box sx={style.subcordinatelist}>
                                 <Typography
-                                    variant="body1" 
-                                    className="!text-black">
+                                    variant="body1"
+                                    sx={{ color: 'white' }}>
                                     {data?.filter(level => level.lev_id === Number(selectedLevel) && Number(level.betting) > 0).length || 0}
                                 </Typography>
                                 <Typography
@@ -132,8 +133,8 @@ function SubordinateIncome() {
 
                         <Box sx={style.innerBoxStylestwo}>
                             <Box sx={style.subcordinatelist}>
-                                <Typography variant="body1" 
-                                 className="!text-black">
+                                <Typography variant="body1"
+                                    sx={{ color: 'white' }}>
                                     {data?.filter((j) => j?.lev_id === Number(selectedLevel))?.reduce((a, b) => a + Number(b?.deposit || 0), 0) || 0}
 
                                 </Typography>
@@ -144,7 +145,7 @@ function SubordinateIncome() {
                             </Box>
                             <Box sx={style.subcordinatelist}>
                                 <Typography variant="body1"
-                                 className="!text-black" >
+                                    sx={{ color: 'white' }} >
                                     {data?.filter((j) => j?.lev_id === Number(selectedLevel))?.reduce((a, b) => a + Number(b?.betting || 0), 0) || 0}
                                 </Typography>
                                 <Typography variant="body1" >
@@ -157,31 +158,31 @@ function SubordinateIncome() {
                     </Box>
                     {data?.map((item) => {
                         return (<>
-                            <Typography className='!border-b !border-gray-400 !my-5 !text-xl'>UID : {item?.userid}
+                            <Typography sx={{ color: 'white' }} className='!border-b !border-gray-400 !my-5 !text-xl'>UID : {item?.userid}
                             </Typography>
                             <Box className="!mx-1 !text-gray-500">
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography>Level</Typography>
-                                    <Typography>{item?.lev_id || 0}</Typography>
+                                    <Typography sx={{ color: 'white' }}>Level</Typography>
+                                    <Typography sx={{ color: 'white' }}>{item?.lev_id || 0}</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography>Deposit Amount</Typography>
-                                    <Typography>{item?.deposit || 0}</Typography>
+                                    <Typography sx={{ color: 'white' }}>Deposit Amount</Typography>
+                                    <Typography sx={{ color: 'white' }}>{item?.deposit || 0}</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography>Bet Amount </Typography>
-                                    <Typography>{item?.betting || 0}</Typography>
+                                    <Typography sx={{ color: 'white' }}>Bet Amount </Typography>
+                                    <Typography sx={{ color: 'white' }}>{item?.betting || 0}</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography>Commission </Typography>
-                                    <Typography>{item?.commission || 0}</Typography>
+                                    <Typography sx={{ color: 'white' }}>Commission </Typography>
+                                    <Typography sx={{ color: 'white' }}>{item?.commission || 0}</Typography>
                                 </Stack>
 
                             </Box>
                         </>)
                     })}
- 
-               </Box>
+
+                </Box>
                 <div className={`drawer ${isOpen ? 'open' : ''} !pb-10`}>
                     <div className='!flex justify-between m-5'>
                         <p onClick={toggleDrawer} className='!cursor-pointer'>Cancel</p>
@@ -223,7 +224,7 @@ export default SubordinateIncome
 const style = {
     header: {
         padding: '15px 8px',
-        background: zubgmid,
+        background: theme.palette.primary.main,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -290,12 +291,10 @@ const style = {
         "&>p": { color: "white", fontSize: "14px", fontWeight: "500" },
     },
     boxStyles: {
-        backgroundImage: `url(${bgms1})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100% 100%',
+        background: theme.palette.secondary.light,
         padding: "30px 15px",
         display: "flex",
-        borderRadius: " 0px 0px 10px 10px",
+        borderRadius: "  10px",
     },
     innerBoxStyles: {
         width: "50%",
@@ -307,13 +306,14 @@ const style = {
     subcordinatelist: {
         textAlign: "center",
         "&>p:nth-child(1)": { color: lightblue, fontSize: "13px" },
-        "&>p:nth-child(2)": { color: 'red', fontSize: "13px" },
+        "&>p:nth-child(2)": { color: theme.palette.primary.main, fontSize: "13px" },
         mb: 1,
     },
     subcordinateBox: {
         width: "100%",
         padding: "20px 10px",
         background: zubgback,
+
     },
     invitebutton: {
         width: "100%",

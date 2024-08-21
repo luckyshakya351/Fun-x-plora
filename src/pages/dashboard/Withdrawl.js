@@ -32,7 +32,7 @@ import {
   zubgtext,
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import payment from "../../assets/images/deposit (2).png";
+import payment from "../../assets/images/wallet.png";
 import bgms from "../../assets/images/bgs.jpg";
 import playgame from "../../assets/images/playgame.jpg";
 import balance from "../../assets/images/send.png";
@@ -45,6 +45,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import theme from "../../utils/theme";
 function Withdrawl() {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -138,7 +139,7 @@ function Withdrawl() {
       const fd = new FormData();
 
       fd.append("type", type ? 2 : 1);
-      fd.append("Bankid", data?.id );
+      fd.append("Bankid", data?.id);
       fd.append("TransactionID", `${Date.now()}${user_id}`);
       fd.append("Description", fk.values.description);
       fd.append("Amount", fk.values.amount);
@@ -203,7 +204,7 @@ function Withdrawl() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: zubgback,
+          background: theme.palette.secondary.light,
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -215,7 +216,7 @@ function Withdrawl() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" >
             Withdrawal
           </Typography>
           <Box component={NavLink} to="/withdravalHistory">
@@ -230,22 +231,9 @@ function Withdrawl() {
             margin: "auto",
             position: "relative",
             mt: 3,
+            background: theme.palette.secondary.dark,
           }}
         >
-          <Box
-            component="img"
-            src={playgame}
-            sx={{
-              opacity: "0.9",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
-          ></Box>
           <Stack
             direction="row"
             sx={{
@@ -257,7 +245,7 @@ function Withdrawl() {
             <Box component="img" src={balance} width={50}></Box>
             <Typography
               variant="body1"
-              color="initial"
+
               sx={{
                 fontSize: "16px ",
                 fontWeight: 500,
@@ -272,7 +260,7 @@ function Withdrawl() {
           <Stack direction="row" sx={{ alignItems: "center", mt: "10px" }}>
             <Typography
               variant="body1"
-              color="initial"
+
               sx={{
                 fontSize: "30px ",
                 fontWeight: "600",
@@ -286,8 +274,8 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                  )?.toFixed(2)}
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -318,7 +306,7 @@ function Withdrawl() {
             ></Box>
             <Typography
               variant="body1"
-              color="initial"
+
               sx={{
                 fontSize: "14px ",
                 color: "white",
@@ -369,18 +357,18 @@ function Withdrawl() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: "#fff",
+              background: theme.palette.secondary.main,
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
             }}
           >
-            <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
+            <Stack direction="row" sx={{ alignItems: "end", mb: "20px" }}>
               <Box component="img" src={payment} width={30}></Box>
               <Typography
                 variant="body1"
-                color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+
+                sx={{ fontSize: "15px ", color: 'white', ml: "10px", pt: 3, }}
               >
                 Withdrawal amount
               </Typography>
@@ -388,8 +376,8 @@ function Withdrawl() {
             <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
-                    Enter amount <span className="!text-red-600">*</span>
+                  <Typography variant="h3" sx={{ color: 'white' }}>
+                    Enter amount <span className="!text-white-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
@@ -409,8 +397,8 @@ function Withdrawl() {
               <Box mt={3}>
                 <FormControl fullWidth sx={{ mt: "10px" }}>
                   <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: zubgtext }}>
-                      Select Wallet <span className="!text-red-600">*</span>
+                    <Typography variant="h3" sx={{ color: 'white' }}>
+                      Select Wallet <span className="!text-white-600">*</span>
                     </Typography>
                   </Stack>
                   <TextField
@@ -419,15 +407,16 @@ function Withdrawl() {
                     name="select_wallet"
                     value={fk.values.select_wallet}
                     onChange={fk.handleChange}
-                    className="withdrawalfield !text-green-600"
+                    className="withdrawalfield "
+                    sx={{ background: '#ffffff29', border: 'none', borderRadius: '10px' }}
                     //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     InputProps={{
                       style: {
-                        borderColor: "red",
                         borderWidth: "1px",
-                        color: "green",
-                        background: "#fff",
+                        color: "white",
+                        background: "red !important",
                         borderRadius: "10px",
+                        border: 'none',
                       },
                     }}
                   >
@@ -443,19 +432,19 @@ function Withdrawl() {
               <Box mt={3}>
                 <FormControl fullWidth>
                   <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: zubgtext }}>
-                      Password <span className="!text-red-600">*</span>
+                    <Typography variant="h3" sx={{ color: 'white' }}>
+                      Password <span className="!text-white-600">*</span>
                     </Typography>
                   </Stack>
                   <OutlinedInput
-                    className="!border !border-red-500 !rounded-xl !text-blue-400"
+                    className=""
                     id="password"
                     name="password"
                     value={fk.values.password}
                     onChange={fk.handleChange}
                     placeholder="Enter password"
                     onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                    sx={{ width: "100%" }}
+                    sx={{ width: "100%", background: '#ffffff29', color: 'white', borderRadius: '10px' }}
                     type={showoldPassword ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
@@ -468,14 +457,14 @@ function Withdrawl() {
                           {showoldPassword ? (
                             <VisibilityOff
                               sx={{
-                                color: zubgtext,
+                                color: 'white',
                                 fontSize: "25px !important",
                               }}
                             />
                           ) : (
                             <Visibility
                               sx={{
-                                color: zubgtext,
+                                color: 'white',
                                 fontSize: "25px !important",
                               }}
                             />
@@ -508,7 +497,7 @@ function Withdrawl() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: "#fff",
+              background: theme.palette.secondary.main,
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 10,
@@ -520,21 +509,22 @@ function Withdrawl() {
               mt={1}
               className="!text-bold "
             >
-              <Typography variant="body1" color="initial" className="!text-xs">
+              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
                 * Need to bet{" "}
               </Typography>
               <Typography
-                className="!text-orange-500 !text-xs"
+                className=" !text-xs"
                 variant="body1"
-                color="initial"
+
                 sx={{
+                  color: theme.palette.primary.main,
                   mx: 0.5,
                 }}
               >
                 {" "}
                 ₹ {amount?.need_amount_for_withdrawl}
               </Typography>
-              <Typography variant="body1" color="initial" className="!text-xs">
+              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
                 {" "}
                 to be able to withdraw .{" "}
               </Typography>
@@ -546,15 +536,16 @@ function Withdrawl() {
               mt={1}
               className="!text-bold !text-xl"
             >
-              <Typography variant="body1" color="initial" className="!text-xs">
+              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
                 * Withdraw time{" "}
               </Typography>
               <Typography
-                className="!text-orange-500 !text-xs"
+                className=" !text-xs"
                 variant="body1"
-                color="initial"
+
                 sx={{
                   mx: 0.5,
+                  color: theme.palette.primary.main,
                 }}
               >
                 00:00-23:50.{" "}
@@ -566,28 +557,29 @@ function Withdrawl() {
               mt={1}
               className="!text-bold !text-xl"
             >
-              <Typography variant="body1" color="initial" className="!text-xs">
+              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
                 * Withdraw Amount
               </Typography>
               <Typography
-                className="!text-orange-500 !text-xs"
+                className=" !text-xs"
                 variant="body1"
-                color="initial"
+
                 sx={{
                   mx: 0.5,
+                  color: theme.palette.primary.main,
                 }}
               >
                 ₹ 110.00 - ₹ 50000.00 .{" "}
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-              <Typography variant="body1" color="initial" className="!text-xs">
+              <Typography variant="body1" className="!text-xs" sx={{ color: 'white' }}>
                 * Please confirm your beneficial account information before
                 withdrawing.
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-              <Typography variant="body1" color="initial" className="!text-xs">
+              <Typography variant="body1" className="!text-xs" sx={{ color: 'white' }}>
                 * If your information is incorrect, our company will not be
                 liable for the amount of loss .{" "}
               </Typography>
@@ -598,7 +590,7 @@ function Withdrawl() {
               mt={1}
               className="!text-bold "
             >
-              <Typography variant="body1" color="initial" className="!text-xs">
+              <Typography variant="body1" className="!text-xs" sx={{ color: 'white' }}>
                 * If your beneficial information is incorrect, please contact
                 customer service.
               </Typography>
@@ -633,7 +625,7 @@ export default Withdrawl;
 const style = {
   header: {
     padding: "15px 8px",
-    background: zubgtext,
+    background: theme.palette.primary.main,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -704,9 +696,8 @@ const style = {
     color: "white !important",
     width: "100%",
     mt: "20px",
-    border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
+    "&:hover": { background: theme.palette.secondary.light, border: "1px solid transparent" },
   },
   rechargeinstext: {
     mb: "10px",

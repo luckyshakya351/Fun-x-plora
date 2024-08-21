@@ -20,18 +20,18 @@ export const darktext = '#8f5206 !important'
 export const bgcolorlight = '#3F3F3F !important'
 
 
-export const zubgback = '#F6F7FE';
+export const zubgback = '#160D3D';
 // export const zubgtext = '#F02257';
 export const zubgtext = '#63BA0E';
 export const zubggray = '#6CB4EE';
 
 export const zubgshadow = ' rgba(149, 157, 165, 0.2) 0px 8px 24px';
-export const zubgwhite = '#ff00001f';
+export const zubgwhite = '#443D63';
 export const zubgback_cricket = '#3883BF';
 export const zubgbackgrad = '#ff4b00c4';
 // export const zubgbackgrad = 'linear-gradient(0deg, rgb(255 0 0) 0%, rgb(129, 0, 0) 100%)';
 
-export const zubgmid = '#FE0000';
+export const zubgmid = '#0D0335';
 export const iconcoloryellow = '#FBB13B';
 
 export const iconcolorpink = '#EE1285';

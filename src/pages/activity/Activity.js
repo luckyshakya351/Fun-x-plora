@@ -79,7 +79,7 @@ function Activity() {
                 }
                 key={index}
                 className="bgcardboxda   !cursor-pointer hover:!scale-95 hover:!duration-1000"
-                sx={{ background: zubgmid }}
+                sx={{ background: zubgtext }}
               >
                 <Box sx={{ width: "100%", height: "160px" }}>
                   <Box

@@ -12,11 +12,12 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { endpoint } from '../../../services/urls';
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { lightblue, zubggray, zubgtext , zubgmid} from "../../../Shared/color";
+import { lightblue, zubggray, zubgtext, zubgmid } from "../../../Shared/color";
 import bgms from "../../../assets/images/bgs.jpg";
 import bgms1 from "../../../assets/images/bgs1.jpg";
 import moment from 'moment';
 import dayjs from 'dayjs';
+import theme from '../../../utils/theme';
 
 function Commission() {
     const [isOpen1, setIsOpen1] = React.useState(false);
@@ -40,7 +41,7 @@ function Commission() {
 
     const user_id = login_data && JSON.parse(login_data)?.UserID;
 
-   
+
 
     const fetchData = async () => {
         setLoading(true);
@@ -67,44 +68,44 @@ function Commission() {
 
     return (
         <Layout>
-            <Container sx={{ background: zubgback, width: '100%' }}>
+            <Container sx={{ background: theme.palette.secondary.main, width: '100%', minHeight: '100vh', }}>
                 <CustomCircularProgress isLoading={loading} />
-                 <Box sx={style.header}>
-                 <Box component={NavLink} to='/promotion/'>
-                     <KeyboardArrowLeftOutlinedIcon />
-                 </Box>
-                 <Typography variant="body1" color="initial">Commission Income</Typography>
-                 <Typography variant="body1" color="initial"> </Typography>
-             </Box>
+                <Box sx={style.header}>
+                    <Box component={NavLink} to='/promotion/'>
+                        <KeyboardArrowLeftOutlinedIcon />
+                    </Box>
+                    <Typography variant="body1" color="initial">Commission Income</Typography>
+                    <Typography variant="body1" color="initial"> </Typography>
+                </Box>
                 <Stack direction="row" justifyContent={"space-between"} className='!mt-5 !mx-3'>
                     <Box className="!border text-gray-500  !w-1/2 !p-2 !flex !justify-between" onClick={toggleDrawer1}>
                         {selectedDate} <ArrowDropDown />
                     </Box>
                 </Stack>
-                {data?.map((item)=>{
-                    return <div className = "flex flex-col justify-center gap-1 mt-10 !mb-20 m-2" > 
+                {data?.map((item) => {
+                    return <div className="flex flex-col justify-center gap-1 mt-10 !mb-20 m-2" >
 
-                 <div className ="flex flex-col  text-gray-500 justify-center shadow-xl rounded-lg  bg-gray-100  p-3">
-                   <p className='text-gray-500'>Settlement successfully </p>
-                   <p className='text-gray-500'>{item?.satelment_date || 0}</p>
-                   The commission has been automatically credited to your balance
-                </div>
-                    <div className ="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
-                   <p className='text-gray-400'>Number of bettors</p>
-                   <p className='font-bold'>{item?.num_of_betters || 0}</p>
-                </div>
-                <div className ="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
-                <p className='text-gray-400'>Bet Amount</p>
-                <p className='font-bold'>{item?.better_amount || 0}</p>
-                </div>
-                <div className ="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
-                <p className='text-gray-400'>Commission Payout</p>
-                <p className='font-bold'>{item?.total_commission_user || 0}</p>
-                </div>
-                <div className ="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
-                <p className='text-gray-400'>Date</p>
-                <p className='font-bold'>{item?.clossing_date || 0}</p>
-                </div>
+                        <div className="flex flex-col  text-gray-500 justify-center shadow-xl rounded-lg  bg-gray-100  p-3">
+                            <p className='text-gray-500'>Settlement successfully </p>
+                            <p className='text-gray-500'>{item?.satelment_date || 0}</p>
+                            The commission has been automatically credited to your balance
+                        </div>
+                        <div className="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
+                            <p className='text-gray-400'>Number of bettors</p>
+                            <p className='font-bold'>{item?.num_of_betters || 0}</p>
+                        </div>
+                        <div className="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
+                            <p className='text-gray-400'>Bet Amount</p>
+                            <p className='font-bold'>{item?.better_amount || 0}</p>
+                        </div>
+                        <div className="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
+                            <p className='text-gray-400'>Commission Payout</p>
+                            <p className='font-bold'>{item?.total_commission_user || 0}</p>
+                        </div>
+                        <div className="flex justify-between shadow-xl  rounded-lg  bg-gray-100  p-3">
+                            <p className='text-gray-400'>Date</p>
+                            <p className='font-bold'>{item?.clossing_date || 0}</p>
+                        </div>
                     </div>
                 })}
 
@@ -123,12 +124,12 @@ function Commission() {
     )
 }
 
-export default Commission 
+export default Commission
 
 const style = {
     header: {
         padding: '15px 8px',
-        background: zubgmid,
+        background: zubgtext,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',

@@ -18,7 +18,7 @@ function DailySalaryBonus() {
   const goBack = () => {
     navigate(-1);
   };
-  
+
   const [visibleRows, setVisibleRows] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -29,7 +29,7 @@ function DailySalaryBonus() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
   const res = data?.data?.data;
@@ -76,67 +76,68 @@ refetchOnWindowFocus:false
       </Layout>
     );
   return (
-        <Layout>
-    <Container
-      sx={{
-        background: zubgback,
-        width: "100%",
-        height: "100vh",
-        overflow: "auto",
-        mb: 5,
-      }}
-    >
-      <CustomCircularProgress isLoading={isLoading} />
-      <Box sx={style.header}>
-        <Box component={NavLink} onClick={goBack}>
-          <KeyboardArrowLeftOutlinedIcon />
+    <Layout>
+      <Container
+        sx={{
+          background: zubgback,
+          width: "100%",
+          height: "100vh",
+          overflow: "auto",
+          mb: 5,
+        }}
+      >
+        <CustomCircularProgress isLoading={isLoading} />
+        <Box sx={style.header}>
+          <Box component={NavLink} onClick={goBack}>
+            <KeyboardArrowLeftOutlinedIcon />
+          </Box>
+          <p>Daily Salary</p>
+          <Box></Box>
         </Box>
-        <p>Daily Salary</p>
-      </Box>
-      <div className="!overflow-x-auto">
-        <Table  sx={{background: zubgwhite, boxShadow: zubgshadow }}>
-          <TableHead>
-            <TableRow >
-            <TableCell  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
-             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
-              <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
-              <TableCell  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {visibleRows?.map((i , index ) => (
-              <TableRow key={i?.id}>
-                <TableCell  className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index+1}</TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">
-                  {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
-                </TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+        <div className="!overflow-x-auto">
+          <Table sx={{ background: zubgwhite, boxShadow: zubgshadow }}>
+            <TableHead>
+              <TableRow >
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
+                <TableCell sx={{ color: 'white' }} className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-       <Box className="paginationTable !mb-10">
-        <TablePagination
-          sx={{
-            background: zubgtext,
-            color: "white",
-            borderRadius: "10px",
-            marginTop: "10px",
-          }}
-          rowsPerPageOptions={[10,15 ,25,35 ]}
-          component="div"
-          count={res?.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage="Rows"
-        />
-      </Box>
+            </TableHead>
+            <TableBody>
+              {visibleRows?.map((i, index) => (
+                <TableRow key={i?.id}>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index + 1}</TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                    {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <Box className="paginationTable !mb-10">
+            <TablePagination
+              sx={{
+                background: zubgtext,
+                color: "white",
+                borderRadius: "10px",
+                marginTop: "10px",
+              }}
+              rowsPerPageOptions={[10, 15, 25, 35]}
+              component="div"
+              count={res?.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              labelRowsPerPage="Rows"
+            />
+          </Box>
         </div>
-        
-       
+
+
         {/* <div className="no-scrollbar !mb-10">
           {res?.map((i) => {
             return (
@@ -161,9 +162,9 @@ refetchOnWindowFocus:false
             );
           })}
         </div> */}
-    </Container>
-  </Layout>
-     
+      </Container>
+    </Layout>
+
   );
 }
 

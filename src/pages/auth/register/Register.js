@@ -395,7 +395,7 @@ function Register() {
               control={
                 <Checkbox
                   checked={fk.values.privacy_policy}
-                  sx={{ color: 'white', fontSize: "12px", fontWeight: "500", '&>label>div>span': { color: 'white' } }}
+                  sx={{ color: 'white !important', fontSize: "12px", fontWeight: "500", '&>label>div>span': { color: 'white !important' } }}
                   onClick={() =>
                     fk.setFieldValue(
                       "privacy_policy",
@@ -404,7 +404,17 @@ function Register() {
                   }
                 />
               }
-              label="I have read and agree 【Privacy Agreement】"
+              label={
+                <span style={{ color: 'white', fontSize: "12px", }}>
+                  I have read and agree to the{' '}
+                  <a
+                    rel="noopener noreferrer"
+                    style={{ color: 'white', textDecoration: 'underline' }}
+                  >
+                    Privacy Agreement
+                  </a>
+                </span>
+              }
             />
           </FormControl>
         </Box>

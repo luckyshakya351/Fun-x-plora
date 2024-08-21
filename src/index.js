@@ -27,12 +27,11 @@ root.render(
               toastOptions={{
                 className: "",
                 style: {
-                  border: `1px solid ${zubgback}`,
                   color: "white",
                   fontSize: "15px",
                   marginTop: "100px",
-                  borderRadius: "50px",
-                  background: zubgmid,
+                  borderRadius: "5px",
+                  background: theme.palette.secondary.dark,
                 },
               }}
               limit={1}

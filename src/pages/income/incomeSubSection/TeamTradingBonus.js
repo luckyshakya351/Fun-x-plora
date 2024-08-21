@@ -1,7 +1,7 @@
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow ,IconButton} from "@mui/material";
+import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, IconButton } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
@@ -26,7 +26,7 @@ function TeamTradingBonus() {
   const [filter, setFilter] = React.useState("0");
   const [startDate, setStartDate] = React.useState(null);
   const [endDate, setEndDate] = React.useState(null);
-  
+
   const [visibleRows, setVisibleRows] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -45,21 +45,21 @@ function TeamTradingBonus() {
       return data?.data?.data?.filter(
         (i) =>
           moment(i?.l01_date)?.format("YYYY-MM-DD") >=
-            moment(startDate)?.format("YYYY-MM-DD") &&
+          moment(startDate)?.format("YYYY-MM-DD") &&
           moment(i?.l01_date)?.format("YYYY-MM-DD") <=
-            moment(endDate)?.format("YYYY-MM-DD") &&
+          moment(endDate)?.format("YYYY-MM-DD") &&
           i?.l01_transection_type?.includes(filter)
       );
     }
-    
+
     return filter === "0"
       ? data?.data?.data
       : data?.data?.data?.filter((i) =>
-          i?.l01_transection_type?.includes(filter)
-        );
+        i?.l01_transection_type?.includes(filter)
+      );
   }, [filter, data?.data?.data, startDate && endDate]);
 
-  
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -120,13 +120,14 @@ function TeamTradingBonus() {
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <p>Level Income</p>
+          <Box></Box>
         </Box>
         <div
           className="!flex !w-fullpx-5 justify-between py-1 items-center"
           style={{ background: zubgwhite, boxShadow: zubgshadow }}
         >
           <div className="flex mx-1 flex-col">
-            <label className="!text-sm "> Start Date:</label>
+            <label className="!text-sm " style={{ color: 'white' }}> Start Date:</label>
             <input
               value={startDate}
               type="date"
@@ -145,20 +146,20 @@ function TeamTradingBonus() {
                 setEndDate();
               }}
             >
-              <FilterAltOffIcon />{" "}
+              <FilterAltOffIcon sx={{ color: 'white' }} />{" "}
             </IconButton>
           ) : (
             <IconButton className="!pt-8">
-              <FilterAltIcon />
+              <FilterAltIcon sx={{ color: 'white' }} />
             </IconButton>
           )}
 
           <div className="flex flex-col mx-1">
-            <label className="!text-sm"> End Date:</label>
+            <label className="!text-sm" style={{ color: 'white' }}> End Date:</label>
             <input
               value={endDate}
               type="date"
-               className="px-1 rounded-sm"
+              className="px-1 rounded-sm"
               placeholder="Start Date"
               onChange={(e) => setEndDate(e.target.value)}
             />
@@ -168,56 +169,56 @@ function TeamTradingBonus() {
           <select
             onChange={(e) => setFilter(e.target.value)}
             className="!w-full !flex !flex-col   !p-2 !rounded-lg !mt-2"
-            style={{ background: zubgwhite, boxShadow: zubgshadow }}
+            style={{ background: zubgwhite, boxShadow: zubgshadow, color: 'white' }}
           >
-            <option value={"0"}>All </option>
+            <option value={"0"} style={{ color: 'white' }}>All </option>
             {[1, 2, 3, 4, 5, 6]?.map((i) => {
-              return <option value={`Level ${i}`}>Level {i} </option>;
+              return <option value={`Level ${i}`} style={{ color: 'white' }}>Level {i} </option>;
             })}
           </select>
         </div>
 
         <div className="!overflow-x-auto">
-        <Table  sx={{background: zubgwhite, boxShadow: zubgshadow }}>
-          <TableHead>
-            <TableRow >
-            <TableCell  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
-             <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
-              <TableCell  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
-              <TableCell  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {visibleRows?.map((i , index ) => (
-              <TableRow key={i?.id}>
-                <TableCell  className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index+1}</TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">
-                  {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
-                </TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
-                <TableCell  className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+          <Table sx={{ background: zubgwhite, boxShadow: zubgshadow }}>
+            <TableHead>
+              <TableRow >
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
+                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
+                <TableCell sx={{ color: 'white' }} className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-       <Box className="paginationTable !mb-10">
-        <TablePagination
-          sx={{
-            background: zubgtext,
-            color: "white",
-            borderRadius: "10px",
-            marginTop: "10px",
-          }}
-          rowsPerPageOptions={[10,15 ,25,35 ]}
-          component="div"
-          count={res?.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage="Rows"
-        />
-      </Box>
+            </TableHead>
+            <TableBody>
+              {visibleRows?.map((i, index) => (
+                <TableRow key={i?.id}>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index + 1}</TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                    {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
+                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <Box className="paginationTable !mb-10">
+            <TablePagination
+              sx={{
+                background: zubgtext,
+                color: "white",
+                borderRadius: "10px",
+                marginTop: "10px",
+              }}
+              rowsPerPageOptions={[10, 15, 25, 35]}
+              component="div"
+              count={res?.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              labelRowsPerPage="Rows"
+            />
+          </Box>
         </div>
       </Container>
     </Layout>

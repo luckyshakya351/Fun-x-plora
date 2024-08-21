@@ -29,7 +29,7 @@ function Gamestaticks() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -70,7 +70,7 @@ refetchOnWindowFocus:false
               label="Wing Go"
               sx={{
                 background: value == 1 && zubgtext,
-                color: "black !important",
+                color: "white !important",
                 borderRadius: "5px",
               }}
             />
@@ -79,7 +79,7 @@ refetchOnWindowFocus:false
               label="Trx"
               sx={{
                 background: value == 2 && zubgtext,
-                color: "black !important",
+                color: "white !important",
                 borderRadius: "5px",
               }}
             />
@@ -88,7 +88,7 @@ refetchOnWindowFocus:false
               label="Aviator"
               sx={{
                 background: value == 3 && zubgtext,
-                color: "black !important",
+                color: "white !important",
                 borderRadius: "5px",
               }}
             />
@@ -97,7 +97,7 @@ refetchOnWindowFocus:false
               label="Cricket"
               sx={{
                 background: value == 4 && zubgtext,
-                color: "black !important",
+                color: "white !important",
                 borderRadius: "5px",
               }}
             />

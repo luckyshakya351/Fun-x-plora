@@ -522,7 +522,7 @@ function Dashboard() {
                       sx={styles.winnername}
                     >
                       <p className="!flex !flex-col" style={{ color: 'white' }}>
-                      {i?.email
+                        {i?.email
                           ? i.email.split("@")[0].substring(0, 2) +
                           "**" +
                           (i.email.split("@")[0].length > 2
@@ -581,13 +581,13 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                  {winnner_data?.[0]?.email
-                          ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(0, 2) +
-                          "**" +
-                          (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
-                            ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(2, 4)
-                            : "")
-                          : "**"}
+                    {winnner_data?.[0]?.email
+                      ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(0, 2) +
+                      "**" +
+                      (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(2, 4)
+                        : "")
+                      : "**"}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -625,13 +625,13 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                  {winnner_data?.[2]?.email
-                          ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(0, 2) +
-                          "**" +
-                          (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
-                            ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(2, 4)
-                            : "")
-                          : "**"}
+                    {winnner_data?.[2]?.email
+                      ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(0, 2) +
+                      "**" +
+                      (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(2, 4)
+                        : "")
+                      : "**"}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -669,28 +669,28 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                  {winnner_data?.[2]?.email
-                          ? winnner_data?.[2]?.email?.split("@")?.[0]?.substring(0, 2) +
-                          "**" +
-                          (winnner_data?.[2]?.email?.split("@")?.[0]?.length > 2
-                            ? winnner_data?.[2]?.email?.split("@")?.[0]?.substring(2, 4)
-                            : "")
-                          : "**"}
+                    {winnner_data?.[2]?.email
+                      ? winnner_data?.[2]?.email?.split("@")?.[0]?.substring(0, 2) +
+                      "**" +
+                      (winnner_data?.[2]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[2]?.email?.split("@")?.[0]?.substring(2, 4)
+                        : "")
+                      : "**"}
                   </Typography>
                   <Typography
                     variant="body1"
 
                     sx={styles.winningamount}
                   >
-                   ₹ {Number(winnner_data?.[2]?.win)?.toFixed(2)}
+                    ₹ {Number(winnner_data?.[2]?.win)?.toFixed(2)}
                   </Typography>
                 </Box>
               </Box>
             </Stack>
           </Box>
 
-          <Box sx={styles.wininfoouter} pb={5}>
-            {winnner_data?.slice(3,5)?.map((i, index) => {
+          <Box sx={styles.wininfoouter} >
+            {winnner_data?.slice(3, 5)?.map((i, index) => {
               return (
                 <Stack
                   key={index}
@@ -721,13 +721,13 @@ function Dashboard() {
                     sx={styles.winnername}
                   >
                     <p className="!flex !flex-col" style={{ color: 'white' }}>
-                    {i?.email
-                          ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
-                          : "**"}
+                      {i?.email
+                        ? i.email.split("@")[0].substring(0, 2) +
+                        "**" +
+                        (i.email.split("@")[0].length > 2
+                          ? i.email.split("@")[0].substring(2, 4)
+                          : "")
+                        : "**"}
                     </p>
                   </Typography>
                   <Box sx={styles.winnerbannerouter}>
@@ -886,7 +886,7 @@ function Dashboard() {
 export default Dashboard;
 
 const styles = {
-  root: { background: "#F6F7FE", pb: 6 },
+  root: { background: "#0D0335", pb: 6 },
   dashboardTitle: { textAlign: "center", color: "#E71D1E !important", fontSize: "21px", fontWeight: "500", },
   swiperImage: { width: "100%", height: "auto" },
   depositWithdrawContainer: { alignItems: "center", justifyContent: "space-between", mt: 4, width: "95%", marginLeft: "2.5%", },
@@ -958,7 +958,6 @@ const styles = {
     mt: "20px",
     borderRadius: "10px",
     position: "relative",
-    pb: 5,
   },
   winnername: { fontSize: "12px", fontWeight: 400, mx: 1 },
   winner1: {

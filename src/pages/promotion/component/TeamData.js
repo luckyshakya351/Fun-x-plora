@@ -15,6 +15,7 @@ import { zubgback, zubggray, zubgshadow, zubgtext, zubgwhite } from "../../../Sh
 import Layout from "../../../component/Layout/Layout";
 import { MygetdataFn } from "../../../services/apicalling";
 import { rupees } from "../../../services/urls";
+import theme from "../../../utils/theme";
 function TeamData() {
   const { isLoading, data } = useQuery(
     ["get_level"],
@@ -65,38 +66,38 @@ function TeamData() {
             </AccordionSummary>
           </Accordion>
         }
-         {[1, 2, 3, 4, 5, 6]?.map((i) => {
-               return (
-              <Box  sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
+        {[1, 2, 3, 4, 5, 6]?.map((i) => {
+          return (
+            <Box sx={{ width: '95%', margin: '10px 2.5% 10px 2.5%', }}>
               <Accordion className="!rounded-lg" >
                 <AccordionSummary
                   expandIcon={<ArrowDownwardIcon className="!text-white" />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: zubggray, color: "white", borderRadius: '5px' }}
+                  sx={{ background: theme.palette.secondary.light, color: "white", borderRadius: '0px' }}
                 >
                   <div className="w-full grid grid-cols-3 pr-2">
                     <span className="">Level: {i}</span>
-                    <p className="">{result?.filter((j)=>j?.LEVEL === i)?.length}
-                      </p>
+                    <p className="">{result?.filter((j) => j?.LEVEL === i)?.length}
+                    </p>
                     <p className="">
                       {rupees}{" "}
                       <span className="text-green-200">
-                        {result?.filter((j)=>j?.LEVEL === i)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0}
+                        {result?.filter((j) => j?.LEVEL === i)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
                       </span>{" "}
                     </p>
                   </div>
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: zubgwhite, boxShadow: zubgshadow, color: "white" }}>
+                <AccordionDetails sx={{ background: theme.palette.secondary.light, color: "white" }}>
                   <Box >
                     <Box sx={style.accordian}>
-                      <div style={{ color: 'white', borderBottom: '2px solid red', padding: '10px', borderBottom: '2px solid red', padding: '10px', }} className="!grid !grid-cols-3    ">
+                      <div style={{ color: 'white', }} className="!grid !grid-cols-3    ">
                         <span>S.No.</span>
                         <span>User Id</span>
                         <span className="">Name</span>
                       </div>
                       <div className="h-[2px] w-full "></div>
-                      {result?.filter((j)=>j?.LEVEL === i)?.map((i, index) => {
+                      {result?.filter((j) => j?.LEVEL === i)?.map((i, index) => {
                         return (
                           <div style={{ color: 'white', background: zubgback, color: zubgtext, borderRadius: '5px', padding: '10px 20px', }} className="!grid !grid-cols-3  ">
                             <span>{index + 1}</span>
@@ -114,8 +115,8 @@ function TeamData() {
                 </AccordionDetails>
               </Accordion>
             </Box>
-            );
-          })}
+          );
+        })}
       </Container>
     </Layout>
   );

@@ -7,6 +7,7 @@ import { zubgback, zubgbackgrad, zubgmid, zubgtext } from '../../../Shared/color
 import english from '../../../assets/images/enflag.png';
 import india from '../../../assets/images/inflag.webp';
 import Layout from '../../../component/Layout/Layout';
+import theme from '../../../utils/theme';
 
 
 function Languages() {
@@ -32,7 +33,7 @@ function Languages() {
         </Box>
         <Box sx={{ mt: '10px', padding: '10px', width: '95%', marginLeft: '2.5%', borderRadius: '10px', background: zubgtext }}>
           <Stack direction={'row'} sx={{
-            alignItems: 'center', justifyContent: 'space-between', marginTop: '10px', background: value === 1 ? zubgbackgrad : 'transparent',
+            alignItems: 'center', justifyContent: 'space-between', marginTop: '10px', background: value === 1 ? theme.palette.secondary.main : 'transparent',
             padding: '5px', borderRadius: '5PX',
             '&>div>p': { color: 'white' },
           }} component={NavLink} onClick={() => setValue(1)}>
@@ -43,7 +44,7 @@ function Languages() {
             {value === 1 && <CheckCircleIcon sx={{ color: 'white' }} />}
           </Stack>
           <Stack direction={'row'} sx={{
-            alignItems: 'center', justifyContent: 'space-between', marginTop: '20px', background: value === 2 ? zubgbackgrad : 'transparent',
+            alignItems: 'center', justifyContent: 'space-between', marginTop: '20px', background: value === 2 ? theme.palette.secondary.main : 'transparent',
             padding: '5px', borderRadius: '5PX',
             '&>div>p': { color: 'white' },
           }} component={NavLink} onClick={() => setValue(2)}>

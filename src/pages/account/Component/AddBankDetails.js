@@ -29,6 +29,7 @@ import payment from "../../../assets/images/banking.png";
 import playgame from "../../../assets/images/playgame.jpg";
 import Layout from "../../../component/Layout/Layout";
 import { endpoint } from "../../../services/urls";
+import theme from "../../../utils/theme";
 function AddBankDetails() {
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -98,7 +99,7 @@ function AddBankDetails() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: zubgback,
+          background: theme.palette.secondary.main,
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -109,7 +110,7 @@ function AddBankDetails() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" sx={{ color: 'white' }}>
             Add Bank Details
           </Typography>
           <Box
@@ -126,17 +127,16 @@ function AddBankDetails() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: zubgwhite,
               borderRadius: "10px",
               mb: 5,
             }}
           >
             <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-              <Box component="img" src={payment} width={30}></Box>
+              <Box component="img" src={payment} width={30} sx={{ filter: 'hue-rotate(136deg)' }}></Box>
               <Typography
                 variant="body1"
                 color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+                sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
               >
                 Add Bank Details
               </Typography>
@@ -144,7 +144,7 @@ function AddBankDetails() {
             <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3">
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Account holder name <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -164,7 +164,7 @@ function AddBankDetails() {
               </FormControl>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3">
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Enter Email <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -184,7 +184,7 @@ function AddBankDetails() {
               </FormControl>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3">
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Enter Mobile <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -205,7 +205,7 @@ function AddBankDetails() {
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3">
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Bank name <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -226,7 +226,7 @@ function AddBankDetails() {
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3">
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     IFSC code <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -246,7 +246,7 @@ function AddBankDetails() {
               </FormControl>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3">
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Account number <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -361,7 +361,7 @@ const style = {
     mt: "20px",
     border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
+    "&:hover": { background: zubgtext, border: "1px solid transparent" },
   },
   rechargeinstext: {
     mb: "10px",

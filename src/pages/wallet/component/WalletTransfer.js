@@ -32,6 +32,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
+import theme from "../../../utils/theme";
 
 function WalletTransfer() {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ function WalletTransfer() {
     wallet: 0,
     winning: 0,
     cricket_wallet: 0,
-    working_wallet:0,
+    working_wallet: 0,
   });
 
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ function WalletTransfer() {
 
   React.useEffect(() => {
     handlePlaySound();
-    
+
   }, []);
 
   React.useEffect(() => {
@@ -105,7 +106,7 @@ function WalletTransfer() {
   }, []);
 
   const initialValues = {
-    amount: amount || 0 ,
+    amount: amount || 0,
     password: "",
   };
 
@@ -113,23 +114,23 @@ function WalletTransfer() {
     initialValues: initialValues,
     onSubmit: () => {
 
-        const reqbody = {
-            userid: user_id,
-            amount: fk.values.amount,
-            password:fk.values.password,
-          }
-          walletTransfer(reqbody)
+      const reqbody = {
+        userid: user_id,
+        amount: fk.values.amount,
+        password: fk.values.password,
+      }
+      walletTransfer(reqbody)
     },
   });
   async function walletTransfer(reqbody, amnt) {
     try {
-        setloding(true)
+      setloding(true)
       const res = await axios.post(`${endpoint.tranfer_wallet}`, reqbody);
       toast(res?.data?.msg)
       if (res?.data?.msg === "Transaction successfully completed.")
         navigate("/account")
       setloding(false);
-     } catch (e) {
+    } catch (e) {
       console.log(e);
     }
     setloding(false);
@@ -148,7 +149,7 @@ function WalletTransfer() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: zubgback,
+          background: theme.palette.secondary.main,
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -160,35 +161,35 @@ function WalletTransfer() {
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <Typography variant="body1" color="initial">
-         Main  Wallet  Transfer
+            Main  Wallet  Transfer
           </Typography>
           <Box component={NavLink} to="/depositHistory">
             <HistoryIcon />
           </Box>
         </Box>
-        
-            <Box>
-              <Box
-                sx={{
-                  padding: "10px",
-                  width: "95%",
-                  margin: "auto",
-                  mt: "20px",
-                  background: "#ffffff",
-                  boxShadow: zubgshadow,
-                  borderRadius: "10px",
-                  mb: 2,
-                }}
-              >
-                <Stack
-                  direction="row"
-                  sx={{
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    flexWrap: "wrap",
-                    mt: "10px",
-                  }}
-                >
+
+        <Box>
+          <Box
+            sx={{
+              padding: "10px",
+              width: "95%",
+              margin: "auto",
+              mt: "20px",
+              background: theme.palette.secondary.light,
+              // boxShadow: zubgshadow,
+              borderRadius: "10px",
+              mb: 2,
+            }}
+          >
+            <Stack
+              direction="row"
+              sx={{
+                alignItems: "center",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                mt: "10px",
+              }}
+            >
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: zubgtext }}>
@@ -205,50 +206,51 @@ function WalletTransfer() {
                   className="withdrawalfield"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
-              
-              </FormControl>
-                <FormControl fullWidth sx={{ mt: "10px" }}>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: zubgtext }}>
-                      Password <span className="!text-red-600">*</span>
-                    </Typography>
-                  </Stack>
-                  <OutlinedInput className="!border !border-red-500 !rounded-xl !text-blue-400"
-                    id="password"
-                    name="password"
-                    value={fk.values.password}
-                    onChange={fk.handleChange}
-                    placeholder="Enter password"
-                    onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                    sx={{ width: '100%', }}
-                    type={showoldPassword ? "text" : "password"}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowoldPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showoldPassword ? (
-                            <VisibilityOff sx={{ color: zubgtext, fontSize: "25px !important" }} />
-                          ) : (
-                            <Visibility sx={{ color: zubgtext, fontSize: "25px !important" }} />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
 
-                </FormControl>
-                <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
-                    Submit
-                  </Button>
+              </FormControl>
+              <FormControl fullWidth sx={{ mt: "10px" }}>
+                <Stack direction="row" className="loginlabel">
+                  <Typography variant="h3" sx={{ color: zubgtext }}>
+                    Password <span className="!text-red-600">*</span>
+                  </Typography>
                 </Stack>
-              </Box>
-        
-            </Box>
-      
+                <OutlinedInput
+                  id="password"
+                  name="password"
+                  className="withdrawalfield"
+                  value={fk.values.password}
+                  onChange={fk.handleChange}
+                  placeholder="Enter password"
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  sx={{ width: '100%', background: '#605A7A', borderRadius: '10px', color: 'white' }}
+                  type={showoldPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowoldPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showoldPassword ? (
+                          <VisibilityOff sx={{ color: zubgtext, fontSize: "25px !important" }} />
+                        ) : (
+                          <Visibility sx={{ color: zubgtext, fontSize: "25px !important" }} />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+
+              </FormControl>
+              <Button sx={style.paytmbtntwo} onClick={fk.handleSubmit}>
+                Submit
+              </Button>
+            </Stack>
+          </Box>
+
+        </Box>
+
 
         <CustomCircularProgress isLoading={loding} />
       </Container>
@@ -324,13 +326,13 @@ const style = {
     borderRadius: "5px",
     textTransform: "capitalize",
     mb: 2,
-    background: zubgmid,
+    background: theme.palette.primary.main,
     color: "white !important",
     width: "100%",
     mt: "20px",
-    border: "1px solid white",
+    // border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
+    "&:hover": { background: theme.palette.primary.light, },
   },
   rechargeinstext: {
     mb: "10px",
