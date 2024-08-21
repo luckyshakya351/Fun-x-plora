@@ -21,7 +21,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { lightblue, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import payment from "../../assets/images/deposit (2).png";
+import payment from "../../assets/check.png";
 import playgame from "../../assets/images/playgame.jpg";
 import balance from "../../assets/images/send.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
@@ -31,6 +31,7 @@ import { endpoint, rupees } from "../../services/urls";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
+import theme from "../../utils/theme";
 function WithdrawalUsdt() {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -182,7 +183,7 @@ function WithdrawalUsdt() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1">
             Withdrawal
           </Typography>
           <Box component={NavLink} to="/Withdrawalusdthistory">
@@ -196,23 +197,10 @@ function WithdrawalUsdt() {
             width: "95%",
             margin: "auto",
             position: "relative",
+            background: theme.palette.secondary.light,
             mt: 3,
           }}
         >
-          <Box
-            component="img"
-            src={playgame}
-            sx={{
-              opacity: "0.9",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
-          ></Box>
           <Stack direction="row" sx={{
             alignItems: "center", position: 'relative',
             zIndex: 10,
@@ -220,7 +208,7 @@ function WithdrawalUsdt() {
             <Box component="img" src={balance} width={50}></Box>
             <Typography
               variant="body1"
-              color="initial"
+
               sx={{
                 fontSize: "16px ",
                 fontWeight: 500,
@@ -235,7 +223,7 @@ function WithdrawalUsdt() {
           <Stack direction="row" sx={{ alignItems: "center", mt: "10px" }}>
             <Typography
               variant="body1"
-              color="initial"
+
               sx={{
                 fontSize: "30px ",
                 fontWeight: "600",
@@ -272,7 +260,7 @@ function WithdrawalUsdt() {
             }}></Box>
             <Typography
               variant="body1"
-              color="initial"
+
               sx={{
                 fontSize: "14px ", color: "white", ml: "10px", position: 'relative',
                 zIndex: 10,
@@ -290,7 +278,7 @@ function WithdrawalUsdt() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: '#fff',
+              background: theme.palette.secondary.light,
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
@@ -300,15 +288,15 @@ function WithdrawalUsdt() {
             <Box mt={2}>
 
               <div className="  my-2 mb-4">
-                <p className="!text-center !p-4 text-blue-600 cursor-pointer  border border-dashed border-gray-400"
+                <p style={{ color: theme.palette.primary.main }} className="!text-center !p-4  cursor-pointer  border border-dashed border-gray-400"
                   onClick={() => navigate("/addadressusdt")}> + Add Address</p>
               </div>
               <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
                 <Box component="img" src={payment} width={30}></Box>
                 <Typography
                   variant="body1"
-                  color="initial"
-                  sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+
+                  sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
                 >
                   Select Amount of USDT
                 </Typography>
@@ -316,7 +304,7 @@ function WithdrawalUsdt() {
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Select address <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -330,10 +318,8 @@ function WithdrawalUsdt() {
                   placeholder="abcd"
                   InputProps={{
                     style: {
-                      borderColor: 'red',
-                      borderWidth: "1px",
-                      color: '#0E0435',
-                      background: "#fff",
+                      color: 'white',
+                      background: "#605A7A",
                       borderRadius: "10px",
                     },
                   }}
@@ -351,7 +337,7 @@ function WithdrawalUsdt() {
               <Box >
                 <FormControl fullWidth sx={{ mt: "10px" }}>
                   <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: zubgtext }}>
+                    <Typography variant="h3" sx={{ color: 'white' }}>
                       Select Wallet <span className="!text-red-600">*</span>
                     </Typography>
                   </Stack>
@@ -365,10 +351,10 @@ function WithdrawalUsdt() {
                     //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     InputProps={{
                       style: {
-                        borderColor: 'red',
-                        borderWidth: "1px",
-                        color: 'black',
-                        background: "#fff",
+
+
+                        color: 'white',
+                        background: "#605A7A",
                         borderRadius: "10px",
                       },
                     }}
@@ -382,7 +368,7 @@ function WithdrawalUsdt() {
               </Box>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Enter amount <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -403,7 +389,7 @@ function WithdrawalUsdt() {
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: zubgtext }}>
+                  <Typography variant="h3" sx={{ color: 'white' }}>
                     Enter USDT <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -438,12 +424,12 @@ function WithdrawalUsdt() {
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: '#fff',
+              background: '#605A7A',
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
             }}>
-             <Stack
+            <Stack
               direction="row"
               alignItems="center"
               mt={1}
@@ -476,25 +462,21 @@ function WithdrawalUsdt() {
                 </Typography>
               )}
             </Stack>
-
-
             <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
-
               <Typography
                 variant="body1"
-                color="initial"
                 className="!text-xs"
+                sx={{ color: 'white', }}
               >
                 *   Withdraw time{" "}
               </Typography>
               <Typography
-                className="!text-orange-500 !text-xs"
+                className=" !text-xs"
                 variant="body1"
-                color="initial"
+
                 sx={{
-
-
                   mx: 0.5,
+                  color: '#62B90E !important'
                 }}
               >
                 00:00-23:50.{" "}
@@ -504,19 +486,19 @@ function WithdrawalUsdt() {
 
               <Typography
                 variant="body1"
-                color="initial"
+                sx={{ color: 'white', }}
                 className="!text-xs"
               >
                 *   Withdraw Amount
               </Typography>
               <Typography
-                className="!text-orange-500 !text-xs"
+                className=" !text-xs"
                 variant="body1"
-                color="initial"
+
 
                 sx={{
 
-
+                  color: '#62B90E !important',
                   mx: 0.5,
                 }}
               >
@@ -527,7 +509,7 @@ function WithdrawalUsdt() {
 
               <Typography
                 variant="body1"
-                color="initial"
+                sx={{ color: 'white', }}
                 className="!text-xs"
               >
                 *    Please confirm your beneficial account information before
@@ -538,7 +520,7 @@ function WithdrawalUsdt() {
 
               <Typography
                 variant="body1"
-                color="initial"
+                sx={{ color: 'white', }}
                 className="!text-xs"
               >
                 *    If your information is incorrect, our company will
@@ -549,7 +531,7 @@ function WithdrawalUsdt() {
 
               <Typography
                 variant="body1"
-                color="initial"
+                sx={{ color: 'white', }}
                 className="!text-xs"
               >
                 *  If your beneficial information is incorrect, please contact
@@ -658,7 +640,7 @@ const style = {
     mt: "20px",
     border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
+    "&:hover": { background: zubgtext, border: "1px solid transparent" },
   },
   rechargeinstext: {
     mb: "10px",

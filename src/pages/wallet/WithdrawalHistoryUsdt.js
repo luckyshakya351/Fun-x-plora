@@ -15,9 +15,10 @@ import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
-import deposit from "../../assets/images/list.png";
+import deposit from "../../assets/check.png";
 import Layout from "../../component/Layout/Layout";
 import { withdrawlHistoryUSdtFunction } from "../../services/apicalling";
+import theme from "../../utils/theme";
 
 function WithdrawalHistoryUSdt() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function WithdrawalHistoryUSdt() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus:false
+      refetchOnWindowFocus: false
     }
   );
 
@@ -53,8 +54,8 @@ function WithdrawalHistoryUSdt() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" color="initial">
-          Withdrawal USDT history
+          <Typography variant="body1" sx={{ color: 'white' }}>
+            Withdrawal USDT history
           </Typography>
           <Box></Box>
         </Box>
@@ -63,8 +64,8 @@ function WithdrawalHistoryUSdt() {
           <Box
             sx={{
               padding: "10px",
-              background: zubgwhite,
-              boxShadow: zubgshadow,
+              // background: zubgwhite,
+              // boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
               mt: 3,
@@ -87,10 +88,9 @@ function WithdrawalHistoryUSdt() {
                     mb: 2,
                     padding: "15px",
                     borderRadius: "10px",
-                    border: "1px solid white",
-                    background: zubgback,
-                    boxShadow: zubgshadow,
-                    border: `1px solid #ff00422b`,
+
+                    background: theme.palette.secondary.light,
+                    // boxShadow: zubgshadow,
                   }}
                 >
                   <Stack
@@ -102,10 +102,10 @@ function WithdrawalHistoryUSdt() {
                       borderBottom: "1px solid white",
                     }}
                   >
-                   <Box></Box>
+                    <Box></Box>
                     <Box>
                       <Button
-                        sx={{ color: "green", textTransform: "capitalize"}}
+                        sx={{ color: "green", textTransform: "capitalize" }}
                         className={`${i?.m_w_status === "Approve"
                           ? "!text-green-500 !text-[15px]"
                           : "!text-red-500 !text-[15px]"
@@ -128,10 +128,10 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       Balance
                     </Typography>
-                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       {/* ₹  */}
                       {i?.m_w_amount}
                     </Typography>
@@ -145,10 +145,10 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       {moment(i?.m_w_reqdate)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.m_w_reqdate)?.format("HH:mm:ss")}
                     </Typography>
@@ -162,10 +162,10 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       Status
                     </Typography>
-                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       {i?.m_w_crypto_status}{" "}
                     </Typography>
                   </Stack>
@@ -178,7 +178,7 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial"  className="!text-[15px]">
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
                       Success D/T
                     </Typography>
                     <Typography variant="body1" color="initial" className="zubgtext !text-[15px]" >
@@ -207,17 +207,17 @@ function WithdrawalHistoryUSdt() {
                         "&>p": { color: zubgtext },
                       }}
                     >
-                      <Typography variant="body1" color="initial"  className="!text-[15px]">
+                      <Typography variant="body1" color="initial" className="!text-[15px]">
                         {i?.m_w_trans_id}
                       </Typography>
-                      
+
                       {/* <IconButton>
                         <ContentCopyIcon sx={{ color: zubgtext }} />
                       </IconButton> */}
                     </Stack>
                   </Stack>
                   <Stack
-                  
+
                     direction="row"
                     sx={{
                       mb: "5px",
@@ -227,7 +227,7 @@ function WithdrawalHistoryUSdt() {
                     }}
                   >
                     <Typography variant="body1" color="initial" className="!text-[15px]">
-                    Address
+                      Address
                     </Typography>
                     <Stack
                       direction="row"
@@ -239,9 +239,9 @@ function WithdrawalHistoryUSdt() {
                       }}
                     >
                       <Typography variant="body1" color="initial" className="!text-[15px] " >
-                     <p>   {i?.withdrawal_add?.substring(0,20)}</p>
-                     <p>
-                           {i?.withdrawal_add?.substring(20)}
+                        <p>   {i?.withdrawal_add?.substring(0, 20)}</p>
+                        <p>
+                          {i?.withdrawal_add?.substring(20)}
                         </p>
                       </Typography>
                     </Stack>

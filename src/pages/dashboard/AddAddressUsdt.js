@@ -20,6 +20,7 @@ import Layout from "../../component/Layout/Layout";
 import { endpoint } from "../../services/urls";
 import CryptoJS from "crypto-js";
 import { useQueryClient } from "react-query";
+import theme from "../../utils/theme";
 
 function AddAddressUsdt() {
     const login_data =
@@ -47,7 +48,7 @@ function AddAddressUsdt() {
             if (!fk.values.address) {
                 toast.error("Please Enter Address field");
                 return;
-              }
+            }
             const reqbody = {
                 address: fk.values.address,
                 m_u_id: user_id
@@ -104,7 +105,7 @@ function AddAddressUsdt() {
                             width: "95%",
                             margin: "auto",
                             mt: "20px",
-                            background: '#fff',
+                            background: theme.palette.secondary.dark,
                             boxShadow: zubgshadow,
                             borderRadius: "10px",
                             mb: 5,
@@ -114,8 +115,8 @@ function AddAddressUsdt() {
                             <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
                                 <Typography
                                     variant="body1"
-                                    color="initial"
-                                    sx={{ fontSize: "15px ", ml: "10px" }}
+
+                                    sx={{ fontSize: "15px ", ml: "10px", color: 'white' }}
                                 >
                                     To Ensure  the safety of your funds , please link your wallet
                                 </Typography>
@@ -168,7 +169,7 @@ function AddAddressUsdt() {
                 </Box>
 
             </Container>
-        </Layout>
+        </Layout >
     );
 }
 

@@ -87,10 +87,9 @@ function WithdravalHistory() {
                     mb: 2,
                     padding: "15px",
                     borderRadius: "10px",
-                    border: "1px solid white",
-                    background: zubgback,
+                    background: theme.palette.secondary.light,
                     boxShadow: zubgshadow,
-                    border: `1px solid #ff00422b`,
+
                   }}
                 >
                   <Stack
