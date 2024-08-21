@@ -21,12 +21,9 @@ import {
   zubgback,
   zubgbackgrad,
   zubgmid,
-  zubgtext,
-  zubgwhite,
+  zubgtext
 } from "../../../Shared/color";
-import cip from "../../../assets/cip.png";
 import payment from "../../../assets/images/banking.png";
-import playgame from "../../../assets/images/playgame.jpg";
 import Layout from "../../../component/Layout/Layout";
 import { endpoint } from "../../../services/urls";
 import theme from "../../../utils/theme";

@@ -382,6 +382,17 @@ export const BankListDetails = async () => {
     console.log(e);
   }
 };
+export const NeedToBet = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.need_to_bet}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 
 export const AddressListDetails = async () => {
   try {

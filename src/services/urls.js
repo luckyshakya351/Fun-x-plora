@@ -4,8 +4,9 @@ export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
 export const newdomain1 = "https://api.funxplora.com";
-
 export const newdomain = "https://api.funxplora.com";
+// export const newdomain1 = "http://localhost:9000";
+// export const newdomain = "http://localhost:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
@@ -48,8 +49,9 @@ export const endpoint = {
   registration_bonus: `${baseUrl}/api/welcom-bonus`,
   deposit_history: `${baseUrl}/api/deposit-history`,
   withdrawl_history: `${baseUrl}/api/withdrawl-history`,
-  deposit_bonus: `${baseUrl}/api/deposit-bonus`,
-  referral_bonus: `${baseUrl}/api/refral-bonus`,
+  // deposit_bonus: `${baseUrl}/api/deposit-bonus`,
+
+  // referral_bonus: `${baseUrl}/api/refral-bonus`,
   daily_self_bet_income: `${baseUrl}/api/daily-self-bet-income`,
   daily_wallet_income: `${baseUrl}/api/daily-wallet-income`,
   daily_salary_income: `${newdomain1}/api/v1/daily-salary-icome`,
@@ -81,7 +83,9 @@ export const endpoint = {
   jackpod_my_history: `${newdomain}/api/v1/my-history-jackpod`,
   jackpod_game_history: `${newdomain}/api/v1/game-history-jackpod`,
   change_password: `${newdomain}/api/v1/change-password`,
-
+  deposit_bonus: `${newdomain}/api/v1/self-deposit-bonus`,
+  referral_bonus: `${newdomain}/api/v1/sponsor-income`,
+  need_to_bet: `${newdomain}/api/v1/need-to-bet`,
   //income
   subordinate_data: `${newdomain1}/api/v1/get-subordinate-data-funx`,
   commission_data: `${newdomain1}/api/v1/get-commisssion-data-funx`,

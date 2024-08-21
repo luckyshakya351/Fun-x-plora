@@ -1,23 +1,21 @@
-import { Container, Typography, Box, Stack, OutlinedInput, FormControl, Button } from '@mui/material';
-import * as React from 'react';
-import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import Layout from '../../../component/Layout/Layout';
-import { NavLink } from 'react-router-dom';
-import { zubgback, lightgreen } from '../../../Shared/color';
-import SearchIcon from "@mui/icons-material/Search";
 import { ArrowDropDown } from '@mui/icons-material';
-import Calendar from './Calender';
-import CryptoJS from "crypto-js";
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import { Box, Container, Stack, Typography } from '@mui/material';
 import axios from 'axios';
+import CryptoJS from "crypto-js";
+import dayjs from 'dayjs';
+import moment from 'moment';
+import * as React from 'react';
 import toast from 'react-hot-toast';
-import { endpoint } from '../../../services/urls';
+import { NavLink } from 'react-router-dom';
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { lightblue, zubggray, zubgtext, zubgmid } from "../../../Shared/color";
+import { lightblue, lightgreen, zubgback, zubggray, zubgtext } from '../../../Shared/color';
 import bgms from "../../../assets/images/bgs.jpg";
 import bgms1 from "../../../assets/images/bgs1.jpg";
-import moment from 'moment';
-import dayjs from 'dayjs';
+import Layout from '../../../component/Layout/Layout';
+import { endpoint } from '../../../services/urls';
 import theme from '../../../utils/theme';
+import Calendar from './Calender';
 
 function Commission() {
     const [isOpen1, setIsOpen1] = React.useState(false);

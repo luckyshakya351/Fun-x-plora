@@ -1,3 +1,4 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import CachedIcon from "@mui/icons-material/Cached";
 import HistoryIcon from "@mui/icons-material/History";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
@@ -16,15 +17,16 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
 import {
-  lightblue,
   zubgback,
   zubgbackgrad,
   zubgmid,
@@ -32,19 +34,17 @@ import {
   zubgtext,
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import payment from "../../assets/images/wallet.png";
-import bgms from "../../assets/images/bgs.jpg";
-import playgame from "../../assets/images/playgame.jpg";
 import balance from "../../assets/images/send.png";
+import payment from "../../assets/images/wallet.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
-import Layout from "../../component/Layout/Layout";
 import usdt from "../../assets/payNameIcon1.png";
-import { BankListDetails, get_user_data_fn } from "../../services/apicalling";
+import Layout from "../../component/Layout/Layout";
+import {
+  BankListDetails,
+  get_user_data_fn,
+  NeedToBet,
+} from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
-import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import CryptoJS from "crypto-js";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import theme from "../../utils/theme";
 function Withdrawl() {
   const location = useLocation();
@@ -99,6 +99,15 @@ function Withdrawl() {
     walletamountFn();
   }, []);
 
+  const { isLoading: loding, data: need_to_bet } = useQuery(
+    ["need_to_bet"],
+    () => NeedToBet(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
   const { isLoading, data } = useQuery(
     ["bank_list_details"],
     () => BankListDetails(),
@@ -120,20 +129,18 @@ function Withdrawl() {
     initialValues: initialValues,
     validationSchema: withdraw_amount_validation_schema,
     onSubmit: () => {
-      if (type) {
-        if (Number(amount?.cricket_wallet || 0) < Number(fk.values.amount || 0))
-          return toast("Your Wallet Amount is low");
-      } else {
-        if (amount?.winning < fk.values.amount)
-          return toast("Your winning amount is low.");
-      }
-
+      // if (type) {
+      //   if (Number(amount?.cricket_wallet || 0) < Number(fk.values.amount || 0))
+      //     return toast("Your Wallet Amount is low");
+      // } else {
+      //   if (amount?.winning < fk.values.amount)
+      //     return toast("Your winning amount is low.");
+      // }
       if (Number(fk.values.amount) < 110 && Number(fk.values.amount) > 50000)
         return toast("Amount shoulb be minimum 110 and maximum 50,000");
 
       const data = result?.[0];
-      console.log(data?.id)
-      //  result?.find((i) => i?.id === 1);
+
       if (!data) return toast("Bank Not Added.");
 
       const fd = new FormData();
@@ -216,9 +223,7 @@ function Withdrawl() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" >
-            Withdrawal
-          </Typography>
+          <Typography variant="body1">Withdrawal</Typography>
           <Box component={NavLink} to="/withdravalHistory">
             <HistoryIcon />
           </Box>
@@ -245,7 +250,6 @@ function Withdrawl() {
             <Box component="img" src={balance} width={50}></Box>
             <Typography
               variant="body1"
-
               sx={{
                 fontSize: "16px ",
                 fontWeight: 500,
@@ -260,7 +264,6 @@ function Withdrawl() {
           <Stack direction="row" sx={{ alignItems: "center", mt: "10px" }}>
             <Typography
               variant="body1"
-
               sx={{
                 fontSize: "30px ",
                 fontWeight: "600",
@@ -274,8 +277,8 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -306,7 +309,6 @@ function Withdrawl() {
             ></Box>
             <Typography
               variant="body1"
-
               sx={{
                 fontSize: "14px ",
                 color: "white",
@@ -367,8 +369,7 @@ function Withdrawl() {
               <Box component="img" src={payment} width={30}></Box>
               <Typography
                 variant="body1"
-
-                sx={{ fontSize: "15px ", color: 'white', ml: "10px", pt: 3, }}
+                sx={{ fontSize: "15px ", color: "white", ml: "10px", pt: 3 }}
               >
                 Withdrawal amount
               </Typography>
@@ -376,7 +377,7 @@ function Withdrawl() {
             <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: 'white' }}>
+                  <Typography variant="h3" sx={{ color: "white" }}>
                     Enter amount <span className="!text-white-600">*</span>
                   </Typography>
                 </Stack>
@@ -397,7 +398,7 @@ function Withdrawl() {
               <Box mt={3}>
                 <FormControl fullWidth sx={{ mt: "10px" }}>
                   <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: 'white' }}>
+                    <Typography variant="h3" sx={{ color: "white" }}>
                       Select Wallet <span className="!text-white-600">*</span>
                     </Typography>
                   </Stack>
@@ -408,7 +409,11 @@ function Withdrawl() {
                     value={fk.values.select_wallet}
                     onChange={fk.handleChange}
                     className="withdrawalfield "
-                    sx={{ background: '#ffffff29', border: 'none', borderRadius: '10px' }}
+                    sx={{
+                      background: "#ffffff29",
+                      border: "none",
+                      borderRadius: "10px",
+                    }}
                     //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     InputProps={{
                       style: {
@@ -416,7 +421,7 @@ function Withdrawl() {
                         color: "white",
                         background: "red !important",
                         borderRadius: "10px",
-                        border: 'none',
+                        border: "none",
                       },
                     }}
                   >
@@ -432,7 +437,7 @@ function Withdrawl() {
               <Box mt={3}>
                 <FormControl fullWidth>
                   <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: 'white' }}>
+                    <Typography variant="h3" sx={{ color: "white" }}>
                       Password <span className="!text-white-600">*</span>
                     </Typography>
                   </Stack>
@@ -444,7 +449,12 @@ function Withdrawl() {
                     onChange={fk.handleChange}
                     placeholder="Enter password"
                     onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                    sx={{ width: "100%", background: '#ffffff29', color: 'white', borderRadius: '10px' }}
+                    sx={{
+                      width: "100%",
+                      background: "#ffffff29",
+                      color: "white",
+                      borderRadius: "10px",
+                    }}
                     type={showoldPassword ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
@@ -457,14 +467,14 @@ function Withdrawl() {
                           {showoldPassword ? (
                             <VisibilityOff
                               sx={{
-                                color: 'white',
+                                color: "white",
                                 fontSize: "25px !important",
                               }}
                             />
                           ) : (
                             <Visibility
                               sx={{
-                                color: 'white',
+                                color: "white",
                                 fontSize: "25px !important",
                               }}
                             />
@@ -509,25 +519,32 @@ function Withdrawl() {
               mt={1}
               className="!text-bold "
             >
-              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
-                * Need to bet{" "}
-              </Typography>
-              <Typography
-                className=" !text-xs"
-                variant="body1"
-
-                sx={{
-                  color: theme.palette.primary.main,
-                  mx: 0.5,
-                }}
-              >
-                {" "}
-                ₹ {amount?.need_amount_for_withdrawl}
-              </Typography>
-              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
-                {" "}
-                to be able to withdraw .{" "}
-              </Typography>
+              {fk.values.select_wallet === "Working Wallet" && (
+                <Typography
+                  variant="body1"
+                  sx={{ color: "white" }}
+                  className="!text-xs"
+                >
+                  * Maximum Amount{" "}
+                  <span className="!text-green-500">
+                    {rupees} {Number(amount?.working_wallet) || 0}
+                  </span>{" "}
+                  can be withdrawl from working wallet.
+                </Typography>
+              )}
+              {fk.values.select_wallet === "Main Wallet" && (
+                <Typography
+                  variant="body1"
+                  sx={{ color: "white" }}
+                  className="!text-xs"
+                >
+                  * Maximum Amount{" "}
+                  <span className="!text-green-500">
+                    {rupees} {need_to_bet?.data?.data * 0.2 || 0}
+                  </span>{" "}
+                  can be withdrawl from winning wallet.
+                </Typography>
+              )}
             </Stack>
 
             <Stack
@@ -536,13 +553,16 @@ function Withdrawl() {
               mt={1}
               className="!text-bold !text-xl"
             >
-              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
+              <Typography
+                variant="body1"
+                sx={{ color: "white" }}
+                className="!text-xs"
+              >
                 * Withdraw time{" "}
               </Typography>
               <Typography
                 className=" !text-xs"
                 variant="body1"
-
                 sx={{
                   mx: 0.5,
                   color: theme.palette.primary.main,
@@ -557,13 +577,16 @@ function Withdrawl() {
               mt={1}
               className="!text-bold !text-xl"
             >
-              <Typography variant="body1" sx={{ color: 'white' }} className="!text-xs">
+              <Typography
+                variant="body1"
+                sx={{ color: "white" }}
+                className="!text-xs"
+              >
                 * Withdraw Amount
               </Typography>
               <Typography
                 className=" !text-xs"
                 variant="body1"
-
                 sx={{
                   mx: 0.5,
                   color: theme.palette.primary.main,
@@ -573,13 +596,21 @@ function Withdrawl() {
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-              <Typography variant="body1" className="!text-xs" sx={{ color: 'white' }}>
+              <Typography
+                variant="body1"
+                className="!text-xs"
+                sx={{ color: "white" }}
+              >
                 * Please confirm your beneficial account information before
                 withdrawing.
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-              <Typography variant="body1" className="!text-xs" sx={{ color: 'white' }}>
+              <Typography
+                variant="body1"
+                className="!text-xs"
+                sx={{ color: "white" }}
+              >
                 * If your information is incorrect, our company will not be
                 liable for the amount of loss .{" "}
               </Typography>
@@ -590,7 +621,11 @@ function Withdrawl() {
               mt={1}
               className="!text-bold "
             >
-              <Typography variant="body1" className="!text-xs" sx={{ color: 'white' }}>
+              <Typography
+                variant="body1"
+                className="!text-xs"
+                sx={{ color: "white" }}
+              >
                 * If your beneficial information is incorrect, please contact
                 customer service.
               </Typography>
@@ -697,7 +732,10 @@ const style = {
     width: "100%",
     mt: "20px",
     padding: "10px",
-    "&:hover": { background: theme.palette.secondary.light, border: "1px solid transparent" },
+    "&:hover": {
+      background: theme.palette.secondary.light,
+      border: "1px solid transparent",
+    },
   },
   rechargeinstext: {
     mb: "10px",

@@ -12,7 +12,7 @@ import {
 import * as React from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../../Shared/color";
 import deposit from "../../../assets/images/banking.png";
 import Layout from "../../../component/Layout/Layout";
 import { BankListDetails } from "../../../services/apicalling";
@@ -37,7 +37,6 @@ function AddedBankDetailList() {
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
 
-  console.log(result, "this is result");
 
   return (
     <Layout>

@@ -1,24 +1,20 @@
-import { Container, Typography, Box, Stack } from '@mui/material'
-import * as React from 'react';
-import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import Layout from '../../../component/Layout/Layout';
-import { NavLink } from 'react-router-dom';
-import { zubgback, zubgmid } from '../../../Shared/color';
-import EmojiPeopleOutlinedIcon from "@mui/icons-material/EmojiPeopleOutlined";
-import Groups2OutlinedIcon from "@mui/icons-material/Groups2Outlined";
-import { lightblue, lightgreen, zubggray, zubgtext } from "../../../Shared/color";
-import bgms from "../../../assets/images/bgs.jpg";
-import bgms1 from "../../../assets/images/bgs1.jpg";
 import { ArrowDropDown } from '@mui/icons-material';
-import Calendar from './Calender';
-import CryptoJS from "crypto-js";
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import { Box, Container, Stack, Typography } from '@mui/material';
 import axios from 'axios';
-import toast from 'react-hot-toast';
-import { endpoint } from '../../../services/urls';
-import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import moment from 'moment';
+import CryptoJS from "crypto-js";
 import dayjs from 'dayjs';
+import moment from 'moment';
+import * as React from 'react';
+import toast from 'react-hot-toast';
+import { NavLink } from 'react-router-dom';
+import bgms from "../../../assets/images/bgs.jpg";
+import Layout from '../../../component/Layout/Layout';
+import { endpoint } from '../../../services/urls';
+import { lightblue, lightgreen, zubgback, zubggray, zubgtext } from '../../../Shared/color';
+import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import theme from '../../../utils/theme';
+import Calendar from './Calender';
 
 function SubordinateIncome() {
     const [isOpen, setIsOpen] = React.useState(false);

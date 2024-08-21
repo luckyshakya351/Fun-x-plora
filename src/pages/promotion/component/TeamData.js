@@ -11,7 +11,7 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubggray, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { zubgback, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import { MygetdataFn } from "../../../services/apicalling";
 import { rupees } from "../../../services/urls";

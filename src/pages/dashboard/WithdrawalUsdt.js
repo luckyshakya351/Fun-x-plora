@@ -26,8 +26,8 @@ import playgame from "../../assets/images/playgame.jpg";
 import balance from "../../assets/images/send.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
 import Layout from "../../component/Layout/Layout";
-import { AddressListDetails, get_user_data_fn } from "../../services/apicalling";
-import { endpoint } from "../../services/urls";
+import { AddressListDetails, get_user_data_fn, NeedToBet } from "../../services/apicalling";
+import { endpoint, rupees } from "../../services/urls";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
@@ -64,7 +64,15 @@ function WithdrawalUsdt() {
   const goBack = () => {
     navigate(-1);
   };
-
+  const { isLoading: loding, data: need_to_bet } = useQuery(
+    ["need_to_bet"],
+    () => NeedToBet(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
   const walletamountFn = async () => {
     try {
       const response = await axios.get(
@@ -435,37 +443,38 @@ function WithdrawalUsdt() {
               borderRadius: "10px",
               mb: 5,
             }}>
-            <Stack direction="row" alignItems="center" mt={1}
-              className="!text-bold ">
-
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                *   Need to bet{" "}
-              </Typography>
-              <Typography
-                className="!text-orange-500 !text-xs"
-                variant="body1"
-                color="initial"
-                sx={{
-
-
-                  mx: 0.5,
-                }}
-              >
-                {" "}
-                $ 0
-              </Typography>
-              <Typography
-                variant="body1"
-                color="initial"
-                className="!text-xs"
-              >
-                {" "}
-                to be able to withdraw .{" "}
-              </Typography>
+             <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold "
+            >
+              {fk.values.select_wallet === "Working Wallet" && (
+                <Typography
+                  variant="body1"
+                  sx={{ color: "white" }}
+                  className="!text-xs"
+                >
+                  * Maximum Amount{" "}
+                  <span className="!text-green-500">
+                    {rupees} {Number(amount?.working_wallet) || 0}
+                  </span>{" "}
+                  can be withdrawl from working wallet.
+                </Typography>
+              )}
+              {fk.values.select_wallet === "Main Wallet" && (
+                <Typography
+                  variant="body1"
+                  sx={{ color: "white" }}
+                  className="!text-xs"
+                >
+                  * Maximum Amount{" "}
+                  <span className="!text-green-500">
+                    {rupees} {need_to_bet?.data?.data * 0.2 || 0}
+                  </span>{" "}
+                  can be withdrawl from winning wallet.
+                </Typography>
+              )}
             </Stack>
 
 

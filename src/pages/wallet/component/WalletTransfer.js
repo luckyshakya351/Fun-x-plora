@@ -1,3 +1,4 @@
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import HistoryIcon from "@mui/icons-material/History";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
@@ -21,14 +22,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import {
-  zubgback,
   zubgbackgrad,
   zubgmid,
   zubgshadow,
-  zubgtext,
+  zubgtext
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
