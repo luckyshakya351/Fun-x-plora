@@ -20,15 +20,14 @@ import donut from "../../assets/images/database.png";
 import money from "../../assets/images/salary.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { MygetdataFn, walletamount } from "../../services/apicalling";
+import { MygetdataFn,   walletamount } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
-import { DashboardRounded, Money } from "@mui/icons-material";
-import theme from "../../utils/theme";
+import { DashboardRounded, Money  } from "@mui/icons-material";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
-  const { data: amount } = useQuery(["walletamount"], () => walletamount(), {
+  const { data:amount} = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
@@ -47,7 +46,7 @@ function Promotion() {
   );
   const result = data?.data?.data;
 
-
+  
   const functionTOCopy = (value) => {
     console.log("function hit");
     copy(value);
@@ -70,13 +69,13 @@ function Promotion() {
         </Box>
         <Box sx={style.commitionboxOuter}>
           <Box sx={style.commitionbox}>
-            <Typography variant="body1" sx={{ color: zubgtext, mb: 1 }}>
-              {data?.data?.yesterday_income}
+            <Typography variant="body1" sx={{ color: zubgtext }}>
+              {data?.data?.yesterday_income?.toFixed(0,2)}
             </Typography>
-            <Typography variant="body1" sx={{ color: 'white' }}>
+            <Typography variant="body1" sx={{ color: 'black' }}>
               Yesterday  Income
             </Typography>
-            <Typography variant="body1" sx={{ color: zubgtext, mt: 1 }}>
+            <Typography variant="body1" sx={{ color: zubgtext }}>
               Upgrade the level to increase income
             </Typography>
           </Box>
@@ -102,13 +101,14 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
+                   className="!text-black"
 
                 >
                   {result?.filter(entry => entry.LEVEL === 1).length || 0}
                 </Typography>
                 <Typography
                   variant="body1"
-                  sx={{ color: 'white' }}
+
                 >
 
                   Number of register
@@ -117,7 +117,8 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
-                  sx={{ color: 'white' }}
+                   className="!text-black"
+
                 >
                   {result?.filter(level => level.LEVEL === 1 && Number(level.deposit_amount) > 0).length || 0}
                 </Typography>
@@ -125,15 +126,16 @@ function Promotion() {
                   variant="body1"
 
                 >
-                  Number of Deposit Members
+               Number of Deposit Members
                 </Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
+                   className="!text-black"
 
-                >
-                  {result?.filter((j) => j?.LEVEL === 1)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
+                > 
+                  {result?.filter((j)=>j?.LEVEL === 1)?.reduce((a,b)=>a+Number(b?.deposit_amount||0 ),0) || 0} 
                 </Typography>
                 <Typography
                   variant="body1" >
@@ -144,8 +146,8 @@ function Promotion() {
 
             <Box sx={style.innerBoxStylestwo}>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1"
-                >
+                <Typography variant="body1" 
+                 className="!text-black">
                   {result?.filter(entry => entry.LEVEL !== 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
@@ -155,7 +157,7 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
-                >
+                 className="!text-black" >
                   {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
@@ -165,8 +167,8 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
-                >
-                  {result?.filter((j) => j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
+                 className="!text-black" >
+                  {result?.filter((j)=>j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)|| 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -235,7 +237,7 @@ function Promotion() {
               <Stack direction="row">
                 <Box component="img" src={donut}></Box>
                 <Typography variant="body1" >
-                  Commission Income
+                Commission Income
                 </Typography>
               </Stack>
               <Stack direction="row">
@@ -269,7 +271,7 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
-
+         
           <NavLink to="/customerLine/">
             <Box sx={style.invitbox}>
               <Stack direction="row">
@@ -283,7 +285,7 @@ function Promotion() {
               </Stack>
             </Box>
           </NavLink>
-
+        
           <Box sx={style.promotionBoxOuter}>
             <Box sx={style.promotionBox}>
               <Stack direction="row">
@@ -300,7 +302,7 @@ function Promotion() {
                   {data?.data?.this_week_income || 0}
                 </Typography>
                 <Typography variant="body1" >
-                  This Week
+                 This Week
                 </Typography>
               </Box>
               <Box className="!text-white">
@@ -333,7 +335,7 @@ function Promotion() {
                 </Typography>
               </Box>
             </Stack>
-
+         
           </Box>
           <Box sx={style.promotionBoxOutertwo}></Box>
         </Box>
@@ -374,23 +376,23 @@ const style = {
     },
   },
   commitionboxOuter: {
-    width: "95%",
-    background: theme.palette.secondary.light,
-    ml: '2.5%',
-    borderRadius: '10px',
-    my: 2,
+    width: "100%",
+    backgroundImage: `url(${bgms})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
+    "&>img": { width: "100%", height: "100%" },
   },
   commitionbox: {
     margin: "auto",
     width: "70%",
     textAlign: "center",
-    py: 3,
+    py: 5,
     "&>p:nth-child(1)": { fontSize: "25px", fontWeight: "500" },
     "&>p:nth-child(2)": {
       fontSize: "13px",
       fontWeight: "400",
       padding: "5px 0px",
-      background: theme.palette.secondary.main,
+      background: lightblue,
       borderRadius: "20px",
     },
     "&>p:nth-child(3)": {
@@ -425,7 +427,9 @@ const style = {
     "&>p": { color: "white", fontSize: "14px", fontWeight: "500" },
   },
   boxStyles: {
-    background: theme.palette.secondary.light,
+    backgroundImage: `url(${bgms1})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
     padding: "30px 15px",
     display: "flex",
     borderRadius: " 0px 0px 10px 10px",
@@ -440,7 +444,7 @@ const style = {
   subcordinatelist: {
     textAlign: "center",
     "&>p:nth-child(1)": { color: lightblue, fontSize: "13px" },
-    "&>p:nth-child(2)": { color: '#63BA0E', fontSize: "13px" },
+    "&>p:nth-child(2)": { color: 'red', fontSize: "13px" },
     mb: 1,
   },
   subcordinateBox: {
@@ -468,7 +472,7 @@ const style = {
   },
   invitbox: {
     width: "95%",
-    background: theme.palette.secondary.light,
+    background: zubggray,
     padding: "10px",
     mb: "20px",
     borderRadius: "10px",
@@ -500,7 +504,7 @@ const style = {
   },
   promotionBoxOuter: {
     width: "95%",
-    background: theme.palette.secondary.light,
+    background: lightgreen,
     padding: "10px",
     mt: "20px",
     borderRadius: "5px",
@@ -543,7 +547,7 @@ const style = {
   },
   promotionBoxOutertwo: {
     width: "90%",
-    // background: theme.palette.secondary.light,
+    background: zubgback,
     padding: "10px",
     borderRadius: "5px",
     marginLeft: "5%",

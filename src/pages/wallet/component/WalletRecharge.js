@@ -650,29 +650,27 @@ function WalletRecharge() {
               <RadioGroup
                 row
                 value={selectedGateway}
-                onChange={(e) => {
-                  setDeposit_req_data(null);
-                  setSelectedGateway(e.target.value);
-                }}
+                // onChange={(e) => {
+                //   setDeposit_req_data(null);
+                //   setSelectedGateway(e.target.value);
+                // }}
               >
                 <Typography className="!mt-2 !mr-5  !font-bold" sx={{ color: 'white !important' }}>Select :</Typography>
                 <FormControlLabel
                   sx={{ color: 'white !important' }}
-                  value="Gateway1"
+                  value="Gateway2"
                   control={<Radio sx={{ color: 'white !important' }} />}
                   label="Flex"
                 />
 
                 <FormControlLabel
                   sx={{ color: 'white !important' }}
-                  value="Gateway2"
+                  value="Gateway1"
                   control={<Radio sx={{ color: 'white !important' }} />}
                   label="PYT-PAY"
                 />
               </RadioGroup>
             </Box>
-
-
           </Box>
         ) : (
           ""
