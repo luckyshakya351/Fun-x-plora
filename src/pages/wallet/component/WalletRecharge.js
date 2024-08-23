@@ -25,23 +25,22 @@ import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
 import {
-  zubgbackgrad,
   zubgmid,
   zubgshadow,
   zubgtext
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
-import dot from "../../../assets/images/circle-arrow.png";
-import pay from "../../../assets/images/wallet.png";
 import user from "../../../assets/check.png";
+import dot from "../../../assets/images/circle-arrow.png";
 import balance from "../../../assets/images/send.png";
+import pay from "../../../assets/images/wallet.png";
 import usdt from "../../../assets/payNameIcon1.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
 import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
-import UsdtQR from "./UsdtQR";
 import theme from "../../../utils/theme";
+import UsdtQR from "./UsdtQR";
 
 function WalletRecharge() {
   const dispatch = useDispatch();
@@ -650,29 +649,27 @@ function WalletRecharge() {
               <RadioGroup
                 row
                 value={selectedGateway}
-                onChange={(e) => {
-                  setDeposit_req_data(null);
-                  setSelectedGateway(e.target.value);
-                }}
+                // onChange={(e) => {
+                //   setDeposit_req_data(null);
+                //   setSelectedGateway(e.target.value);
+                // }}
               >
                 <Typography className="!mt-2 !mr-5  !font-bold" sx={{ color: 'white !important' }}>Select :</Typography>
                 <FormControlLabel
                   sx={{ color: 'white !important' }}
-                  value="Gateway1"
+                  value="Gateway2"
                   control={<Radio sx={{ color: 'white !important' }} />}
                   label="Flex"
                 />
 
                 <FormControlLabel
                   sx={{ color: 'white !important' }}
-                  value="Gateway2"
+                  value="Gateway1"
                   control={<Radio sx={{ color: 'white !important' }} />}
                   label="PYT-PAY"
                 />
               </RadioGroup>
             </Box>
-
-
           </Box>
         ) : (
           ""

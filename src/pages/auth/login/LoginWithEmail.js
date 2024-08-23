@@ -1,34 +1,28 @@
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
+import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
   Box,
-  Button,
-  Checkbox,
   FormControl,
-  FormControlLabel,
   IconButton,
   InputAdornment,
   OutlinedInput,
   Stack,
-  TextField,
-  Typography, FormLabel, FormGroup, FormHelperText,
-  FilledInput,
+  TextField
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
-import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
-import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
-import CryptoJS from "crypto-js";
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginEmailSchemaValidaton } from "../../../Shared/Validation";
-import { lightblue, zubgtext } from "../../../Shared/color";
+import inputfield from '../../../assets/inputfield.a3159d8d15fb018d06f4.png';
 import { endpoint } from "../../../services/urls";
-import inputfield from '../../../assets/inputfield.a3159d8d15fb018d06f4.png'
-import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 
 function LoginWithEmail() {
@@ -84,7 +78,9 @@ function LoginWithEmail() {
         },
       });
 
-      toast.success(response?.data?.msg);
+      toast.success(response?.data?.msg,{
+        id:1
+      });
       if (response?.data?.msg === "Login Successfully") {
         const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
         localStorage.setItem("logindataen", value);

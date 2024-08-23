@@ -84,7 +84,9 @@ function LoginWithMobile() {
         },
       });
 
-      toast.success(response?.data?.msg);
+      toast.success(response?.data?.msg,{
+        id:1
+      });
       if (response?.data?.msg === "Login Successfully") {
         const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
         localStorage.setItem("logindataen", value);
