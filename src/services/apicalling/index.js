@@ -189,6 +189,17 @@ export const walletamount = async () => {
     console.log(e);
   }
 };
+export const yesterday_deposit_withdrawl_by_treamFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.get_yesterday_deposit_withdrawl_by_treamFn}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const allWithdrawlCashUserFn = async () => {
   try {
     const response = await axios.get(`${endpoint.all_withdrawl_user_list}`);

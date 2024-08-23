@@ -1,8 +1,9 @@
-import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
+import AddIcon from '@mui/icons-material/Add';
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import RemoveIcon from '@mui/icons-material/Remove';
 import {
   Box,
   Button,
@@ -18,30 +19,24 @@ import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
-  zubgmid,
   zubgtext
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import edit from "../../assets/quickpay.png";
 import card from "../../assets/images/card-payment.png";
-import casino from "../../assets/images/casino.png";
-import gift from "../../assets/images/gift-box-with-a-bow.png";
 import graph from "../../assets/images/graph (1).png";
 import balance from "../../assets/images/logotwhite.png";
-import bgms from "../../assets/images/playgame.jpg";
 import dp1 from "../../assets/images/pr.png";
 import trans from "../../assets/images/translate.png";
 import namer from "../../assets/images/vip.png";
-import s from "../../assets/wdhistory.png";
-import dpt from "../../assets/withdrow.png";
+import edit from "../../assets/quickpay.png";
 import wtd from "../../assets/rechargeIcon.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
+import s from "../../assets/wdhistory.png";
+import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 import theme from "../../utils/theme";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 function Account() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -127,6 +122,33 @@ function Account() {
                   Number(wallet?.winning || 0) +
                   Number(wallet?.wallet || 0)
                 ) || 0
+              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
+            </Typography>
+
+          </Stack>
+          <Stack direction="row" sx={{ alignItems: "center", mt: "10px", justifyContent: 'space-between' }}>
+            <Typography variant="body1" color="initial" sx={style.balanceText}>
+            Yesterday total deposit 
+
+            </Typography>
+            <Typography variant="body1" color="initial" className="!text-white">
+              ₹
+              {(
+                  Number(wallet?.total_payin || 0)
+
+              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
+            </Typography>
+
+          </Stack>
+          <Stack direction="row" sx={{ alignItems: "center", mt: "10px", justifyContent: 'space-between' }}>
+            <Typography variant="body1" color="initial" sx={style.balanceText}>
+            Yesterday total withdrawal 
+            </Typography>
+            <Typography variant="body1" color="initial"  className="!text-white">
+              ₹
+              {(
+                  Number(wallet?.total_payout || 0)
+
               )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
             </Typography>
 

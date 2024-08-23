@@ -3,10 +3,10 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-export const newdomain1 = "https://api.funxplora.com";
-export const newdomain = "https://api.funxplora.com";
-// export const newdomain1 = "http://localhost:9000";
-// export const newdomain = "http://localhost:9000";
+// export const newdomain1 = "https://api.funxplora.com";
+// export const newdomain = "https://api.funxplora.com";
+export const newdomain1 = "http://localhost:9000";
+export const newdomain = "http://localhost:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
@@ -21,6 +21,7 @@ export const endpoint = {
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/user_register`,
   userwallet: `${newdomain1}/api/v1/userwallet`,
+  get_yesterday_deposit_withdrawl_by_treamFn: `${newdomain1}/api/v1/get_yesterday_deposit_withdrawl_by_treamFn`,
   top11winner: `${newdomain1}/api/v1/get-top-winners`,
   openbannerUrl: `${baseUrl}/popup`,
   profiledata: `${baseUrl}/api/profileapi`,
