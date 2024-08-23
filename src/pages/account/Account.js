@@ -40,7 +40,8 @@ import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 import theme from "../../utils/theme";
-
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 function Account() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -94,10 +95,10 @@ function Account() {
                 {wallet?.full_name}
               </Typography>
               <Box component="img" src={namer} sx={{ width: "50px" }} />
-              <Box className="">
+              <Box className="!ml-5">
                 {wallet?.transaction_status === 0 ?
-                  <ArrowDownward className="!text-red-800 !font-extrabold  !text-4xl" />
-                  : <ArrowUpward className="!text-green-800 !font-extrabold  !text-4xl" />}
+                  <RemoveIcon className="!text-red-500 !font-extrabold  !text-4xl" />
+                  : <AddIcon className="!text-green-500 !font-extrabold  !text-4xl" />}
               </Box>
             </Stack>
 
