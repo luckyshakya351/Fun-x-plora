@@ -1,4 +1,5 @@
 
+import { DashboardRounded, Money } from "@mui/icons-material";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import EmojiPeopleOutlinedIcon from "@mui/icons-material/EmojiPeopleOutlined";
@@ -10,10 +11,8 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { lightblue, lightgreen, zubgback, zubggray, zubgtext } from "../../Shared/color";
+import { lightblue, zubgback, zubgtext } from "../../Shared/color";
 import customer from "../../assets/images/24-hours-service.png";
-import bgms from "../../assets/images/bgs.jpg";
-import bgms1 from "../../assets/images/bgs1.jpg";
 import copyIimage from "../../assets/images/copy.png";
 import sort from "../../assets/images/data-flow.png";
 import donut from "../../assets/images/database.png";
@@ -22,7 +21,6 @@ import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { MygetdataFn, walletamount } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
-import { DashboardRounded, Money } from "@mui/icons-material";
 import theme from "../../utils/theme";
 
 function Promotion() {
@@ -71,7 +69,7 @@ function Promotion() {
         <Box sx={style.commitionboxOuter}>
           <Box sx={style.commitionbox}>
             <Typography variant="body1" sx={{ color: zubgtext, mb: 1 }}>
-              {data?.data?.yesterday_income}
+              {Number(data?.data?.yesterday_income || 0)?.toFixed(2)}
             </Typography>
             <Typography variant="body1" sx={{ color: 'white' }}>
               Yesterday  Income
