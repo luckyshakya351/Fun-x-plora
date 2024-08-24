@@ -44,6 +44,11 @@ function MainPageOFIncome() {
       name: "Level Income",
       logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
     },
+    {
+      to: "/account/income-main/cash_back_report",
+      name: "Cashback Income",
+      logo: <StoreIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+    },
   ];
 
   return (
@@ -71,7 +76,7 @@ function MainPageOFIncome() {
           </Typography>
 
 
-          <TableContainer sx={{ background: theme.palette.secondary.light }}>
+          <TableContainer sx={{ background: theme.palette.secondary.light }} className="!mb-10">
             <Table >
               <TableHead>
                 <TableRow>
