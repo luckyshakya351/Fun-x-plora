@@ -3,10 +3,10 @@ export const rupees = "₹";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
-// export const newdomain1 = "https://api.funxplora.com";
-// export const newdomain = "https://api.funxplora.com";
-export const newdomain1 = "http://localhost:9000";
-export const newdomain = "http://localhost:9000";
+export const newdomain1 = "https://api.funxplora.com";
+export const newdomain = "https://api.funxplora.com";
+// export const newdomain1 = "http://localhost:9000";
+// export const newdomain = "http://localhost:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
@@ -31,7 +31,8 @@ export const endpoint = {
   game_history: `${newdomain}/api/v1/colour_result`,
   my_history_all: `${newdomain}/api/v1/getbet-game-results`,
   get_status: `${newdomain}/api/v1/get-status`,
-
+  cashback_report: `${newdomain1}/api/v1/getCashBack-report`,
+ 
   //payment
   payment: `${newdomain1}/api/v1/payment`,
   deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,

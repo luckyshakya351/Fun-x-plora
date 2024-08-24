@@ -23,6 +23,7 @@ import FundRequest from "../pages/dashboard/FundRequest";
 import WithdrawalUsdt from "../pages/dashboard/WithdrawalUsdt";
 import Withdrawl from "../pages/dashboard/Withdrawl";
 import MainPageOFIncome from "../pages/income/MainPageOFIncome";
+import CashbackReport from "../pages/income/incomeSubSection/CashbackReport";
 import DailyCashBackBonus from "../pages/income/incomeSubSection/DailyCashBackBonus";
 import DailySalaryBonus from "../pages/income/incomeSubSection/DailySalaryBonus";
 import DepositBonus from "../pages/income/incomeSubSection/DepositBonus";
@@ -258,6 +259,10 @@ export const routes = [
     {
         path: "/account/income-main/daily-cash-back-bonus",
         component: <DailyCashBackBonus />
+    },
+    {
+        path: "/account/income-main/cash_back_report",
+        component: <CashbackReport />
     },
     {
         path: "/account/income-main/daily-salary-bonus",
