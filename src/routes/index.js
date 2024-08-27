@@ -1,5 +1,4 @@
 import LayoutAviator from "../GamePage/Layout";
-import MainPage from "../GamePage/MainPage";
 import PlayGame from "../GamePage/PlayGame";
 import Test from "../pages/Test";
 import Account from "../pages/account/Account";
@@ -220,10 +219,7 @@ export const routes = [
         path: "/view_fund_request",
         component: <FundRequest />
     },
-    {
-        path: "/aviator-login",
-        component: <MainPage />
-    },
+    
     {
         path: "/playgame",
         component: <LayoutAviator component={<PlayGame />} />

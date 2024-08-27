@@ -211,9 +211,9 @@ function Dashboard() {
 
 
 
-  useEffect(() => {
-    !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
+  // useEffect(() => {
+  //   !aviator_login_data && get_user_data_fn(dispatch);
+  // }, []);
 
 
 
