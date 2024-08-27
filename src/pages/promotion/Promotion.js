@@ -287,14 +287,14 @@ function Promotion() {
           <Box sx={style.promotionBoxOuter}>
             <Box sx={style.promotionBox}>
               <Stack direction="row">
-                <Box component="img" src={money}></Box>
-                <Typography variant="body1" >
+                <Box component="img" src={money} sx={{ filter: 'invert(1)' }}></Box>
+                <Typography variant="body1" sx={{ color: 'black !important' }} >
                   Promotion data
                 </Typography>
               </Stack>
             </Box>
             <Stack direction="row">
-              <Box className="!text-white">
+              <Box className="!text-black">
                 <DashboardRounded />
                 <Typography variant="body1" >
                   {data?.data?.this_week_income || 0}
@@ -303,7 +303,7 @@ function Promotion() {
                   This Week
                 </Typography>
               </Box>
-              <Box className="!text-white">
+              <Box className="!text-black">
                 <Money />
                 <Typography variant="body1" >
                   {data?.data?.total_commission || 0}
@@ -314,7 +314,7 @@ function Promotion() {
               </Box>
             </Stack>
             <Stack direction="row">
-              <Box className="!text-white">
+              <Box className="!text-black">
                 <EmojiPeopleOutlinedIcon />
                 <Typography variant="body1" >
                   {result?.filter(entry => entry.LEVEL === 1).length || 0}
@@ -323,7 +323,7 @@ function Promotion() {
                   Direct subordinate
                 </Typography>
               </Box>
-              <Box className="!text-white">
+              <Box className="!text-black">
                 <Groups2OutlinedIcon />
                 <Typography variant="body1" >
                   {result?.filter(entry => entry.LEVEL !== 0).length || 0}
@@ -495,12 +495,12 @@ const style = {
     "&>div:nth-child(1)>p": {
       fontSize: "17px",
       fontWeight: 500,
-      color: "white !important",
+      color: "black !important",
     },
   },
   promotionBoxOuter: {
     width: "95%",
-    background: theme.palette.secondary.light,
+    background: 'white',
     padding: "10px",
     mt: "20px",
     borderRadius: "5px",
@@ -517,11 +517,11 @@ const style = {
       width: "50%",
       textAlign: "center",
     },
-    "&>div:nth-child(2)>div>p:nth-child(1)": { color: "white !important" },
+    "&>div:nth-child(2)>div>p:nth-child(1)": { color: "black !important" },
     "&>div:nth-child(2)>div>p:nth-child(2)": {
       fontSize: "13px",
       fontWeight: 500,
-      color: "white !important",
+      color: "black !important",
     },
     "&>div:nth-child(3)>div:nth-child(1)": {
       my: "10px",
@@ -534,11 +534,11 @@ const style = {
       width: "50%",
       textAlign: "center",
     },
-    "&>div:nth-child(3)>div>p:nth-child(1)": { color: "white !important" },
+    "&>div:nth-child(3)>div>p:nth-child(1)": { color: "black !important" },
     "&>div:nth-child(3)>div>p:nth-child(2)": {
       fontSize: "13px",
       fontWeight: 500,
-      color: "white !important",
+      color: "black !important",
     },
   },
   promotionBoxOutertwo: {

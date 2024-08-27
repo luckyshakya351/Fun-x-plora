@@ -17,32 +17,32 @@ function MainPageOFIncome() {
     {
       to: "/account/income-main/deposit-bonus",
       name: "Deposit Self Income",
-      logo: <PriceCheckIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+      logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
       to: "/account/income-main/referral-bonus",
       name: "Sponsor Income",
-      logo: <RedeemIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+      logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
       to: "/account/income-main/daily-salary-bonus",
       name: "Daily Salary",
-      logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+      logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
       to: "/account/income-main/self-trading-bonus",
       name: "Self Trade Income",
-      logo: <StoreIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+      logo: <StoreIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
       to: "/account/income-main/weekly-bonus",
       name: "Weekly Salary Income",
-      logo: <Diversity2Outlined className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+      logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
       to: "/account/income-main/team-trading-bonus",
       name: "Level Income",
-      logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+      logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
   ];
 
@@ -50,7 +50,7 @@ function MainPageOFIncome() {
     <Layout>
       <Container
         sx={{
-          background: zubgback,
+          background: 'white',
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -66,35 +66,35 @@ function MainPageOFIncome() {
           }}
         >
           <Typography
-            variant="body1" color="initial" sx={{ color: "white", fontSize: "20px", fontWeight: "600", background: zubgtext, textAlign: 'center', padding: '10px' }}>
+            variant="body1" color="initial" sx={{ color: "black !important", fontSize: "20px", fontWeight: "600", background: zubgtext, textAlign: 'center', padding: '10px' }}>
             Income
           </Typography>
 
 
-          <TableContainer sx={{ background: theme.palette.secondary.light }}>
+          <TableContainer sx={{ background: 'white' }}>
             <Table >
               <TableHead>
                 <TableRow>
-                  <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>S.No</TableCell>
-                  <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>Icon</TableCell>
-                  <TableCell className="!border !text-xs !border-r !border-white  !text-center" sx={{ color: "white", fontWeight: "600" }}>Name</TableCell>
+                  <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>S.No</TableCell>
+                  <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>Icon</TableCell>
+                  <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>Name</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {data_array.map((item, index) => (
                   <TableRow key={item.name}>
-                    <TableCell className="!border !text-xs !border-r !border-white  !text-center">
-                      <NavLink style={{ textDecoration: 'none', color: 'white' }}>
+                    <TableCell className="!border !text-xs !border-r !border-black  !text-center">
+                      <NavLink style={{ textDecoration: 'none', color: 'black' }}>
                         {index + 1}
                       </NavLink>
                     </TableCell>
-                    <TableCell className="!border !text-xs !border-r !border-white  !text-center">
-                      <NavLink to={item.to} style={{ textDecoration: '', color: 'white' }}>
+                    <TableCell className="!border !text-xs !border-r !border-black  !text-center">
+                      <NavLink to={item.to} style={{ textDecoration: '', color: 'black' }}>
                         {item.name}
                       </NavLink>
                     </TableCell>
-                    <TableCell className="!border !text-xs !border-r !border-white  !text-center">
-                      <NavLink to={item.to}>
+                    <TableCell className="!border !text-xs !border-r !border-black  !text-center">
+                      <NavLink to={item.to} style={{ textDecoration: '', color: 'black !important' }}>
                         {item.logo}
                       </NavLink>
                     </TableCell>
@@ -124,10 +124,10 @@ const style = {
       fontSize: "20px",
       fontWeight: "600",
       textAlign: "center",
-      color: "white",
+      color: "black !important",
     },
     "& > a > svg": {
-      color: "white",
+      color: "black !important",
       fontSize: "35px",
     },
   },
@@ -154,7 +154,7 @@ const style = {
     borderRadius: "10px",
     mb: "10px",
     "&>p": {
-      color: "white",
+      color: "black !important",
       fontSize: "12px",
       fontWeight: "500",
       textAlign: "center",

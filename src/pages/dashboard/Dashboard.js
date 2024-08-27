@@ -322,9 +322,7 @@ function Dashboard() {
 
           <Box
             sx={{
-              display: "flex",
-              alignItems: "start",
-              justifyContent: "space-between",
+
               width: "95%",
               marginLeft: "2.5%",
               background: lightyellow,
@@ -334,19 +332,36 @@ function Dashboard() {
               padding: "10px 10px",
             }}
           >
-            <Box sx={{ width: "10%" }}>
+            <Stack direction='row' sx={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', background: theme.palette.secondary.main, borderRadius: '5px', mb: 1, py: 1, }}>
+              <Typography variant="body1" sx={{
+                color: 'white',
+                fontWeight: 600,
+                fontSize: '20px'
+              }}>₹ 1230.00</Typography>
+              <Typography variant="body1" sx={{
+                color: 'white',
+                fontWeight: 500,
+                fontSize: '15px'
+              }} >Available balance</Typography>
+            </Stack>
+            <Box sx={{
+              width: "100%", display: "flex",
+              alignItems: "start",
+              justifyContent: "space-between",
+            }}>
               <CampaignOutlinedIcon sx={{ color: "black" }} />
-            </Box>
-            <Box
-              sx={{
-                width: "90%",
-                "&>p": { fontSize: "13px", },
-              }}
-            >
-              <Typography variant="body1" sx={{ color: 'white' }}>
-                See the Installation page for additional docs about how to make
-                sure everything is set up correctly.
-              </Typography>
+
+              <Box
+                sx={{
+                  width: "90%",
+                  "&>p": { fontSize: "13px", },
+                }}
+              >
+                <Typography variant="body1" sx={{ color: 'white' }}>
+                  See the Installation page for additional docs about how to make
+                  sure everything is set up correctly.
+                </Typography>
+              </Box>
             </Box>
           </Box>
           <Box sx={styles.referralLinkContainer}>
@@ -894,17 +909,17 @@ const styles = {
   referralLinkContainer: { background: "#63BA0E", boxShadow: zubgshadow, padding: "15px 15px", borderRadius: "5px", mt: 4, width: "95%", marginLeft: "2.5%", },
   referralLinkTitle: { color: '#160D3D', fontSize: "14px", fontWeight: "500 !important", mb: 1, },
   referralLinkInputContainer: { alignItems: "center" },
-  referralLinkInput: { width: "100%", background: "#eae8e8", boxShadow: zubgshadow, borderRadius: "5px", "&>div>input": { color: zubgtext }, },
+  referralLinkInput: { width: "100%", background: "#ff00008a", boxShadow: zubgshadow, borderRadius: "5px", "&>div>input": { color: '#3330BB' }, },
   referralLinkButton: { marginLeft: 2, background: '#160D3D', color: '#63BA0E' },
   socialButtonsContainer: { alignItems: "center", justifyContent: "space-between", mt: 2, },
   telegramButton: {
-    fontSize: "14px", color: "#160D3D !important", textTransform: "capitalize", fontWeight: "400", background: theme.palette.primary.dark,
-    "&:hover": { background: theme.palette.primary.light },
+    fontSize: "14px", color: "#160D3D !important", textTransform: "capitalize", fontWeight: "400", background: '#27A3E3',
+    "&:hover": { background: '#27A3E3' },
   },
   supportButton: {
-    fontSize: "14px", color: "#63BA0E !important", textTransform: "capitalize", fontWeight: "400",
-    background: theme.palette.secondary.dark,
-    "&:hover": { background: theme.palette.primary.dark },
+    fontSize: "14px", color: theme.palette.secondary.dark, textTransform: "capitalize", fontWeight: "400",
+    background: 'white',
+    "&:hover": { background: 'white' },
   },
   socialButtonIcon: {
     margin: "auto",
@@ -919,7 +934,8 @@ const styles = {
   socialIconinfo: {
     fontSize: "27px",
     margin: "auto",
-    "&>path": { color: "#63BA0E !important" },
+    color: `${theme.palette.primary.dark}!important`,
+    "&>path": { color: `${theme.palette.primary.dark}!important`, },
   },
   socialButtonText: {
     color: " !important",

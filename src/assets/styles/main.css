@@ -590,7 +590,7 @@ img {
 }
 
 .greemred {
-  background: #63BA0E !important;
+  background: red !important;
   color: white !important;
   text-transform: capitalize !important;
   border-radius: 10px 0px 10px 0px !important;
@@ -1535,22 +1535,22 @@ img {
 }
 
 .redbtn {
-  background: #63BA0E !important;
+  background: #0D0335 !important;
   color: white !important;
   text-transform: capitalize !important;
   border-radius: 19px !important;
-  padding: 5px 36px !important;
+  padding: 7px 36px !important;
   margin-top: 15px !important;
 }
 
 .greenbtn {
   background: transparent;
-  color: #63BA0E !important;
+  color: red !important;
   text-transform: capitalize !important;
   border-radius: 19px !important;
   padding: 5px 36px !important;
   margin-top: 15px !important;
-  border: 2px solid #63BA0E !important;
+  border: 2px solid red !important;
 }
 
 
@@ -1779,4 +1779,37 @@ td {
 .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
   color: white;
   font-size: 11px;
+}
+
+
+
+.withdrawalfield2>div>input {
+  background-color: #ffffff !important;
+  border-radius: 5px !important;
+  padding: 10px !important;
+}
+
+.withdrawalfield2>div>input.MuiInputBase-input {
+  color: black !important;
+}
+
+.withdrawalfield2>div>input.MuiInputBase-input::placeholder {
+  color: black !important;
+}
+
+.withdrawalfield2>div>input::placeholder {
+  color: black !important;
+}
+
+.withdrawalfield2>div>fieldset {
+  border: none !important;
+}
+
+.withdrawalfield2>div>.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0 !important;
+  padding: 10px !important;
+}
+
+.abcd>.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 12px !important;
 }

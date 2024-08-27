@@ -17,6 +17,7 @@ import {
   zubggray
 } from "../../Shared/color";
 import logo from "../../assets/funXplora-8-13-2024 (1).png";
+import logo1 from "../../assets/images/logotwhite.png";
 import deposite from "../../assets/images/new/download (10).png";
 import wallet from "../../assets/images/new/download (11).png";
 import wallettransfer from "../../assets/images/new/download (12).png";
@@ -169,7 +170,7 @@ function Wallet() {
                   <img style={{ width: '50px' }} src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" alt="" />
                 </div>
                 <div class="visa_logo">
-                  <img style={{ width: '50px' }} src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png" alt="" />
+                  <Box component={'img'} src={logo1} sx={{ width: '90px' }}></Box>
                 </div>
               </Stack>
             </Box>

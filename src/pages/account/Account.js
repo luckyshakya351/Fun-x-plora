@@ -27,7 +27,7 @@ import card from "../../assets/images/card-payment.png";
 import casino from "../../assets/images/casino.png";
 import gift from "../../assets/images/gift-box-with-a-bow.png";
 import graph from "../../assets/images/graph (1).png";
-import balance from "../../assets/images/logotwhite.png";
+import balance from "../../assets/images/logotred.png";
 import bgms from "../../assets/images/playgame.jpg";
 import dp1 from "../../assets/images/pr.png";
 import trans from "../../assets/images/translate.png";
@@ -93,7 +93,6 @@ function Account() {
               <Typography variant="" sx={{ mr: 2, color: 'white', }}>
                 {wallet?.full_name}
               </Typography>
-              <Box component="img" src={namer} sx={{ width: "50px" }} />
               <Box className="">
                 {wallet?.transaction_status === 0 ?
                   <ArrowDownward className="!text-red-800 !font-extrabold  !text-4xl" />

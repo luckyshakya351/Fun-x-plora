@@ -152,7 +152,7 @@ function AddBankDetails() {
                   value={fk.values.name}
                   onChange={fk.handleChange}
                   placeholder="Enter account holder name *"
-                  className="withdrawalfield"
+                  className="withdrawalfield2"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.name && fk.errors.name && (
@@ -172,7 +172,7 @@ function AddBankDetails() {
                   value={fk.values.email}
                   onChange={fk.handleChange}
                   placeholder="Enter email *"
-                  className="withdrawalfield"
+                  className="withdrawalfield2"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.email && fk.errors.email && (
@@ -192,7 +192,7 @@ function AddBankDetails() {
                   value={fk.values.mobile}
                   onChange={fk.handleChange}
                   placeholder="Enter mobile *"
-                  className="withdrawalfield"
+                  className="withdrawalfield2"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.mobile && fk.errors.mobile && (
@@ -213,7 +213,7 @@ function AddBankDetails() {
                   value={fk.values.bank_name}
                   onChange={fk.handleChange}
                   placeholder="Enter bank name *"
-                  className="withdrawalfield"
+                  className="withdrawalfield2"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.bank_name && fk.errors.bank_name && (
@@ -234,7 +234,7 @@ function AddBankDetails() {
                   value={fk.values.ifsc}
                   onChange={fk.handleChange}
                   placeholder="Enter IFSC code *"
-                  className="withdrawalfield"
+                  className="withdrawalfield2"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.ifsc && fk.errors.ifsc && (
@@ -254,7 +254,7 @@ function AddBankDetails() {
                   value={fk.values.account_number}
                   onChange={fk.handleChange}
                   placeholder="Enter account number *"
-                  className="withdrawalfield"
+                  className="withdrawalfield2"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.account_number && fk.errors.account_number && (

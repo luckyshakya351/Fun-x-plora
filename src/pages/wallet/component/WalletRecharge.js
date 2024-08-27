@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
+import logo1 from "../../../assets/images/logotred.png";
 import {
   zubgbackgrad,
   zubgmid,
@@ -262,28 +263,28 @@ function WalletRecharge() {
         >
           <Stack direction="row" sx={style.rechargeinstext}>
             <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important' }}>
+            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
               If the transfer time is up, please fill out the deposit form
               again.
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
             <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important' }}>
+            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
               The transfer amount must match the order you created, otherwise
               the money cannot be credited successfully.
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
             <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important' }}>
+            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
               If you transfer the wrong amount, our company will not be
               responsible for the lost amount!
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
             <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important' }}>
+            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
               Note: do not cancel the deposit order after the money has been
               transferred.
             </Typography>
@@ -512,7 +513,7 @@ function WalletRecharge() {
             width: "95%",
             margin: "auto",
             position: "relative",
-            background: '#63BA0E',
+            background: 'white',
           }}
         >
           <Stack direction="row" sx={{ alignItems: "center" }}>
@@ -523,6 +524,7 @@ function WalletRecharge() {
               sx={{
                 position: "relative",
                 zIndex: 10,
+                filter: 'invert(1)',
               }}
             ></Box>
             <Typography
@@ -531,7 +533,7 @@ function WalletRecharge() {
               sx={{
                 fontSize: "16px ",
                 fontWeight: 500,
-                color: "white",
+                color: "black",
                 ml: "10px",
                 position: "relative",
                 zIndex: 10,
@@ -556,7 +558,7 @@ function WalletRecharge() {
               sx={{
                 fontSize: "30px ",
                 fontWeight: "600",
-                color: "white",
+                color: "#63BA0E",
                 mr: "10px",
                 position: "relative",
                 zIndex: 10,
@@ -583,7 +585,7 @@ function WalletRecharge() {
               <img style={{ width: '50px' }} src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" alt="" />
             </div>
             <div class="visa_logo">
-              <img style={{ width: '50px' }} src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png" alt="" />
+              <Box component={'img'} src={logo1} sx={{ width: '90px' }}></Box>
             </div>
           </Stack>
         </Box>
@@ -646,7 +648,10 @@ function WalletRecharge() {
                 width: '100%'
               }}
             >
-
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '10px 20px' }}>
+                <Button variant="contained" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', background: '#0D0335' }}>Flex</Button>
+                <Button variant="contained" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', }}>PYT-PAY</Button>
+              </Box>
               <RadioGroup
                 row
                 value={selectedGateway}
@@ -916,7 +921,7 @@ const style = {
     "&>p": {
       marginLeft: "10px",
       color: zubgtext,
-      fontSize: "14px",
+      fontSize: "12px",
     },
   },
 };

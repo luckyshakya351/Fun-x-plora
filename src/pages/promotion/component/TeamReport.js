@@ -46,14 +46,14 @@ function TeamReports() {
             {" "}
           </Typography>
         </Box>
-        <Box sx={{ paddingTop: 2 }}>
+        <Box >
           <Box
             className="!mb-10"
             sx={{
-              background: zubgwhite,
+              background: 'white',
               boxShadow: zubgshadow,
-              borderRadius: "10px",
-              padding: "30px 20px",
+
+              padding: "20px 16px",
               "&>div": { mb: 1 },
               "&>div>div:nth-child(1)": {
                 borderRight: "1px solid black",
@@ -68,7 +68,7 @@ function TeamReports() {
               },
             }}
           >
-            <div style={{ color: 'white', background: zubgtext, padding: '10px', borderRadius: '5px' }} className="!grid !grid-cols-6   !place-items-center ">
+            <div style={{ paddingTop: '16px', color: 'white', background: zubgtext, padding: '10px', borderRadius: '5px' }} className="!grid !grid-cols-6   !place-items-center ">
               <span>S.No.</span>
               <span>User Id</span>
               <span className="!col-span-2">Name</span>
@@ -87,7 +87,7 @@ function TeamReports() {
           </Box>
         </Box>
       </Container>
-    </Layout>
+    </Layout >
   );
 }
 

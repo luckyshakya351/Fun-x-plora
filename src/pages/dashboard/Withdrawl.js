@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
+import logo1 from "../../assets/images/logotwhite.png";
 import {
   zubgback,
   zubgbackgrad,
@@ -277,8 +278,8 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                  )?.toFixed(2)}
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -317,7 +318,7 @@ function Withdrawl() {
                 zIndex: 10,
               }}
             >
-              **** **** **** ****
+              <Box component={'img'} src={logo1} sx={{ width: '90px' }}></Box>
             </Typography>
           </Stack>
         </Box>
@@ -388,7 +389,7 @@ function Withdrawl() {
                   value={fk.values.amount}
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
-                  className="withdrawalfield"
+                  className="withdrawalfield2"
                   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.amount && fk.errors.amount && (
@@ -408,20 +409,22 @@ function Withdrawl() {
                     name="select_wallet"
                     value={fk.values.select_wallet}
                     onChange={fk.handleChange}
-                    className="withdrawalfield "
+                    className="withdrawalfield2 "
                     sx={{
-                      background: "#ffffff29",
+                      background: "white",
                       border: "none",
-                      borderRadius: "10px",
+                      borderRadius: "5px",
+                      padding: '0px',
                     }}
-                    //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     InputProps={{
                       style: {
                         borderWidth: "1px",
-                        color: "white",
+                        color: "black",
                         background: "red !important",
                         borderRadius: "10px",
                         border: "none",
+                        padding: '10px !important',
+                        '&>div': { padding: '0px !important', },
                       },
                     }}
                   >
@@ -442,7 +445,7 @@ function Withdrawl() {
                     </Typography>
                   </Stack>
                   <OutlinedInput
-                    className=""
+                    className="abcd"
                     id="password"
                     name="password"
                     value={fk.values.password}
@@ -451,9 +454,9 @@ function Withdrawl() {
                     onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     sx={{
                       width: "100%",
-                      background: "#ffffff29",
-                      color: "white",
-                      borderRadius: "10px",
+                      background: "white",
+                      color: "black",
+                      borderRadius: "5px",
                     }}
                     type={showoldPassword ? "text" : "password"}
                     endAdornment={
@@ -467,14 +470,14 @@ function Withdrawl() {
                           {showoldPassword ? (
                             <VisibilityOff
                               sx={{
-                                color: "white",
+                                color: "black",
                                 fontSize: "25px !important",
                               }}
                             />
                           ) : (
                             <Visibility
                               sx={{
-                                color: "white",
+                                color: "black",
                                 fontSize: "25px !important",
                               }}
                             />
