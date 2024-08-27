@@ -49,7 +49,7 @@ const MyHistory = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px", filter: 'grayscale(2)' }}
+            sx={{ marginRight: "10px", filter: 'drop-shadow(2px 4px 6px black)' }}
           ></Box>
           {gid === "1"
             ? " My One GO Record"
@@ -68,10 +68,23 @@ const MyHistory = ({ gid }) => {
                   expandIcon={<ArrowDownwardIcon sx={{ color: zubgtext, }} />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: '#180F3F', color: zubgtext, borderRadius: '5px', }}
+                  sx={{ background: 'white', color: zubgtext, borderRadius: '5px', }}
                 >
+                  <Box className="flexbetween">
+                    <Box className="flexcenter" sx={{ background: 'red', width: '50px', height: '50px', borderRadius: '10px' }}>
+                      <Typography variant="body1" className="funp13">small</Typography>
+                    </Box>
+                    <Box className="flexrows" >
+                      <Typography variant="body1" className="funp15">{i?.gamesno}</Typography>
+                      <Typography variant="body1" className="funp13">small</Typography>
+                    </Box>
+                    <Box className="flexrows" >
+                      <Typography variant="body1" className="funp15 " sx={{ borderRadius: '5px', padding: '2px 15px', border: `1px solid red` }}>failed</Typography>
+                      <Typography variant="body1" className="funp13">-29.50</Typography>
+                    </Box>
+                  </Box>
                   <div className="!w-full !flex !justify-between">
-                    <p style={{ color: zubgtext, }}>{i?.gamesno}</p>
+                    {/* <p style={{ color: zubgtext, }}>{i?.gamesno}</p> */}
                     <p
                       className={`${i?.status === "0"
                         ? "!text-red-400"
@@ -143,7 +156,6 @@ const MyHistory = ({ gid }) => {
                     <span className=" !bg-opacity-10 py-1 px-2 ">
                       Result
                     </span>
-
                     {i?.status !== "0" ? (
                       <div className="flex gap-2 items-center  !bg-opacity-10 py-1 px-2">
                         <span>{`${i?.result}`}</span>

@@ -21,6 +21,7 @@ export const endpoint = {
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/user_register`,
   userwallet: `${newdomain1}/api/v1/userwallet`,
+  get_yesterday_deposit_withdrawl_by_treamFn: `${newdomain1}/api/v1/get_yesterday_deposit_withdrawl_by_treamFn`,
   top11winner: `${newdomain1}/api/v1/get-top-winners`,
   openbannerUrl: `${baseUrl}/popup`,
   profiledata: `${baseUrl}/api/profileapi`,
@@ -30,7 +31,8 @@ export const endpoint = {
   game_history: `${newdomain}/api/v1/colour_result`,
   my_history_all: `${newdomain}/api/v1/getbet-game-results`,
   get_status: `${newdomain}/api/v1/get-status`,
-
+  cashback_report: `${newdomain1}/api/v1/getCashBack-report`,
+ 
   //payment
   payment: `${newdomain1}/api/v1/payment`,
   deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
@@ -69,15 +71,15 @@ export const endpoint = {
   trx_game_bet: `${newdomain}/api/v1/trx-bet`,
 
   // aviator api's
-  aviator_login: `${baseUrl}/api/aviator/login`,
-  get_data_by_user_id: `${baseUrl}/api/userProfile`,
-  aviator_result: `${baseUrl}/api/aviator/result_cron`,
-  total_bet_history: `${baseUrl}/api/aviator/total-bet-histroy`,
-  bet_history: `${baseUrl}/api/aviator/bet_histroy`,
-  result: `${baseUrl}/api/aviator/result`,
-  wallet_data: `${baseUrl}/api/aviator/userwallet`,
-  bet_now: `${baseUrl}/api/aviator/bet_now`,
-  cash_out: `${baseUrl}/api/aviator/cash_out`,
+  aviator_login: `${domain}/api/aviator/login`,
+  // get_data_by_user_id: `${domain}/api/userProfile`,
+  aviator_result: `${domain}/api/aviator/result_cron`,
+  total_bet_history: `${domain}/api/aviator/total-bet-histroy`,
+  bet_history: `${domain}/api/aviator/bet_histroy`,
+  result: `${domain}/api/aviator/result`,
+  wallet_data: `${domain}/api/aviator/userwallet`,
+  bet_now: `${domain}/api/aviator/bet_now`,
+  cash_out: `${domain}/api/aviator/cash_out`,
 
   place_bid_jackpod: `${newdomain}/api/v1/place-bid-jackpod`,
   jackpod_my_history: `${newdomain}/api/v1/my-history-jackpod`,

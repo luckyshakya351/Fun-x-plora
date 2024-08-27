@@ -1,5 +1,4 @@
 import LayoutAviator from "../GamePage/Layout";
-import MainPage from "../GamePage/MainPage";
 import PlayGame from "../GamePage/PlayGame";
 import Test from "../pages/Test";
 import Account from "../pages/account/Account";
@@ -23,6 +22,7 @@ import FundRequest from "../pages/dashboard/FundRequest";
 import WithdrawalUsdt from "../pages/dashboard/WithdrawalUsdt";
 import Withdrawl from "../pages/dashboard/Withdrawl";
 import MainPageOFIncome from "../pages/income/MainPageOFIncome";
+import CashbackReport from "../pages/income/incomeSubSection/CashbackReport";
 import DailyCashBackBonus from "../pages/income/incomeSubSection/DailyCashBackBonus";
 import DailySalaryBonus from "../pages/income/incomeSubSection/DailySalaryBonus";
 import DepositBonus from "../pages/income/incomeSubSection/DepositBonus";
@@ -219,10 +219,7 @@ export const routes = [
         path: "/view_fund_request",
         component: <FundRequest />
     },
-    {
-        path: "/aviator-login",
-        component: <MainPage />
-    },
+    
     {
         path: "/playgame",
         component: <LayoutAviator component={<PlayGame />} />
@@ -258,6 +255,10 @@ export const routes = [
     {
         path: "/account/income-main/daily-cash-back-bonus",
         component: <DailyCashBackBonus />
+    },
+    {
+        path: "/account/income-main/cash_back_report",
+        component: <CashbackReport />
     },
     {
         path: "/account/income-main/daily-salary-bonus",

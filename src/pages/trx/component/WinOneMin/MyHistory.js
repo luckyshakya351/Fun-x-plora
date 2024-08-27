@@ -53,7 +53,7 @@ const MyHistory = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px", filter: 'grayscale(1)' }}
+            sx={{ marginRight: "10px", filter: 'drop-shadow(2px 4px 6px black)' }}
           ></Box>
           {gid === "1"
             ? " My One GO Record"

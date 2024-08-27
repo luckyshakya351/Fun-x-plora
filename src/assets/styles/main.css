@@ -1813,3 +1813,33 @@ td {
 .abcd>.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 12px !important;
 }
+
+.funp13 {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.funp15 {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+}
+
+.flexcenter {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.flexrows {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+}
+
+.flexbetween {
+  width: 100%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}

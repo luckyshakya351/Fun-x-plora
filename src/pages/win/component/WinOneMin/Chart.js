@@ -79,7 +79,7 @@ const Chart = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px", filter: 'grayscale(2)' }}
+            sx={{ marginRight: "10px", filter: 'drop-shadow(2px 4px 6px black)' }}
           ></Box>{" "}
           Statistic(last 100 Periods)
         </Typography>

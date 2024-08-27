@@ -1,8 +1,9 @@
-import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
+import AddIcon from '@mui/icons-material/Add';
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import RemoveIcon from '@mui/icons-material/Remove';
 import {
   Box,
   Button,
@@ -18,29 +19,25 @@ import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
-  zubgmid,
   zubgtext
 } from "../../Shared/color";
 import cip from "../../assets/cip.png";
-import edit from "../../assets/quickpay.png";
 import card from "../../assets/images/card-payment.png";
-import casino from "../../assets/images/casino.png";
-import gift from "../../assets/images/gift-box-with-a-bow.png";
 import graph from "../../assets/images/graph (1).png";
 import balance from "../../assets/images/logotred.png";
 import bgms from "../../assets/images/playgame.jpg";
 import dp1 from "../../assets/images/pr.png";
 import trans from "../../assets/images/translate.png";
 import namer from "../../assets/images/vip.png";
-import s from "../../assets/wdhistory.png";
-import dpt from "../../assets/withdrow.png";
+import edit from "../../assets/quickpay.png";
 import wtd from "../../assets/rechargeIcon.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
+import s from "../../assets/wdhistory.png";
+import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 import theme from "../../utils/theme";
-
 function Account() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -95,8 +92,8 @@ function Account() {
               </Typography>
               <Box className="">
                 {wallet?.transaction_status === 0 ?
-                  <ArrowDownward className="!text-red-800 !font-extrabold  !text-4xl" />
-                  : <ArrowUpward className="!text-green-800 !font-extrabold  !text-4xl" />}
+                  <RemoveIcon className="!text-red-500 !font-extrabold  !text-4xl" />
+                  : <AddIcon className="!text-green-500 !font-extrabold  !text-4xl" />}
               </Box>
             </Stack>
 
@@ -129,12 +126,39 @@ function Account() {
             </Typography>
 
           </Stack>
+          <Stack direction="row" sx={{ alignItems: "center", justifyContent: 'space-between' }}>
+            <Typography variant="body1" color="initial" sx={style.balanceText1}>
+              Yesterday total deposit
+
+            </Typography>
+            <Typography variant="body1" color="initial" className="!text-white">
+              ₹
+              {(
+                Number(wallet?.total_payin || 0)
+
+              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
+            </Typography>
+
+          </Stack>
+          <Stack direction="row" sx={{ alignItems: "center", justifyContent: 'space-between' }}>
+            <Typography variant="body1" color="initial" sx={style.balanceText1}>
+              Yesterday total withdrawal
+            </Typography>
+            <Typography variant="body1" color="initial" className="!text-white">
+              ₹
+              {(
+                Number(wallet?.total_payout || 0)
+
+              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
+            </Typography>
+
+          </Stack>
           <Stack
             direction="row"
             sx={{
               alignItems: "center",
               justifyContent: "space-between",
-              mt: "20px",
+              mt: "10px",
             }}
           >
             <Box component="img" src={cip} sx={style.cardImage} />
@@ -510,6 +534,11 @@ const style = {
     fontWeight: "500",
     color: "white",
   },
+  balanceText1: {
+    fontSize: "13px",
+    fontWeight: "500",
+    color: "white",
+  },
   totalBalance: {
     fontSize: "30px",
     fontWeight: "600",
@@ -517,7 +546,7 @@ const style = {
     marginRight: "10px",
   },
   cachedIcon: { color: "white", ml: 1 },
-  cardImage: { width: "70px" },
+  cardImage: { width: "50px" },
   cardNumber: { fontSize: "14px", color: "white", marginLeft: "10px" },
   actionContainer: {
     borderRadius: "10px",

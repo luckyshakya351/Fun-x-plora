@@ -84,7 +84,9 @@ function LoginWithMobile() {
         },
       });
 
-      toast.success(response?.data?.msg);
+      toast.success(response?.data?.msg,{
+        id:1
+      });
       if (response?.data?.msg === "Login Successfully") {
         const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
         localStorage.setItem("logindataen", value);
@@ -104,39 +106,39 @@ function LoginWithMobile() {
   };
 
 
-  const [CountryCode, setCountryCode] = React.useState('+91');
+  // const [CountryCode, setCountryCode] = React.useState('+91');
 
 
-  const handleChange = (event) => {
-    setCountryCode(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setCountryCode(event.target.value);
+  // };
 
 
-  const get_user_data = async (id) => {
-    try {
-      const response = await axios.get(
-        `${endpoint.get_data_by_user_id}?id=${id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      );
-      if (response?.data?.error === "200") {
-        localStorage.setItem(
-          "aviator_data",
-          JSON.stringify(response?.data?.data)
-        );
-        sessionStorage.setItem("isAvailableUser", true);
-      }
-    } catch (e) {
-      toast(e?.message);
-      console.error(e);
-    }
+  // const get_user_data = async (id) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${endpoint.get_data_by_user_id}?id=${id}`,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     );
+  //     if (response?.data?.error === "200") {
+  //       localStorage.setItem(
+  //         "aviator_data",
+  //         JSON.stringify(response?.data?.data)
+  //       );
+  //       sessionStorage.setItem("isAvailableUser", true);
+  //     }
+  //   } catch (e) {
+  //     toast(e?.message);
+  //     console.error(e);
+  //   }
 
 
-  };
+  // };
 
   return (
     <Box

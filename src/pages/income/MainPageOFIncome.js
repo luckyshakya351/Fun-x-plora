@@ -44,6 +44,11 @@ function MainPageOFIncome() {
       name: "Level Income",
       logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
+    {
+      to: "/account/income-main/cash_back_report",
+      name: "Cashback Income",
+      logo: <StoreIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+    },
   ];
 
   return (

@@ -249,9 +249,9 @@ function WinOneMin({ gid }) {
               ))}
 
             </Box>
-            <div className="!w-full !grid grid-cols-2 gap-2 !mt-2">
+            <div className="!w-full !grid grid-cols-2  !mt-2">
               <Button
-                sx={{ py: "10px" }}
+                sx={{ py: "10px", borderRadius: '20px 0px 0px 20px' }}
                 className="!bg-[#63BA0E] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
@@ -261,6 +261,7 @@ function WinOneMin({ gid }) {
                 Big
               </Button>
               <Button
+                sx={{ py: "10px", borderRadius: '0px 20px 20px 0px' }}
                 className="!bg-[#6DA7F4] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
