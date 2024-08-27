@@ -63,28 +63,49 @@ const MyHistory = ({ gid }) => {
         {visibleRows?.map((i) => {
           return (
             <div>
-              <Accordion className="!rounded-lg" sx={{ background: '#180F3F' }}>
+              <Accordion className="!rounded-lg" sx={{ background: '#180F3F', margin: '0px important', }}>
                 <AccordionSummary
-                  expandIcon={<ArrowDownwardIcon sx={{ color: zubgtext, }} />}
+                  expandIcon={<ArrowDownwardIcon sx={{ color: 'gray', mx: '10px' }} />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{ background: 'white', color: zubgtext, borderRadius: '5px', }}
+                  sx={{ background: 'white', color: zubgtext, borderRadius: '5px', margin: '0px important', mb: 1 }}
                 >
                   <Box className="flexbetween">
-                    <Box className="flexcenter" sx={{ background: 'red', width: '50px', height: '50px', borderRadius: '10px' }}>
-                      <Typography variant="body1" className="funp13">small</Typography>
+                    <Box sx={{ background: 'red', width: '50px', height: '45px', borderRadius: '10px' }} className={` flexcenter ${i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"}`}>
+                      <Typography variant="body1" sx={{ color: 'white' }}
+                        className={`funp13 ${i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"}`}
+                      >{i?.result <= 4 ? "Small" : "Big"}</Typography>
+                    </Box>
+                    <Box className="flexrowsstart" >
+                      <Typography variant="body1" className="funp15" sx={{ color: '#0D0335', textDecoration: 'none' }}>{i?.gamesno}</Typography>
+                      <Typography variant="body1" className="funp13" sx={{ color: '#0D0335' }}>{moment(i?.datetime)?.format("DD-MM-YYYY")}{" "}
+                        {moment(i?.datetime)?.format("HH:mm:ss")} </Typography>
                     </Box>
                     <Box className="flexrows" >
-                      <Typography variant="body1" className="funp15">{i?.gamesno}</Typography>
-                      <Typography variant="body1" className="funp13">small</Typography>
-                    </Box>
-                    <Box className="flexrows" >
-                      <Typography variant="body1" className="funp15 " sx={{ borderRadius: '5px', padding: '2px 15px', border: `1px solid red` }}>failed</Typography>
-                      <Typography variant="body1" className="funp13">-29.50</Typography>
+                      <Typography variant="body1" sx={{ borderRadius: '5px', padding: '1px 10px', border: `1px solid red`, color: 'red' }}
+                        className={` funp15 ${i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
+                            ? "!text-green-400 !border-1 !border-green-500"
+                            : "!text-red-400"
+                          } `}
+                      >  {i?.status === "0"
+                        ? "Pending"
+                        : i?.status === "1"
+                          ? "Success"
+                          : "Failed"}</Typography>
+                      <Typography variant="body1" sx={{ color: 'red', mt: 1, }}
+                        className={` funp13 ${i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
+                            ? "!text-green-400"
+                            : "!text-red-400"
+                          } `}
+                      > {i?.win ? '₹ ' + i?.win : "- " + ' ₹ ' + i?.amount}</Typography>
                     </Box>
                   </Box>
-                  <div className="!w-full !flex !justify-between">
-                    {/* <p style={{ color: zubgtext, }}>{i?.gamesno}</p> */}
+                  {/* <div className="!w-full !flex !justify-between">
+                  <p style={{ color: zubgtext, }}>{i?.gamesno}</p> 
                     <p
                       className={`${i?.status === "0"
                         ? "!text-red-400"
@@ -110,10 +131,10 @@ const MyHistory = ({ gid }) => {
                       {" "}
                       {rupees} {i?.status === "1" ? i?.win : i?.totalamount}
                     </span>
-                  </div>
+                  </div> */}
                 </AccordionSummary>
-                <AccordionDetails sx={{ background: '#fff', color: zubgtext, }}>
-                  <p className={`!text-green-400 !font-semibold !text-lg`}>
+                <AccordionDetails sx={{ background: '#e7e7e7', borderRadius: '10px', color: 'black', mb: 2, }}>
+                  <p className={`!text-black-400 !font-semibold !text-lg`} style={{ color: 'black !important', }}>
                     Period Detail
                   </p>
                   <div className="!w-full !grid !grid-cols-2 !gap-y-1 ">
@@ -161,7 +182,7 @@ const MyHistory = ({ gid }) => {
                         <span>{`${i?.result}`}</span>
                         <span
                           className={`
-                  ${(i?.result === "0" &&
+                                  ${(i?.result === "0" &&
                               "!bg-gradient-to-t from-red-400 to-violet-400") ||
                             (i?.result === "5" &&
                               "!bg-gradient-to-t from-violet-400 to-green-400") ||
@@ -181,8 +202,8 @@ const MyHistory = ({ gid }) => {
                             (i?.result === "40" && "bg-[#f1be24]") ||
                             (i?.result === "20" && "bg-[#eb2feb]")
                             }
-                  transparentColor font-bold text-xl
-                  `}
+                                 transparentColor font-bold text-xl
+                                 `}
                         >
                           {/* {i?.color_result} */}
                         </span>
@@ -198,7 +219,7 @@ const MyHistory = ({ gid }) => {
                     <div className="! !bg-opacity-10 py-1 px-2">
                       <span
                         className={`
-                  ${(i?.number === "0" &&
+                                     ${(i?.number === "0" &&
                             "!bg-gradient-to-t from-red-400 to-violet-400") ||
                           (i?.number === "5" &&
                             "!bg-gradient-to-t from-violet-400 to-green-400") ||
@@ -218,9 +239,9 @@ const MyHistory = ({ gid }) => {
                           (i?.number === "40" && "bg-[#f1be24]") ||
                           (i?.number === "20" && "bg-[#eb2feb]")
                           }
-                  transparentColor font-bold text-xl 
+                                 transparentColor font-bold text-xl 
 
-                  `}
+                                        `}
                       >
                         {i?.number === "10"
                           ? "Green"

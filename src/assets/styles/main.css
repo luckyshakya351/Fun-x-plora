@@ -1843,3 +1843,10 @@ td {
   align-items: center !important;
   justify-content: space-between !important;
 }
+
+.flexrowsstart {
+  display: flex !important;
+  align-items: start !important;
+  justify-content: start !important;
+  flex-direction: column !important;
+}

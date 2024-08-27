@@ -83,20 +83,49 @@ const Jackpotmyhistory = ({ gid }) => {
         {visibleRows?.map((i) => {
           return (
             <div>
-              <Accordion className="!rounded-lg" disableElevation sx={{ background: '#180F3F' }}>
+              <Accordion className="!rounded-lg" disableElevation sx={{ background: 'white' }}>
                 <AccordionSummary
-                  disableElevation
-                  expandIcon={<ArrowDownwardIcon className="" />}
+                  expandIcon={<ArrowDownwardIcon sx={{ color: 'gray', mx: '10px' }} />}
                   aria-controls="panel1-content"
                   id="panel1-header"
-                  sx={{
-                    background: "#180F3F",
-                    color: zubgtext,
-                    borderRadius: '5px'
-                  }}
+                  sx={{ background: 'white', color: zubgtext, borderRadius: '5px', margin: '0px important', mb: 1 }}
                 >
-                  <div className="!w-full !flex !justify-between">
-                    <p className=" ">{i?.gamesno}</p>
+                  <Box className="flexbetween">
+                    <Box sx={{ background: 'red', width: '50px', height: '45px', borderRadius: '10px' }} className={` flexcenter ${i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"}`}>
+                      <Typography variant="body1" sx={{ color: 'white' }}
+                        className={`funp13 ${i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"}`}
+                      >{i?.result <= 4 ? "Small" : "JPT"}</Typography>
+                    </Box>
+                    <Box className="flexrowsstart" >
+                      <Typography variant="body1" className="funp15" sx={{ color: '#0D0335', textDecoration: 'none' }}>{i?.gamesno}</Typography>
+                      <Typography variant="body1" className="funp13" sx={{ color: '#0D0335' }}>{moment(i?.datetime)?.format("DD-MM-YYYY")}{" "}
+                        {moment(i?.datetime)?.format("HH:mm:ss")} </Typography>
+                    </Box>
+                    <Box className="flexrows" >
+                      <Typography variant="body1" sx={{ borderRadius: '5px', padding: '1px 10px', border: `1px solid red`, color: 'red' }}
+                        className={` funp15 ${i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
+                            ? "!text-green-400 !border-1 !border-green-500"
+                            : "!text-red-400"
+                          } `}
+                      >  {i?.status === "0"
+                        ? "Pending"
+                        : i?.status === "1"
+                          ? "Success"
+                          : "Failed"}</Typography>
+                      <Typography variant="body1" sx={{ color: 'red', mt: 1, }}
+                        className={` funp13 ${i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
+                            ? "!text-green-400"
+                            : "!text-red-400"
+                          } `}
+                      > {i?.win ? '₹ ' + i?.win : "- " + ' ₹ ' + i?.amount}</Typography>
+                    </Box>
+                  </Box>
+                  {/* <div className="!w-full !flex !justify-between">
+                  <p style={{ color: zubgtext, }}>{i?.gamesno}</p> 
                     <p
                       className={`${i?.status === "0"
                         ? "!text-red-400"
@@ -120,18 +149,15 @@ const Jackpotmyhistory = ({ gid }) => {
                         }`}
                     >
                       {" "}
-                      {rupees}{" "}
-                      {i?.status === "1"
-                        ? Number(i?.win)?.toFixed(2)
-                        : Number(i?.amount || 0).toFixed(2)}
+                      {rupees} {i?.status === "1" ? i?.win : i?.totalamount}
                     </span>
-                  </div>
+                  </div> */}
                 </AccordionSummary>
                 <AccordionDetails
-                  sx={{ background: zubgback, color: zubgtext }}
+                  sx={{ background: '#dadada', color: '#0D0335', borderRadius: '5px', }}
                   disableElevation
                 >
-                  <p className={`!text-green-400 !font-semibold !text-lg`}>
+                  <p className={`!text-black-400 !font-semibold !text-lg`}>
                     Period Detail
                   </p>
                   <div className="!w-full !grid !grid-cols-2 !gap-y-1 ">

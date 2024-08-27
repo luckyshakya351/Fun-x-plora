@@ -63,7 +63,7 @@ function WinFiveMin({ gid }) {
               width: "95%",
               marginLeft: "2.5%",
               my: "20px",
-              background: "#0D0335",
+              background: 'white',
               boxShadow: zubgshadow,
               padding: "10px",
               borderRadius: "10px",
@@ -259,7 +259,7 @@ function WinFiveMin({ gid }) {
             <div className="!w-full !grid grid-cols-2  !mt-2">
               <Button
                 sx={{ py: "10px", borderRadius: '20px 0px 0px 20px' }}
-                className="!bg-[#63BA0E] !text-white"
+                className="!bg-[#FEAA57] !text-white"
                 onClick={() => {
                   setapply_bit_dialog_box(true);
                   setdialog_type("big");

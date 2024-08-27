@@ -153,25 +153,25 @@ function SubordinateIncome() {
                         </Box>
                     </Box>
                     {data?.map((item) => {
-                        return (<Box sx={{ background: 'white', borderRadius: '5px', padding: '5px', mb: 2, }}>
+                        return (<Box sx={{ background: 'white', borderRadius: '5px', padding: '5px', mb: 2, mt: 2, }}>
                             <Typography sx={{ color: 'black' }} className='!border-b !border-gray-400 !my-1 !text-xl'>UID : {item?.userid}
                             </Typography>
                             <Box className="!mx-1 !text-gray-500">
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography sx={{ color: 'black' }}>Level</Typography>
-                                    <Typography sx={{ color: 'black' }}>{item?.lev_id || 0}</Typography>
+                                    <Typography className='hunp15' sx={{ color: 'black' }}>Level</Typography>
+                                    <Typography className='hunp13' sx={{ color: 'black' }}>{item?.lev_id || 0}</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography sx={{ color: 'black' }}>Deposit Amount</Typography>
-                                    <Typography sx={{ color: 'black' }}>{item?.deposit || 0}</Typography>
+                                    <Typography className='hunp15' sx={{ color: 'black' }}>Deposit Amount</Typography>
+                                    <Typography className='hunp13' sx={{ color: 'black' }}>{item?.deposit || 0}</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography sx={{ color: 'black' }}>Bet Amount </Typography>
-                                    <Typography sx={{ color: 'black' }}>{item?.betting || 0}</Typography>
+                                    <Typography className='hunp15' sx={{ color: 'black' }}>Bet Amount </Typography>
+                                    <Typography className='hunp13' sx={{ color: 'black' }}>{item?.betting || 0}</Typography>
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
-                                    <Typography sx={{ color: 'black' }}>Commission </Typography>
-                                    <Typography sx={{ color: 'black' }}>{item?.commission || 0}</Typography>
+                                    <Typography className='hunp15' sx={{ color: 'black' }}>Commission </Typography>
+                                    <Typography className='hunp13' sx={{ color: 'black' }}>{item?.commission || 0}</Typography>
                                 </Stack>
 
                             </Box>
