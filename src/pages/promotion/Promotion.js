@@ -23,6 +23,7 @@ import { MygetdataFn, walletamount } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
 import bgms from "../../assets/images/bgs.jpg";
 import bgms1 from "../../assets/images/bgs1.jpg";
+import theme from "../../utils/theme";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -60,19 +61,19 @@ function Promotion() {
           <Typography variant="body1" >
 
           </Typography>
-          <Typography variant="body1" className="!text-white">
+          <Typography variant="body1" className="!text-white !mx-5">
             Agency
           </Typography>
           <Box component={NavLink} to="/promotion/TeamReport/">
             <Box component="img" src={sort} width={30}></Box>
           </Box>
         </Box>
-        <Box sx={style.commitionboxOuter}>
+        <Box sx={style.commitionboxOuter} className="!rounded-xl ">
           <Box sx={style.commitionbox}>
             <Typography variant="body1" sx={{ color: zubgtext, mb: 1 }}>
               {data?.data?.yesterday_income}
             </Typography>
-            <Typography variant="body1" sx={{ color: 'black' }}>
+            <Typography variant="body1" sx={{ color: 'white' }} className="!bg-[#160D3D]">
               Yesterday  Income
             </Typography>
             <Typography variant="body1" sx={{ color: zubgtext }}>
@@ -101,7 +102,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
-                  className="!text-black"
+                   className="!text-white"
 
                 >
                   {result?.filter(entry => entry.LEVEL === 1).length || 0}
@@ -117,7 +118,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
-                  className="!text-black"
+                   className="!text-white"
 
                 >
                   {result?.filter(level => level.LEVEL === 1 && Number(level.deposit_amount) > 0).length || 0}
@@ -132,7 +133,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
-                  className="!text-black"
+                   className="!text-white"
 
                 >
                   {result?.filter((j) => j?.LEVEL === 1)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
@@ -146,8 +147,8 @@ function Promotion() {
 
             <Box sx={style.innerBoxStylestwo}>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1"
-                  className="!text-black">
+                <Typography variant="body1" 
+                 className="!text-white">
                   {result?.filter(entry => entry.LEVEL !== 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
@@ -157,7 +158,7 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
-                  className="!text-black" >
+                 className="!text-white" >
                   {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length || 0}
                 </Typography>
                 <Typography variant="body1" >
@@ -167,8 +168,8 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
-                  className="!text-black" >
-                  {result?.filter((j) => j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
+                 className="!text-white" >
+                  {result?.filter((j)=>j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)|| 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -377,16 +378,19 @@ const style = {
   },
   commitionboxOuter: {
     width: "100%",
-    backgroundImage: `url(${bgms})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 100%',
-    "&>img": { width: "100%", height: "100%" },
+    background: theme.palette.secondary.light,
+    padding: "20px 10px",
+    marginTop:"20px",
+    // // backgroundImage: `url(${bgms})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: '100% 100%',
+    // "&>img": { width: "100%", height: "100%" },
   },
   commitionbox: {
     margin: "auto",
     width: "70%",
     textAlign: "center",
-    py: 5,
+    // py: 5,
     "&>p:nth-child(1)": { fontSize: "25px", fontWeight: "500" },
     "&>p:nth-child(2)": {
       fontSize: "13px",
@@ -427,9 +431,10 @@ const style = {
     "&>p": { color: "white", fontSize: "14px", fontWeight: "500" },
   },
   boxStyles: {
-    backgroundImage: `url(${bgms1})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 100%',
+    // backgroundImage: `url(${bgms1})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: '100% 100%',
+    background: theme.palette.secondary.light,
     padding: "30px 15px",
     display: "flex",
     borderRadius: " 0px 0px 10px 10px",
@@ -444,7 +449,7 @@ const style = {
   subcordinatelist: {
     textAlign: "center",
     "&>p:nth-child(1)": { color: lightblue, fontSize: "13px" },
-    "&>p:nth-child(2)": { color: 'red', fontSize: "13px" },
+    "&>p:nth-child(2)": { color: 'green', fontSize: "13px" },
     mb: 1,
   },
   subcordinateBox: {
@@ -472,7 +477,7 @@ const style = {
   },
   invitbox: {
     width: "95%",
-    background: zubggray,
+    background: theme.palette.secondary.light,
     padding: "10px",
     mb: "20px",
     borderRadius: "10px",
