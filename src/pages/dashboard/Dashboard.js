@@ -337,7 +337,7 @@ function Dashboard() {
                 color: 'white',
                 fontWeight: 600,
                 fontSize: '20px'
-              }}>₹ 1230.00</Typography>
+              }}>₹ {Number(wallet?.wallet) +Number(wallet?.winning) }</Typography>
               <Typography variant="body1" sx={{
                 color: 'white',
                 fontWeight: 500,
@@ -596,11 +596,11 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                    {winnner_data?.[0]?.email
-                      ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(0, 2) +
+                    {winnner_data?.[1]?.email
+                      ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(0, 2) +
                       "**" +
-                      (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
-                        ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(2, 4)
+                      (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(2, 4)
                         : "")
                       : "**"}
                   </Typography>
@@ -609,7 +609,7 @@ function Dashboard() {
 
                     sx={styles.winningamount}
                   >
-                    ₹ {Number(winnner_data?.[0]?.win)?.toFixed(2)}
+                    ₹ {Number(winnner_data?.[1]?.win)?.toFixed(2)}
                   </Typography>
                 </Box>
               </Box>
@@ -640,11 +640,11 @@ function Dashboard() {
                 ></Box>
                 <Box sx={styles.winner2amt}>
                   <Typography variant="body1" >
-                    {winnner_data?.[2]?.email
-                      ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(0, 2) +
+                    {winnner_data?.[0]?.email
+                      ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(0, 2) +
                       "**" +
-                      (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
-                        ? winnner_data?.[1]?.email?.split("@")?.[0]?.substring(2, 4)
+                      (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[0]?.email?.split("@")?.[0]?.substring(2, 4)
                         : "")
                       : "**"}
                   </Typography>
@@ -653,7 +653,7 @@ function Dashboard() {
 
                     sx={styles.winningamount}
                   >
-                    ₹  {Number(winnner_data?.[1]?.win)?.toFixed(2)}
+                    ₹  {Number(winnner_data?.[0]?.win)?.toFixed(2)}
                   </Typography>
                 </Box>
               </Box>

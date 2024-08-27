@@ -15,7 +15,7 @@ import history from "../../../../assets/images/list.png";
 
 const GameHistory = ({ gid }) => {
   const navigate = useNavigate();
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const game_history_data = useSelector(
     (state) => state.aviator.trx_game_history_data

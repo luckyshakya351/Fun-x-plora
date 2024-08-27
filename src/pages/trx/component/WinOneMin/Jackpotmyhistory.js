@@ -22,7 +22,7 @@ import {
 import { getNumber } from "../../../../Shared/Number";
 
 const Jackpotmyhistory = ({ gid }) => {
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
 
   const handleChangePage = (event, newPage) => {

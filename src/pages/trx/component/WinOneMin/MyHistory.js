@@ -20,7 +20,7 @@ import { rupees } from "../../../../services/urls";
 import { useSelector } from "react-redux";
 
 const MyHistory = ({ gid }) => {
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const my_history_data = useSelector(
     (state) => state.aviator.trx_my_history_data

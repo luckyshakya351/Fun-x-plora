@@ -13,7 +13,7 @@ import { MyHistoryFn, My_All_HistoryFn } from "../../../../services/apicalling";
 import { rupees } from "../../../../services/urls";
 
 const MyHistory = ({ gid }) => {
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
   const my_history_data = useSelector(
     (state) => state.aviator.trx_my_history_data
