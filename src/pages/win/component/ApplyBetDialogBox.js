@@ -20,10 +20,8 @@ import * as React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgtext } from "../../../Shared/color";
-import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import Policy from "./policy/Policy";
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -37,13 +35,10 @@ const ApplyBetDialogBox = ({
   random,
   net_wallet_amount,
 }) => {
-  const dispatch = useDispatch();
   const [value, setValue] =useState(random || 1)
   const [Rules, setRules] = useState(false);
   const [loding, setLoding] = useState(false);
-  const aviator_login_data = useSelector(
-    (state) => state.aviator.aviator_login_data
-  );
+
   const client = useQueryClient();
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -53,13 +48,12 @@ const ApplyBetDialogBox = ({
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
   // const login_data_ = localStorage.getItem("aviator_data");
-  const first_rechange =
-    aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
+  
   const user_id = login_data && JSON.parse(login_data)?.UserID;
 
-  React.useEffect(() => {
-    !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
+  // React.useEffect(() => {
+  //   !aviator_login_data && get_user_data_fn(dispatch);
+  // }, []);
 
   const handleClickValue = (value) => {
     if (value === 0) {
@@ -297,9 +291,7 @@ const ApplyBetDialogBox = ({
           variant="text"
           color="primary"
           onClick={() => {
-            Number(first_rechange) === 1
-              ? betFunctionStart()
-              : toast("You must be sure that , your first deposit is done.");
+            betFunctionStart()
           }}
           loding={true}
         >

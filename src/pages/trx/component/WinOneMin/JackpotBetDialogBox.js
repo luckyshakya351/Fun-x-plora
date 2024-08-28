@@ -37,10 +37,7 @@ const JackpotBetDialogBox = ({
   gid,
   net_wallet_amount,
 }) => {
-  const dispatch = useDispatch();
-  const aviator_login_data = useSelector(
-    (state) => state.aviator.aviator_login_data
-  );
+
   const next_step = useSelector((state) => state.aviator.next_step);
   const client = useQueryClient();
   const login_data =
@@ -51,16 +48,11 @@ const JackpotBetDialogBox = ({
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
   // const login_data_ = localStorage.getItem("aviator_data");
-  const first_rechange =
-    aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [value, setValue] = useState(1);
   const [Rules, setRules] = useState(false);
   const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
-  React.useEffect(() => {
-    !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
 
   const handleClickValue = (value) => {
     if (value === 0) {
@@ -279,9 +271,7 @@ const JackpotBetDialogBox = ({
           variant="text"
           color="primary"
           onClick={() => {
-            Number(first_rechange) === 1
-              ? betFunctionStart()
-              : toast("You must be sure that , your first deposit is done.");
+            betFunctionStart()
           }}
           loding={true}
         >

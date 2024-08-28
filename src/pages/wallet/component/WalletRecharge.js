@@ -6,12 +6,9 @@ import {
   Box,
   Button,
   Container,
-  FormControlLabel,
   IconButton,
   InputAdornment,
   OutlinedInput,
-  Radio,
-  RadioGroup,
   Stack,
   Typography
 } from "@mui/material";
@@ -38,13 +35,12 @@ import pay from "../../../assets/images/wallet.png";
 import usdt from "../../../assets/payNameIcon1.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
-import { get_user_data_fn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import theme from "../../../utils/theme";
 import UsdtQR from "./UsdtQR";
+// payment 2000 or 2000 se upr hoga to indian pay, or moon lottery par jayega, accorgin to akash sir --> THAT MEANS PYT-PAY
 
 function WalletRecharge() {
-  const dispatch = useDispatch();
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
@@ -86,9 +82,9 @@ function WalletRecharge() {
 
   }, []);
 
-  React.useEffect(() => {
-    !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
+  // React.useEffect(() => {
+  //   !aviator_login_data && get_user_data_fn(dispatch);
+  // }, []);
 
   const handlePlaySound = async () => {
     try {
@@ -647,11 +643,12 @@ function WalletRecharge() {
                 width: '100%'
               }}
             >
+            {/* contained */}
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '10px 20px' }}>
-                <Button variant="contained" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', background: '#0D0335' }}>Flex</Button>
-                <Button variant="contained" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', }}>PYT-PAY</Button>
+                <Button variant="" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', background: '#0D0335' }} className={`${Number(fk.values.amount || 0) < 2000  ? "!bg-[#63ba0e]":"contained"}`}>Flex</Button>
+                <Button variant="" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', }} className={`${Number(fk.values.amount || 0) >= 2000 ? "!bg-[#63ba0e]":"contained"} `}>PYT-PAY</Button> 
               </Box>
-              <RadioGroup
+              {/* <RadioGroup
                 row
                 value={selectedGateway}
                 // onChange={(e) => {
@@ -673,7 +670,7 @@ function WalletRecharge() {
                   control={<Radio sx={{ color: 'white !important' }} />}
                   label="PYT-PAY"
                 />
-              </RadioGroup>
+              </RadioGroup> */}
             </Box>
           </Box>
         ) : (
