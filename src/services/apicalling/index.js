@@ -323,6 +323,17 @@ export const referralBonusFn = async () => {
     console.log(e);
   }
 };
+export const yesterdayFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.yesterday_income}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const dailySelfBetIncomeFn = async () => {
   try {
     const response = await axios.get(
