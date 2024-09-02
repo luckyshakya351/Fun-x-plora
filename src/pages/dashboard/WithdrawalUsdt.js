@@ -13,31 +13,28 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { lightblue, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
-import cip from "../../assets/cip.png";
+import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
 import payment from "../../assets/check.png";
-import playgame from "../../assets/images/playgame.jpg";
+import cip from "../../assets/cip.png";
 import balance from "../../assets/images/send.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
 import Layout from "../../component/Layout/Layout";
-import { AddressListDetails, get_user_data_fn, NeedToBet } from "../../services/apicalling";
+import { AddressListDetails, NeedToBet } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
-import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import CryptoJS from "crypto-js";
 import theme from "../../utils/theme";
 function WithdrawalUsdt() {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const aviator_login_data = useSelector(
-    (state) => state.aviator.aviator_login_data
-  );
+  // const dispatch = useDispatch();
+  // const aviator_login_data = useSelector(
+  //   (state) => state.aviator.aviator_login_data
+  // );
   const { type } = location.state || {};
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -57,9 +54,9 @@ function WithdrawalUsdt() {
   const [openDialogBox, setOpenDialogBox] = React.useState(false);
   const [msg, setMsg] = React.useState("Your withdrawl amount will be add in your bank account within 24 Hrs.");
 
-  React.useEffect(() => {
-    !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
+  // React.useEffect(() => {
+  //   !aviator_login_data && get_user_data_fn(dispatch);
+  // }, []);
 
   const navigate = useNavigate();
   const goBack = () => {

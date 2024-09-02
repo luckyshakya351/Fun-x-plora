@@ -49,10 +49,10 @@ import { endpoint, rupees } from "../../services/urls";
 import theme from "../../utils/theme";
 function Withdrawl() {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const aviator_login_data = useSelector(
-    (state) => state.aviator.aviator_login_data
-  );
+  // const dispatch = useDispatch();
+  // const aviator_login_data = useSelector(
+  //   (state) => state.aviator.aviator_login_data
+  // );
   const { type } = location.state || {};
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -61,8 +61,8 @@ function Withdrawl() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  const first_rechange =
-    aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
+  // const first_rechange =
+  //   aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
 
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [amount, setAmount] = React.useState({
@@ -74,9 +74,9 @@ function Withdrawl() {
   const audioRefMusic = React.useRef(null);
   const [openDialogBox, setOpenDialogBox] = React.useState(false);
 
-  React.useEffect(() => {
-    !aviator_login_data && get_user_data_fn(dispatch);
-  }, []);
+  // React.useEffect(() => {
+  //   !aviator_login_data && get_user_data_fn(dispatch);
+  // }, []);
 
   const navigate = useNavigate();
   const goBack = () => {
@@ -156,9 +156,7 @@ function Withdrawl() {
       fd.append("password", fk.values.password);
       fd.append("select_wallet", fk.values.select_wallet);
 
-      Number(first_rechange) === 1
-        ? withdraw_payment_Function(fd)
-        : toast("You must be sure that , your first deposit is done.");
+      withdraw_payment_Function(fd)
     },
   });
 
