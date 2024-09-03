@@ -337,7 +337,7 @@ function Dashboard() {
                 color: 'white',
                 fontWeight: 600,
                 fontSize: '20px'
-              }}>₹ {Number(wallet?.wallet) +Number(wallet?.winning) }</Typography>
+              }}>₹ {(Number(wallet?.wallet) +Number(wallet?.winning))?.toFixed(2) }</Typography>
               <Typography variant="body1" sx={{
                 color: 'white',
                 fontWeight: 500,
