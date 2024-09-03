@@ -83,15 +83,13 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
+      }else{
+        fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
-
-      if (onemin === 0) {
+      if (onemin === 57) {
         client.refetchQueries("myAllhistory_1");
         client.refetchQueries("walletamount");
         client.refetchQueries("gamehistory_wingo_1");
-
-        // dispatch(dummycounterFun());
-        fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
     };
 

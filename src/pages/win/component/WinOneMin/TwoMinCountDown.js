@@ -75,19 +75,6 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
       setThree_min_time(threemin);
       setBetNumber(threemin)
       fk.setFieldValue("show_this_one_min_time", threemin);
-      // if (
-      //   (threemin?.split("_")?.[1] === "5" ||
-      //     threemin?.split("_")?.[1] === "4" ||
-      //     threemin?.split("_")?.[1] === "3" ||
-      //     threemin?.split("_")?.[1] === "2") &&
-      //   threemin?.split("_")?.[0] === "0"
-      // )
-      // handlePlaySound();
-      // if (
-      //   threemin?.split("_")?.[1] === "1" &&
-      //   threemin?.split("_")?.[0] === "0"
-      // )
-      // handlePlaySoundLast();
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
         threemin?.split("_")?.[0] === "0" // 0 index means min
@@ -98,15 +85,8 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
       if (
-        threemin?.split("_")?.[1] === "25" &&
-        threemin?.split("_")?.[0] === "0"
-      ) {
-        // oneMinCheckResult();
-        // oneMinColorWinning();
-      }
-      if (
-        threemin?.split("_")?.[1] === "0" &&
-        threemin?.split("_")?.[0] === "0"
+        threemin?.split("_")?.[1] === "57" &&
+        threemin?.split("_")?.[0] === "4"
       ) {
         client.refetchQueries("gamehistory_wingo_2");
         client.refetchQueries("walletamount");

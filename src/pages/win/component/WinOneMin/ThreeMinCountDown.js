@@ -2,13 +2,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
-import countdownfirst from "../../../../assets/countdownfirst.mp3";
-import countdownlast from "../../../../assets/countdownlast.mp3";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
@@ -29,13 +29,10 @@ import {
   trx_my_history_data_function,
   updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
-import { changeImages } from "../../../../services/schedular";
-import Policy from "../policy/Policy";
-import { zubgmid } from "../../../../Shared/color";
 import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
-import axios from "axios";
+import { changeImages } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
-import toast from "react-hot-toast";
+import Policy from "../policy/Policy";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -43,8 +40,6 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const dispatch = useDispatch();
   const client = useQueryClient();
-  const audioRefMusic = React.useRef(null);
-  const audioRefMusiclast = React.useRef(null);
   const [poicy, setpoicy] = React.useState(false);
   const [one_min_time, setOne_min_time] = useState("0_0");
   const [isImageChange, setIsImageChange] = useState("1_2_3_4_5");
@@ -79,17 +74,6 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
       fk.setFieldValue("show_this_one_min_time", fivemin);
-      // if (
-      //   (fivemin?.split("_")?.[1] === "5" ||
-      //     fivemin?.split("_")?.[1] === "4" ||
-      //     fivemin?.split("_")?.[1] === "3" ||
-      //     fivemin?.split("_")?.[1] === "2") &&
-      //   fivemin?.split("_")?.[0] === "0"
-      // )
-      // handlePlaySound();
-      // if (fivemin?.split("_")?.[1] === "1" && fivemin?.split("_")?.[0] === "0")
-      // handlePlaySoundLast();
-
       if (
         Number(fivemin?.split("_")?.[1]) <= 10 && // this is for sec
         fivemin?.split("_")?.[0] === "0" // this is for minut
@@ -99,16 +83,10 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       if (fivemin?.split("_")?.[1] === "59") {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
+    
       if (
-        fivemin?.split("_")?.[1] === "40" && // this is for sec
-        fivemin?.split("_")?.[0] === "0" // this is for minut
-      ) {
-        // oneMinCheckResult();
-        // oneMinColorWinning();
-      }
-      if (
-        fivemin?.split("_")?.[1] === "0" &&
-        fivemin?.split("_")?.[0] === "0"
+        fivemin?.split("_")?.[1] === "57" &&
+        fivemin?.split("_")?.[0] === "2"
       ) {
         client.refetchQueries("gamehistory_wingo_3");
         client.refetchQueries("walletamount");
