@@ -22,7 +22,6 @@ import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
@@ -42,17 +41,18 @@ import usdt from "../../assets/payNameIcon1.png";
 import Layout from "../../component/Layout/Layout";
 import {
   BankListDetails,
-  get_user_data_fn,
   NeedToBet,
 } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
 import theme from "../../utils/theme";
 function Withdrawl() {
+
   const location = useLocation();
-  // const dispatch = useDispatch();
-  // const aviator_login_data = useSelector(
-  //   (state) => state.aviator.aviator_login_data
-  // );
+  const [showoldPassword, setShowoldPassword] = React.useState(false);
+  const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const { type } = location.state || {};
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -61,9 +61,6 @@ function Withdrawl() {
         "anand"
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
-  // const first_rechange =
-  //   aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
-
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [amount, setAmount] = React.useState({
     wallet: 0,
@@ -73,10 +70,6 @@ function Withdrawl() {
   const [lodint, setloding] = React.useState(false);
   const audioRefMusic = React.useRef(null);
   const [openDialogBox, setOpenDialogBox] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   !aviator_login_data && get_user_data_fn(dispatch);
-  // }, []);
 
   const navigate = useNavigate();
   const goBack = () => {
@@ -191,11 +184,7 @@ function Withdrawl() {
     }
     setloding(false);
   };
-  const [showoldPassword, setShowoldPassword] = React.useState(false);
-  const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+
 
   return (
     <Layout>
@@ -373,7 +362,7 @@ function Withdrawl() {
                 Withdrawal amount
               </Typography>
             </Stack>
-            <Box mt={2} component="form" onSubmit={fk.handleSubmit}>
+            <Box mt={2}>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: "white" }}>
@@ -388,7 +377,7 @@ function Withdrawl() {
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
                   className="withdrawalfield2"
-                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.amount && fk.errors.amount && (
                   <div className="error">{fk.errors.amount}</div>
@@ -449,7 +438,7 @@ function Withdrawl() {
                     value={fk.values.password}
                     onChange={fk.handleChange}
                     placeholder="Enter password"
-                    onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                    // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     sx={{
                       width: "100%",
                       background: "white",
@@ -491,9 +480,7 @@ function Withdrawl() {
               </Box>
               <Button
                 sx={style.paytmbtntwo}
-                type="submit"
                 onClick={(e) => {
-                  e.preventDefault();
                   fk.handleSubmit();
                 }}
               >

@@ -1,14 +1,14 @@
+import { Logout } from "@mui/icons-material";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import { Box, Button, CircularProgress, Container, Dialog, DialogContent, Slide, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Container, Slide, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import copy from "clipboard-copy";
 import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { RxCross2 } from "react-icons/rx";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -18,44 +18,39 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { gray, lightyellow, zubgback, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
+import { lightyellow, zubgshadow, zubgtext } from "../../Shared/color";
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import crown1 from "../../assets/crown1.png";
 import crown2 from "../../assets/crown2.png";
 import crown3 from "../../assets/crown3.png";
-import place1 from "../../assets/place1.png";
-import place2 from "../../assets/place2.png";
-import place3 from "../../assets/place3.png";
 import logo from "../../assets/funXplora-8-13-2024 (1).png";
 import one from "../../assets/images/1.jpg";
 import three from "../../assets/images/123.png";
 import two from "../../assets/images/2.jpg";
 import bgms from "../../assets/images/bgms2.jpg";
+import trximg from "../../assets/images/f233fc5431d2b61e65327cc77d9bb1f8.png";
 import stage from "../../assets/images/podium.png";
-import position2 from "../../assets/images/positio2.png";
-import position3 from "../../assets/images/position3.png";
-import position1 from "../../assets/images/positoin1.png";
 import winning_bg from "../../assets/images/winning_bg-d9c728ae.png";
+import place1 from "../../assets/place1.png";
+import place2 from "../../assets/place2.png";
+import place3 from "../../assets/place3.png";
 import profile1 from "../../assets/profile1.png";
 import profile2 from "../../assets/profile2.png";
 import profile3 from "../../assets/profile3.png";
 import winerbanner1 from "../../assets/winerbanner1.png";
 import Layout from "../../component/Layout/Layout";
-import { Logout } from "@mui/icons-material";
 import { net_wallet_amount_function, please_reconnect_the_serverFun, waitingAviatorFun, } from "../../redux/slices/counterSlice";
-import { get_user_data_fn, walletamount, } from "../../services/apicalling";
+import { walletamount } from "../../services/apicalling";
 import { endpoint, fron_end_main_domain, support_mail, telegram_url } from "../../services/urls";
 import theme from "../../utils/theme";
 import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
-import Notification from "./Notification";
-import trximg from "../../assets/images/f233fc5431d2b61e65327cc77d9bb1f8.png";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
-});
+}); 
 
 
 const imageSources = [
