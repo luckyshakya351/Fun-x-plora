@@ -85,8 +85,8 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
       if (
-        threemin?.split("_")?.[1] === "57" &&
-        threemin?.split("_")?.[0] === "4"
+        threemin?.split("_")?.[1] === "0" &&
+        threemin?.split("_")?.[0] === "0"
       ) {
         client.refetchQueries("gamehistory_wingo_2");
         client.refetchQueries("walletamount");

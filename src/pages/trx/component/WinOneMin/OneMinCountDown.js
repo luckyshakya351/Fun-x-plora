@@ -23,7 +23,7 @@ import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
 import ShowImages from "./ShowImages";
 import { zubgtext } from "../../../../Shared/color";
-import { My_All_TRX_HistoryFn, walletamount } from "../../../../services/apicalling";
+import { My_All_TRX_HistoryFn, My_All_TRX_HistoryFnTemp, walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -53,7 +53,6 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
       }
       
-
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
       }
@@ -61,10 +60,13 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
         client.refetchQueries("walletamount");
       }
       if (onemin === 0) {
-        client.refetchQueries("trx_gamehistory_1");
-        client.refetchQueries("my_trx_history_1");
-        // dispatch(dummycounterFun());
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
+      }
+      if (onemin === 57) {
+        client.refetchQueries("trx_gamehistory_1");
+        // client.refetchQueries("my_trx_history_1");
+        client.refetchQueries("my_trx_history_1_temp");
+        // dispatch(dummycounterFun());
       }
     };
     socket.on("onemintrx", handleOneMin);
@@ -72,13 +74,20 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
       socket.off("onemintrx", handleOneMin);
     };
   }, []);
-  const { isLoading: myhistory_loding, data: my_history } = useQuery(
+  const { isLoading: myhistory_loding, data: my_history_old } = useQuery(
     ["my_trx_history_1"],
     () => My_All_TRX_HistoryFn(1),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
+    }
+  );
+  const {data: my_history } = useQuery(
+    ["my_trx_history_1_temp"],
+    () => My_All_TRX_HistoryFnTemp(1),
+    {
+      refetchOnMount: false,
     }
   );
 
@@ -125,9 +134,19 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   }, [game_history?.data?.result]);
 
   React.useEffect(()=>{
-    dispatch(trx_my_history_data_function(my_history?.data?.data));
+    const allEarnings = my_history_old?.data?.data;
+    const newEarnings = my_history?.data?.data;
+    if (Array.isArray(newEarnings) && newEarnings.length > 0) {
+      if (Array.isArray(allEarnings)) {
+        dispatch(trx_my_history_data_function([...newEarnings, ...allEarnings]));
+      } else {
+        dispatch(trx_my_history_data_function(newEarnings));
+      }
+    } else if (Array.isArray(allEarnings)) {
+      dispatch(trx_my_history_data_function(allEarnings));
+    }
     one_min_time>=58 ||one_min_time===0 &&  dispatch(dummycounterFun());
-  },[my_history?.data?.data])
+  },[my_history?.data?.data,my_history_old?.data?.data])
 
   const { isLoading: amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,

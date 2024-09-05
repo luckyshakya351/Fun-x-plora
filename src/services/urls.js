@@ -70,6 +70,7 @@ export const endpoint = {
 
   trx_game_history: `${newdomain}/api/v1/trx-auto-genrated-result`,
   my_history_all_trx: `${newdomain}/api/v1/trx-getColourBets`,
+  my_history_all_trx_temp: `${newdomain}/api/v1//trx-getColourBets-temp`,
   trx_game_bet: `${newdomain}/api/v1/trx-bet`,
 
   // aviator api's

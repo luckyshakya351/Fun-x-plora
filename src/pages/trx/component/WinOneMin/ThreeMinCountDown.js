@@ -19,7 +19,7 @@ import axios from "axios";
 import { endpoint } from "../../../../services/urls";
 import toast from "react-hot-toast";
 import { zubgmid, zubgtext } from "../../../../Shared/color";
-import { My_All_TRX_HistoryFn, walletamount } from "../../../../services/apicalling";
+import { My_All_TRX_HistoryFn, My_All_TRX_HistoryFnTemp, walletamount } from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -83,7 +83,7 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
         fivemin?.split("_")?.[0] === "0"
       ) {
         client.refetchQueries("trx_gamehistory_3");
-        client.refetchQueries("my_trx_history_3");
+        client.refetchQueries("my_trx_history_3_temp");
         client.refetchQueries("walletamount");
         // dispatch(dummycounterFun());
         // fk.setFieldValue("openTimerDialogBoxOneMin", false);
@@ -108,13 +108,20 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     dispatch(net_wallet_amount_function(data?.data?.data))
   },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
 
-  const { data: my_history } = useQuery(
+  const { isLoading: myhistory_loding, data: my_history_old } = useQuery(
     ["my_trx_history_3"],
     () => My_All_TRX_HistoryFn(3),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
+    }
+  );
+  const {data: my_history } = useQuery(
+    ["my_trx_history_3_temp"],
+    () => My_All_TRX_HistoryFnTemp(3),
+    {
+      refetchOnMount: false,
     }
   );
 
@@ -161,9 +168,18 @@ refetchOnWindowFocus:false
   }, [game_history?.data?.result]);
 
   React.useEffect(()=>{
-    dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
-  },[my_history?.data?.data])
+    const allEarnings = my_history_old?.data?.data;
+    const newEarnings = my_history?.data?.data;
+    if (Array.isArray(newEarnings) && newEarnings.length > 0) {
+      if (Array.isArray(allEarnings)) {
+        dispatch(trx_my_history_data_function([...newEarnings, ...allEarnings]));
+      } else {
+        dispatch(trx_my_history_data_function(newEarnings));
+      }
+    } else if (Array.isArray(allEarnings)) {
+      dispatch(trx_my_history_data_function(allEarnings));
+    }    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
+  },[my_history?.data?.data,my_history_old?.data?.data])
 
   const handlePlaySound = async () => {
     try {

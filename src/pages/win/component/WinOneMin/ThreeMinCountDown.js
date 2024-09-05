@@ -85,8 +85,8 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       }
     
       if (
-        fivemin?.split("_")?.[1] === "57" &&
-        fivemin?.split("_")?.[0] === "2"
+        fivemin?.split("_")?.[1] === "0" &&
+        fivemin?.split("_")?.[0] === "0"
       ) {
         client.refetchQueries("gamehistory_wingo_3");
         client.refetchQueries("walletamount");

@@ -100,7 +100,7 @@ const ApplyBetDialogBox = ({
       console.log(e);
     }
     client.refetchQueries("walletamount");
-    client.refetchQueries(`my_trx_history_${gid}`);
+    client.refetchQueries(`my_trx_history_${gid}_temp`);
     setLoding(false);
   }
 
