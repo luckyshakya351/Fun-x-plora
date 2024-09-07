@@ -5,8 +5,8 @@ export const fron_end_main_domain = "https://funxplora.com";
 
 export const newdomain1 = "https://api.funxplora.com";
 export const newdomain = "https://api.funxplora.com";
-// export const newdomain1 = "http://192.168.1.8:9000";
-// export const newdomain = "http://192.168.1.8:9000";
+// export const newdomain1 = "http://192.168.170.149:9000";
+// export const newdomain = "http://192.168.170.149:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";

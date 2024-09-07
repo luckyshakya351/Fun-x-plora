@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { zubgback, zubgtext } from "../../../../Shared/color";
+import { zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 const Chart = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -74,7 +74,7 @@ const Chart = ({ gid }) => {
 
   return (
     <Box className="chartTable">
-      <Stack direction="row" className="onegotextbox">
+      {/* <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
             component="img"
@@ -84,18 +84,20 @@ const Chart = ({ gid }) => {
           ></Box>{" "}
           Statistic(last 100 Periods)
         </Typography>
-      </Stack>
-      <div className="relative !h-[56vh] overflow-auto !w-[100%] no-scrollbar !overflow-x-hidden">
+      </Stack> */}
+      <div className="relative !mt-2 !h-[56vh] overflow-auto !w-[100%] no-scrollbar !overflow-x-hidden">
         <div className="absolute !w-[100%] !bg-red-800">
           {visibleRows?.length > 0 &&
             visibleRows?.map((element, indexi) => {
               return (
                 <Box
                   sx={{
-                    background: '#180F3F',
+                    // background: '#180F3F',
+                    background:"white",
                     padding: "10px ",
                     borderBottom: "1px solid #63BA0E",
                   }}
+                  // className={"!bg-slate-300"}
                 >
                   <div className="flex justify-between">
                     <span
@@ -104,7 +106,7 @@ const Chart = ({ gid }) => {
                       {element?.tr_transaction_id}
                     </span>
                     {/* // main box of chart form 0 to 9 */}
-                    <Box className="flex items-center justify-between !w-[80%]  lg:!w-[70%]">
+                    <Box className="flex items-center justify-between !w-[75%]  lg:!w-[70%]">
                       {/* /// 0   //// */}
                       <div id={`zero${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "0"
                         ? "!z-20"
@@ -113,7 +115,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "0"
                             ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -128,7 +130,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "1"
                             ? "!bg-[#4bef98] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -143,7 +145,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "2"
                             ? "!bg-[#f1494c] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -158,7 +160,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "3"
                             ? "!bg-[#46eb93] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -173,7 +175,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "4"
                             ? "!bg-[#ed4b4e] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -188,7 +190,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "5"
                             ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -203,7 +205,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "6"
                             ? "!bg-[#f54b4e] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -218,7 +220,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "7"
                             ? "!bg-[#4af499] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -233,7 +235,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "8"
                             ? "!bg-[#eb494c] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -248,7 +250,7 @@ const Chart = ({ gid }) => {
                         <Typography
                           className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "9"
                             ? "!bg-[#4cf199] !text-white"
-                            : "!bg-white !text-black"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
                             }`}
                         >
                           {" "}
@@ -303,7 +305,12 @@ const Chart = ({ gid }) => {
             background: zubgtext,
             color: "white",
             borderRadius: "10px",
-            marginTop: "10px",
+            marginTop: "5px",
+            height:"32px",
+            display:"flex",
+            alignItems:"center",
+            justifyContent:"center",
+            overflowY:"hidden"
           }}
           rowsPerPageOptions={[2, 5, 10, 15]}
           component="div"

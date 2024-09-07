@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { lightblue, lightgreen, zubgback, zubggray, zubgtext } from "../../Shared/color";
+import { lightblue, zubgback, zubgtext } from "../../Shared/color";
 import customer from "../../assets/images/24-hours-service.png";
 import copyIimage from "../../assets/images/copy.png";
 import sort from "../../assets/images/data-flow.png";
@@ -19,10 +19,8 @@ import donut from "../../assets/images/database.png";
 import money from "../../assets/images/salary.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { MygetdataFn, walletamount } from "../../services/apicalling";
+import { walletamount, yesterdayFn } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
-import bgms from "../../assets/images/bgs.jpg";
-import bgms1 from "../../assets/images/bgs1.jpg";
 import theme from "../../utils/theme";
 
 function Promotion() {
@@ -36,20 +34,28 @@ function Promotion() {
 
   const wallet = amount?.data?.data;
 
+  // const { isLoading, data } = useQuery(
+  //   ["get_level"],
+  //   () => MygetdataFn(),
+  //   {
+  //     refetchOnMount: false,
+  //     refetchOnReconnect: false,
+  //     refetchOnWindowFocus: false
+  //   }
+  // );
+  // const result = data?.data?.data;
+
   const { isLoading, data } = useQuery(
-    ["get_level"],
-    () => MygetdataFn(),
+    ["yesterday_income"],
+    () => yesterdayFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
-  const result = data?.data?.data;
-
-
+  const result = data?.data?.data?.[0] || [];
   const functionTOCopy = (value) => {
-    console.log("function hit");
     copy(value);
     toast.success("Copied to clipboard!");
   };
@@ -71,7 +77,7 @@ function Promotion() {
         <Box sx={style.commitionboxOuter} className="!rounded-xl ">
           <Box sx={style.commitionbox}>
             <Typography variant="body1" sx={{ color: zubgtext, mb: 1 }}>
-              {data?.data?.yesterday_income}
+              {result?.yesterday_income}
             </Typography>
             <Typography variant="body1" sx={{ color: 'white' }} className="!bg-[#160D3D]">
               Yesterday  Income
@@ -105,13 +111,11 @@ function Promotion() {
                    className="!text-white"
 
                 >
-                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
+                  {result?.direct_reg || 0}
                 </Typography>
                 <Typography
                   variant="body1"
-
                 >
-
                   Number of register
                 </Typography>
               </Box>
@@ -121,7 +125,7 @@ function Promotion() {
                    className="!text-white"
 
                 >
-                  {result?.filter(level => level.LEVEL === 1 && Number(level.deposit_amount) > 0).length || 0}
+                  {result?.direct_depo_mem || 0}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -136,7 +140,7 @@ function Promotion() {
                    className="!text-white"
 
                 >
-                  {result?.filter((j) => j?.LEVEL === 1)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0) || 0}
+                  {result?.direct_yest_depo || 0}
                 </Typography>
                 <Typography
                   variant="body1" >
@@ -149,7 +153,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" 
                  className="!text-white">
-                  {result?.filter(entry => entry.LEVEL !== 0).length || 0}
+                  {result?.team_reg || 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -159,7 +163,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
                  className="!text-white" >
-                  {result?.filter(level => level.LEVEL !== 0 && Number(level.deposit_amount) > 0).length || 0}
+                  {result?.team_depo_mem || 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -169,7 +173,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
                  className="!text-white" >
-                  {result?.filter((j)=>j?.LEVEL !== 0)?.reduce((a, b) => a + Number(b?.deposit_amount || 0), 0)|| 0}
+                  {result?.team_yest_depo|| 0}
                 </Typography>
                 <Typography variant="body1" >
 
@@ -300,7 +304,7 @@ function Promotion() {
               <Box className="!text-black">
                 <DashboardRounded />
                 <Typography variant="body1" >
-                  {data?.data?.this_week_income || 0}
+                  {result?.this_week_commission || 0}
                 </Typography>
                 <Typography variant="body1" >
                   This Week
@@ -309,7 +313,7 @@ function Promotion() {
               <Box className="!text-black">
                 <Money />
                 <Typography variant="body1" >
-                  {data?.data?.total_commission || 0}
+                {result?.total_commission || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Total Commission
@@ -320,7 +324,7 @@ function Promotion() {
               <Box className="!text-black">
                 <EmojiPeopleOutlinedIcon />
                 <Typography variant="body1" >
-                  {result?.filter(entry => entry.LEVEL === 1).length || 0}
+                  {result?.direct_reg || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Direct subordinate
@@ -329,7 +333,7 @@ function Promotion() {
               <Box className="!text-black">
                 <Groups2OutlinedIcon />
                 <Typography variant="body1" >
-                  {result?.filter(entry => entry.LEVEL !== 0).length || 0}
+                  {result?.team_reg || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Team subordinates

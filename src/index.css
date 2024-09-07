@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .rotate_refresh_image {
   animation: rotate_image 1s linear infinite;
 }

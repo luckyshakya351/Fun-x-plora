@@ -1,23 +1,34 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import {
+  Box,
+  Container,
+  Pagination,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow
+} from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../Shared/color";
-import Layout from "../../component/Layout/Layout";
-import { referralBonusFn, yesterdayFn } from "../../services/apicalling";
+import {
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgshadow,
+  zubgtext
+} from "../../Shared/color";
 import nodatafoundimage from "../../assets/images/nodatafoundimage.png";
+import Layout from "../../component/Layout/Layout";
+import { yesterdayFn } from "../../services/apicalling";
 
 function Activity() {
   const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
-  const [visibleRows, setVisibleRows] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
 
   const { isLoading, data } = useQuery(
     ["yesterday_income"],
@@ -25,30 +36,23 @@ function Activity() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const res = data?.data?.data || [];
-  console.log(res)
+  console.log(res);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+
+  const goBack = () => {
+    navigate(-1);
   };
 
-  React.useEffect(() => {
-    setVisibleRows(
-      res?.slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage
-      )
-    );
-  }, [page, rowsPerPage, res]);
-
+  let text_color = "white";
+  let bg_color = zubgback;
   if (!isLoading && !res)
     return (
       <Layout>
@@ -92,62 +96,199 @@ function Activity() {
           <p>Yesterday Total Bet Income</p>
           <Box></Box>
         </Box>
-        <div className="!overflow-x-auto">
-          <Table sx={{ background: zubgwhite, boxShadow: zubgshadow }}>
+        <div className="!overflow-x-auto  ">
+          <Table sx={{ background: text_color, boxShadow: zubgshadow }}>
             <TableHead>
-              <TableRow >
-              <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Level</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white"> Income</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Total Bet</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Settlement  Date</TableCell>
+              <TableRow>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  <span className="!text-blue-800">Level</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {" "}
+                  <span className="!text-blue-800">Income</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  <span className="!text-blue-800">Total Bet</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  <span className="!text-blue-800">Settlement Date</span>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-           
-                <TableRow >
-                <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">Level 1</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{res?.[0]?.level_1_income}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{res?.[0]?.level_1_total_bet}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD")}</TableCell>
-                </TableRow>
-                <TableRow >
-                <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">Level 2</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{res?.[0]?.level_2_income}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{res?.[0]?.level_2_total_bet}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD")}</TableCell>
-                </TableRow>
-                <TableRow >
-                <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">Level 3</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{res?.[0]?.level_3_income}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{res?.[0]?.level_3_total_bet}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD")}</TableCell>
-
-                </TableRow>
-                <TableRow >
-                <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">Level 4</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{res?.[0]?.level_4_income}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{res?.[0]?.level_4_total_bet}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD")}</TableCell>
-
-                </TableRow>
-                <TableRow >
-                <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white"> Level 5</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{res?.[0]?.level_5_income}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{res?.[0]?.level_5_total_bet}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD")}</TableCell>
-
-                </TableRow>
-                <TableRow >
-                <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">Level 6</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{res?.[0]?.level_6_income}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{res?.[0]?.level_6_total_bet}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{moment(Date.now()).subtract(1, 'days').format("YYYY-MM-DD")}</TableCell>
-
-                </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  <span className="!text-blue-800">Level 1</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_1_income}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_1_total_bet}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {moment(Date.now()).subtract(1, "days").format("YYYY-MM-DD")}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  <span className="!text-blue-800">Level 2</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_2_income}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_2_total_bet}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {moment(Date.now()).subtract(1, "days").format("YYYY-MM-DD")}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                 <span className="!text-blue-800">Level 3</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_3_income}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_3_total_bet}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {moment(Date.now()).subtract(1, "days").format("YYYY-MM-DD")}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  <span className="!text-blue-800">Level 4</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_4_income}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_4_total_bet}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {moment(Date.now()).subtract(1, "days").format("YYYY-MM-DD")}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {" "}
+                  <span className="!text-blue-800">Level 5</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_5_income}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_5_total_bet}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {moment(Date.now()).subtract(1, "days").format("YYYY-MM-DD")}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={`!font-bold !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  <span className="!text-blue-800">Level 6</span>
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_6_income}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {res?.[0]?.level_6_total_bet}
+                </TableCell>
+                <TableCell
+                  sx={{ color: bg_color }}
+                  className={` !border !text-xs !border-r !text-center  !border-b !border-[${text_color}]`}
+                >
+                  {moment(Date.now()).subtract(1, "days").format("YYYY-MM-DD")}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
           <Box className="paginationTable !mb-10">
-            <TablePagination
+            {/* <TablePagination
               sx={{
                 background: zubgtext,
                 color: "white",
@@ -162,6 +303,19 @@ function Activity() {
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
               labelRowsPerPage="Rows"
+            /> */}
+            <Pagination
+            count={3}
+              // count={Math.ceil(res?.length / rowsPerPage)} // Calculate total pages based on the data length
+              page={page} // Current page
+              onChange={handleChangePage} // Function to handle page changes
+              color="primary" // Color of pagination
+              sx={{
+                // background: zubgtext, // Background styling
+                color: "white",
+                borderRadius: "10px",
+                marginTop: "10px",
+              }}
             />
           </Box>
         </div>
@@ -258,43 +412,6 @@ const style = {
   },
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import { Box, Container, Dialog, IconButton, Typography } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
 // import "swiper/css";
@@ -365,7 +482,7 @@ const style = {
 //           </Typography>
 //           <Box></Box>
 //         </Box>
-      
+
 //         {openDialogBoxHomeBanner && (
 //           <Dialog
 //             PaperProps={{ width: "500px", height: "500px" }}

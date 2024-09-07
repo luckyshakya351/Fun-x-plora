@@ -197,9 +197,9 @@ const ApplyBetDialogBox = ({
             );
           })}
         </Box>
-        <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
+        {/* <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           small
-        </Typography>
+        </Typography> */}
       </Box>
       <Stack direction="row" className="bat-price-input-box">
         <IconButton onClick={() => handleClickValue(value - 1)}>
