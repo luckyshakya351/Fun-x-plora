@@ -33,17 +33,16 @@ const WinLossPopup = ({ gid }) => {
   const [status, setstatus] = useState("");
   const [newstatus, setstatusNew] = useState("");
   const [all_result, setall_result] = useState();
-  const my_history_data = useSelector(
+  const my_history_data_full = useSelector(
     (state) => state.aviator.trx_my_history_data
   );
   const MyHistoryFn = async () => {
     setloding(true);
-    console.log(gid, "anand kumar verma")
     try {
       // const response = await axios.get(
       //   `${endpoint.my_history_all_trx}?userid=${user_id}&limit=0&gameid=${gid}`
       // );
-      
+      const my_history_data  =  my_history_data_full?.slice(0,10);
       const firstId = my_history_data?.[0]?.gamesno;
       const winAmnt =
         my_history_data
@@ -131,7 +130,6 @@ const WinLossPopup = ({ gid }) => {
     setstatusNew(status);
   }, [status]);
 
-  console.log(all_result)
   if (loding) return <CustomCircularProgress isLoading={loding} />;
   
   if (status?.status === "2") {

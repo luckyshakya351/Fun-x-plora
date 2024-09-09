@@ -131,7 +131,7 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-refetchOnWindowFocus:false
+      refetchOnWindowFocus:false
     }
   );
 

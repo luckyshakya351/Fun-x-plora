@@ -45,55 +45,91 @@ const GameHistory = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px", filter: 'drop-shadow(2px 4px 6px black)' }}
+            sx={{
+              marginRight: "10px",
+              filter: "drop-shadow(2px 4px 6px black)",
+            }}
           ></Box>
           {gid === "1"
             ? "One GO Record"
             : gid === "2"
-              ? "Three Go Record"
-              : "Five Go Record"}
+            ? "Three Go Record"
+            : "Five Go Record"}
         </Typography>
       </Stack>
-      <TableContainer sx={{ borderRadius: '7px' }}>
-        <Table
-          sx={{ background: zubgback, color: "white", borderRadius: '10px  10px 0px 0px' }}
+      <TableContainer sx={{ borderRadius: "7px" }}>
+        {/* <Table
+          sx={{
+            background: zubgback,
+            color: "white",
+            borderRadius: "10px  10px 0px 0px",
+          }}
           className="wintable"
-          aria-label="simple table"
+          // aria-label="simple table"
         >
-          <TableHead sx={{ borderRadius: '10px  10px 0px 0px' }}>
+          <TableHead sx={{ borderRadius: "10px  10px 0px 0px" }}>
             <TableRow>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
+              <TableCell
+                sx={{ fontWeight: 600 }}
+              >
                 Period
               </TableCell>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
+              <TableCell
+                sx={{ fontWeight: 600 }}
+              >
                 Block
               </TableCell>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
+              <TableCell
+                sx={{ fontWeight: 600 }}
+              >
                 Block Time
               </TableCell>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
+              <TableCell
+                sx={{ fontWeight: 600 }}
+              >
                 Hash
               </TableCell>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>
+              <TableCell
+                sx={{ fontWeight: 600 }}
+              >
                 Result
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody >
+          <TableBody>
             {visibleRows?.map((i) => {
               return (
-                <TableRow className="!w-[95%]" sx={{ background: '#0D0335' }}>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
+                <TableRow className="!w-[95%]" sx={{ background: "#0D0335" }}>
+                  <TableCell
+                    className="!text-white"
+                    sx={{
+                      padding: " 10px 5px",
+                      fontsize: " 13px",
+                      borderBottom: `1px solid ${lightblue}`,
+                    }}
+                  >
                     <p
-                      style={{ fontWeight: 700, fontSize: '12px', color: zubgtext }}
+                      style={{
+                        fontWeight: 700,
+                        fontSize: "12px",
+                        color: zubgtext,
+                      }}
                     >
                       {i?.tr_transaction_id}
                     </p>
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell
+                    sx={{
+                      padding: "10px 5px",
+                      fontsize: " 13px",
+                      borderBottom: `1px solid ${lightblue}`,
+                    }}
+                    className="!flex !gap-1"
+                  >
                     <span>
                       <LiveHelpIcon
-                        className="!text-[#FBA343] cursor-pointer"
+                        
+                        className="!text-[#FBA343] cursor-pointer !text-[16px]"
                         onClick={() =>
                           navigate("/trx/tron-scan", {
                             state: {
@@ -103,69 +139,177 @@ const GameHistory = ({ gid }) => {
                         }
                       />
                     </span>
-                    <span style={{ color: 'white' }}>{i?.tr_number}</span>
+                    <span style={{ color: "white" }}>{i?.tr_number}</span>
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
-                    <span style={{ color: 'white' }}>{i?.tr_block_time}</span>
+                  <TableCell
+                    sx={{
+                      padding: " 10px 5px",
+                      fontsize: " 13px",
+                      borderBottom: `1px solid ${lightblue}`,
+                    }}
+                  >
+                    <span style={{ color: "white" }}>{i?.tr_block_time}</span>
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
-                    <span style={{ color: 'white' }}> {i?.tr_hashno}</span>
+                  <TableCell
+                    sx={{
+                      padding: " 10px 5px",
+                      fontsize: " 13px",
+                      borderBottom: `1px solid ${lightblue}`,
+                    }}
+                  >
+                    <span style={{ color: "white" }}> {i?.tr_hashno}</span>
                   </TableCell>
 
-                  <TableCell sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell
+                    sx={{
+                      padding: " 10px 5px",
+                      fontsize: " 13px",
+                      borderBottom: `1px solid ${lightblue}`,
+                    }}
+                  >
                     <span
                       className={`
-                ${(String(Number(i?.tr41_slot_id)) === "0" &&
-                          "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                        (String(Number(i?.tr41_slot_id)) === "5" &&
-                          "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                        ((String(Number(i?.tr41_slot_id)) === "1" ||
-                          String(Number(i?.tr41_slot_id)) === "3" ||
-                          String(Number(i?.tr41_slot_id)) === "7" ||
-                          String(Number(i?.tr41_slot_id)) === "9" ||
-                          String(Number(i?.tr41_slot_id)) === "10") &&
-                          "bg-gradient-to-t from-green-400 to-green-900") ||
-                        ((String(Number(i?.tr41_slot_id)) === "2" ||
-                          String(Number(i?.tr41_slot_id)) === "4" ||
-                          String(Number(i?.tr41_slot_id)) === "6" ||
-                          String(Number(i?.tr41_slot_id)) === "8" ||
-                          String(Number(i?.tr41_slot_id)) === "30") &&
-                          "bg-gradient-to-tl from-red-400 to-red-900") ||
-                        (String(Number(i?.tr41_slot_id)) === "50" &&
-                          "bg-[#3183ee]") ||
-                        (String(Number(i?.tr41_slot_id)) === "40" &&
-                          "bg-[#f1be24]") ||
-                        (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
-                        }
+                ${
+                  (String(Number(i?.tr41_slot_id)) === "0" &&
+                    "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                  (String(Number(i?.tr41_slot_id)) === "5" &&
+                    "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                  ((String(Number(i?.tr41_slot_id)) === "1" ||
+                    String(Number(i?.tr41_slot_id)) === "3" ||
+                    String(Number(i?.tr41_slot_id)) === "7" ||
+                    String(Number(i?.tr41_slot_id)) === "9" ||
+                    String(Number(i?.tr41_slot_id)) === "10") &&
+                    "bg-gradient-to-t from-green-400 to-green-900") ||
+                  ((String(Number(i?.tr41_slot_id)) === "2" ||
+                    String(Number(i?.tr41_slot_id)) === "4" ||
+                    String(Number(i?.tr41_slot_id)) === "6" ||
+                    String(Number(i?.tr41_slot_id)) === "8" ||
+                    String(Number(i?.tr41_slot_id)) === "30") &&
+                    "bg-gradient-to-tl from-red-400 to-red-900") ||
+                  (String(Number(i?.tr41_slot_id)) === "50" &&
+                    "bg-[#3183ee]") ||
+                  (String(Number(i?.tr41_slot_id)) === "40" &&
+                    "bg-[#f1be24]") ||
+                  (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
+                }
                 transparentColor font-bold  text-lg
                 `}
-                      style={{ color: 'white' }}>
+                      style={{ color: "white" }}
+                    >
                       {Number(i?.tr41_slot_id)}
                     </span>
-                    <span style={{ color: 'white' }}> {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}</span>
+                    <span style={{ color: "white" }}>
+                      {" "}
+                      {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}
+                    </span>
                   </TableCell>
                 </TableRow>
               );
             })}
           </TableBody>
-        </Table>
-
-        <Box className="paginationTable !w-full " mb={4}>
-          <TablePagination
-            sx={{ background: zubgtext, color: "white", width: "100%" }}
-            rowsPerPageOptions={[5, 10]}
-            component="div"
-            count={game_history_data?.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Rows"
-          />
-        </Box>
+        </Table> */}
       </TableContainer>
+      <div className={`!w-full !text-[${zubgback}] !bg-white  rounded-t-lg`}>
+        <div
+          className="!w-full !text-[13px] !grid !grid-cols-8 !place-items-center !py-5 
+        !bg-[#63BA0E] rounded-t-lg !text-white"
+        >
+          <p className="!col-span-2">Period</p>
+          <p className="!col-span-2">Block No.</p>
+          <p className="!col-span-2">Block Time</p>
+          <p>Hash</p>
+          <p>Result</p>
+        </div>
+        <div className={`!w-full`}>
+          {visibleRows?.map((i) => {
+            return (
+              <>
+                <div className="!w-full !p-3 !grid !grid-cols-8  !place-items-center !text-[12px]">
+                  <p className="!col-span-2 !text-[#63BA0E] !font-semibold !text-[13px]">
+                    {i?.tr_transaction_id}
+                  </p>
+                  <p className="!col-span-2 !flex gap-[1px]">
+                    <span>
+                      <LiveHelpIcon
+                        className="!text-[#FBA343] cursor-pointer !text-[16px]"
+                        onClick={() =>
+                          navigate("/trx/tron-scan", {
+                            state: {
+                              tron_id: i?.tr_number,
+                            },
+                          })
+                        }
+                      />
+                    </span>
+                    <span
+                    // style={{ color: "white" }}
+                    >
+                      {i?.tr_number}
+                    </span>
+                  </p>
+                  <p className="!col-span-2">{i?.tr_block_time}</p>
+                  <p>{i?.tr_hashno}</p>
+                  <div className="!flex !gap-[1px]  !items-center !pl-4">
+                    <p
+                      className={`
+                ${
+                  (String(Number(i?.tr41_slot_id)) === "0" &&
+                    "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                  (String(Number(i?.tr41_slot_id)) === "5" &&
+                    "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                  ((String(Number(i?.tr41_slot_id)) === "1" ||
+                    String(Number(i?.tr41_slot_id)) === "3" ||
+                    String(Number(i?.tr41_slot_id)) === "7" ||
+                    String(Number(i?.tr41_slot_id)) === "9" ||
+                    String(Number(i?.tr41_slot_id)) === "10") &&
+                    "bg-gradient-to-t from-green-400 to-green-900") ||
+                  ((String(Number(i?.tr41_slot_id)) === "2" ||
+                    String(Number(i?.tr41_slot_id)) === "4" ||
+                    String(Number(i?.tr41_slot_id)) === "6" ||
+                    String(Number(i?.tr41_slot_id)) === "8" ||
+                    String(Number(i?.tr41_slot_id)) === "30") &&
+                    "bg-gradient-to-tl from-red-400 to-red-900") ||
+                  (String(Number(i?.tr41_slot_id)) === "50" &&
+                    "bg-[#3183ee]") ||
+                  (String(Number(i?.tr41_slot_id)) === "40" &&
+                    "bg-[#f1be24]") ||
+                  (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
+                }
+                transparentColor  text-lg
+                `}
+                      // style={{ color: "white" }}
+                    >
+                      <span className="!font-semibold">
+                        {" "}
+                        {Number(i?.tr41_slot_id)}
+                      </span>
+                      <span className="!font-semibold">
+                        {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className="!w-full !h-[1px] !bg-[#63BA0E]"></div>
+              </>
+            );
+          })}
+        </div>
+      </div>
+      <Box className="paginationTable !w-full " mb={4}>
+        <TablePagination
+          sx={{ background: zubgtext, color: "white", width: "100%" }}
+          rowsPerPageOptions={[5, 10]}
+          component="div"
+          count={game_history_data?.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Rows"
+        />
+      </Box>
       {/* <CustomCircularProgress isLoading={isLoading}/> */}
-    </Box >
+    </Box>
   );
 };
 

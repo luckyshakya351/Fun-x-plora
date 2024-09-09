@@ -66,7 +66,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
         client.refetchQueries("trx_gamehistory_1");
         // client.refetchQueries("my_trx_history_1");
         client.refetchQueries("my_trx_history_1_temp");
-        // dispatch(dummycounterFun());
+        dispatch(dummycounterFun());
       }
     };
     socket.on("onemintrx", handleOneMin);
@@ -145,7 +145,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     } else if (Array.isArray(allEarnings)) {
       dispatch(trx_my_history_data_function(allEarnings));
     }
-    one_min_time>=58 ||one_min_time===0 &&  dispatch(dummycounterFun());
+    // (one_min_time>=58 ||one_min_time===0) &&  dispatch(dummycounterFun());
   },[my_history?.data?.data,my_history_old?.data?.data])
 
   const { isLoading: amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {

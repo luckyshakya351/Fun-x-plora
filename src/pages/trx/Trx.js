@@ -9,29 +9,26 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import asistant from "../../assets/images/asistant.png";
+import backbtn from "../../assets/images/backBtn.png";
+import music from "../../assets/images/music.png";
+import musicoff from "../../assets/images/musicoff.png";
 import refresh from "../../assets/images/refresh.png";
 import {
   default as Timeactive,
   default as Timeinactive,
 } from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
+import { zubgback, zubgshadow, zubgtext } from "../../Shared/color";
+import theme from "../../utils/theme";
+import Jackpot from "./component/WinOneMin/Jackpot";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
-import Jackpot from "./component/WinOneMin/Jackpot";
-import { walletamount } from "../../services/apicalling";
-import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import theme from "../../utils/theme";
-import asistant from "../../assets/images/asistant.png";
-import backbtn from "../../assets/images/backBtn.png";
-import music from "../../assets/images/music.png";
-import musicoff from "../../assets/images/musicoff.png";
 
 function Win() {
   const [musicicon, setmusicicon] = useState(true);
@@ -51,9 +48,9 @@ function Win() {
         setTimeout(() => {
           setOpenDialogBox(false);
           localStorage.setItem("betApplied", false);
-        }, 5000);
+        }, 2000);
       }
-    }, 1000);
+    },1000);
   }, [dummycounter]);
 
 
