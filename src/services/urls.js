@@ -9,13 +9,15 @@ export const newdomain = "https://api.funxplora.com";
 // export const newdomain = "http://192.168.170.149:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
+// export const domain = "http://192.168.32.149:9000";
 export const support_mail = "";
 export const telegram_url = "https://t.me/+9c__nUH79PtiYzBl";
-export const facebook_url = "https://www.facebook.com/people/Funxplora-Gaming/61561351673648/";
+export const facebook_url =
+  "https://www.facebook.com/people/Funxplora-Gaming/61561351673648/";
 export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 
 export const endpoint = {
-  //node login api  
+  //node login api
 
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
@@ -33,7 +35,7 @@ export const endpoint = {
   my_history_all: `${newdomain}/api/v1/getbet-game-results`,
   get_status: `${newdomain}/api/v1/get-status`,
   cashback_report: `${newdomain1}/api/v1/getCashBack-report`,
- 
+
   //payment
   payment: `${newdomain1}/api/v1/payment`,
   deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
@@ -67,7 +69,6 @@ export const endpoint = {
   recharge_call_bakc: `${baseUrl}/api/deposits-user-request`,
   cricket_get_url_id_pass: `${baseUrl}/api/cricket-details`,
 
-
   trx_game_history: `${newdomain}/api/v1/trx-auto-genrated-result`,
   my_history_all_trx: `${newdomain}/api/v1/trx-getColourBets`,
   my_history_all_trx_temp: `${newdomain}/api/v1//trx-getColourBets-temp`,
@@ -96,5 +97,5 @@ export const endpoint = {
   commission_data: `${newdomain1}/api/v1/get-commisssion-data-funx`,
   tranfer_wallet: `${newdomain1}/api/v1/transfer-amount-from-working-wallet-to-main-wallet`,
   transfer_wallet_history: `${newdomain1}/api/v1/transfer-history-from-working-wallet-to-main-wallet`,
-  yesterday_income : `${newdomain}/api/v1/get-total-betA-ad-income-yesterday`,
+  yesterday_income: `${newdomain}/api/v1/get-total-betA-ad-income-yesterday`,
 };

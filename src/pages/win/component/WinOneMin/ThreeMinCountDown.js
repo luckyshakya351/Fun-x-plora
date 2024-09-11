@@ -29,7 +29,10 @@ import {
   trx_my_history_data_function,
   updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
-import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
+import {
+  My_All_HistoryFn,
+  walletamount,
+} from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
@@ -70,7 +73,8 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     setpoicy(false);
   };
   React.useEffect(() => {
-    const handleFiveMin = (fivemin) => {
+    const handleFiveMin = (onemin) => {
+      let fivemin = `${4 - (new Date()?.getMinutes() % 5)}_${onemin}`;
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
       fk.setFieldValue("show_this_one_min_time", fivemin);
@@ -83,7 +87,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       if (fivemin?.split("_")?.[1] === "59") {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
-    
+
       if (
         fivemin?.split("_")?.[1] === "0" &&
         fivemin?.split("_")?.[0] === "0"
@@ -95,10 +99,10 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       }
     };
 
-    socket.on("fivemin", handleFiveMin);
+    socket.on("onemin", handleFiveMin);
 
     return () => {
-      socket.off("fivemin", handleFiveMin);
+      socket.off("onemin", handleFiveMin);
     };
   }, []);
 
@@ -108,7 +112,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const { data: game_history } = useQuery(
@@ -135,8 +139,11 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   };
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec) >= 58 || Number(show_this_three_min_time_sec) === 0) && Number(show_this_three_min_time_min) === 0 && dispatch(dummycounterFun());
-  }, [my_history?.data?.data])
+    (Number(show_this_three_min_time_sec) >= 58 ||
+      Number(show_this_three_min_time_sec) === 0) &&
+      Number(show_this_three_min_time_min) === 0 &&
+      dispatch(dummycounterFun());
+  }, [my_history?.data?.data]);
 
   React.useEffect(() => {
     dispatch(
@@ -159,15 +166,15 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(net_wallet_amount_function(data?.data?.data));
   }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
-
-
   return (
-    <Box className="countdownbg" sx={{
-      backgroundImage: `url(${winback})`,
-      backgroundSize: '100% 100%',
-      backgroundRepeat: 'no-repeat',
-    }}>
-
+    <Box
+      className="countdownbg"
+      sx={{
+        backgroundImage: `url(${winback})`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Box
         sx={{
           display: "flex",

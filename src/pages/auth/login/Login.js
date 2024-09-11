@@ -49,13 +49,17 @@ function Login() {
         <Box sx={{ width: '100%', }}>
           <Box component='img' src={logo} sx={style.logocss}></Box>
         </Box>
-
-        <Box sx={style.authform} component='form'>
+        {/* <Tab value="two" sx={{ width: "100% !important", }} label={
+                <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
+                  <Typography variant="body1" sx={{ color: value === 'two' ? lightyellow : lightblue, fontSize: '14px', }}>Log in with phone</Typography>
+                </Box>
+              }
+              /> */}
+        {/* <Box sx={style.authform} component='form'>
           <Box sx={{ width: "100%" }}>
             <Tabs value={value} onChange={handleChange} sx={{ width: "100%", }}>
               <Tab value="two" sx={{ width: "50% !important", }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
-                  {/* <PhoneAndroidIcon sx={{ color: value === 'two' ? lightblue : lightyellow, }} /> */}
                   <Typography variant="body1" sx={{ color: value === 'two' ? lightyellow : lightblue, fontSize: '14px', }}>Log in with phone</Typography>
                 </Box>
               }
@@ -63,7 +67,6 @@ function Login() {
 
               <Tab value="one" sx={{ width: "50% !important" }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
-                  {/* <MarkEmailReadIcon sx={{ color: value === 'one' ? lightblue : lightyellow, }} /> */}
                   <Typography variant="body1" sx={{ color: value === 'one' ? lightyellow : lightblue, fontSize: '14px', }}>Log in with email</Typography>
                 </Box>
               }
@@ -80,10 +83,11 @@ function Login() {
               <LoginWithMobile />
             )
           }
-        </Box>
+        </Box> */}
+        <LoginWithMobile />
       </Box>
       <Box
-        sx={{ width: "80%", margin: "auto", mt: 3 }}
+        sx={{ width: "80%", margin: "auto"}}
         component={NavLink}
         to="/CustomerService"
       >

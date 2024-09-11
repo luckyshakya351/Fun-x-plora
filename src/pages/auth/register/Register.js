@@ -166,10 +166,6 @@ function Register() {
 
   const [CountryCode, setCountryCode] = React.useState("+91");
 
-  const handleChange = (event) => {
-    setCountryCode(event.target.value);
-  };
-
   const result = data?.data?.data;
 
   return (

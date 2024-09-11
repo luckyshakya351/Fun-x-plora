@@ -72,7 +72,6 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
 
   React.useEffect(() => {
     const handleOneMin = (onemin) => {
-
       setOne_min_time(onemin);
       setBetNumber(onemin)
       fk.setFieldValue("show_this_one_min_time", onemin);

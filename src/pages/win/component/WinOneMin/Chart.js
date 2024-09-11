@@ -23,7 +23,6 @@ const Chart = ({ gid }) => {
     setPage(0);
   };
 
-
   React.useEffect(() => {
     setVisibleRows(
       game_history_data?.slice(
@@ -42,22 +41,22 @@ const Chart = ({ gid }) => {
           element.number === "0"
             ? `zero${index}`
             : element.number === "1"
-              ? `one${index}`
-              : element.number === "2"
-                ? `two${index}`
-                : element.number === "3"
-                  ? `three${index}`
-                  : element.number === "4"
-                    ? `four${index}`
-                    : element.number === "5"
-                      ? `five${index}`
-                      : element.number === "6"
-                        ? `six${index}`
-                        : element.number === "7"
-                          ? `seven${index}`
-                          : element.number === "8"
-                            ? `eight${index}`
-                            : `nine${index}`;
+            ? `one${index}`
+            : element.number === "2"
+            ? `two${index}`
+            : element.number === "3"
+            ? `three${index}`
+            : element.number === "4"
+            ? `four${index}`
+            : element.number === "5"
+            ? `five${index}`
+            : element.number === "6"
+            ? `six${index}`
+            : element.number === "7"
+            ? `seven${index}`
+            : element.number === "8"
+            ? `eight${index}`
+            : `nine${index}`;
         const childRect = document
           .getElementById(childId)
           .getBoundingClientRect();
@@ -70,7 +69,6 @@ const Chart = ({ gid }) => {
     }
   }, [visibleRows]);
 
-
   return (
     <Box className="chartTable" sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
@@ -79,183 +77,224 @@ const Chart = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px", filter: 'drop-shadow(2px 4px 6px black)' }}
+            sx={{
+              marginRight: "10px",
+              filter: "drop-shadow(2px 4px 6px black)",
+            }}
           ></Box>{" "}
           Statistic(last 100 Periods)
         </Typography>
       </Stack>
-      <div className="relative !h-[56vh] overflow-auto !w-[100%] no-scrollbar !overflow-x-hidden" >
-        <div className="absolute !w-[100%] !bg-red-800 ">
+      <div className="relative !h-[56vh] overflow-auto !w-[100%] no-scrollbar !overflow-x-hidden">
+        <div className="absolute !w-[100%]">
           {visibleRows?.map((i, indexi) => {
             return (
               <Box
                 sx={{
-                  background: '#180F3F',
+                  background: "white",
                   padding: "10px ",
                   borderBottom: "1px solid #63BA0E",
                 }}
               >
                 <div className="flex justify-between">
                   <span
-                    style={{ color: zubgtext, fontWeight: 700, fontSize: '13px' }}
+                    style={{
+                      color: zubgtext,
+                      fontWeight: 700,
+                      fontSize: "13px",
+                    }}
                   >
                     {i?.gamesno}
                   </span>
                   {/* // main box of chart form 0 to 9 */}
-                  <Box className="flex items-center justify-between !w-[70%]" style={{ py: 1 }} >
+                  <Box
+                    className="flex items-center justify-between !w-[70%]"
+                    style={{ py: 1 }}
+                  >
                     {/* /// 0   //// */}
-                    <div id={`zero${indexi}`} className={`${i?.number === "0"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`zero${indexi}`}
+                      className={`${
+                        i?.number === "0" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${i?.number === "0"
-                          ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white "
-                          : "!bg-white"
-                          }`}
+                        className={`circleNumberbody  !font-bold ${
+                          i?.number === "0"
+                            ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white "
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
+                        }`}
                       >
                         {" "}
                         0
                       </Typography>
                     </div>
                     {/* /// 1   //// */}
-                    <div id={`one${indexi}`} className={`${i?.number === "1"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`one${indexi}`}
+                      className={`${
+                        i?.number === "1" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${i?.number === "1"
-                          ? "!bg-[#4bef98] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody   !font-bold ${
+                          i?.number === "1"
+                            ? "!bg-[#4bef98] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         1
                       </Typography>
                     </div>
                     {/* /// 2   //// */}
-                    <div id={`two${indexi}`} className={`${i?.number === "2"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`two${indexi}`}
+                      className={`${
+                        i?.number === "2" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${i?.number === "2"
-                          ? "!bg-[#f1494c] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody   !font-bold ${
+                          i?.number === "2"
+                            ? "!bg-[#f1494c] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         2
                       </Typography>
                     </div>
                     {/* /// 3   //// */}
-                    <div id={`three${indexi}`} className={`${i?.number === "3"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`three${indexi}`}
+                      className={`${
+                        i?.number === "3" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${i?.number === "3"
-                          ? "!bg-[#46eb93] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody   !font-bold ${
+                          i?.number === "3"
+                            ? "!bg-[#46eb93] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         3
                       </Typography>
                     </div>
                     {/* /// 4   //// */}
-                    <div id={`four${indexi}`} className={`${i?.number === "4"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`four${indexi}`}
+                      className={`${
+                        i?.number === "4" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${i?.number === "4"
-                          ? "!bg-[#ed4b4e] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody   !font-bold ${
+                          i?.number === "4"
+                            ? "!bg-[#ed4b4e] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         4
                       </Typography>
                     </div>
                     {/* /// 5   //// */}
-                    <div id={`five${indexi}`} className={`${i?.number === "5"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`five${indexi}`}
+                      className={`${
+                        i?.number === "5" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${i?.number === "5"
-                          ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody  !font-bold ${
+                          i?.number === "5"
+                            ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         5
                       </Typography>
                     </div>
                     {/* /// 6   //// */}
-                    <div id={`six${indexi}`} className={`${i?.number === "6"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`six${indexi}`}
+                      className={`${
+                        i?.number === "6" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${i?.number === "6"
-                          ? "!bg-[#f54b4e] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody  !font-bold ${
+                          i?.number === "6"
+                            ? "!bg-[#f54b4e] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         6
                       </Typography>
                     </div>
                     {/* /// 7   //// */}
-                    <div id={`seven${indexi}`} className={`${i?.number === "7"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`seven${indexi}`}
+                      className={`${
+                        i?.number === "7" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${i?.number === "7"
-                          ? "!bg-[#4af499] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody  !font-bold ${
+                          i?.number === "7"
+                            ? "!bg-[#4af499] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         7
                       </Typography>
                     </div>
                     {/* /// 8   //// */}
-                    <div id={`eight${indexi}`} className={`${i?.number === "8"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`eight${indexi}`}
+                      className={`${
+                        i?.number === "8" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${i?.number === "8"
-                          ? "!bg-[#eb494c] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody   !font-bold ${
+                          i?.number === "8"
+                            ? "!bg-[#eb494c] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         8
                       </Typography>
                     </div>
                     {/* /// 9   //// */}
-                    <div id={`nine${indexi}`} className={`${i?.number === "9"
-                      ? "!z-20"
-                      : "!z-[-10px]"
-                      }`}>
+                    <div
+                      id={`nine${indexi}`}
+                      className={`${
+                        i?.number === "9" ? "!z-20" : "!z-[-10px]"
+                      }`}
+                    >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${i?.number === "9"
-                          ? "!bg-[#4cf199] !text-white"
-                          : "!bg-white "
-                          }`}
+                        className={`circleNumberbody   !font-bold ${
+                          i?.number === "9"
+                            ? "!bg-[#4cf199] !text-white"
+                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                        }`}
                       >
                         {" "}
                         9
                       </Typography>
                     </div>
                     <Typography
-                      className={`circleNumberbody ${i?.number <= 4 ? "!bg-[#468ce8] " : "!bg-[#df4be1]"
-                        }  !h-[20px] !w-[20px] !rounded-full !text-center !text-white `}
+                      className={`circleNumberbody ${
+                        i?.number <= 4 ? "!bg-[#468ce8] " : "!bg-[#df4be1]"
+                      }  !h-[20px] !w-[20px] !rounded-full !text-center !text-white `}
                     >
                       {i?.number <= 4 ? "S" : "B"}
                     </Typography>
@@ -264,7 +303,7 @@ const Chart = ({ gid }) => {
               </Box>
             );
           })}
-        </div >
+        </div>
         <div className=" h-[100%] w-[100%] absolute flex justify-end">
           <div className="!w-[80%] lg:!w-[70%]" id="parent">
             <svg
@@ -291,7 +330,7 @@ const Chart = ({ gid }) => {
             </svg>
           </div>
         </div>
-      </div >
+      </div>
       <Box className="paginationTable">
         <TablePagination
           sx={{
@@ -311,7 +350,7 @@ const Chart = ({ gid }) => {
         />
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading} /> */}
-    </Box >
+    </Box>
   );
 };
 

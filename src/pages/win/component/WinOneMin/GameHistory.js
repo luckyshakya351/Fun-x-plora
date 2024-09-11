@@ -1,5 +1,5 @@
 
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,10 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
-import CustomCircularProgress from "../../../../Shared/CustomCircularProgress";
-import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
-import history from '../../../../assets/images/list.png';
 import { useSelector } from "react-redux";
+import { zubgtext } from "../../../../Shared/color";
+import history from '../../../../assets/images/list.png';
 import theme from "../../../../utils/theme";
 
 
@@ -52,7 +51,7 @@ const GameHistory = ({ gid }) => {
         </Typography>
       </Stack>
       <TableContainer >
-        <Table sx={{ maxWidth: 400, background: zubgback, color: "white" }} className="wintable" aria-label="simple table">
+        <Table sx={{ maxWidth: 400, background: "white", color: "white" }} className="wintable" aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>Period</TableCell>
@@ -64,16 +63,16 @@ const GameHistory = ({ gid }) => {
           <TableBody>
             {visibleRows?.map((i) => {
               return (
-                <TableRow sx={{ background: '#180F3F' }}>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
+                <TableRow sx={{ background: 'white' }}>
+                  <TableCell className="!text-[#180F3F]" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid #180F3F` }}>
                     <span
-                      style={{ color: 'white', fontWeight: 600, fontSize: '12px' }}
+                      style={{ color:zubgtext, fontWeight: 600, fontSize: '12px' }}
                     >
                       {i?.gamesno}
                     </span>
 
                   </TableCell>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 1px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell className="!text-[#180F3F] " sx={{ padding: ' 10px 5px', fontsize: ' 1px', borderBottom: `1px solid #180F3F` }}>
                     <span
                       className={`
                 ${(i?.number === "0" &&
@@ -102,7 +101,7 @@ const GameHistory = ({ gid }) => {
                       {i?.number}
                     </span>
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', fontSize: '12px', fontWeight: '700', borderBottom: `1px solid ${lightblue}` }}
+                  <TableCell sx={{ padding: ' 10px 5px', fontSize: '12px', fontWeight: '700', borderBottom: `1px solid #180F3F` }}
                     className={`${Number(i?.number) <= 4
                       ? "!bg-gradient-to-l !from-[#FE63FF] !to-violet-600"
                       : "!bg-gradient-to-l !from-[#FE63FF] !to-green-600"
@@ -110,7 +109,7 @@ const GameHistory = ({ gid }) => {
                   >
                     {Number(i?.number) <= 4 ? "SMALL" : "BIG"}
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell sx={{ padding: ' 10px 5px', borderBottom: `1px solid #180F3F` }}>
                     {i?.number === "0" || i?.number === "5" ? (
                       <div className="!flex !gap-1">
                         <div
@@ -189,11 +188,12 @@ const GameHistory = ({ gid }) => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+             labelRowsPerPage="Rows"
           />
         </Box>
       </TableContainer>
       {/* <CustomCircularProgress isLoading={isLoading} /> */}
-    </Box >
+    </Box>
   );
 
 };

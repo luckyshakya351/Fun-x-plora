@@ -2,12 +2,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
-import { zubgmid } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import pr0 from "../../../../assets/images/0.png";
@@ -19,17 +20,24 @@ import pr5 from "../../../../assets/images/5.png";
 import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
-import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun, net_wallet_amount_function, trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
-import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
+import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
+import {
+  dummycounterFun,
+  net_wallet_amount_function,
+  trx_game_history_data_function,
+  trx_my_history_data_function,
+  updateNextCounter,
+} from "../../../../redux/slices/counterSlice";
+import {
+  My_All_HistoryFn,
+  walletamount,
+} from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
-import Policy from "../policy/Policy";
-import axios from "axios";
 import { endpoint } from "../../../../services/urls";
-import toast from "react-hot-toast";
+import Policy from "../policy/Policy";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -71,9 +79,10 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
   };
 
   React.useEffect(() => {
-    const handleThreeMin = (threemin) => {
+    const handleThreeMin = (onemin) => {
+      let threemin = `${2 - (new Date()?.getMinutes() % 3)}_${onemin}`;
       setThree_min_time(threemin);
-      setBetNumber(threemin)
+      setBetNumber(threemin);
       fk.setFieldValue("show_this_one_min_time", threemin);
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
@@ -95,10 +104,10 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
       }
     };
 
-    socket.on("threemin", handleThreeMin);
+    socket.on("onemin", handleThreeMin);
 
     return () => {
-      socket.off("threemin", handleThreeMin);
+      socket.off("onemin", handleThreeMin);
     };
   }, []);
 
@@ -135,7 +144,7 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const { data: game_history } = useQuery(
@@ -180,20 +189,25 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
 
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec) >= 58 || Number(show_this_three_min_time_sec) === 0) && Number(show_this_three_min_time_min) === 0 && dispatch(dummycounterFun());
-  }, [my_history?.data?.data])
+    (Number(show_this_three_min_time_sec) >= 58 ||
+      Number(show_this_three_min_time_sec) === 0) &&
+      Number(show_this_three_min_time_min) === 0 &&
+      dispatch(dummycounterFun());
+  }, [my_history?.data?.data]);
 
   React.useEffect(() => {
-    dispatch(net_wallet_amount_function(data?.data?.data))
-  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)])
-
+    dispatch(net_wallet_amount_function(data?.data?.data));
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
   return (
-    <Box className="countdownbg" sx={{
-      backgroundImage: `url(${winback})`,
-      backgroundSize: '100% 100%',
-      backgroundRepeat: 'no-repeat',
-    }}>
+    <Box
+      className="countdownbg"
+      sx={{
+        backgroundImage: `url(${winback})`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {React.useMemo(() => {
         return (
           <>
