@@ -375,18 +375,19 @@ function Withdrawl() {
                 Withdrawal amount
               </Typography>
             </Stack>
-            <div className="!grid !grid-cols-2    !bg-white !rounded-full !py-3 !text-sm">
+            <div className="!grid !grid-cols-3    !bg-white !rounded-full !py-3 !text-sm">
               {/* <Box component="img" src={payment} width={30}></Box> */}
-              <div className="!flex gap-5 !ml-10">
+              <div className="!flex gap-5 !ml-10 ">
                 <div className="!flex !flex-col !justify-center !text-gray-500 !items-center ">
                   <LocalFireDepartmentIcon className="!text-yellow-500 !text-[20px]" />
                   <p>{result?.[0]?.ifsc?.substring(0, 4)}</p>
                 </div>
                 <p className="!bg-yellow-400 !h-[100%] !w-[1px]"></p>
               </div>
-              <div className={"!flex !items-center !text-gray-500 !mr-8 "}>
-                <span>{result?.[0]?.account?.substring(0, 4)}</span>
+              <div className={"!flex !items-center !text-gray-500 !mr-8 !col-span-2"}>
+                <span>{result?.[0]?.account?.substring(0, 5)}</span>
                 <span className="!mt-1 !ml-1">*******</span>
+                {/* <span>{result?.[0]?.account?.substring(-1)}</span> */}
               </div>
             </div>
             <Box mt={2}>
