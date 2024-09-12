@@ -1,4 +1,4 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { CheckBox, Visibility, VisibilityOff } from "@mui/icons-material";
 import CachedIcon from "@mui/icons-material/Cached";
 import HistoryIcon from "@mui/icons-material/History";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
@@ -7,6 +7,7 @@ import {
   Button,
   Container,
   Dialog,
+  Drawer,
   FormControl,
   IconButton,
   InputAdornment,
@@ -39,14 +40,11 @@ import payment from "../../assets/images/wallet.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
 import usdt from "../../assets/payNameIcon1.png";
 import Layout from "../../component/Layout/Layout";
-import {
-  BankListDetails,
-  NeedToBet,
-} from "../../services/apicalling";
+import { BankListDetails, NeedToBet } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
 import theme from "../../utils/theme";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 function Withdrawl() {
-
   const location = useLocation();
   const [showoldPassword, setShowoldPassword] = React.useState(false);
   const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
@@ -70,6 +68,7 @@ function Withdrawl() {
   const [lodint, setloding] = React.useState(false);
   const audioRefMusic = React.useRef(null);
   const [openDialogBox, setOpenDialogBox] = React.useState(false);
+  const [drawar, setDrawar] = React.useState(false);
 
   const navigate = useNavigate();
   const goBack = () => {
@@ -149,7 +148,7 @@ function Withdrawl() {
       fd.append("password", fk.values.password);
       fd.append("select_wallet", fk.values.select_wallet);
 
-      withdraw_payment_Function(fd)
+      withdraw_payment_Function(fd);
     },
   });
 
@@ -184,8 +183,22 @@ function Withdrawl() {
     }
     setloding(false);
   };
+  const [state, setState] = React.useState({
+    bottom: false,
+  });
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
 
-
+    setState({ ...state, [anchor]: open });
+  };
+  React.useEffect(() => {
+    toggleDrawer();
+  }, []);
   return (
     <Layout>
       {React.useMemo(() => {
@@ -265,8 +278,8 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -305,7 +318,7 @@ function Withdrawl() {
                 zIndex: 10,
               }}
             >
-              <Box component={'img'} src={logo1} sx={{ width: '90px' }}></Box>
+              <Box component={"img"} src={logo1} sx={{ width: "90px" }}></Box>
             </Typography>
           </Stack>
         </Box>
@@ -362,6 +375,20 @@ function Withdrawl() {
                 Withdrawal amount
               </Typography>
             </Stack>
+            <div className="!grid !grid-cols-2    !bg-white !rounded-full !py-3 !text-sm">
+              {/* <Box component="img" src={payment} width={30}></Box> */}
+              <div className="!flex gap-5 !ml-10">
+                <div className="!flex !flex-col !justify-center !text-gray-500 !items-center ">
+                  <LocalFireDepartmentIcon className="!text-yellow-500 !text-[20px]" />
+                  <p>{result?.[0]?.ifsc?.substring(0, 4)}</p>
+                </div>
+                <p className="!bg-yellow-400 !h-[100%] !w-[1px]"></p>
+              </div>
+              <div className={"!flex !items-center !text-gray-500 !mr-8 "}>
+                <span>{result?.[0]?.account?.substring(0, 4)}</span>
+                <span className="!mt-1 !ml-1">*******</span>
+              </div>
+            </div>
             <Box mt={2}>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
@@ -401,7 +428,7 @@ function Withdrawl() {
                       background: "white",
                       border: "none",
                       borderRadius: "5px",
-                      padding: '0px',
+                      padding: "0px",
                     }}
                     InputProps={{
                       style: {
@@ -410,8 +437,8 @@ function Withdrawl() {
                         background: "red !important",
                         borderRadius: "10px",
                         border: "none",
-                        padding: '10px !important',
-                        '&>div': { padding: '0px !important', },
+                        padding: "10px !important",
+                        "&>div": { padding: "0px !important" },
                       },
                     }}
                   >
@@ -424,65 +451,12 @@ function Withdrawl() {
                 )}
               </Box>
 
-              <Box mt={3}>
-                <FormControl fullWidth>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: "white" }}>
-                      Password <span className="!text-white-600">*</span>
-                    </Typography>
-                  </Stack>
-                  <OutlinedInput
-                    className="abcd"
-                    id="password"
-                    name="password"
-                    value={fk.values.password}
-                    onChange={fk.handleChange}
-                    placeholder="Enter password"
-                    // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                    sx={{
-                      width: "100%",
-                      background: "white",
-                      color: "black",
-                      borderRadius: "5px",
-                    }}
-                    type={showoldPassword ? "text" : "password"}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowoldPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showoldPassword ? (
-                            <VisibilityOff
-                              sx={{
-                                color: "black",
-                                fontSize: "25px !important",
-                              }}
-                            />
-                          ) : (
-                            <Visibility
-                              sx={{
-                                color: "black",
-                                fontSize: "25px !important",
-                              }}
-                            />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-                {fk.touched.password && fk.errors.password && (
-                  <div className="error">{fk.errors.password}</div>
-                )}
-              </Box>
               <Button
                 sx={style.paytmbtntwo}
-                onClick={(e) => {
-                  fk.handleSubmit();
-                }}
+                // onClick={(e) => {
+                //   fk.handleSubmit();
+                // }}
+                onClick={() => setDrawar(true)}
               >
                 Withdrawal{" "}
               </Button>
@@ -638,6 +612,96 @@ function Withdrawl() {
             </p>
           </div>
         </Dialog>
+        <Drawer
+          anchor={"bottom"}
+          open={drawar}
+          onClose={() => setDrawar(false)}
+          className="!z-50"
+        >
+          <div className="!h-[100px] !w-[100%] !flex !justify-center !mb-[50%]">
+            <Box className={"!w-[90%]"} mt={2}>
+              <FormControl>
+                <Typography variant="p" className="!text-gray-600 !py-2">
+                  <CheckBox fontSize="small" className="!text-yellow-500" />
+                  Security Verification
+                  <span className="!text-white-600">*</span>
+                </Typography>
+                <Stack direction="row" className="loginlabel">
+                  <Typography variant="h3" className="!text-gray-600">
+                    {/* <CheckBox fontSize="small" /> */}
+                    Please enter your login password{" "}
+                    <span className="!text-white-600">*</span>
+                  </Typography>
+                </Stack>
+                <OutlinedInput
+                  className="abcd"
+                  id="password"
+                  name="password"
+                  value={fk.values.password}
+                  onChange={fk.handleChange}
+                  placeholder="Enter password"
+                  // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  sx={{
+                    width: "100%",
+                    background: "white",
+                    color: "black",
+                    borderRadius: "5px",
+                  }}
+                  type={showoldPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowoldPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showoldPassword ? (
+                          <VisibilityOff
+                            sx={{
+                              color: "black",
+                              fontSize: "25px !important",
+                            }}
+                          />
+                        ) : (
+                          <Visibility
+                            sx={{
+                              color: "black",
+                              fontSize: "25px !important",
+                            }}
+                          />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              {fk.touched.password && fk.errors.password && (
+                <div className="error">{fk.errors.password}</div>
+              )}
+              <p className="!text-rose-600 !text-[10px]">
+                To Secure your balance, please enter your password
+              </p>
+              <div className="!w-full !grid !grid-cols-2 !gap-5 !pt-3">
+                <Button
+                  className="!bg-gray-500 !text-white"
+                  onClick={() => setDrawar(false)}
+                >
+                  CANCEL
+                </Button>
+                <Button
+                  className="!bg-green-400 !text-white"
+                  onClick={() => {
+                    fk.handleSubmit();
+                    setDrawar(false);
+                  }}
+                >
+                  CONFIRM
+                </Button>
+              </div>
+            </Box>
+          </div>
+        </Drawer>
       </Container>
     </Layout>
   );

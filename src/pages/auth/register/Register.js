@@ -37,9 +37,8 @@ import { lightblue, zubgtext } from "../../../Shared/color";
 import logo from "../../../assets/loginlogo.png";
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
-import logbg from '../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-
+import logbg from "../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 
 function Register() {
   const url = new URL(window.location.href);
@@ -87,7 +86,7 @@ function Register() {
       if (!fk.values.privacy_policy)
         return toast("Please confirm the privacy policy.");
       const reqbody = {
-        email: fk.values.email,
+        email: fk.values.email || "",
         mobile: String(fk.values.mobile) || "",
         password: fk.values.password,
         confirmed_password: fk.values.confirmed_password,
@@ -164,15 +163,17 @@ function Register() {
     }
   );
 
-  const [CountryCode, setCountryCode] = React.useState("+91");
-
   const result = data?.data?.data;
 
   return (
-    <Container sx={{
-      background: '#0D0335', height: '100%',
-      backgroundImage: `url(${logbg})`, backgroundSize: '100% 100%',
-    }}>
+    <Container
+      sx={{
+        background: "#0D0335",
+        height: "100%",
+        backgroundImage: `url(${logbg})`,
+        backgroundSize: "100% 100%",
+      }}
+    >
       <Box sx={style.authheader}>
         <Box
           sx={{
@@ -181,10 +182,9 @@ function Register() {
             borderRadius: "10px",
           }}
         >
-          <Box sx={{ width: '100%', }}>
-            <Box component='img' src={logo} sx={style.logocss}></Box>
+          <Box sx={{ width: "100%" }}>
+            <Box component="img" src={logo} sx={style.logocss}></Box>
           </Box>
-
         </Box>
       </Box>
       <Box sx={style.authform} component="form">
@@ -381,7 +381,6 @@ function Register() {
                 <div className="error">Invalid Referral Id</div>
               )
             ) : null}
-
           </FormControl>
         </Box>
         <Box mt={1}>
@@ -391,7 +390,12 @@ function Register() {
               control={
                 <Checkbox
                   checked={fk.values.privacy_policy}
-                  sx={{ color: 'white !important', fontSize: "12px", fontWeight: "500", '&>label>div>span': { color: 'white !important' } }}
+                  sx={{
+                    color: "white !important",
+                    fontSize: "12px",
+                    fontWeight: "500",
+                    "&>label>div>span": { color: "white !important" },
+                  }}
                   onClick={() =>
                     fk.setFieldValue(
                       "privacy_policy",
@@ -401,11 +405,11 @@ function Register() {
                 />
               }
               label={
-                <span style={{ color: 'white', fontSize: "12px", }}>
-                  I have read and agree to the{' '}
+                <span style={{ color: "white", fontSize: "12px" }}>
+                  I have read and agree to the{" "}
                   <a
                     rel="noopener noreferrer"
-                    style={{ color: 'white', textDecoration: 'underline' }}
+                    style={{ color: "white", textDecoration: "underline" }}
                   >
                     Privacy Agreement
                   </a>
@@ -414,13 +418,14 @@ function Register() {
             />
           </FormControl>
         </Box>
-        <Stack direction='row' justifyContent={'space-between'} mt={2}>
+        <Stack direction="row" justifyContent={"space-between"} mt={2}>
           <Box
             component={NavLink}
-            to='/'
+            to="/"
             sx={{
-              width: '48%',
-            }} >
+              width: "48%",
+            }}
+          >
             <a class="playstore-button" href="#">
               <HowToRegIcon />
               <span class="texts">
@@ -429,7 +434,7 @@ function Register() {
               </span>
             </a>
           </Box>
-          <button class="cssbuttons-io-button" onClick={fk.handleSubmit} >
+          <button class="cssbuttons-io-button" onClick={fk.handleSubmit}>
             Register
             <div class="icon">
               <svg
@@ -446,7 +451,7 @@ function Register() {
               </svg>
             </div>
           </button>
-        </Stack >
+        </Stack>
       </Box>
       <CustomCircularProgress isLoading={loding} />
     </Container>
@@ -471,7 +476,7 @@ const style = {
     "&>div": {
       border: "none",
       borderRadius: "10px",
-      color: '#63BA0E',
+      color: "#63BA0E",
     },
     "&>div>input": {
       padding: "10px !important",
@@ -500,7 +505,7 @@ const style = {
     },
   },
   icon: { color: zubgtext },
-  logocss: { width: '200px', margin: 'auto', borderRadius: '5px' },
+  logocss: { width: "200px", margin: "auto", borderRadius: "5px" },
   flexcoloumcenter: {
     display: "flex",
     flexDirection: "column",
@@ -508,7 +513,7 @@ const style = {
     justifyContent: "center",
   },
   authform: { width: "100%", pb: 2 },
-  registerheader: { borderBottom: `2px solid ${zubgtext}`, },
+  registerheader: { borderBottom: `2px solid ${zubgtext}` },
   "&>p": { color: `${zubgtext} !important`, fontSize: "18px", mt: 1 },
   selectinput: {
     width: "18%",
@@ -517,7 +522,7 @@ const style = {
     "&>div": {
       border: "none",
       borderRadius: "10px",
-      color: '#63BA0E',
+      color: "#63BA0E",
       padding: "10px 0px 10px 5px !important",
     },
     "&>fieldset": {
@@ -529,7 +534,7 @@ const style = {
   passwordinput: {
     borderRadius: "10px",
     backgroundColor: "#fff",
-    "&>input": { padding: "10px", color: '#63BA0E' },
+    "&>input": { padding: "10px", color: "#63BA0E" },
     "&>fieldset": { border: "none" },
     "&>:hover": {
       backgroundColor: "#fff",

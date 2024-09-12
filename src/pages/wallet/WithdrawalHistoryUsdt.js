@@ -13,12 +13,12 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
+import { zubgback, zubgbackgrad, zubgmid } from "../../Shared/color";
 import deposit from "../../assets/check.png";
 import Layout from "../../component/Layout/Layout";
 import { withdrawlHistoryUSdtFunction } from "../../services/apicalling";
 import theme from "../../utils/theme";
-
+let zubgtext = "#546476";
 function WithdrawalHistoryUSdt() {
   const navigate = useNavigate();
   const goBack = () => {
@@ -30,11 +30,11 @@ function WithdrawalHistoryUSdt() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
-  const res = data?.data?.data || []
+  const res = data?.data?.data || [];
 
   return (
     <Layout>
@@ -53,7 +53,7 @@ function WithdrawalHistoryUSdt() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" sx={{ color: 'white' }}>
+          <Typography variant="body1" sx={{ color: "white" }}>
             Withdrawal USDT history
           </Typography>
           <Box></Box>
@@ -62,10 +62,10 @@ function WithdrawalHistoryUSdt() {
         <Box>
           <Box
             sx={{
-              padding: "10px",
+              padding: "5px",
               // background: zubgwhite,
               // boxShadow: zubgshadow,
-              borderRadius: "10px",
+              borderRadius: "5px",
               mb: 5,
               mt: 3,
             }}
@@ -75,7 +75,7 @@ function WithdrawalHistoryUSdt() {
               <Typography
                 variant="body1"
                 color="initial"
-                sx={{ fontSize: "15px ", color: zubgtext, ml: "10px" }}
+                sx={{ fontSize: "15px ", color: zubgtext, ml: "5px" }}
               >
                 Withdrawal USDT history
               </Typography>
@@ -86,16 +86,17 @@ function WithdrawalHistoryUSdt() {
                   sx={{
                     mb: 2,
                     padding: "15px",
-                    borderRadius: "10px",
+                    borderRadius: "5px",
 
-                    background: theme.palette.secondary.light,
+                    // background: theme.palette.secondary.light,
+                    background: "white",
                     // boxShadow: zubgshadow,
                   }}
                 >
                   <Stack
                     direction="row"
                     sx={{
-                      paddingBottom: "10px",
+                      paddingBottom: "5px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       borderBottom: "1px solid white",
@@ -105,10 +106,11 @@ function WithdrawalHistoryUSdt() {
                     <Box>
                       <Button
                         sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${i?.m_w_status === "Approve"
-                          ? "!text-green-500 !text-[15px]"
-                          : "!text-red-500 !text-[15px]"
-                          }`}
+                        className={`${
+                          i?.m_w_status === "Approve"
+                            ? "!text-green-500 !text-[13px]"
+                            : "!text-rose-500 !text-[13px]"
+                        }`}
                       >
                         {i?.m_w_status}
                       </Button>
@@ -117,7 +119,6 @@ function WithdrawalHistoryUSdt() {
                       </IconButton>
                     </Box>
                   </Stack>
-
                   <Stack
                     direction="row"
                     sx={{
@@ -127,10 +128,44 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
+                      Status
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className={`!text-[13px] ${
+                        i?.m_w_crypto_status === "Complete" && "!text-green-400"
+                      }`}
+                    >
+                      {i?.m_w_crypto_status}{" "}
+                    </Typography>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    sx={{
+                      mb: "5px",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      "&>p": { color: zubgtext },
+                    }}
+                  >
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       Balance
                     </Typography>
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px] !text-yellow-500"
+                    >
                       {/* ₹  */}
                       {i?.m_w_amount}
                     </Typography>
@@ -144,14 +179,50 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       {moment(i?.m_w_reqdate)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.m_w_reqdate)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>
+
+                  {i?.success_date !== null && i?.success_date !== "" && (
+                    <Stack
+                      direction="row"
+                      sx={{
+                        mb: "5px",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        "&>p": { color: zubgtext },
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        className="!text-[13px]"
+                      >
+                        Success D/T
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        className="zubgtext !text-[13px]"
+                      >
+                        {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
+                        {moment(i?.success_date)?.format("HH:mm:ss")}
+                      </Typography>
+                    </Stack>
+                  )}
                   <Stack
                     direction="row"
                     sx={{
@@ -161,40 +232,11 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
-                      Status
-                    </Typography>
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
-                      {i?.m_w_crypto_status}{" "}
-                    </Typography>
-                  </Stack>
-                  {i?.success_date !== null && i?.success_date !== "" && <Stack
-                    direction="row"
-                    sx={{
-                      mb: "5px",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
-                    }}
-                  >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
-                      Success D/T
-                    </Typography>
-                    <Typography variant="body1" color="initial" className="zubgtext !text-[15px]" >
-                      {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.success_date)?.format("HH:mm:ss")}
-                    </Typography>
-                  </Stack>}
-                  <Stack
-                    direction="row"
-                    sx={{
-                      mb: "5px",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
-                    }}
-                  >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       Trans number
                     </Typography>
                     <Stack
@@ -206,7 +248,11 @@ function WithdrawalHistoryUSdt() {
                         "&>p": { color: zubgtext },
                       }}
                     >
-                      <Typography variant="body1" color="initial" className="!text-[15px]">
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        className="!text-[13px]"
+                      >
                         {i?.m_w_trans_id}
                       </Typography>
 
@@ -216,7 +262,6 @@ function WithdrawalHistoryUSdt() {
                     </Stack>
                   </Stack>
                   <Stack
-
                     direction="row"
                     sx={{
                       mb: "5px",
@@ -225,7 +270,11 @@ function WithdrawalHistoryUSdt() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       Address
                     </Typography>
                     <Stack
@@ -237,11 +286,13 @@ function WithdrawalHistoryUSdt() {
                         "&>p": { color: zubgtext },
                       }}
                     >
-                      <Typography variant="body1" color="initial" className="!text-[15px] " >
-                        <p>   {i?.withdrawal_add?.substring(0, 20)}</p>
-                        <p>
-                          {i?.withdrawal_add?.substring(20)}
-                        </p>
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        className="!text-[13px] !text-[#b7aeb5]"
+                      >
+                        <p> {i?.withdrawal_add?.substring(0, 20)}</p>
+                        <p>{i?.withdrawal_add?.substring(20)}</p>
                       </Typography>
                     </Stack>
                   </Stack>
@@ -260,7 +311,7 @@ export default WithdrawalHistoryUSdt;
 const style = {
   header: {
     padding: "15px 8px",
-    background: zubgtext,
+    background: "#63BA0E",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -279,9 +330,9 @@ const style = {
     textAlign: "center",
     width: "32%",
     minHeight: "15vh",
-    background: zubgmid,
-    borderRadius: "10px",
-    mb: "10px",
+    background: "#63BA0E",
+    borderRadius: "5px",
+    mb: "5px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -294,9 +345,9 @@ const style = {
     alignItems: "center",
     justifyContent: "center",
     height: "15vh",
-    background: zubgmid,
-    borderRadius: "10px",
-    mb: "10px",
+    background: "#63BA0E",
+    borderRadius: "5px",
+    mb: "5px",
     "&>p": {
       color: "white",
       fontSize: "12px",
@@ -308,7 +359,7 @@ const style = {
   paymentBoxOuter: {
     width: "95%",
     margin: "auto",
-    my: "10px",
+    my: "5px",
     display: "flex",
     flexWrap: "wrap",
     alignItems: "center",
@@ -320,7 +371,7 @@ const style = {
     color: "white !important",
     width: "31%",
     border: "1px solid white",
-    padding: "10px",
+    padding: "5px",
     "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
   },
   paytmbtntwo: {
@@ -332,13 +383,13 @@ const style = {
     width: "100%",
     mt: 2,
     border: "1px solid white",
-    padding: "10px",
+    padding: "5px",
     "&:hover": { background: zubgbackgrad, border: "1px solid transparent" },
   },
   rechargeinstext: {
-    mb: "10px",
+    mb: "5px",
     alignItems: "center",
     justifyContent: "start",
-    "&>p": { marginLeft: "10px", color: "white !important", fontSize: "14px" },
+    "&>p": { marginLeft: "5px", color: "white !important", fontSize: "14px" },
   },
 };

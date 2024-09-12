@@ -14,14 +14,12 @@ import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../../Shared/color";
+import { zubgback, zubgbackgrad, zubgmid } from "../../../Shared/color";
 import deposit from "../../../assets/check.png";
 import Layout from "../../../component/Layout/Layout";
-import {
-  depositHistoryFunction
-} from "../../../services/apicalling";
+import { depositHistoryFunction } from "../../../services/apicalling";
 import theme from "../../../utils/theme";
-
+let zubgtext = "#546476";
 function DepositeHistory() {
   const navigate = useNavigate();
   const goBack = () => {
@@ -33,11 +31,10 @@ function DepositeHistory() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
-  const res = data?.data?.data?.filter((i) => i?.tr15_depo_type === "Winzo")
-
+  const res = data?.data?.data?.filter((i) => i?.tr15_depo_type === "Winzo");
 
   return (
     <Layout>
@@ -76,7 +73,7 @@ function DepositeHistory() {
               <Typography
                 variant="body1"
                 color="initial"
-                sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
+                sx={{ fontSize: "15px ", color: "white", ml: "10px" }}
               >
                 Deposit history
               </Typography>
@@ -88,8 +85,8 @@ function DepositeHistory() {
                     mb: 2,
                     padding: "15px",
                     borderRadius: "10px",
-                    background: theme.palette.secondary.dark,
-
+                    // background: theme.palette.secondary.dark,
+                    background: "white",
                   }}
                 >
                   <Stack
@@ -104,10 +101,11 @@ function DepositeHistory() {
                     <Box>
                       <Button
                         sx={{
-                          background: theme.palette.primary.light,
-                          color: 'white',
+                          // background: theme.palette.primary.light,
+                          color: "white",
                           textTransform: "capitalize",
                         }}
+                        className="!bg-rose-500 !px-4 !py-1"
                       >
                         Deposit
                       </Button>
@@ -115,10 +113,11 @@ function DepositeHistory() {
                     <Box>
                       <Button
                         sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${i?.tr15_status === "Success"
-                          ? "!text-green-500"
-                          : "!text-red-500"
-                          }`}
+                        className={`${
+                          i?.tr15_status === "Success"
+                            ? "!text-green-500"
+                            : "!text-rose-500"
+                        } !font-semibold`}
                       >
                         {i?.tr15_status}
                       </Button>
@@ -137,10 +136,18 @@ function DepositeHistory() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       Balance
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px] !text-yellow-400"
+                    >
                       ₹ {i?.tr15_amt}
                     </Typography>
                   </Stack>
@@ -153,43 +160,23 @@ function DepositeHistory() {
                       "&>p": { color: zubgtext },
                     }}
                   >
-                    <Typography variant="body1" color="initial">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       Date/Time
                     </Typography>
-                    <Typography variant="body1" color="initial">
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
                       {moment(i?.tr15_date)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.tr15_date)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>
-                  {i?.success_date !== "NUll" && <Stack
-                    direction="row"
-                    sx={{
-                      mb: "10px",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
-                    }}
-                  >
-                    <Typography variant="body1" color="initial">
-                      Success Date/Time
-                    </Typography>
-                    <Typography variant="body1" color="initial" className="!text-green-500">
-                      {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.success_date)?.format("HH:mm:ss")}
-                    </Typography>
-                  </Stack>}
-                  <Stack
-                    direction="row"
-                    sx={{
-                      mb: "10px",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
-                    }}
-                  >
-                    <Typography variant="body1" color="initial">
-                      Trans number
-                    </Typography>
+                  {i?.success_date !== "NUll" && (
                     <Stack
                       direction="row"
                       sx={{
@@ -199,13 +186,62 @@ function DepositeHistory() {
                         "&>p": { color: zubgtext },
                       }}
                     >
-                      <Typography variant="body1" color="initial">
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        className="!text-[13px]"
+                      >
+                        Success Date/Time
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        className="!text-green-500 !text-[13px]"
+                      >
+                        {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
+                        {moment(i?.success_date)?.format("HH:mm:ss")}
+                      </Typography>
+                    </Stack>
+                  )}
+                  <Stack
+                    direction="row"
+                    sx={{
+                      mb: "10px",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      "&>p": { color: zubgtext },
+                    }}
+                  >
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px]"
+                    >
+                      Trans number
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[13px] !text-gray-400"
+                    >
+                      {i?.tr15_trans}
+                    </Typography>
+                    {/* <Stack
+                      direction="row"
+                      sx={{
+                        mb: "10px",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        "&>p": { color: zubgtext },
+                      }}
+                    >
+                      <Typography variant="body1" color="initial" className="!text-[13px]">
                         {i?.tr15_trans}
                       </Typography>
                       <IconButton>
                         <ContentCopyIcon sx={{ color: zubgtext }} />
                       </IconButton>
-                    </Stack>
+                    </Stack> */}
                   </Stack>
                 </Box>
               );
@@ -223,7 +259,7 @@ export default DepositeHistory;
 const style = {
   header: {
     padding: "15px 8px",
-    background: zubgtext,
+    background: "#63BA0E",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -242,7 +278,7 @@ const style = {
     textAlign: "center",
     width: "32%",
     minHeight: "15vh",
-    background: zubgmid,
+    background: "#63BA0E",
     borderRadius: "10px",
     mb: "10px",
     display: "flex",
