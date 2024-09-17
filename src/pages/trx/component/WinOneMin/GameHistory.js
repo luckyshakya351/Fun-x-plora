@@ -1,21 +1,15 @@
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import { Box, Pagination, Stack, Typography } from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
+import { zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 
 const GameHistory = ({ gid }) => {
   const navigate = useNavigate();
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(12);
   const [page, setPage] = React.useState(0);
   const game_history_data = useSelector(
     (state) => state.aviator.trx_game_history_data
@@ -211,7 +205,7 @@ const GameHistory = ({ gid }) => {
       </TableContainer>
       <div className={`!w-full !text-[${zubgback}] !bg-white  rounded-t-lg`}>
         <div
-          className="!w-full !text-[13px] !grid !grid-cols-8 !place-items-center !py-5 
+          className="!w-full !text-[13px] !grid !grid-cols-8 !place-items-center !py-2 
         !bg-[#63BA0E] rounded-t-lg !text-white"
         >
           <p className="!col-span-2">Period</p>
@@ -224,7 +218,7 @@ const GameHistory = ({ gid }) => {
           {visibleRows?.map((i) => {
             return (
               <>
-                <div className="!w-full !p-3 !grid !grid-cols-8  !place-items-center !text-[12px]">
+                <div className="!w-full !p-2 !grid !grid-cols-8  !place-items-center !text-[12px]">
                   <p className="!col-span-2 !text-[#63BA0E] !font-semibold !text-[13px]">
                     {i?.tr_transaction_id}
                   </p>
@@ -249,56 +243,65 @@ const GameHistory = ({ gid }) => {
                   </p>
                   <p className="!col-span-2">{i?.tr_block_time}</p>
                   <p>{i?.tr_hashno}</p>
-                  <div className="!flex !gap-[1px]  !items-center !pl-4">
+                  <div
+                    className="grid !grid-cols-2  !place-items-center !pl-3"
+                    // style={{ color: "white" }}
+                  >
                     <p
                       className={`
                 ${
                   (String(Number(i?.tr41_slot_id)) === "0" &&
-                    "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    "transparentColorRedPurpleBGTOP") ||
                   (String(Number(i?.tr41_slot_id)) === "5" &&
-                    "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    "transparentColorGreenRedBGTOP") ||
                   ((String(Number(i?.tr41_slot_id)) === "1" ||
                     String(Number(i?.tr41_slot_id)) === "3" ||
                     String(Number(i?.tr41_slot_id)) === "7" ||
                     String(Number(i?.tr41_slot_id)) === "9" ||
                     String(Number(i?.tr41_slot_id)) === "10") &&
-                    "bg-gradient-to-t from-green-400 to-green-900") ||
+                    "bg-gradient-to-t from-[#18b680] 50% to-[#18b680] 50%") ||
                   ((String(Number(i?.tr41_slot_id)) === "2" ||
                     String(Number(i?.tr41_slot_id)) === "4" ||
                     String(Number(i?.tr41_slot_id)) === "6" ||
                     String(Number(i?.tr41_slot_id)) === "8" ||
                     String(Number(i?.tr41_slot_id)) === "30") &&
-                    "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    "bg-gradient-to-tl from-[#fb6161] 50% to-[#fb6161] 50%") ||
                   (String(Number(i?.tr41_slot_id)) === "50" &&
-                    "bg-[#3183ee]") ||
+                    "bg-[#c86eff]") ||
                   (String(Number(i?.tr41_slot_id)) === "40" &&
                     "bg-[#f1be24]") ||
-                  (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
+                  (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#c86eff]")
                 }
-                transparentColor  text-lg
+                   !text-white !rounded-full !w-[15px] !h-[15px] !text-center !text-[10px] !bg-green-500
                 `}
-                      // style={{ color: "white" }}
                     >
-                      <span className="!font-semibold">
-                        {" "}
-                        {Number(i?.tr41_slot_id)}
-                      </span>
-                      <span className="!font-semibold">
-                        {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}
-                      </span>
+                      {" "}
+                      {Number(i?.tr41_slot_id)}
+                    </p>
+                    <p
+                      className={`
+                ${
+                  Number(i?.tr41_slot_id) > 4
+                    ? "!text-[#ffc300]"
+                    : "!text-[#6cb4ee]"
+                }
+                  text-[13px]
+                `}
+                    >
+                      {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}
                     </p>
                   </div>
                 </div>
-                <div className="!w-full !h-[1px] !bg-[#63BA0E]"></div>
+                <div className="!w-full !h-[.2px] !bg-[#63BA0E]"></div>
               </>
             );
           })}
         </div>
       </div>
       <Box className="paginationTable !w-full " mb={4}>
-        <TablePagination
+        {/* <TablePagination
           sx={{ background: zubgtext, color: "white", width: "100%" }}
-          rowsPerPageOptions={[5, 10]}
+          rowsPerPageOptions={[10, 20]}
           component="div"
           count={game_history_data?.length}
           rowsPerPage={rowsPerPage}
@@ -306,6 +309,20 @@ const GameHistory = ({ gid }) => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
           labelRowsPerPage="Rows"
+        /> */}
+        <Pagination
+          // count={3}
+          count={Math.ceil(game_history_data?.length / rowsPerPage)} // Calculate total pages based on the data length
+          page={page} // Current page
+          onChange={handleChangePage} // Function to handle page changes
+          color="primary" // Color of pagination
+          sx={{
+            // background: zubgtext, // Background styling
+            color: "white",
+            borderRadius: "10px",
+            marginTop: "5px",
+            mb: 3,
+          }}
         />
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading}/> */}

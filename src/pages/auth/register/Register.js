@@ -129,7 +129,6 @@ function Register() {
         swal({
           title: "Registration Successfully",
           text: ` 
-          Email : ${fk?.values?.email}
           Mobile : ${fk?.values?.mobile}
           Password : ${fk?.values?.password} `,
           // title: response?.data?.msg,
@@ -255,7 +254,7 @@ function Register() {
           )}
         </FormControl>
 
-        <Box>
+        {/* <Box>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>
               <MarkEmailReadIcon sx={style.icon} />{" "}
@@ -277,7 +276,7 @@ function Register() {
               <div className="error">{fk.errors.email}</div>
             )}
           </FormControl>
-        </Box>
+        </Box> */}
         <Box mt={2}>
           <FormControl fullWidth>
             <Box sx={{ ...style.flexcenterstart, mt: 2, mb: 1 }}>

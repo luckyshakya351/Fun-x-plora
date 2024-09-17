@@ -1,4 +1,4 @@
-import { Box, Stack, TablePagination, Typography } from "@mui/material";
+import { Box, Pagination, Stack, TablePagination, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -72,39 +72,59 @@ const MyHistory = ({ gid }) => {
                 >
                   <Box className="flexbetween">
                     <div className="!flex  gap-4">
-                      <Box
+                    <Box
                         sx={{
                           background: "red",
                           width: "45px",
                           height: "45px",
                           borderRadius: "10px",
                         }}
-                        className={` flexcenter ${
-                          i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"
-                        }`}
+                        className={`flexcenter
+                                     ${
+                                       (i?.number === "0" &&
+                                         "transparentColorRedPurpleBGTOP") ||
+                                       (i?.number === "5" &&
+                                         "transparentColorGreenRedBGTOP") ||
+                                       ((i?.number === "1" ||
+                                         i?.number === "3" ||
+                                         i?.number === "7" ||
+                                         i?.number === "9" ||
+                                         i?.number === "10") &&
+                                         "!bg-[#18b680]") ||
+                                       ((i?.number === "2" ||
+                                         i?.number === "4" ||
+                                         i?.number === "6" ||
+                                         i?.number === "8" ||
+                                         i?.number === "30") &&
+                                         "!bg-[#fb6161]") ||
+                                       (i?.number === "50" &&
+                                         "!bg-[#468ce8]") ||
+                                       (i?.number === "40" &&
+                                         "!bg-[#ffc300]") ||
+                                       (i?.number === "20" && "!bg-[#c86eff]")
+                                     }
+                                  font-bold text-xl 
+
+                                        `}
                       >
                         <Typography
-                          variant="body1"
+                           variant="body1"
                           sx={{ color: "white" }}
-                          className={`funp1100 !text-[12px] ${
-                            i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"
-                          }`}
+                          className="!text-[11px]"
                         >
                           {/* {i?.result <= 4 ? "Small" : "Big"} */}
                           {i?.number === "10" ? (
-                            "Green"
+                            ""
                           ) : i?.number === "50" ? (
-                            "Small"
+                            "small"
                           ) : i?.number === "40" ? (
-                            "Big"
+                            "big"
                           ) : i?.number === "30" ? (
-                            "Red"
+                            ""
                           ) : i?.number === "20" ? (
-                            "Voilet"
+                            ""
                           ) : (
-                            <span className="!text-lg">
-                              {i?.number}
-                            </span>
+                            <span className="!text-lg">{i?.number}</span>
                           )}
                         </Typography>
                       </Box>
@@ -356,7 +376,7 @@ const MyHistory = ({ gid }) => {
       </div>
 
       <Box className="paginationTable " mb={10}>
-        <TablePagination
+        {/* <TablePagination
           sx={{
             background: zubgtext,
             color: "white",
@@ -371,6 +391,20 @@ const MyHistory = ({ gid }) => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
           labelRowsPerPage="Rows"
+        /> */}
+        <Pagination
+          // count={3}
+          count={Math.ceil(my_history_data?.length / rowsPerPage)} // Calculate total pages based on the data length
+          page={page} // Current page
+          onChange={handleChangePage} // Function to handle page changes
+          color="primary" // Color of pagination
+          sx={{
+            // background: zubgtext, // Background styling
+            color: "white",
+            borderRadius: "10px",
+            marginTop: "5px",
+            mb: 3,
+          }}
         />
       </Box>
       {/* <CustomCircularProgress isLoading={myhistory_loding} /> */}

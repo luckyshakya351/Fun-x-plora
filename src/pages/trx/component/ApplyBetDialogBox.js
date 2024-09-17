@@ -20,9 +20,9 @@ import * as React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { endpoint } from "../../../services/urls";
+import { endpoint, rupees } from "../../../services/urls";
 import Policy from "./policy/Policy";
 import { zubgtext } from "../../../Shared/color";
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -50,7 +50,7 @@ const ApplyBetDialogBox = ({
   const user_id = login_data && JSON.parse(login_data)?.UserID;
   const [value, setValue] = useState(random || 1);
   const [Rules, setRules] = useState(false);
-  const [calculated_value, setcalculated_value] = useState(1);
+  // const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
   // React.useEffect(() => {
   //   !aviator_login_data && get_user_data_fn(dispatch);
@@ -133,44 +133,45 @@ const ApplyBetDialogBox = ({
           } 
             dialog-header `}
         >
+          <div></div>
           <Box>
             <Typography
               variant="body1"
-              color="initial"
+              // color="initial"
               sx={{
-                color: "white !important",
+                color: "white",
                 fontSize: "15px",
-                fontWeight: "600",
+                fontWeight: "400",
               }}
+              className="!bg-white !text-[#595f6b] px-10 !rounded-full !text-sm"
             >
-              {(type === "green" && "Join Green") ||
-                (type === "voilet" && "Join Voilet") ||
-                (type === "red" && "Join Red") ||
+              <span>Select </span>
+              {(type === "green" && "Green") ||
+                (type === "voilet" && "Voilet") ||
+                (type === "red" && "Red") ||
                 type}
             </Typography>
           </Box>
           <IconButton
             onClick={() => setapply_bit_dialog_box(false)}
-            sx={{ "&>svg>path": { color: "white" } }}
+            sx={{ "&>svg>path": { color: "#595f6b" } }}
           >
             <CloseIcon />
           </IconButton>
         </Stack>
       </Box>
-      <Box className="dialogsmallbat">
-        <Typography variant="body1" sx={{ color: zubgtext }}>
-          Contract Money
-        </Typography>
+      <Box className="dialogsmallbat !flex !justify-between !items-center">
+        <div className="!text-[15px] !text-[#595f6b]">Balance</div>
         <Box
           className={`
-            addbtnbox  !w-full !grid !grid-cols-4 !gap-1`}
+            addbtnbox  !grid !grid-cols-4 !gap-[2px]`}
         >
           {[1, 10, 100, 1000]?.map((i) => {
             return (
-              <Button
+              <p
                 onClick={() => {
                   handleClickValue(i);
-                  setcalculated_value(i);
+                  // setcalculated_value(i);
                 }}
                 className={`${
                   ((type === "green" ||
@@ -189,34 +190,54 @@ const ApplyBetDialogBox = ({
                     "!bg-[#710193]") ||
                   (type === "small" && "!bg-[#EE1285]") ||
                   (type === "big" && "!bg-[#FBB13B]")
-                } 
+                } !p-1 !text-center !text-white !text-[12px] !rounded-md 
             `}
               >
                 {i}
-              </Button>
+              </p>
             );
           })}
         </Box>
-        {/* <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
-          small
-        </Typography> */}
       </Box>
-      <Stack direction="row" className="bat-price-input-box">
-        <IconButton onClick={() => handleClickValue(value - 1)}>
-          <RemoveIcon />
-        </IconButton>
-        <TextField
-          placeholder="Enter value"
-          value={value}
-          variant="outlined"
-          type="number"
-          onChange={(e) => handleClickValue(parseInt(e.target.value))}
-        />
-        <IconButton onClick={() => handleClickValue(value + 1 || 1)}>
-          <AddIcon />
-        </IconButton>
-      </Stack>
-      <Box className=" !grid !grid-cols-6 lg:gap-1 gap-[1px] !pt-8 lg:px-2 px-1">
+      <div className="!flex !justify-between !items-center  gap-2">
+        <div className="!text-[15px] !text-[#595f6b]">Quantity</div>
+        {/* bat-price-input-box */}
+        <div className=" !flex !items-center gap-1">
+          <span
+            className="!p-1 !h-[25px] !bg-[#cdc5c5] rounded-md !flex !justify-center !items-center"
+            onClick={() => handleClickValue(value - 1)}
+          >
+            <RemoveIcon size="small" />
+          </span>
+          <TextField
+            size="small"
+            placeholder="Enter value"
+            value={value}
+            variant="outlined"
+            type="number"
+            onChange={(e) => {
+              const parsedValue = parseInt(e.target.value, 10);
+              if (!isNaN(parsedValue)) {
+                handleClickValue(parsedValue);
+              }
+            }}
+            sx={{
+              width: "150px",
+              "& .MuiOutlinedInput-root": {
+                height: "25px", // Height applied correctly
+              },
+            }}
+          />
+
+          <span
+            className="!p-1 !h-[25px] !bg-[#cdc5c5] rounded-md !flex !justify-center !items-center"
+            onClick={() => handleClickValue(value + 1 || 1)}
+          >
+            <AddIcon />
+          </span>
+        </div>
+      </div>
+      <Box className="!grid !grid-cols-6 lg:gap-1 gap-[1px] !pt-8 lg:px-2 px-1">
         {[1, 5, 10, 20, 50, 100]?.map((i) => {
           return (
             <div
@@ -242,7 +263,7 @@ const ApplyBetDialogBox = ({
                 (type === "small" && "!bg-[#EE1285]") ||
                 (type === "big" && "!bg-[#FBB13B]")
               }
-             !px-3 !py-2 rounded-md  !text-center !text-[#fff]
+             !px-1 !py-1 rounded-md  !text-center !text-[#fff] !text-[12px]
             `}
             >
               {i}x
@@ -250,14 +271,14 @@ const ApplyBetDialogBox = ({
           );
         })}
       </Box>
-      <Stack direction="row" className="total-money-box">
+      {/* <Stack direction="row" className="total-money-box">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           Total contract money is ₹{" "}
         </Typography>
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
-          {value || "0"}
+          
         </Typography>
-      </Stack>
+      </Stack> */}
       <Stack direction="row" className="agree-btn">
         <FormControlLabel
           control={<Checkbox defaultChecked />}
@@ -280,22 +301,46 @@ const ApplyBetDialogBox = ({
           </DialogContentText>
         </Dialog>
       </Stack>
-      <Stack direction="row" className="agree-btn-two">
+      <div className="grid grid-cols-3 gap-[1px] !text-[10px]">
+       
         <Button
-          className="!text-white"
+          className="!bg-[#cdc5c5] !text-white !py-0"
+          variant="text"
+          onClick={() => setapply_bit_dialog_box(false)}
+        >
+          Cancel
+        </Button>
+        <Button
+          className={`!text-white !col-span-2 
+          ${
+            ((type === "green" ||
+              type === 1 ||
+              type === 3 ||
+              type === 7 ||
+              type === 9) &&
+              "!bg-[#30b539]") ||
+            ((type === "red" ||
+              type === 2 ||
+              type === 6 ||
+              type === 4 ||
+              type === 8) &&
+              "!bg-[#FE0000]") ||
+            ((type === "voilet" || type === 0 || type === 5) &&
+              "!bg-[#710193]") ||
+            (type === "small" && "!bg-[#EE1285]") ||
+            (type === "big" && "!bg-[#FBB13B]")
+          } 
+          `}
           variant="text"
           color="primary"
           onClick={() => {
-            betFunctionStart()
+            betFunctionStart();
           }}
           loding={true}
         >
-          Confirm
+          Total Amount {rupees} {value || "0"}
         </Button>
-        <Button variant="text" onClick={() => setapply_bit_dialog_box(false)}>
-          Cancel
-        </Button>
-      </Stack>
+      </div>
 
       <CustomCircularProgress isLoading={loding} />
     </Dialog>

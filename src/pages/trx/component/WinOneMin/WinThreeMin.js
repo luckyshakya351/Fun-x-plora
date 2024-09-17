@@ -67,7 +67,7 @@ function WinThreeMin({ gid }) {
             }}
           >
             {fk.values.openTimerDialogBoxOneMin && (
-              <div className="!w-full !z-50 !h-full  !absolute px-5 flex justify-center items-center">
+              <div className="!w-[95%] rounded-lg !z-50 !h-[95%] !bg-black !bg-opacity-40 !absolute  flex justify-center items-center">
                 <div
                   className="flex gap-2 justify-cente !bg-opacity-5"
                   sx={{ width: "100%" }}
@@ -88,7 +88,7 @@ function WinThreeMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 600 }}
                     >
                       {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
                         ?.substring(0, 1)}
@@ -110,7 +110,7 @@ function WinThreeMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 600 }}
                     >
                       {String(fk.values.show_this_one_min_time?.split("_")?.[1])?.padStart(2, "0")
                         ?.substring(1, 2)}
@@ -165,11 +165,11 @@ function WinThreeMin({ gid }) {
                 width: "100%",
                 my: "20px",
                 background: 'white',
-                boxShadow: zubgshadow,
+                // boxShadow: zubgshadow,
                 borderRadius: "10px",
                 position: "relative",
                 padding: "10px",
-                background: '#8bc34a5e',
+                // background: '#8bc34a5e',
               }}
             >
               <Box

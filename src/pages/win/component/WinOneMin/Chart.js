@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Pagination, Stack, Typography } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
 import * as React from "react";
 import { zubgtext } from "../../../../Shared/color";
@@ -101,14 +101,14 @@ const Chart = ({ gid }) => {
                     style={{
                       color: zubgtext,
                       fontWeight: 700,
-                      fontSize: "13px",
+                      fontSize: "12px",
                     }}
                   >
                     {i?.gamesno}
                   </span>
                   {/* // main box of chart form 0 to 9 */}
                   <Box
-                    className="flex items-center justify-between !w-[70%]"
+                    className="flex items-center justify-between !w-[80%]"
                     style={{ py: 1 }}
                   >
                     {/* /// 0   //// */}
@@ -119,10 +119,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
+                        className={`circleNumberbody  !font-semibold ${
                           i?.number === "0"
-                            ? "!bg-gradient-to-b from-[#e85053] to-[#8c06f2] !text-white "
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800"
+                            ? "transparentColorRedPurpleBG !text-white "
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800"
                         }`}
                       >
                         {" "}
@@ -137,10 +137,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
+                        className={`circleNumberbody   !font-semibold ${
                           i?.number === "1"
-                            ? "!bg-[#4bef98] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#18b680] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -155,10 +155,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
+                        className={`circleNumberbody   !font-semibold ${
                           i?.number === "2"
-                            ? "!bg-[#f1494c] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#fb6161] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -173,10 +173,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
+                        className={`circleNumberbody   !font-semibold ${
                           i?.number === "3"
-                            ? "!bg-[#46eb93] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#18b680] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -191,10 +191,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
+                        className={`circleNumberbody   !font-semibold ${
                           i?.number === "4"
-                            ? "!bg-[#ed4b4e] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#fb6161] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -209,10 +209,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
+                        className={`circleNumberbody  !font-semibold ${
                           i?.number === "5"
-                            ? "!bg-gradient-to-b from-[#55f8a1] to-[#8c06f2] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "transparentColorGreenRedBG !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -227,10 +227,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
+                        className={`circleNumberbody  !font-semibold ${
                           i?.number === "6"
-                            ? "!bg-[#f54b4e] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#fb6161] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -245,10 +245,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody  !font-bold ${
+                        className={`circleNumberbody  !font-semibold ${
                           i?.number === "7"
-                            ? "!bg-[#4af499] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#18b680] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -263,10 +263,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
+                        className={`circleNumberbody   !font-semibold ${
                           i?.number === "8"
-                            ? "!bg-[#eb494c] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#fb6161] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -281,10 +281,10 @@ const Chart = ({ gid }) => {
                       }`}
                     >
                       <Typography
-                        className={`circleNumberbody   !font-bold ${
+                        className={`circleNumberbody   !font-semibold ${
                           i?.number === "9"
-                            ? "!bg-[#4cf199] !text-white"
-                            : "!bg-white !text-black !shadow-sm !shadow-green-800 "
+                            ? "!bg-[#18b680] !text-white"
+                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
                         }`}
                       >
                         {" "}
@@ -293,7 +293,7 @@ const Chart = ({ gid }) => {
                     </div>
                     <Typography
                       className={`circleNumberbody ${
-                        i?.number <= 4 ? "!bg-[#468ce8] " : "!bg-[#df4be1]"
+                        i?.number <= 4 ? "!bg-[#468ce8] " : "!bg-[#feaa57]"
                       }  !h-[20px] !w-[20px] !rounded-full !text-center !text-white `}
                     >
                       {i?.number <= 4 ? "S" : "B"}
@@ -320,8 +320,8 @@ const Chart = ({ gid }) => {
                       y1={cor?.[index]?.y}
                       x2={cor?.[index - 1]?.x}
                       y2={cor?.[index - 1]?.y}
-                      stroke="#FBAC3D"
-                      stroke-width="2"
+                      stroke="#ff9696"
+                      stroke-width="1.5"
                       fill="none"
                     />
                   )
@@ -332,7 +332,7 @@ const Chart = ({ gid }) => {
         </div>
       </div>
       <Box className="paginationTable">
-        <TablePagination
+        {/* <TablePagination
           sx={{
             background: zubgtext,
             color: "white",
@@ -347,7 +347,21 @@ const Chart = ({ gid }) => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
           labelRowsPerPage="Rows"
-        />
+        /> */}
+        <Pagination
+            // count={3}
+              count={Math.ceil(game_history_data?.length/ rowsPerPage)} // Calculate total pages based on the data length
+              page={page} // Current page
+              onChange={handleChangePage} // Function to handle page changes
+              color="primary" // Color of pagination
+              sx={{
+                // background: zubgtext, // Background styling
+                color: "white",
+                borderRadius: "10px",
+                marginTop: "5px",
+                mb: 3,
+              }}
+            />
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading} /> */}
     </Box>

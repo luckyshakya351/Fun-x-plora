@@ -76,7 +76,7 @@ function WinOneMin({ gid }) {
             }}
           >
             {fk.values.openTimerDialogBoxOneMin && (
-              <div className="!w-full !z-50 !h-full  !absolute px-5 flex justify-center items-center">
+              <div className="!w-[95%] rounded-lg !z-50 !h-[95%] !bg-black !bg-opacity-40 !absolute  flex justify-center items-center">
                 <div
                   className="flex gap-2 justify-cente !bg-opacity-5"
                   sx={{ width: "100%" }}
@@ -95,7 +95,7 @@ function WinOneMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 600 }}
                     >
                       {String(fk?.values?.show_this_one_min_time)
                         ?.padStart(2, "0")
@@ -116,7 +116,7 @@ function WinOneMin({ gid }) {
                   >
                     <Typography
                       variant="body1"
-                      sx={{ color: "white", fontSize: 95, fontWeight: 800 }}
+                      sx={{ color: "white", fontSize: 95, fontWeight: 600 }}
                     >
                       {String(fk?.values?.show_this_one_min_time)
                         ?.padStart(2, "0")
@@ -166,7 +166,7 @@ function WinOneMin({ gid }) {
             </Box>
             {/* pridictcolor */}
             <Box
-              sx={{ padding: "10px", background: "#8bc34a5e", borderRadius: "10px" }}
+              sx={{ padding: "10px",  borderRadius: "10px" }}
             >
               <Box
                 sx={{
@@ -318,7 +318,7 @@ function WinOneMin({ gid }) {
                     </Typography>
                   </Box>
                 </Stack>
-              </Box >
+              </Box>
             </>
           );
         }, [TabTwo])}
@@ -338,7 +338,7 @@ function WinOneMin({ gid }) {
           />
         )
       }
-    </Box >
+    </Box>
   );
 }
 

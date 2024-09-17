@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .rotate_refresh_image {
   animation: rotate_image 1s linear infinite;
 }
@@ -27,7 +26,6 @@
   padding: 16px;
 }
 
-
 @keyframes rotate_image {
   0% {
     transform: rotate(0deg);
@@ -41,6 +39,42 @@
 .transparentColor {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.transparentColorRedPurple {
+  background: #c86eff;
+  background: linear-gradient(to top, #c86eff 50%, #fb6161 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.transparentColorGreenRed {
+  background: #18b680;
+  background: linear-gradient(to bottom, #18b680 50%, #c86eff 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.transparentColorRedPurpleBG {
+  background: #c86eff;
+  background: linear-gradient(to top, #c86eff 50%, #fb6161 50%);
+}
+.transparentColorGreenRedBG {
+  background: #18b680;
+  background: linear-gradient(to bottom, #18b680 50%, #c86eff 50%);
+}
+.transparentColorRedPurpleBGTOP {
+  background: #c86eff !important;
+  background: linear-gradient(
+    to bottom right,
+    #fb6161 50%,
+    #c86eff 50%
+  ) !important;
+}
+.transparentColorGreenRedBGTOP {
+  background: #18b680 !important;
+  background: linear-gradient(
+    to bottom right,
+    #18b680 50%,
+    #c86eff 50%
+  ) !important;
 }
 
 .input-err {
@@ -90,7 +124,6 @@ input::-webkit-inner-spin-button {
   /* Firefox */
 }
 
-
 /* ////////////crackers   */
 .github {
   z-index: 10000;
@@ -121,7 +154,6 @@ input::-webkit-inner-spin-button {
   font-weight: bold;
   vertical-align: bottom;
 }
-
 
 .dot-slider-container1 {
   background: #267bad;
