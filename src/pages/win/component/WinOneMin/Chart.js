@@ -1,10 +1,18 @@
-import { Box, CircularProgress, Pagination, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  IconButton,
+  Pagination,
+  Stack,
+  Typography,
+} from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
 import * as React from "react";
 import { zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import { useSelector } from "react-redux";
-
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const Chart = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -71,7 +79,7 @@ const Chart = ({ gid }) => {
 
   return (
     <Box className="chartTable" sx={{ pb: 4 }}>
-      <Stack direction="row" className="onegotextbox">
+      {/* <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
             component="img"
@@ -84,16 +92,16 @@ const Chart = ({ gid }) => {
           ></Box>{" "}
           Statistic(last 100 Periods)
         </Typography>
-      </Stack>
-      <div className="relative !h-[56vh] overflow-auto !w-[100%] no-scrollbar !overflow-x-hidden">
+      </Stack> */}
+      <div className="relative !mt-3 !h-[56vh] overflow-auto !w-[100%] no-scrollbar !overflow-x-hidden">
         <div className="absolute !w-[100%]">
           {visibleRows?.map((i, indexi) => {
             return (
               <Box
                 sx={{
                   background: "white",
-                  padding: "10px ",
-                  borderBottom: "1px solid #63BA0E",
+                  padding: "10px",
+                  borderBottom: "1px solid rgba(99, 186, 14, 0.1)", // 30% opacity
                 }}
               >
                 <div className="flex justify-between">
@@ -348,20 +356,51 @@ const Chart = ({ gid }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
           labelRowsPerPage="Rows"
         /> */}
-        <Pagination
-            // count={3}
-              count={Math.ceil(game_history_data?.length/ rowsPerPage)} // Calculate total pages based on the data length
-              page={page} // Current page
-              onChange={handleChangePage} // Function to handle page changes
-              color="primary" // Color of pagination
-              sx={{
-                // background: zubgtext, // Background styling
-                color: "white",
-                borderRadius: "10px",
-                marginTop: "5px",
-                mb: 3,
-              }}
-            />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            borderRadius: "10px",
+            marginTop: "5px",
+            mb: 3,
+          }}
+        >
+          <IconButton
+            onClick={() => handleChangePage(null, Math.max(0, page - 1))}
+            className={`${page === 0 ? "!text-gray-400" : "!text-white"} !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+
+          <Typography sx={{ margin: "0 10px" }}>
+            {page + 1} / {Math.ceil(game_history_data?.length / rowsPerPage)}
+          </Typography>
+
+          <IconButton
+            onClick={() =>
+              handleChangePage(
+                null,
+                Math.min(
+                  Math.ceil(game_history_data?.length / rowsPerPage) - 1,
+                  page + 1
+                )
+              )
+            }
+            sx={{
+              marginLeft: "10px",
+              color: "white",
+            }}
+            className={`${
+              page + 1 >= Math.ceil(game_history_data?.length / rowsPerPage)
+                ? "!text-gray-400"
+                : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </Box>
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading} /> */}
     </Box>

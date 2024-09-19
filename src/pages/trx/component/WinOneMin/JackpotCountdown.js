@@ -51,8 +51,8 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
     setpoicy(false);
   };
   React.useEffect(() => {
-    const handleFiveMin = (fivemin) => {
-      console.log(fivemin);
+    const handleFiveMin = (onemin) => {
+      let fivemin = `${4 - (new Date()?.getMinutes() % 5)}_${onemin}`;
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
       fk.setFieldValue("show_this_one_min_time", fivemin);
@@ -84,8 +84,8 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
         // oneMinColorWinning();
       }
       if (
-        fivemin?.split("_")?.[1] === "0" &&
-        fivemin?.split("_")?.[0] === "0"
+        fivemin?.split("_")?.[1] === "56" &&
+        Number(fivemin?.split("_")?.[0]) === 4
       ) {
         client.refetchQueries("jackpod_gamehistory");
         client.refetchQueries("my_jackpod_history");
@@ -95,10 +95,10 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
       }
     };
 
-    socket.on("fivemintrxjackpod", handleFiveMin);
+    socket.on("onemintrx", handleFiveMin);
 
     return () => {
-      socket.off("fivemintrxjackpod", handleFiveMin);
+      socket.off("onemintrx", handleFiveMin);
     };
   }, []);
 
@@ -145,8 +145,16 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
       )
     );
     const tr_digit =
-      game_history?.data?.data && game_history?.data?.data?.tr_digits;
+      game_history?.data?.data && game_history?.data?.data?.[0]?.tr_hashno;
     let array = [];
+    function randomStr(len, arr) {
+      let ans = "";
+      for (let i = len; i > 0; i--) {
+        ans += arr[Math.floor(Math.random() * arr.length)];
+      }
+      return ans;
+    }
+    array.push(randomStr(1, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"));
     for (let i = 0; i < tr_digit?.length; i++) {
       if (/[a-zA-Z]/.test(tr_digit[i])) {
         array.push(tr_digit[i].toUpperCase());
@@ -154,6 +162,7 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
         array.push(tr_digit[i]);
       }
     }
+
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.data]);
 
@@ -299,9 +308,7 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
           </Typography>
         </Box>
       </Box>
-      {React.useMemo(() => {
-        return <ShowImages />;
-      }, [])}
+      <ShowImages />
     </Box>
   );
 };

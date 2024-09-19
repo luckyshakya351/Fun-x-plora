@@ -22,11 +22,20 @@ import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun, net_wallet_amount_function, trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import {
+  dummycounterFun,
+  net_wallet_amount_function,
+  trx_game_history_data_function,
+  trx_my_history_data_function,
+  updateNextCounter,
+} from "../../../../redux/slices/counterSlice";
 import { changeImages } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
 import { zubgmid } from "../../../../Shared/color";
-import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
+import {
+  My_All_HistoryFn,
+  walletamount,
+} from "../../../../services/apicalling";
 import { endpoint } from "../../../../services/urls";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -49,7 +58,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   const dispatch = useDispatch();
   const audioRefMusic = React.useRef(null);
   const audioRefMusiclast = React.useRef(null);
-  const next_step = useSelector((state) => state.aviator.next_step)
+  const next_step = useSelector((state) => state.aviator.next_step);
 
   React.useEffect(() => {
     setIsImageChange(changeImages());
@@ -73,16 +82,14 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   React.useEffect(() => {
     const handleOneMin = (onemin) => {
       setOne_min_time(onemin);
-      setBetNumber(onemin)
+      setBetNumber(onemin);
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
-
       }
-
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
-      }else{
+      } else {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
       if (onemin === 0) {
@@ -110,7 +117,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const { data: game_history } = useQuery(
@@ -147,13 +154,13 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   }, [game_history?.data?.data]);
 
   React.useEffect(() => {
-    dispatch(net_wallet_amount_function(data?.data?.data))
-  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)])
+    dispatch(net_wallet_amount_function(data?.data?.data));
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    one_min_time >= 58 || one_min_time === 0 && dispatch(dummycounterFun());
-  }, [my_history?.data?.data])
+    one_min_time >= 58 || (one_min_time === 0 && dispatch(dummycounterFun()));
+  }, [my_history?.data?.data]);
   const handlePlaySound = async () => {
     try {
       if (audioRefMusic?.current?.pause) {
@@ -181,11 +188,14 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   };
 
   return (
-    <Box className="countdownbg" sx={{
-      backgroundImage: `url(${winback})`,
-      backgroundSize: '100% 100%',
-      backgroundRepeat: 'no-repeat',
-    }}>
+    <Box
+      className="countdownbg"
+      sx={{
+        backgroundImage: `url(${winback})`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {React.useMemo(() => {
         return (
           <>
@@ -295,58 +305,10 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
             );
           }, [show_this_one_min_time])}
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {(Number(next_step))?.toString()?.padStart(7, "0")}
+            {Number(next_step)?.toString()?.padStart(7, "0")}
           </Typography>
         </Box>
       </Box>
-      {/* {fk.values.openTimerDialogBox && (
-        <Dialog
-          open={fk.values.openTimerDialogBox}
-          TransitionComponent={Transition}
-          PaperProps={{
-            style: {
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            },
-          }}
-        >
-          <div
-            className="flex gap-2 justify-cente !bg-black !bg-opacity-5"
-            sx={{ width: "100%" }}
-          >
-            <div
-              style={{
-                fontSize: 200,
-                borderRadius: 20,
-                background: "rgb(73, 57, 193)",
-                fontWeight: 700,
-                width: 150,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-              }}
-            >
-              {show_this_one_min_time?.substring(0, 1)}
-            </div>
-            <div
-              style={{
-                fontSize: 200,
-                borderRadius: 20,
-                background: "rgb(73, 57, 193)",
-                fontWeight: 700,
-                width: 150,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-              }}
-            >
-              {show_this_one_min_time?.substring(1, 2)}
-            </div>
-          </div>
-        </Dialog>
-      )} */}
     </Box>
   );
 };

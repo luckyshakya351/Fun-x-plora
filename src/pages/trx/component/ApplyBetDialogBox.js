@@ -25,6 +25,7 @@ import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { endpoint, rupees } from "../../../services/urls";
 import Policy from "./policy/Policy";
 import { zubgtext } from "../../../Shared/color";
+import { useFormik } from "formik";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -48,21 +49,28 @@ const ApplyBetDialogBox = ({
   // const first_rechange =
   //   aviator_login_data && JSON.parse(aviator_login_data)?.first_recharge;
   const user_id = login_data && JSON.parse(login_data)?.UserID;
-  const [value, setValue] = useState(random || 1);
+  // const [value, setValue] = useState();
   const [Rules, setRules] = useState(false);
-  // const [calculated_value, setcalculated_value] = useState(1);
+  const [calculated_value, setcalculated_value] = useState(1);
   const [loding, setLoding] = useState(false);
+  const [multiplyBy, setmultiplyBy] = useState(1);
   // React.useEffect(() => {
   //   !aviator_login_data && get_user_data_fn(dispatch);
   // }, []);
 
-  const handleClickValue = (value) => {
-    if (value === 0) {
-      return setValue(1);
-    }
-    setValue(value);
+  // const handleClickValue = (value) => {
+  //   if (value === 0) {
+  //     return setValue(1);
+  //   }
+  //   setValue(value);
+  // };
+  const initialValue = {
+    value: 1,
   };
-
+  const fk = useFormik({
+    initialValues: initialValue,
+    enableReinitialize: true,
+  });
   const handleClickOpenRules = () => {
     setRules(true);
   };
@@ -72,10 +80,9 @@ const ApplyBetDialogBox = ({
 
   async function betFunctionStart() {
     setLoding(true);
-    console.log("FUnction called apply bit");
-    const reqBody = {
+    const reqBody = {   
       userid: user_id,
-      amount: value | 0,
+      amount: Number(fk.values.value || 0) || 0,
       number:
         (type === "green" && 10) ||
         (type === "red" && 30) ||
@@ -131,7 +138,7 @@ const ApplyBetDialogBox = ({
             (type === "small" && "!bg-[#EE1285]") ||
             (type === "big" && "!bg-[#FBB13B]")
           } 
-            dialog-header `}
+            dialog-header`}
         >
           <div></div>
           <Box>
@@ -160,117 +167,152 @@ const ApplyBetDialogBox = ({
           </IconButton>
         </Stack>
       </Box>
-      <Box className="dialogsmallbat !flex !justify-between !items-center">
-        <div className="!text-[15px] !text-[#595f6b]">Balance</div>
-        <Box
-          className={`
+      <div>
+        <Box className="dialogsmallbat !flex !justify-between  !items-center !w-full">
+          <div className="!text-[15px] !text-[#595f6b]">Balance</div>
+          <Box
+            className={`
             addbtnbox  !grid !grid-cols-4 !gap-[2px]`}
-        >
-          {[1, 10, 100, 1000]?.map((i) => {
+          >
+            {[1, 10, 100, 1000]?.map((i) => {
+              return (
+                <p
+                  onClick={() => {
+                    // handleClickValue(i);
+                    fk.setFieldValue("value", i);
+                    setcalculated_value(i);
+                  }}
+                  className={`!p-1 !text-center !text-[12px] !rounded-md
+    ${
+      (type === "green" ||
+        type === 1 ||
+        type === 3 ||
+        type === 7 ||
+        type === 9) &&
+      calculated_value === i
+        ? "!bg-[#30b539] !text-white"
+        : ""
+    }
+    ${
+      (type === "red" ||
+        type === 2 ||
+        type === 6 ||
+        type === 4 ||
+        type === 8) &&
+      calculated_value === i
+        ? "!bg-[#FE0000] !text-white"
+        : ""
+    }
+    ${
+      (type === "voilet" || type === 0 || type === 5) && calculated_value === i
+        ? "!bg-[#710193] !text-white"
+        : ""
+    }
+    ${
+      type === "small" && calculated_value === i
+        ? "!bg-[#EE1285] !text-white"
+        : ""
+    }
+    ${
+      type === "big" && calculated_value === i
+        ? "!bg-[#FBB13B] !text-white"
+        : ""
+    }
+    ${calculated_value !== i ? "!bg-[#f6f6f6] !text-gray-600" : ""}
+  `}
+                >
+                  {i}
+                </p>
+              );
+            })}
+          </Box>
+        </Box>
+        <div className="!flex !justify-between !items-center  gap-2 px-2">
+          <div className="!text-[15px] !text-[#595f6b]">Quantity</div>
+          {/* bat-price-input-box */}
+          <div className=" !flex !items-center gap-1">
+            <span
+              className="!p-1 !h-[25px] !bg-[#cdc5c5] rounded-md !flex !justify-center !items-center"
+              onClick={() =>
+                fk.setFieldValue("value", Number(fk.values.value) - 1)
+              }
+            >
+              <RemoveIcon size="small" className="!w-[12px]" />
+            </span>
+            <TextField
+              size="small"
+              placeholder="Enter value"
+              value={fk.values.value}
+              variant="outlined"
+              type="number"
+              id="value"
+              name="value"
+              onChange={fk.handleChange}
+              sx={{
+                width: "150px",
+                "& .MuiOutlinedInput-root": {
+                  height: "25px", // Height applied correctly
+                },
+              }}
+              className="!text-[10px]"
+            />
+
+            <span
+              className="!p-1 !h-[25px] !bg-[#cdc5c5] rounded-md !flex !justify-center !items-center"
+              onClick={() =>
+                fk.setFieldValue("value", Number(fk.values.value) + 1)
+              }
+            >
+              <AddIcon size="small" className="!w-[12px]" />
+            </span>
+          </div>
+        </div>
+        <Box className="!grid !grid-cols-6 lg:gap-1 gap-[1px] !pt-8 lg:px-2 px-1">
+          {[1, 5, 10, 20, 50, 100]?.map((i) => {
             return (
-              <p
+              <div
                 onClick={() => {
-                  handleClickValue(i);
-                  // setcalculated_value(i);
+                  // handleClickValue(value * i);
+                  fk.setFieldValue("value", Number(fk.values.value) * i);
+                  setmultiplyBy(i);
                 }}
-                className={`${
-                  ((type === "green" ||
-                    type === 1 ||
-                    type === 3 ||
-                    type === 7 ||
-                    type === 9) &&
-                    "!bg-[#30b539]") ||
-                  ((type === "red" ||
-                    type === 2 ||
-                    type === 6 ||
-                    type === 4 ||
-                    type === 8) &&
-                    "!bg-[#FE0000]") ||
-                  ((type === "voilet" || type === 0 || type === 5) &&
-                    "!bg-[#710193]") ||
-                  (type === "small" && "!bg-[#EE1285]") ||
-                  (type === "big" && "!bg-[#FBB13B]")
-                } !p-1 !text-center !text-white !text-[12px] !rounded-md 
-            `}
+                className={`!p-1 !text-center !text-[12px] !rounded-md
+    ${
+      (type === "green" ||
+        type === 1 ||
+        type === 3 ||
+        type === 7 ||
+        type === 9) &&
+      multiplyBy === i
+        ? "!bg-[#30b539] !text-white"
+        : ""
+    }
+    ${
+      (type === "red" ||
+        type === 2 ||
+        type === 6 ||
+        type === 4 ||
+        type === 8) &&
+      multiplyBy === i
+        ? "!bg-[#FE0000] !text-white"
+        : ""
+    }
+    ${
+      (type === "voilet" || type === 0 || type === 5) && multiplyBy === i
+        ? "!bg-[#710193] !text-white"
+        : ""
+    }
+    ${type === "small" && multiplyBy === i ? "!bg-[#EE1285] !text-white" : ""}
+    ${type === "big" && multiplyBy === i ? "!bg-[#FBB13B] !text-white" : ""}
+    ${multiplyBy !== i ? "!bg-[#f6f6f6] !text-gray-600" : ""}
+  `}
               >
-                {i}
-              </p>
+                {i}x
+              </div>
             );
           })}
         </Box>
-      </Box>
-      <div className="!flex !justify-between !items-center  gap-2">
-        <div className="!text-[15px] !text-[#595f6b]">Quantity</div>
-        {/* bat-price-input-box */}
-        <div className=" !flex !items-center gap-1">
-          <span
-            className="!p-1 !h-[25px] !bg-[#cdc5c5] rounded-md !flex !justify-center !items-center"
-            onClick={() => handleClickValue(value - 1)}
-          >
-            <RemoveIcon size="small" />
-          </span>
-          <TextField
-            size="small"
-            placeholder="Enter value"
-            value={value}
-            variant="outlined"
-            type="number"
-            onChange={(e) => {
-              const parsedValue = parseInt(e.target.value, 10);
-              if (!isNaN(parsedValue)) {
-                handleClickValue(parsedValue);
-              }
-            }}
-            sx={{
-              width: "150px",
-              "& .MuiOutlinedInput-root": {
-                height: "25px", // Height applied correctly
-              },
-            }}
-          />
-
-          <span
-            className="!p-1 !h-[25px] !bg-[#cdc5c5] rounded-md !flex !justify-center !items-center"
-            onClick={() => handleClickValue(value + 1 || 1)}
-          >
-            <AddIcon />
-          </span>
-        </div>
       </div>
-      <Box className="!grid !grid-cols-6 lg:gap-1 gap-[1px] !pt-8 lg:px-2 px-1">
-        {[1, 5, 10, 20, 50, 100]?.map((i) => {
-          return (
-            <div
-              onClick={() => {
-                handleClickValue(value * i);
-                // setcalculated_value(value)
-              }}
-              className={`${
-                ((type === "green" ||
-                  type === 1 ||
-                  type === 3 ||
-                  type === 7 ||
-                  type === 9) &&
-                  "!bg-[#30b539]") ||
-                ((type === "red" ||
-                  type === 2 ||
-                  type === 6 ||
-                  type === 4 ||
-                  type === 8) &&
-                  "!bg-[#FE0000]") ||
-                ((type === "voilet" || type === 0 || type === 5) &&
-                  "!bg-[#710193]") ||
-                (type === "small" && "!bg-[#EE1285]") ||
-                (type === "big" && "!bg-[#FBB13B]")
-              }
-             !px-1 !py-1 rounded-md  !text-center !text-[#fff] !text-[12px]
-            `}
-            >
-              {i}x
-            </div>
-          );
-        })}
-      </Box>
       {/* <Stack direction="row" className="total-money-box">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           Total contract money is ₹{" "}
@@ -301,14 +343,13 @@ const ApplyBetDialogBox = ({
           </DialogContentText>
         </Dialog>
       </Stack>
-      <div className="grid grid-cols-3 gap-[1px] !text-[10px]">
-       
+      <div className="grid grid-cols-3 gap-[3px] p-2 !text-[10px]">
         <Button
           className="!bg-[#cdc5c5] !text-white !py-0"
           variant="text"
           onClick={() => setapply_bit_dialog_box(false)}
         >
-          Cancel
+          <span className="!text-[12px]">Cancel</span>
         </Button>
         <Button
           className={`!text-white !col-span-2 
@@ -338,7 +379,9 @@ const ApplyBetDialogBox = ({
           }}
           loding={true}
         >
-          Total Amount {rupees} {value || "0"}
+          <span className="!text-[12px]">
+            Total Amount {rupees} {fk.values.value || "0"}
+          </span>
         </Button>
       </div>
 

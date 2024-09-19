@@ -1,9 +1,18 @@
-import { Box, Pagination, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Pagination,
+  Stack,
+  Typography,
+} from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const Chart = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -42,22 +51,22 @@ const Chart = ({ gid }) => {
             String(Number(element?.tr41_slot_id)) === "0"
               ? `zero${index}`
               : String(Number(element?.tr41_slot_id)) === "1"
-                ? `one${index}`
-                : String(Number(element?.tr41_slot_id)) === "2"
-                  ? `two${index}`
-                  : String(Number(element?.tr41_slot_id)) === "3"
-                    ? `three${index}`
-                    : String(Number(element?.tr41_slot_id)) === "4"
-                      ? `four${index}`
-                      : String(Number(element?.tr41_slot_id)) === "5"
-                        ? `five${index}`
-                        : String(Number(element?.tr41_slot_id)) === "6"
-                          ? `six${index}`
-                          : String(Number(element?.tr41_slot_id)) === "7"
-                            ? `seven${index}`
-                            : String(Number(element?.tr41_slot_id)) === "8"
-                              ? `eight${index}`
-                              : `nine${index}`;
+              ? `one${index}`
+              : String(Number(element?.tr41_slot_id)) === "2"
+              ? `two${index}`
+              : String(Number(element?.tr41_slot_id)) === "3"
+              ? `three${index}`
+              : String(Number(element?.tr41_slot_id)) === "4"
+              ? `four${index}`
+              : String(Number(element?.tr41_slot_id)) === "5"
+              ? `five${index}`
+              : String(Number(element?.tr41_slot_id)) === "6"
+              ? `six${index}`
+              : String(Number(element?.tr41_slot_id)) === "7"
+              ? `seven${index}`
+              : String(Number(element?.tr41_slot_id)) === "8"
+              ? `eight${index}`
+              : `nine${index}`;
           const childRect = document
             .getElementById(childId)
             .getBoundingClientRect();
@@ -70,7 +79,6 @@ const Chart = ({ gid }) => {
       setcor(newCor || []);
     }
   }, [visibleRows]);
-
 
   return (
     <Box className="chartTable">
@@ -92,176 +100,229 @@ const Chart = ({ gid }) => {
               return (
                 <Box
                   sx={{
-                    // background: '#180F3F',
-                    background:"white",
-                    padding: "10px ",
-                    borderBottom: "1px solid #63BA0E",
+                    background: "white",
+                    padding: "10px",
+                    borderBottom: "1px solid rgba(99, 186, 14, 0.1)", // 30% opacity
                   }}
-                  // className={"!bg-slate-300"}
                 >
                   <div className="flex justify-between">
                     <span
-                      style={{ fontWeight: 700, fontSize: '12px', color: zubgtext }}
+                      style={{
+                        fontWeight: 700,
+                        fontSize: "12px",
+                        color: zubgtext,
+                      }}
                     >
                       {element?.tr_transaction_id}
                     </span>
                     {/* // main box of chart form 0 to 9 */}
                     <Box className="flex items-center justify-between !w-[75%]  lg:!w-[70%]">
                       {/* /// 0   //// */}
-                      <div id={`zero${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "0"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`zero${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "0"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "0"
-                            ? "transparentColorRedPurpleBG !text-white "
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800"
-                            }`}
+                          className={`circleNumberbody  !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "0"
+                              ? "transparentColorRedPurpleBG !text-white "
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800"
+                          }`}
                         >
                           {" "}
                           0
                         </Typography>
                       </div>
                       {/* /// 1   //// */}
-                      <div id={`one${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "1"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`one${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "1"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "1"
-                            ? "!bg-[#18b680] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody   !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "1"
+                              ? "!bg-[#18b680] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           1
                         </Typography>
                       </div>
                       {/* /// 2   //// */}
-                      <div id={`two${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "2"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`two${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "2"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "2"
-                            ? "!bg-[#fb6161] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody   !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "2"
+                              ? "!bg-[#fb6161] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           2
                         </Typography>
                       </div>
                       {/* /// 3   //// */}
-                      <div id={`three${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "3"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`three${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "3"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "3"
-                            ? "!bg-[#18b680] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody   !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "3"
+                              ? "!bg-[#18b680] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           3
                         </Typography>
                       </div>
                       {/* /// 4   //// */}
-                      <div id={`four${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "4"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`four${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "4"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "4"
-                            ? "!bg-[#fb6161] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody   !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "4"
+                              ? "!bg-[#fb6161] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           4
                         </Typography>
                       </div>
                       {/* /// 5   //// */}
-                      <div id={`five${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "5"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`five${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "5"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "5"
-                            ? "transparentColorGreenRedBG !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody  !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "5"
+                              ? "transparentColorGreenRedBG !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           5
                         </Typography>
                       </div>
                       {/* /// 6   //// */}
-                      <div id={`six${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "6"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`six${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "6"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "6"
-                            ? "!bg-[#fb6161] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody  !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "6"
+                              ? "!bg-[#fb6161] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           6
                         </Typography>
                       </div>
                       {/* /// 7   //// */}
-                      <div id={`seven${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "7"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`seven${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "7"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody  !font-bold ${String(Number(element?.tr41_slot_id)) === "7"
-                            ? "!bg-[#18b680] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody  !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "7"
+                              ? "!bg-[#18b680] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           7
                         </Typography>
                       </div>
                       {/* /// 8   //// */}
-                      <div id={`eight${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "8"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`eight${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "8"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "8"
-                            ? "!bg-[#fb6161] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody   !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "8"
+                              ? "!bg-[#fb6161] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           8
                         </Typography>
                       </div>
                       {/* /// 9   //// */}
-                      <div id={`nine${indexi}`} className={`${String(Number(element?.tr41_slot_id)) === "9"
-                        ? "!z-20"
-                        : "!z-[-10px]"
-                        }`}>
+                      <div
+                        id={`nine${indexi}`}
+                        className={`${
+                          String(Number(element?.tr41_slot_id)) === "9"
+                            ? "!z-20"
+                            : "!z-[-10px]"
+                        }`}
+                      >
                         <Typography
-                          className={`circleNumberbody   !font-bold ${String(Number(element?.tr41_slot_id)) === "9"
-                            ? "!bg-[#18b680] !text-white"
-                            : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
-                            }`}
+                          className={`circleNumberbody   !font-bold ${
+                            String(Number(element?.tr41_slot_id)) === "9"
+                              ? "!bg-[#18b680] !text-white"
+                              : "!bg-white !text-[#abadaf] !font-normal !shadow-sm !shadow-green-800 "
+                          }`}
                         >
                           {" "}
                           9
                         </Typography>
                       </div>
                       <Typography
-                        className={`circleNumberbody ${Number(element?.tr41_slot_id) <= 4
-                          ? "!bg-[#468ce8] "
-                          : "!bg-[#feaa57]"
-                          }  !h-[20px] !w-[20px] !rounded-full !text-center !text-white `}
+                        className={`circleNumberbody ${
+                          Number(element?.tr41_slot_id) <= 4
+                            ? "!bg-[#468ce8] "
+                            : "!bg-[#feaa57]"
+                        }  !h-[20px] !w-[20px] !rounded-full !text-center !text-white `}
                       >
                         {Number(element?.tr41_slot_id) <= 4 ? "S" : "B"}
                       </Typography>
@@ -321,20 +382,51 @@ const Chart = ({ gid }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
           labelRowsPerPage="Rows"
         /> */}
-        <Pagination
-            // count={3}
-              count={Math.ceil(game_history_data?.length/ rowsPerPage)} // Calculate total pages based on the data length
-              page={page} // Current page
-              onChange={handleChangePage} // Function to handle page changes
-              color="primary" // Color of pagination
-              sx={{
-                // background: zubgtext, // Background styling
-                color: "white",
-                borderRadius: "10px",
-                marginTop: "5px",
-                mb: 3,
-              }}
-            />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            borderRadius: "10px",
+            marginTop: "5px",
+            mb: 3,
+          }}
+        >
+          <IconButton
+            onClick={() => handleChangePage(null, Math.max(0, page - 1))}
+            className={`${page === 0 ? "!text-gray-400" : "!text-white"} !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+
+          <Typography sx={{ margin: "0 10px" }}>
+            {page + 1} / {Math.ceil(game_history_data?.length / rowsPerPage)}
+          </Typography>
+
+          <IconButton
+            onClick={() =>
+              handleChangePage(
+                null,
+                Math.min(
+                  Math.ceil(game_history_data?.length / rowsPerPage) - 1,
+                  page + 1
+                )
+              )
+            }
+            sx={{
+              marginLeft: "10px",
+              color: "white",
+            }}
+            className={`${
+              page + 1 >= Math.ceil(game_history_data?.length / rowsPerPage)
+                ? "!text-gray-400"
+                : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </Box>
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading} /> */}
     </Box>

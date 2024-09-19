@@ -418,7 +418,7 @@ export const BankListDetails = async () => {
 export const NeedToBet = async () => {
   try {
     const response = await axios.get(
-      `${endpoint.need_to_bet}?user_id=${user_id}`
+      `${endpoint.need_to_bet_larawel}?user_id=${user_id}`
     );
     return response;
   } catch (e) {

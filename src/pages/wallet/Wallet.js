@@ -13,9 +13,7 @@ import ReactApexChart from "react-apexcharts";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import {
-  zubggray
-} from "../../Shared/color";
+import { zubggray } from "../../Shared/color";
 import logo from "../../assets/funXplora-8-13-2024 (1).png";
 import logo1 from "../../assets/images/logotwhite.png";
 import deposite from "../../assets/images/new/download (10).png";
@@ -24,14 +22,13 @@ import wallettransfer from "../../assets/images/new/download (12).png";
 import wallettransfer1 from "../../assets/images/new/download (13).png";
 import d14 from "../../assets/images/new/download (14).png";
 import rechargeIcon from "../../assets/images/new/download (8).png";
-
+import balance from "../../assets/images/logotred.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import theme from "../../utils/theme";
 
 function Wallet() {
-
   const navigate = useNavigate();
 
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] =
@@ -41,13 +38,17 @@ function Wallet() {
     refetchOnMount: false,
     refetchOnReconnect: false,
     retryOnMount: false,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
   const amount = data?.data?.data || 0;
 
-  const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2),]
-  const series2 = [(Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),];
-  const series1 = [(Number(Number(amount?.working_wallet || 0) % 100) || 0)?.toFixed(2),];
+  const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2)];
+  const series2 = [
+    (Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),
+  ];
+  const series1 = [
+    (Number(Number(amount?.working_wallet || 0) % 100) || 0)?.toFixed(2),
+  ];
 
   const [options] = React.useState({
     colors: ["#63BA0E", "red", "green"],
@@ -83,7 +84,7 @@ function Wallet() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: '#0D0335',
+          background: "#0D0335",
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -109,70 +110,65 @@ function Wallet() {
             marginLeft: "2.5%",
             marginTop: "20px",
             borderRadius: "10px ",
-            background: '#63BA0E',
-            border: '1px solid #63BA0E',
+            background: "white",
+            border: "1px solid #63BA0E",
           }}
+          className={"!text-[#110738]"}
         >
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: '100%',
+              width: "100%",
             }}
           >
-            {/* <div class="container">
-              <div class="circles">
-                <div class="circle circle-1"></div>
-                <div class="circle circle-2"></div>
-              </div>
-
-              <div class="card">
-                <div class="visa_logo">
-                  <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png" alt="" />
-                </div>
-                <div class="visa_info">
-                  <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" alt="" />
-                  <p>4586 7985 9271 6388</p>
-                </div>
-                <div class="visa_crinfo">
-                  <p>02/12</p>
-                  <p>Nikhil Bobade</p>
-                </div>
-              </div>
-            </div> */}
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                width: '100%'
+                width: "100%",
               }}
-              className="walletBox"
+              className="walletBox !bg-white"
             >
-              <Box component="img" src={wallet} width={50} sx={{ filter: 'brightness(0.1)' }}></Box>
-              <Typography variant="h2" color="initial" sx={{ color: 'white' }}>
-                ₹ {Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0) + Number(amount?.working_wallet || 0)
+              <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                sx={{ width: "100%", padding: "0px 16px 16px" }}
+              >
+                <div class="visa_info"></div>
+                <div class="visa_logo">
+                  <Box
+                    component={"img"}
+                    src={balance}
+                    sx={{ width: "50px" }}
+                  ></Box>
+                </div>
+              </Stack>
+              <Box
+                component="img"
+                src={wallet}
+                width={50}
+                sx={{ filter: "brightness(0.1)" }}
+              ></Box>
+              <Typography variant="h2" color="initial" sx={{ color: "white" }} className={"!text-[#110738]"}>
+                ₹{" "}
+                {Number(
+                  Number(amount?.wallet || 0) +
+                    Number(amount?.winning || 0) +
+                    Number(amount?.working_wallet || 0)
                 )?.toFixed(2)}
-
               </Typography>
               <Typography
                 variant="body1"
                 color="initial"
-                sx={{ color: 'white' }}
+                sx={{ color: "white", marginBottom: "10px" }}
               >
                 Total balance
               </Typography>
-              <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} sx={{ width: '100%', padding: '0px 16px 16px' }}>
-                <div class="visa_info">
-                  <img style={{ width: '50px' }} src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" alt="" />
-                </div>
-                <div class="visa_logo">
-                  <Box component={'img'} src={logo1} sx={{ width: '90px' }}></Box>
-                </div>
-              </Stack>
             </Box>
           </Box>
         </Box>
@@ -188,7 +184,6 @@ function Wallet() {
               borderRadius: "10px",
             }}
           >
-
             <Stack
               direction="row"
               sx={{
@@ -197,13 +192,11 @@ function Wallet() {
                 justifyContent: "space-between",
                 background: theme.palette.secondary.light,
                 pb: 2,
-                borderRadius: '10px',
+                borderRadius: "10px",
               }}
             >
               <Box sx={{ width: "50%", position: "relative" }}>
-
                 <Typography
-
                   variant="body1"
                   color="initial"
                   sx={{
@@ -213,9 +206,9 @@ function Wallet() {
                     fontSize: "15px",
                     fontWeight: "400",
                     color: "white",
-                    textAlign: 'center !important',
-                    ml: '-3%',
-                    mt: '1%',
+                    textAlign: "center !important",
+                    ml: "-3%",
+                    mt: "1%",
                   }}
                 >
                   {series}
@@ -226,7 +219,6 @@ function Wallet() {
                   series={series}
                   type="radialBar"
                   height={150}
-
                 />
                 <Box
                   sx={{
@@ -252,7 +244,6 @@ function Wallet() {
               </Box>
               <Box sx={{ width: "50%", position: "relative" }}>
                 <Typography
-
                   variant="body1"
                   color="initial"
                   sx={{
@@ -262,8 +253,8 @@ function Wallet() {
                     fontSize: "15px",
                     fontWeight: "400",
                     color: "white",
-                    ml: '-3%',
-                    mt: '1%',
+                    ml: "-3%",
+                    mt: "1%",
                   }}
                 >
                   {series1}
@@ -273,7 +264,6 @@ function Wallet() {
                   series={series1}
                   type="radialBar"
                   height={150}
-
                 />
                 <Box
                   sx={{
@@ -291,7 +281,7 @@ function Wallet() {
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "500", fontSize: '11px' }}
+                    sx={{ color: "white", fontWeight: "500", fontSize: "11px" }}
                   >
                     Working Amount
                   </Typography>
@@ -308,8 +298,8 @@ function Wallet() {
                     top: "32%",
                     fontSize: "15px",
                     fontWeight: "400",
-                    ml: '-3%',
-                    mt: '1%',
+                    ml: "-3%",
+                    mt: "1%",
                   }}
                 >
                   {series2}
@@ -336,61 +326,89 @@ function Wallet() {
                   <Typography
                     variant="body1"
                     color="initial"
-                    sx={{ color: "white", fontWeight: "500", fontSize: '11px' }}
+                    sx={{ color: "white", fontWeight: "500", fontSize: "11px" }}
                   >
                     Winning Amount
                   </Typography>
                 </Box>
               </Box>
             </Stack>
-
           </Stack>
 
-          <div className="!mb-20" style={{ background: theme.palette.secondary.light, padding: '5px', borderRadius: '10px', marginTop: '16px' }}>
-            <Box sx={{
-              display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', '&>a': { width: '33%', },
-              '&>a>div': { display: 'flex', flexDirection: 'column-reverse', alignItems: 'center', alignItems: 'center', padding: '5px' },
-              'a>div>p': { textAlign: 'center', fontSize: '11px', color: 'white' },
-              '&>a>div>img': { width: '30px', filter: 'hue-rotate(45deg)' },
-            }}>
+          <div
+            className="!mb-20"
+            style={{
+              background: theme.palette.secondary.light,
+              padding: "5px",
+              borderRadius: "10px",
+              marginTop: "16px",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "space-between",
+                "&>a": { width: "33%" },
+                "&>a>div": {
+                  display: "flex",
+                  flexDirection: "column-reverse",
+                  alignItems: "center",
+                  alignItems: "center",
+                  padding: "5px",
+                },
+                "a>div>p": {
+                  textAlign: "center",
+                  fontSize: "11px",
+                  color: "white",
+                },
+                "&>a>div>img": { width: "30px", filter: "hue-rotate(45deg)" },
+              }}
+            >
               <NavLink to="/wallet/Recharge">
-                <div className=" " >
+                <div className=" ">
                   <p className=" mt-4">Deposit</p>
                   <Box component="img" src={rechargeIcon} width={50}></Box>
                 </div>
               </NavLink>
               <NavLink to="/Withdrawal">
-                <div className=" " >
+                <div className=" ">
                   <p className=" mt-4">Withdrawal</p>
-                  <Box component="img" src={wallettransfer1} className="!text-blue-500" width={50}></Box>
+                  <Box
+                    component="img"
+                    src={wallettransfer1}
+                    className="!text-blue-500"
+                    width={50}
+                  ></Box>
                 </div>
               </NavLink>
               <NavLink to="/transfer">
-                <div className=" " >
+                <div className=" ">
                   <p className=" mt-4">W to M Wallet Transfer </p>
                   <Box component="img" src={wallettransfer} width={50}></Box>
                 </div>
               </NavLink>
               <NavLink to="/transferhistory">
-                <div className=" " >
+                <div className=" ">
                   <p className=" mt-4">W to M Wallet Transfer History </p>
                   <Box component="img" src={wallettransfer1} width={50}></Box>
                 </div>
               </NavLink>
               <NavLink to="/depositHistory">
-                <div className=" " >
+                <div className=" ">
                   <p className=" mt-4">Deposit history</p>
                   <Box component="img" src={d14} width={50}></Box>
                 </div>
               </NavLink>
               <NavLink to="/withdravalHistory">
-                <div className=" " >
+                <div className=" ">
                   <p className=" mt-4">Withdrawal history</p>
                   <Box component="img" src={deposite} width={50}></Box>
                 </div>
               </NavLink>
               <NavLink to="/depositusdt">
-                <div className=" " >
+                <div className=" ">
                   <p className=" mt-4">Deposit USDT history</p>
                   <Box component="img" src={d14} width={50}></Box>
                 </div>

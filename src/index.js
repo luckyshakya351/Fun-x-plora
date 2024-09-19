@@ -1,18 +1,17 @@
+import { ThemeProvider } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
-import theme from "./utils/theme";
-import "../src/index.css";
-import "tailwindcss/tailwind.css";
 import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
-import store from "./redux/store/store";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import "tailwindcss/tailwind.css";
+import "../src/index.css";
+import App from "./App";
 import { SocketProvider } from "./Shared/SocketContext";
-import { zubgback, zubgmid } from "./Shared/color";
+import store from "./redux/store/store";
+import reportWebVitals from "./reportWebVitals";
+import theme from "./utils/theme";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

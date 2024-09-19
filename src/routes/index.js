@@ -58,242 +58,242 @@ import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
 import Win from "../pages/win/win";
 
 export const routes = [
-    {
-        path: "/win-los",
-        component: <WinLossPopup />
-    },
-    {
-        path: "/account",
-        component: <Account />
-    },
-    {
-        path: "/withdravalHistory",
-        component: <WithdravalHistory />
-    },
-    {
-        path: "/Withdrawal",
-        component: <Withdrawl />
-    },
-    {
-        path: "/Withdrawalusdt",
-        component: <WithdrawalUsdt />
-    },
-    {
-        path: "/Withdrawalusdthistory",
-        component: <WithdrawalHistoryUSdt/>
-    },
-    {
-        path: "/addadressusdt",
-        component: <AddAddressUsdt />
-    },
-  
-    {
-        path: "/depositHistory",
-        component: <DepositeHistory />
-    },
-    {
-        path: "/depositusdt",
-        component: <DepositeUsdt />
-    },
-    {
-        path: "/wallet/Recharge",
-        component: <WalletRecharge />
-    },
-    {
-        path: "/trx",
-        component: <Trx />
-    },
-    {
-        path: "/wallet",
-        component: <Wallet />
-    },
-    {
-        path: "/usdt",
-        component: <UsdtQR />
-    },
-    {
-        path: "/bathistory",
-        component: <BatHistorys />
-    },
-    {
-        path: "/notification",
-        component: <Notification />
-    },
-    {
-        path: "/gift",
-        component: <Gift />
-    },
-    {
-        path: "/gamestaticks",
-        component: <Gamestaticks />
-    },
-    {
-        path: "/Language",
-        component: <Languages />
-    },
-    {
-        path: "/SettingCenter",
-        component: <SettingCenter />
-    },
-    {
-        path: "/SettingCenter/LoginPassword",
-        component: <LoginPassword />
-    },
-    {
-        path: "/SettingCenter/mail",
-        component: <Mail />
-    },
-    {
-        path: "/feedback",
-        component: <Feedback />
-    },
-    {
-        path: "/gameNotification",
-        component: <GameNotification />
-    },
-    // {
-    //     path:"/",
-    //     component:<Login/>
-    // },
-    {
-        path: "/test",
-        component: <Test />
-    },
-    {
-        path: "/register",
-        component: <Register />
-    },
-    {
-        path: "/dashboard",
-        component: <Dashboard />
-    },
-    {
-        path: "/activity",
-        component: <Activity />
-    },
-    {
-        path: "/win",
-        component: <Win />
-    },
-    {
-        path: "/transfer",
-        component: <WalletTransfer />
-    },
-    {
-        path: "/transferhistory",
-        component: <WalletTransferHistory />
-    },
-    {
-        path: "/promotion",
-        component: <Promotion />
-    },
-    {
-        path: "/promotion/Subordinate",
-        component: <Subordinate />
-    },
-    {
-        path: "/promotion/PromotionShare",
-        component: <Invitaton />
-    },
-    {
-        path: "/promotion/TeamReport/",
-        component: <TeamReports />
-    },
-    {
-        path: "/promotion/TeamReport/data",
-        component: <TeamData />
-    },
-    {
-        path: "/promotion/PromotionRule/",
-        component: <PromotionRule />
-    },
-    {
-        path: "/promotion/RebateRatio/",
-        component: <RobateRetio />
-    },
-    {
-        path: "/customerLine/",
-        component: <CustomerLine />
-    },
-    {
-        path: "/view_fund_request",
-        component: <FundRequest />
-    },
-    
-    {
-        path: "/playgame",
-        component: <LayoutAviator component={<PlayGame />} />
-    },
-    {
-        path: "/account/:id",
-        component: <LayoutAviator component={<Account />} />
-    },
-    {
-        path: "/account/income-main",
-        component: <MainPageOFIncome />
-    },
-    {
-        path: "/promotion/SubordinateIncome",
-        component: <SubordinateIncome />
-    },
-    {
-        path: "/promotion/Commission",
-        component: <Commission/>
-    },
-    {
-        path: "/account/income-main/registration-bonus",
-        component: <RegistrationBonus />
-    },
-    {
-        path: "/account/income-main/deposit-bonus",
-        component: <DepositBonus />
-    },
-    {
-        path: "/account/income-main/referral-bonus",
-        component: <ReferralBonus />
-    },
-    {
-        path: "/account/income-main/daily-cash-back-bonus",
-        component: <DailyCashBackBonus />
-    },
-    {
-        path: "/account/income-main/cash_back_report",
-        component: <CashbackReport />
-    },
-    {
-        path: "/account/income-main/daily-salary-bonus",
-        component: <DailySalaryBonus />
-    },
-    {
-        path: "/account/income-main/weekly-bonus",
-        component :<WeeklySalaryBonus/>
-    },
-    {
-        path: "/account/income-main/self-trading-bonus",
-        component: <SelfTradingBonus />
-    },
-    {
-        path: "/account/income-main/team-trading-bonus",
-        component: <TeamTradingBonus />
-    },
-    {
-        path: "/account/income-main/team-reward-bonus",
-        component: <TeamRewardBonus />
-    },
-    {
-        path: "/add-bank-details",
-        component: <AddBankDetails />
-    },
-    {
-        path: "/add-bank-details/pre-added-bank-details",
-        component: <AddedBankDetailList />
-    },
-    {
-        path: "/deposit/qr-screen",
-        component: <QRScreen />
-    },
-    {
-        path: "/trx/tron-scan",
-        component: <TronScanPage />
-    },
-]
+  {
+    path: "/win-los",
+    component: <WinLossPopup />,
+  },
+  {
+    path: "/account",
+    component: <Account />,
+  },
+  {
+    path: "/withdravalHistory",
+    component: <WithdravalHistory />,
+  },
+  {
+    path: "/Withdrawal",
+    component: <Withdrawl />,
+  },
+  {
+    path: "/Withdrawalusdt",
+    component: <WithdrawalUsdt />,
+  },
+  {
+    path: "/Withdrawalusdthistory",
+    component: <WithdrawalHistoryUSdt />,
+  },
+  {
+    path: "/addadressusdt",
+    component: <AddAddressUsdt />,
+  },
+
+  {
+    path: "/depositHistory",
+    component: <DepositeHistory />,
+  },
+  {
+    path: "/depositusdt",
+    component: <DepositeUsdt />,
+  },
+  {
+    path: "/wallet/Recharge",
+    component: <WalletRecharge />,
+  },
+  {
+    path: "/trx",
+    component: <Trx />,
+  },
+  {
+    path: "/wallet",
+    component: <Wallet />,
+  },
+  {
+    path: "/usdt",
+    component: <UsdtQR />,
+  },
+  {
+    path: "/bathistory",
+    component: <BatHistorys />,
+  },
+  {
+    path: "/notification",
+    component: <Notification />,
+  },
+  {
+    path: "/gift",
+    component: <Gift />,
+  },
+  {
+    path: "/gamestaticks",
+    component: <Gamestaticks />,
+  },
+  {
+    path: "/Language",
+    component: <Languages />,
+  },
+  {
+    path: "/SettingCenter",
+    component: <SettingCenter />,
+  },
+  {
+    path: "/SettingCenter/LoginPassword",
+    component: <LoginPassword />,
+  },
+  {
+    path: "/SettingCenter/mail",
+    component: <Mail />,
+  },
+  {
+    path: "/feedback",
+    component: <Feedback />,
+  },
+  {
+    path: "/gameNotification",
+    component: <GameNotification />,
+  },
+  // {
+  //     path:"/",
+  //     component:<Login/>
+  // },
+  {
+    path: "/test",
+    component: <Test />,
+  },
+  {
+    path: "/register",
+    component: <Register />,
+  },
+  {
+    path: "/dashboard",
+    component: <Dashboard />,
+  },
+  {
+    path: "/activity",
+    component: <Activity />,
+  },
+  {
+    path: "/win",
+    component: <Win />,
+  },
+  {
+    path: "/transfer",
+    component: <WalletTransfer />,
+  },
+  {
+    path: "/transferhistory",
+    component: <WalletTransferHistory />,
+  },
+  {
+    path: "/promotion",
+    component: <Promotion />,
+  },
+  {
+    path: "/promotion/Subordinate",
+    component: <Subordinate />,
+  },
+  {
+    path: "/promotion/PromotionShare",
+    component: <Invitaton />,
+  },
+  {
+    path: "/promotion/TeamReport/",
+    component: <TeamReports />,
+  },
+  {
+    path: "/promotion/TeamReport/data",
+    component: <TeamData />,
+  },
+  {
+    path: "/promotion/PromotionRule/",
+    component: <PromotionRule />,
+  },
+  {
+    path: "/promotion/RebateRatio/",
+    component: <RobateRetio />,
+  },
+  {
+    path: "/customerLine/",
+    component: <CustomerLine />,
+  },
+  {
+    path: "/view_fund_request",
+    component: <FundRequest />,
+  },
+
+  {
+    path: "/playgame",
+    component: <LayoutAviator component={<PlayGame />} />,
+  },
+  {
+    path: "/account/:id",
+    component: <LayoutAviator component={<Account />} />,
+  },
+  {
+    path: "/account/income-main",
+    component: <MainPageOFIncome />,
+  },
+  {
+    path: "/promotion/SubordinateIncome",
+    component: <SubordinateIncome />,
+  },
+  {
+    path: "/promotion/Commission",
+    component: <Commission />,
+  },
+  {
+    path: "/account/income-main/registration-bonus",
+    component: <RegistrationBonus />,
+  },
+  {
+    path: "/account/income-main/deposit-bonus",
+    component: <DepositBonus />,
+  },
+  {
+    path: "/account/income-main/referral-bonus",
+    component: <ReferralBonus />,
+  },
+  {
+    path: "/account/income-main/daily-cash-back-bonus",
+    component: <DailyCashBackBonus />,
+  },
+  {
+    path: "/account/income-main/cash_back_report",
+    component: <CashbackReport />,
+  },
+  {
+    path: "/account/income-main/daily-salary-bonus",
+    component: <DailySalaryBonus />,
+  },
+  {
+    path: "/account/income-main/weekly-bonus",
+    component: <WeeklySalaryBonus />,
+  },
+  {
+    path: "/account/income-main/self-trading-bonus",
+    component: <SelfTradingBonus />,
+  },
+  {
+    path: "/account/income-main/team-trading-bonus",
+    component: <TeamTradingBonus />,
+  },
+  {
+    path: "/account/income-main/team-reward-bonus",
+    component: <TeamRewardBonus />,
+  },
+  {
+    path: "/add-bank-details",
+    component: <AddBankDetails />,
+  },
+  {
+    path: "/add-bank-details/pre-added-bank-details",
+    component: <AddedBankDetailList />,
+  },
+  {
+    path: "/deposit/qr-screen",
+    component: <QRScreen />,
+  },
+  {
+    path: "/trx/tron-scan",
+    component: <TronScanPage />,
+  },
+];

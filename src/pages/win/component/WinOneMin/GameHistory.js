@@ -1,4 +1,4 @@
-import { Box, Pagination, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Pagination, Stack, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 import { zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import theme from "../../../../utils/theme";
-
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const GameHistory = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -37,7 +38,7 @@ const GameHistory = ({ gid }) => {
 
   return (
     <Box sx={{ pb: 4 }}>
-      <Stack direction="row" className="onegotextbox">
+      {/* <Stack direction="row" className="onegotextbox">
         <Typography
           variant="body1"
           color="initial"
@@ -58,11 +59,11 @@ const GameHistory = ({ gid }) => {
             ? "Three Go Record"
             : "Five Go Record"}
         </Typography>
-      </Stack>
+      </Stack> */}
       {/* <TableContainer > */}
       <Table
         sx={{ maxWidth: 400, background: "white", color: "white" }}
-        className="wintable"
+        className="wintable !mt-3"
         aria-label="simple table"
       >
         <TableHead>
@@ -224,36 +225,53 @@ const GameHistory = ({ gid }) => {
       </Table>
 
       <Box className="paginationTable !w-full ">
-        {/* <TablePagination
+        <Box
           sx={{
-            background: zubgtext,
-            color: "white",
-            overflow: "hidden",
-            mb: 2,
-          }}
-          rowsPerPageOptions={[5, 10]}
-          component="div"
-          count={game_history_data?.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage="Rows"
-        /> */}
-        <Pagination
-          // count={3}
-          count={Math.ceil(game_history_data?.length / rowsPerPage)} // Calculate total pages based on the data length
-          page={page} // Current page
-          onChange={handleChangePage} // Function to handle page changes
-          color="primary" // Color of pagination
-          sx={{
-            // background: zubgtext, // Background styling
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             color: "white",
             borderRadius: "10px",
             marginTop: "5px",
             mb: 3,
           }}
-        />
+        >
+          <IconButton
+            onClick={() => handleChangePage(null, Math.max(0, page - 1))}
+            className={`${
+              page === 0 ? "!text-gray-400" : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+
+          <Typography sx={{ margin: "0 10px" }}>
+            {page + 1} / {Math.ceil(game_history_data?.length / rowsPerPage)}
+          </Typography>
+
+          <IconButton
+            onClick={() =>
+              handleChangePage(
+                null,
+                Math.min(
+                  Math.ceil(game_history_data?.length / rowsPerPage) - 1,
+                  page + 1
+                )
+              )
+            }
+            sx={{
+              marginLeft: "10px",
+              color: "white",
+            }}
+            className={`${
+              page + 1 >= Math.ceil(game_history_data?.length / rowsPerPage)
+                ? "!text-gray-400"
+                : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </Box>
       </Box>
       {/* </TableContainer> */}
       {/* <CustomCircularProgress isLoading={isLoading} /> */}

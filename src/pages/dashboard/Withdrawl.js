@@ -332,7 +332,11 @@ function Withdrawl() {
               className="!cursor-pointer p-3 !rounded-lg "
             >
               <Box component={NavLink}>
-                <Box component="img" src={cip} className="!w-14 !ml-2"></Box>
+                <Box
+                  component="img"
+                  src={cip}
+                  className="!w-14 !h-14 !ml-2"
+                ></Box>
                 <Typography className="!text-center !text-white !text-sm pt-1">
                   Bank Card
                 </Typography>
@@ -384,7 +388,11 @@ function Withdrawl() {
                 </div>
                 <p className="!bg-yellow-400 !h-[100%] !w-[1px]"></p>
               </div>
-              <div className={"!flex !items-center !text-gray-500 !mr-8 !col-span-2"}>
+              <div
+                className={
+                  "!flex !items-center !text-gray-500 !mr-8 !col-span-2"
+                }
+              >
                 <span>{result?.[0]?.account?.substring(0, 5)}</span>
                 <span className="!mt-1 !ml-1">*******</span>
                 {/* <span>{result?.[0]?.account?.substring(-1)}</span> */}
@@ -490,7 +498,7 @@ function Withdrawl() {
                 >
                   * Maximum Amount{" "}
                   <span className="!text-green-500">
-                    {rupees} {Number(amount?.working_wallet) || 0}
+                    {rupees} {Number(need_to_bet?.data?.Remening_Amount) || 0}
                   </span>{" "}
                   can be withdrawl from working wallet.
                 </Typography>
@@ -501,11 +509,11 @@ function Withdrawl() {
                   sx={{ color: "white" }}
                   className="!text-xs"
                 >
-                  * Maximum Amount{" "}
+                  * You need to bet {" "}
                   <span className="!text-green-500">
-                    {rupees} {need_to_bet?.data?.data * 0.2 || 0}
+                    {rupees} {need_to_bet?.data?.Remening_Amount || 0}
                   </span>{" "}
-                  can be withdrawl from winning wallet.
+                  for withdrawal.
                 </Typography>
               )}
             </Stack>

@@ -6,6 +6,7 @@ import {
   Button,
   Container,
   Dialog,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
@@ -27,7 +28,7 @@ import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
-
+import CloseIcon from "@mui/icons-material/Close";
 
 function Win() {
   const client = useQueryClient();
@@ -52,7 +53,6 @@ function Win() {
       }
     }, 1000);
   }, [dummycounter]);
-
 
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
@@ -81,8 +81,7 @@ function Win() {
         <Box
           sx={{
             padding: 1,
-            background:
-              theme.palette.primary.main,
+            background: theme.palette.primary.main,
             px: 3,
           }}
         >
@@ -112,7 +111,14 @@ function Win() {
             </Stack>
           </Stack>
         </Box>
-        <Box sx={{ position: "relative", overflow: "hidden", background: '#0D0335', py: 2, }}>
+        <Box
+          sx={{
+            position: "relative",
+            overflow: "hidden",
+            background: "#0D0335",
+            py: 2,
+          }}
+        >
           <Box sx={{ px: 2, pb: 2, position: "relative" }}>
             <Box
               sx={{
@@ -131,17 +137,21 @@ function Win() {
                   variant="body1"
                   color="initial"
                   className="b-val"
-                  sx={{ color: 'black' }}
+                  sx={{ color: "black" }}
                 >
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                    Number(net_wallet_amount?.winning || 0) || 0
+                      Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
-                <div className="mx-4 rotate_refresh_image" id="refresh_button" style={{ mb: '5px !important', ml: '10px !important' }}>
+                <div
+                  className="mx-4 rotate_refresh_image"
+                  id="refresh_button"
+                  style={{ mb: "5px !important", ml: "10px !important" }}
+                >
                   <img
-                    style={{ mb: '5px', ml: '10px' }}
+                    style={{ mb: "5px", ml: "10px" }}
                     src={refresh}
                     className="!w-6"
                     ml={3}
@@ -215,7 +225,10 @@ function Win() {
             >
               1.All recharge methods only available in RECHARGE menu on OFFICIAL
             </Typography>
-            <Typography sx={{ background: theme.palette.secondary.main }} className=" !text-white !text-xs rounded-2xl px-2 py-1 !flex justify-center">
+            <Typography
+              sx={{ background: theme.palette.secondary.main }}
+              className=" !text-white !text-xs rounded-2xl px-2 py-1 !flex justify-center"
+            >
               <WhatshotIcon fontSize="small" /> Details
             </Typography>
           </Stack>
@@ -302,6 +315,14 @@ function Win() {
             }}
           >
             <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
+            <div className="!flex !justify-center">
+              <IconButton
+                onClick={() => setOpenDialogBox(false)}
+                className="!bg-rose-400"
+              >
+                <CloseIcon className="!text-white" />
+              </IconButton>
+            </div>
           </Dialog>
         )}
         {/* <CustomCircularProgress isLoading={walletloding} /> */}

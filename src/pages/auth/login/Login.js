@@ -1,53 +1,52 @@
-import {
-  Box,
-  Container,
-  Tab,
-  Tabs,
-  Typography
-} from "@mui/material";
-import CryptoJS from 'crypto-js';
+import { Box, Container, Typography } from "@mui/material";
+import CryptoJS from "crypto-js";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { lightblue, lightyellow } from '../../../Shared/color';
 // import logo from "../../../assets/fun.27036251210ce8ec4ad4.png";
 import custom from "../../../assets/custom.png";
-import logo from "../../../assets/loginlogo.png";
-import logbg from '../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png';
-import LoginWithEmail from '../login/LoginWithEmail';
-import LoginWithMobile from '../login/LoginWithMobile';
+// import logo from "../../../assets/loginlogo.png";
+import logo from "../../../assets/anandloginlogo.png";
+import logbg from "../../../assets/output-onlinepngtools.50540bff27e35c7a58dd.png";
+import LoginWithMobile from "../login/LoginWithMobile";
 
 function Login() {
-  const navigate = useNavigate()
-  const logindata = localStorage.getItem("logindataen") && CryptoJS.AES.decrypt(localStorage.getItem("logindataen"), "anand")?.toString(CryptoJS.enc.Utf8) || null
+  const navigate = useNavigate();
+  const logindata =
+    (localStorage.getItem("logindataen") &&
+      CryptoJS.AES.decrypt(
+        localStorage.getItem("logindataen"),
+        "anand"
+      )?.toString(CryptoJS.enc.Utf8)) ||
+    null;
 
   useEffect(() => {
-    (logindata) && navigate('/dashboard')
-  }, [])
+    logindata && navigate("/dashboard");
+  }, []);
 
-
-  const [value, setValue] = React.useState('two');
+  const [value, setValue] = React.useState("two");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
   return (
-    <Container sx={{
-      background: '#0D0335', height: '100vh',
-      backgroundImage: `url(${logbg})`, backgroundSize: '100% 100%',
-    }}>
-
+    <Container
+      sx={{
+        background: "#0D0335",
+        height: "100vh",
+        backgroundImage: `url(${logbg})`,
+        backgroundSize: "100% 100%",
+      }}
+    >
       <Box
         sx={{
-
           width: "95%",
           marginLeft: "2.5%",
           borderRadius: "10px",
         }}
       >
-        <Box sx={{ width: '100%', }}>
-          <Box component='img' src={logo} sx={style.logocss}></Box>
+        <Box sx={{ width: "100%" }}>
+          <Box component="img" src={logo} sx={style.logocss}></Box>
         </Box>
         {/* <Tab value="two" sx={{ width: "100% !important", }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
@@ -87,14 +86,19 @@ function Login() {
         <LoginWithMobile />
       </Box>
       <Box
-        sx={{ width: "80%", margin: "auto"}}
+        sx={{ width: "80%", margin: "auto" }}
         component={NavLink}
         to="/CustomerService"
       >
         <Box
           component="img"
           src={custom}
-          sx={{ width: "50px", margin: "auto", filter: 'hue-rotate(60deg)', }}
+          sx={{
+            width: "50px",
+            height: "50px",
+            margin: "auto",
+            filter: "hue-rotate(60deg)",
+          }}
         ></Box>
         <Typography
           variant="body1"
@@ -111,32 +115,32 @@ function Login() {
 export default Login;
 
 const style = {
-  authheader: { background: '#0D0335', py: 1, },
-  logocss: { width: '200px', margin: 'auto', borderRadius: '5px' },
-  flagcss: { width: '30px' },
-  icon: { fontSize: "18px", color: 'white' },
-  authform: { width: '100%' },
-  tabs: { width: "100%", '&>p': { textTransform: 'none', }, },
+  authheader: { background: "#0D0335", py: 1 },
+  logocss: { width: "200px", margin: "auto", borderRadius: "5px" },
+  flagcss: { width: "30px" },
+  icon: { fontSize: "18px", color: "white" },
+  authform: { width: "100%" },
+  tabs: { width: "100%", "&>p": { textTransform: "none" } },
   checkbox: {
-    mt: 1, '&>span>svg': { color: 'red' }
+    mt: 1,
+    "&>span>svg": { color: "red" },
   },
-  loginfooter: { width: '90%', margin: 'auto', mt: 5 },
-  footericon: { color: 'red', fontSize: '30px', mb: 1, },
+  loginfooter: { width: "90%", margin: "auto", mt: 5 },
+  footericon: { color: "red", fontSize: "30px", mb: 1 },
   flexbetween: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between;',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between;",
   },
   flexcenter: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   flexcoloumcenter: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
-}
-
+};

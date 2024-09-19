@@ -20,7 +20,13 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
+import {
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgshadow,
+  zubgtext,
+} from "../../Shared/color";
 import payment from "../../assets/check.png";
 import cip from "../../assets/cip.png";
 import balance from "../../assets/images/send.png";
@@ -52,7 +58,9 @@ function WithdrawalUsdt() {
   const [lodint, setloding] = React.useState(false);
   const audioRefMusic = React.useRef(null);
   const [openDialogBox, setOpenDialogBox] = React.useState(false);
-  const [msg, setMsg] = React.useState("Your withdrawl amount will be add in your bank account within 24 Hrs.");
+  const [msg, setMsg] = React.useState(
+    "Your withdrawl amount will be add in your bank account within 24 Hrs."
+  );
 
   // React.useEffect(() => {
   //   !aviator_login_data && get_user_data_fn(dispatch);
@@ -94,14 +102,12 @@ function WithdrawalUsdt() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
 
-
   const initialValues = {
-
     amount: 920,
     withdrawal_add: "Select Address",
     select_wallet: "Select Wallet",
@@ -111,10 +117,12 @@ function WithdrawalUsdt() {
     enableReinitialize: true,
     initialValues: initialValues,
     onSubmit: () => {
-
       if (fk.values.withdrawal_add === "Select Address")
         return toast("Select Address ");
-      if (Number(fk.values.amount) < 92 * 10 || Number(fk.values.amount) > 500 * 92)
+      if (
+        Number(fk.values.amount) < 92 * 10 ||
+        Number(fk.values.amount) > 500 * 92
+      )
         return toast("Amount shoulb be minimum $10 and maximum $500");
 
       if (fk.values.select_wallet === "Select Wallet")
@@ -124,28 +132,28 @@ function WithdrawalUsdt() {
         m_u_id: user_id,
         withdrawal_add: fk.values.withdrawal_add,
         m_w_amount: fk.values.amount,
-        select_wallet: fk.values.select_wallet
-      }
+        select_wallet: fk.values.select_wallet,
+      };
       // console.log(reqbody)
-      withdraw_payment_Function(reqbody)
-
+      withdraw_payment_Function(reqbody);
     },
   });
 
   const withdraw_payment_Function = async (reqbody) => {
     setloding(true);
     try {
-      const response = await axios.post(`${endpoint.withdrawal_request_usdt}`, reqbody);
+      const response = await axios.post(
+        `${endpoint.withdrawal_request_usdt}`,
+        reqbody
+      );
       if (response?.data?.msg === "Record save successfully") {
         walletamountFn();
         fk.handleReset();
         setOpenDialogBox(true);
-
-      }
-      else {
+      } else {
         fk.handleReset();
         setOpenDialogBox(true);
-        setMsg(response?.data?.msg)
+        setMsg(response?.data?.msg);
       }
     } catch (e) {
       toast(e?.message);
@@ -153,7 +161,6 @@ function WithdrawalUsdt() {
     }
     setloding(false);
   };
-
 
   return (
     <Layout>
@@ -180,9 +187,7 @@ function WithdrawalUsdt() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1">
-            Withdrawal
-          </Typography>
+          <Typography variant="body1">Withdrawal</Typography>
           <Box component={NavLink} to="/Withdrawalusdthistory">
             <HistoryIcon />
           </Box>
@@ -198,14 +203,17 @@ function WithdrawalUsdt() {
             mt: 3,
           }}
         >
-          <Stack direction="row" sx={{
-            alignItems: "center", position: 'relative',
-            zIndex: 10,
-          }}>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              position: "relative",
+              zIndex: 10,
+            }}
+          >
             <Box component="img" src={balance} width={50}></Box>
             <Typography
               variant="body1"
-
               sx={{
                 fontSize: "16px ",
                 fontWeight: 500,
@@ -220,13 +228,12 @@ function WithdrawalUsdt() {
           <Stack direction="row" sx={{ alignItems: "center", mt: "10px" }}>
             <Typography
               variant="body1"
-
               sx={{
                 fontSize: "30px ",
                 fontWeight: "600",
                 color: "white",
                 mr: "10px",
-                position: 'relative',
+                position: "relative",
                 zIndex: 10,
               }}
             >
@@ -234,32 +241,43 @@ function WithdrawalUsdt() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
-            <CachedIcon sx={{
-              color: "white", position: 'relative',
-              zIndex: 10,
-            }} />
+            <CachedIcon
+              sx={{
+                color: "white",
+                position: "relative",
+                zIndex: 10,
+              }}
+            />
           </Stack>
           <Stack
             direction="row"
             sx={{
               alignItems: "center",
               justifyContent: "space-between",
-              mt: "20px", position: 'relative',
+              mt: "20px",
+              position: "relative",
               zIndex: 10,
             }}
           >
-            <Box component="img" src={cip} width={50} sx={{
-              position: 'relative',
-              zIndex: 10,
-            }}></Box>
+            <Box
+              component="img"
+              src={cip}
+              width={50}
+              sx={{
+                position: "relative",
+                zIndex: 10,
+              }}
+            ></Box>
             <Typography
               variant="body1"
-
               sx={{
-                fontSize: "14px ", color: "white", ml: "10px", position: 'relative',
+                fontSize: "14px ",
+                color: "white",
+                ml: "10px",
+                position: "relative",
                 zIndex: 10,
               }}
             >
@@ -270,7 +288,6 @@ function WithdrawalUsdt() {
         <Box>
           <Box
             sx={{
-
               padding: "10px",
               width: "95%",
               margin: "auto",
@@ -281,19 +298,22 @@ function WithdrawalUsdt() {
               mb: 5,
             }}
           >
-
             <Box mt={2}>
-
               <div className="  my-2 mb-4">
-                <p style={{ color: theme.palette.primary.main }} className="!text-center !p-4  cursor-pointer  border border-dashed border-gray-400"
-                  onClick={() => navigate("/addadressusdt")}> + Add Address</p>
+                <p
+                  style={{ color: theme.palette.primary.main }}
+                  className="!text-center !p-4  cursor-pointer  border border-dashed border-gray-400"
+                  onClick={() => navigate("/addadressusdt")}
+                >
+                  {" "}
+                  + Add Address
+                </p>
               </div>
               <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
                 <Box component="img" src={payment} width={30}></Box>
                 <Typography
                   variant="body1"
-
-                  sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
+                  sx={{ fontSize: "15px ", color: "white", ml: "10px" }}
                 >
                   Select Amount of USDT
                 </Typography>
@@ -301,7 +321,7 @@ function WithdrawalUsdt() {
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: 'white' }}>
+                  <Typography variant="h3" sx={{ color: "white" }}>
                     Select address <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -315,13 +335,13 @@ function WithdrawalUsdt() {
                   placeholder="abcd"
                   InputProps={{
                     style: {
-                      color: 'white',
+                      color: "white",
                       background: "#605A7A",
                       borderRadius: "10px",
                     },
                   }}
                 >
-                  <MenuItem value={"Select Address"} >Select Address</MenuItem>
+                  <MenuItem value={"Select Address"}>Select Address</MenuItem>
                   {result?.map((i, index) => {
                     return (
                       <MenuItem value={i?.usdt_address}>
@@ -331,10 +351,10 @@ function WithdrawalUsdt() {
                   })}
                 </TextField>
               </FormControl>
-              <Box >
+              <Box>
                 <FormControl fullWidth sx={{ mt: "10px" }}>
                   <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: 'white' }}>
+                    <Typography variant="h3" sx={{ color: "white" }}>
                       Select Wallet <span className="!text-red-600">*</span>
                     </Typography>
                   </Stack>
@@ -348,24 +368,21 @@ function WithdrawalUsdt() {
                     //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     InputProps={{
                       style: {
-
-
-                        color: 'white',
+                        color: "white",
                         background: "#605A7A",
                         borderRadius: "10px",
                       },
                     }}
                   >
-                    <MenuItem value={"Select Wallet"} >Select Wallet</MenuItem>
+                    <MenuItem value={"Select Wallet"}>Select Wallet</MenuItem>
                     <MenuItem value="Working Wallet">Working Wallet</MenuItem>
                     <MenuItem value="Main Wallet">Main Wallet</MenuItem>
                   </TextField>
                 </FormControl>
-
               </Box>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: 'white' }}>
+                  <Typography variant="h3" sx={{ color: "white" }}>
                     Enter amount <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -373,20 +390,17 @@ function WithdrawalUsdt() {
                   id="amount"
                   name="amount"
                   type="number"
-
-
                   value={fk.values.amount}
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
                   className="withdrawalfield"
-                //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
-
               </FormControl>
 
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
-                  <Typography variant="h3" sx={{ color: 'white' }}>
+                  <Typography variant="h3" sx={{ color: "white" }}>
                     Enter USDT <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -396,9 +410,7 @@ function WithdrawalUsdt() {
                   placeholder=" 00000 "
                   className="withdrawalfield"
                 />
-
               </FormControl>
-
 
               <Button
                 sx={style.paytmbtntwo}
@@ -413,19 +425,18 @@ function WithdrawalUsdt() {
             </Box>
           </Box>
           <Box
-
             mt={3}
             sx={{
-
               padding: "10px",
               width: "95%",
               margin: "auto",
               mt: "20px",
-              background: '#605A7A',
+              background: "#605A7A",
               boxShadow: zubgshadow,
               borderRadius: "10px",
               mb: 5,
-            }}>
+            }}
+          >
             <Stack
               direction="row"
               alignItems="center"
@@ -440,7 +451,7 @@ function WithdrawalUsdt() {
                 >
                   * Maximum Amount{" "}
                   <span className="!text-green-500">
-                    {rupees} {Number(amount?.working_wallet) || 0}
+                    {rupees} {Number(need_to_bet?.data?.Remening_Amount) || 0}
                   </span>{" "}
                   can be withdrawl from working wallet.
                 </Typography>
@@ -451,51 +462,56 @@ function WithdrawalUsdt() {
                   sx={{ color: "white" }}
                   className="!text-xs"
                 >
-                  * Maximum Amount{" "}
+                  * You need to bet{" "}
                   <span className="!text-green-500">
-                    {rupees} {need_to_bet?.data?.data * 0.2 || 0}
+                    {rupees} {need_to_bet?.data?.Remening_Amount || 0}
                   </span>{" "}
-                  can be withdrawl from winning wallet.
+                  for withdrawal.
                 </Typography>
               )}
             </Stack>
-            <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
+            <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold !text-xl"
+            >
               <Typography
                 variant="body1"
                 className="!text-xs"
-                sx={{ color: 'white', }}
+                sx={{ color: "white" }}
               >
-                *   Withdraw time{" "}
+                * Withdraw time{" "}
               </Typography>
               <Typography
                 className=" !text-xs"
                 variant="body1"
-
                 sx={{
                   mx: 0.5,
-                  color: '#62B90E !important'
+                  color: "#62B90E !important",
                 }}
               >
                 00:00-23:50.{" "}
               </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
-
+            <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold !text-xl"
+            >
               <Typography
                 variant="body1"
-                sx={{ color: 'white', }}
+                sx={{ color: "white" }}
                 className="!text-xs"
               >
-                *   Withdraw Amount
+                * Withdraw Amount
               </Typography>
               <Typography
                 className=" !text-xs"
                 variant="body1"
-
-
                 sx={{
-
-                  color: '#62B90E !important',
+                  color: "#62B90E !important",
                   mx: 0.5,
                 }}
               >
@@ -503,35 +519,37 @@ function WithdrawalUsdt() {
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-
               <Typography
                 variant="body1"
-                sx={{ color: 'white', }}
+                sx={{ color: "white" }}
                 className="!text-xs"
               >
-                *    Please confirm your beneficial account information before
+                * Please confirm your beneficial account information before
                 withdrawing.
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
-
               <Typography
                 variant="body1"
-                sx={{ color: 'white', }}
+                sx={{ color: "white" }}
                 className="!text-xs"
               >
-                *    If your information is incorrect, our company will
-                not be liable for the amount of loss .{" "}
+                * If your information is incorrect, our company will not be
+                liable for the amount of loss .{" "}
               </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" mt={1} className="!text-bold ">
-
+            <Stack
+              direction="row"
+              alignItems="center"
+              mt={1}
+              className="!text-bold "
+            >
               <Typography
                 variant="body1"
-                sx={{ color: 'white', }}
+                sx={{ color: "white" }}
                 className="!text-xs"
               >
-                *  If your beneficial information is incorrect, please contact
+                * If your beneficial information is incorrect, please contact
                 customer service.
               </Typography>
             </Stack>
@@ -540,9 +558,7 @@ function WithdrawalUsdt() {
         <Dialog open={openDialogBox}>
           <div className="!p-5 !max-w-[300px]">
             <p className="!font-bold text-center flex-col">
-              <span className="!text-lg">
-                {msg}
-              </span>
+              <span className="!text-lg">{msg}</span>
               <p className="!text-green-500">Thank You!</p>
               <Button
                 onClick={() => setOpenDialogBox(false)}
@@ -555,7 +571,7 @@ function WithdrawalUsdt() {
           </div>
         </Dialog>
       </Container>
-    </Layout >
+    </Layout>
   );
 }
 

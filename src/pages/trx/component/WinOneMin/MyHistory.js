@@ -1,4 +1,11 @@
-import { Box, Pagination, Stack, TablePagination, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Pagination,
+  Stack,
+  TablePagination,
+  Typography,
+} from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -8,7 +15,8 @@ import { useSelector } from "react-redux";
 import { zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
 import { rupees } from "../../../../services/urls";
-
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const MyHistory = ({ gid }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -35,7 +43,7 @@ const MyHistory = ({ gid }) => {
 
   return (
     <Box>
-      <Stack direction="row" className="onegotextbox">
+      {/* <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
             component="img"
@@ -52,8 +60,8 @@ const MyHistory = ({ gid }) => {
             ? " My Three GO Record"
             : " My Five GO Record"}
         </Typography>
-      </Stack>
-      <div className="flex flex-col gap-[2px]">
+      </Stack> */}
+      <div className="flex flex-col gap-[2px] mt-4">
         {visibleRows?.map((i) => {
           return (
             <div>
@@ -72,7 +80,7 @@ const MyHistory = ({ gid }) => {
                 >
                   <Box className="flexbetween">
                     <div className="!flex  gap-4">
-                    <Box
+                      <Box
                         sx={{
                           background: "red",
                           width: "45px",
@@ -108,7 +116,7 @@ const MyHistory = ({ gid }) => {
                                         `}
                       >
                         <Typography
-                           variant="body1"
+                          variant="body1"
                           sx={{ color: "white" }}
                           className="!text-[11px]"
                         >
@@ -376,36 +384,53 @@ const MyHistory = ({ gid }) => {
       </div>
 
       <Box className="paginationTable " mb={10}>
-        {/* <TablePagination
+        <Box
           sx={{
-            background: zubgtext,
-            color: "white",
-            borderRadius: "10px",
-            marginTop: "10px",
-          }}
-          rowsPerPageOptions={[5, 10]}
-          component="div"
-          count={my_history_data?.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage="Rows"
-        /> */}
-        <Pagination
-          // count={3}
-          count={Math.ceil(my_history_data?.length / rowsPerPage)} // Calculate total pages based on the data length
-          page={page} // Current page
-          onChange={handleChangePage} // Function to handle page changes
-          color="primary" // Color of pagination
-          sx={{
-            // background: zubgtext, // Background styling
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             color: "white",
             borderRadius: "10px",
             marginTop: "5px",
             mb: 3,
           }}
-        />
+        >
+          <IconButton
+            onClick={() => handleChangePage(null, Math.max(0, page - 1))}
+            className={`${
+              page === 0 ? "!text-gray-400" : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+
+          <Typography sx={{ margin: "0 10px" }}>
+            {page + 1} / {Math.ceil(my_history_data?.length / rowsPerPage)}
+          </Typography>
+
+          <IconButton
+            onClick={() =>
+              handleChangePage(
+                null,
+                Math.min(
+                  Math.ceil(my_history_data?.length / rowsPerPage) - 1,
+                  page + 1
+                )
+              )
+            }
+            sx={{
+              marginLeft: "10px",
+              color: "white",
+            }}
+            className={`${
+              page + 1 >= Math.ceil(my_history_data?.length / rowsPerPage)
+                ? "!text-gray-400"
+                : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </Box>
       </Box>
       {/* <CustomCircularProgress isLoading={myhistory_loding} /> */}
     </Box>

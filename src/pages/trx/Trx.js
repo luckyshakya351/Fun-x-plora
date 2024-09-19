@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Dialog,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
@@ -29,7 +30,7 @@ import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
-
+import CloseIcon from "@mui/icons-material/Close";
 function Win() {
   const [musicicon, setmusicicon] = useState(true);
   const navigate = useNavigate();
@@ -50,9 +51,8 @@ function Win() {
           localStorage.setItem("betApplied", false);
         }, 2000);
       }
-    },1000);
+    }, 1000);
   }, [dummycounter]);
-
 
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
@@ -82,8 +82,7 @@ function Win() {
           <Box
             sx={{
               padding: 1,
-              background:
-                theme.palette.primary.main,
+              background: theme.palette.primary.main,
               px: 3,
             }}
           >
@@ -113,7 +112,13 @@ function Win() {
               </Stack>
             </Stack>
           </Box>
-          <Box sx={{ padding: 2, position: "relative", background: theme.palette.secondary.main, }}>
+          <Box
+            sx={{
+              padding: 2,
+              position: "relative",
+              background: theme.palette.secondary.main,
+            }}
+          >
             <Box
               sx={{
                 padding: "20px 10px",
@@ -135,7 +140,7 @@ function Win() {
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                    Number(net_wallet_amount?.winning || 0) || 0
+                      Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
                 <div className="mx-1 rotate_refresh_image" id="refresh_button">
@@ -197,7 +202,7 @@ function Win() {
               position: "relative",
             }}
           >
-            <Stack direction="row" sx={{ borderRadius: '10px' }}>
+            <Stack direction="row" sx={{ borderRadius: "10px" }}>
               <Box
                 component={NavLink}
                 onClick={() => setTab(1)}
@@ -251,7 +256,7 @@ function Win() {
                 ) : (
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
-                <Typography className='!pb-4' variant="h3" color="initial">
+                <Typography className="!pb-4" variant="h3" color="initial">
                   JACKPOT
                 </Typography>
               </Box>
@@ -274,6 +279,14 @@ function Win() {
             }}
           >
             <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
+            <div className="!flex !justify-center">
+              <IconButton
+                onClick={() => setOpenDialogBox(false)}
+                className="!bg-rose-400"
+              >
+                <CloseIcon className="!text-white" />
+              </IconButton>
+            </div>
           </Dialog>
         )}
         {/* <CustomCircularProgress isLoading={walletloding} /> */}
@@ -285,7 +298,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: zubgback, },
+  root: { background: zubgback },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

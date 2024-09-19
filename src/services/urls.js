@@ -18,7 +18,6 @@ export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 
 export const endpoint = {
   //node login api
-
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
@@ -92,6 +91,7 @@ export const endpoint = {
   deposit_bonus: `${newdomain}/api/v1/self-deposit-bonus`,
   referral_bonus: `${newdomain}/api/v1/sponsor-income`,
   need_to_bet: `${newdomain}/api/v1/need-to-bet`,
+  need_to_bet_larawel: `${baseUrl}/api/get-user-remaining-amount`,
   //income
   subordinate_data: `${newdomain1}/api/v1/get-subordinate-data-funx`,
   commission_data: `${newdomain1}/api/v1/get-commisssion-data-funx`,

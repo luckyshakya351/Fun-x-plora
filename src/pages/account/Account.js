@@ -1,9 +1,9 @@
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import RemoveIcon from '@mui/icons-material/Remove';
+import RemoveIcon from "@mui/icons-material/Remove";
 import {
   Box,
   Button,
@@ -18,17 +18,13 @@ import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import {
-  zubgtext
-} from "../../Shared/color";
+import { zubgtext } from "../../Shared/color";
 import cip from "../../assets/cip.png";
 import card from "../../assets/images/card-payment.png";
 import graph from "../../assets/images/graph (1).png";
 import balance from "../../assets/images/logotred.png";
-import bgms from "../../assets/images/playgame.jpg";
 import dp1 from "../../assets/images/pr.png";
 import trans from "../../assets/images/translate.png";
-import namer from "../../assets/images/vip.png";
 import edit from "../../assets/quickpay.png";
 import wtd from "../../assets/rechargeIcon.png";
 import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
@@ -46,11 +42,15 @@ function Account() {
   const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
-  const { isLoading, data: amount } = useQuery(["walletamount"], () => walletamount(), {
-    refetchOnMount: false,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading, data: amount } = useQuery(
+    ["walletamount"],
+    () => walletamount(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: false,
+    }
+  );
   const wallet = amount?.data?.data;
 
   async function sendUrlCallBackToBackend(transactionId) {
@@ -79,21 +79,19 @@ function Account() {
       <Container sx={style.container}>
         <Stack direction="row" sx={style.header}>
           <Box sx={style.profileBox}>
-            <Box
-              component="img"
-              src={dp1}
-              sx={style.profileImage}
-            />
+            <Box component="img" src={dp1} sx={style.profileImage} />
           </Box>
-          <Box sx={style.userInfo}>
-            <Stack direction="row" alignItems="center">
-              <Typography variant="" sx={{ mr: 2, color: 'white', }}>
+          <Box sx={style.userInfo} className={"!flex !flex-col-reverse"}>
+            <Stack direction="column" alignItems="start">
+              <Typography variant="" sx={{ ml: 2, color: "white" }}>
                 {wallet?.full_name}
               </Typography>
-              <Box className="">
-                {wallet?.transaction_status === 0 ?
-                  <RemoveIcon className="!text-red-500 !font-extrabold  !text-4xl" />
-                  : <AddIcon className="!text-green-500 !font-extrabold  !text-4xl" />}
+              <Box className="!ml-2">
+                {wallet?.transaction_status === 1 ? (
+                  <span className="!text-green-600">POSITIVE</span>
+                ) : (
+                  <span className="!text-red-500">NEGATIVE</span>
+                )}
               </Box>
             </Stack>
 
@@ -101,57 +99,59 @@ function Account() {
               UID | {wallet?.username || 0}{" "}
               <ContentCopyOutlinedIcon sx={{ fontSize: "15px", ml: 2 }} />
             </Typography>
-            <p className="!ml-2" style={{ color: 'white', marginTop: '8px' }}>
-              Mobile No :  {wallet?.mob_no || 0}{" "}
+            <p className="!ml-2" style={{ color: "white", marginTop: "8px" }}>
+              Mobile No : {wallet?.mob_no || 0}{" "}
             </p>
           </Box>
         </Stack>
-        <Box sx={style.balanceContainer}>
-          <Stack direction="row" sx={{ alignItems: "center", }}>
+        <Box sx={style.balanceContainer} className={"!bg-white !text-gray-900"}>
+          <Stack direction="row" sx={{ alignItems: "center" }}>
             <Box component="img" src={balance} sx={style.cardImage} />
-
           </Stack>
-          <Stack direction="row" sx={{ alignItems: "center", mt: "10px", justifyContent: 'space-between' }}>
-            <Typography variant="body1" color="initial" sx={style.balanceText}>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              mt: "10px",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography variant="body1" color="initial" sx={style.balanceText} className={"!text-[#110738]"}>
               Total Balance
             </Typography>
-            <Typography variant="body1" color="initial" sx={style.totalBalance}>
+            <Typography variant="body1" color="initial" sx={style.totalBalance} className={"!text-[#110738]"}>
               ₹
               {(
                 Number(
-                  Number(wallet?.winning || 0) +
-                  Number(wallet?.wallet || 0)
+                  Number(wallet?.winning || 0) + Number(wallet?.wallet || 0)
                 ) || 0
-              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
+              )?.toFixed(0)}{" "}
+              <CachedIcon sx={style.cachedIcon} />
             </Typography>
-
           </Stack>
-          <Stack direction="row" sx={{ alignItems: "center", justifyContent: 'space-between' }}>
-            <Typography variant="body1" color="initial" sx={style.balanceText1}>
+          <Stack
+            direction="row"
+            sx={{ alignItems: "center", justifyContent: "space-between" }}
+          >
+            <Typography variant="body1" color="initial" sx={style.balanceText1} className={"!text-[#110738]"}>
               Yesterday total deposit
-
             </Typography>
-            <Typography variant="body1" color="initial" className="!text-white">
-              ₹
-              {(
-                Number(wallet?.total_payin || 0)
-
-              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
+            <Typography variant="body1" color="initial" className="!text-white" className={"!text-[#110738]"}>
+              ₹{Number(wallet?.total_payin || 0)?.toFixed(0)}{" "}
+              <CachedIcon sx={style.cachedIcon} />
             </Typography>
-
           </Stack>
-          <Stack direction="row" sx={{ alignItems: "center", justifyContent: 'space-between' }}>
-            <Typography variant="body1" color="initial" sx={style.balanceText1}>
+          <Stack
+            direction="row"
+            sx={{ alignItems: "center", justifyContent: "space-between" }}
+          >
+            <Typography variant="body1" color="initial" sx={style.balanceText1} className={"!text-[#110738]"}>
               Yesterday total withdrawal
             </Typography>
-            <Typography variant="body1" color="initial" className="!text-white">
-              ₹
-              {(
-                Number(wallet?.total_payout || 0)
-
-              )?.toFixed(0)}  <CachedIcon sx={style.cachedIcon} />
+            <Typography variant="body1" color="initial" className="!text-white" className={"!text-[#110738]"}>
+              ₹{Number(wallet?.total_payout || 0)?.toFixed(0)}{" "}
+              <CachedIcon sx={style.cachedIcon} />
             </Typography>
-
           </Stack>
           <Stack
             direction="row"
@@ -162,7 +162,7 @@ function Account() {
             }}
           >
             <Box component="img" src={cip} sx={style.cardImage} />
-            <Typography variant="body1" color="initial" sx={style.cardNumber}>
+            <Typography variant="body1" color="initial" sx={style.cardNumber} className={"!text-[#110738]"}>
               Rererral Code: {wallet?.referral_code}
             </Typography>
           </Stack>
@@ -193,7 +193,7 @@ function Account() {
             </Typography>
           </Box>
         </Box>
-        <Box sx={style.actionContainer} >
+        <Box sx={style.actionContainer}>
           {/* <Box
             sx={{
               width: "50%",
@@ -231,8 +231,12 @@ function Account() {
               height: "100%",
             }}
           >
-            <Stack direction="row" sx={{ alignItems: "center" }}
-              component={NavLink} to={"/account/income-main"}>
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center" }}
+              component={NavLink}
+              to={"/account/income-main"}
+            >
               <Box
                 component="img"
                 src={card}
@@ -314,19 +318,24 @@ function Account() {
                 <Box
                   component="img"
                   src={graph}
-                  sx={{ width: "25px", height: "25px", marginRight: "10px", filter: 'hue-rotate(135deg)' }}
+                  sx={{
+                    width: "25px",
+                    height: "25px",
+                    marginRight: "10px",
+                    filter: "hue-rotate(135deg)",
+                  }}
                 ></Box>
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{ color: 'white', fontSize: "13px", fontWeight: "600" }}
+                  sx={{ color: "white", fontSize: "13px", fontWeight: "600" }}
                 >
                   Game statistics
                 </Typography>
               </Stack>
               <Box>
                 <KeyboardDoubleArrowRightIcon
-                  sx={{ color: 'white', fontSize: "23px", fontWeight: "600" }}
+                  sx={{ color: "white", fontSize: "23px", fontWeight: "600" }}
                 />
               </Box>
             </Stack>
@@ -346,19 +355,24 @@ function Account() {
                 <Box
                   component="img"
                   src={trans}
-                  sx={{ width: "25px", height: "25px", marginRight: "10px", filter: 'hue-rotate(135deg)' }}
+                  sx={{
+                    width: "25px",
+                    height: "25px",
+                    marginRight: "10px",
+                    filter: "hue-rotate(135deg)",
+                  }}
                 ></Box>
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{ color: 'white', fontSize: "13px", fontWeight: "600" }}
+                  sx={{ color: "white", fontSize: "13px", fontWeight: "600" }}
                 >
                   Language
                 </Typography>
               </Stack>
               <Box>
                 <Typography
-                  sx={{ color: 'white', fontSize: "13px", fontWeight: "500" }}
+                  sx={{ color: "white", fontSize: "13px", fontWeight: "500" }}
                 >
                   English
                 </Typography>
@@ -560,13 +574,18 @@ const style = {
     background: theme.palette.secondary.light,
   },
   actionBox: { width: "20%" },
-  actionImage: { width: "30px", height: "30px", margin: "auto", filter: 'hue-rotate(45deg)' },
+  actionImage: {
+    width: "30px",
+    height: "30px",
+    margin: "auto",
+    filter: "hue-rotate(45deg)",
+  },
   actionText: {
-    color: 'white',
+    color: "white",
     textAlign: "center",
     fontSize: "14px",
     fontWeight: "500",
-    mt: '4px',
+    mt: "4px",
   },
   actionContainertwo: {
     flexDirection: "column",
