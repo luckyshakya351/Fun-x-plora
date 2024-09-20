@@ -10,7 +10,7 @@ import {
   InputAdornment,
   OutlinedInput,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import CryptoJS from "crypto-js";
@@ -22,11 +22,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
 import logo1 from "../../../assets/images/logotred.png";
-import {
-  zubgmid,
-  zubgshadow,
-  zubgtext
-} from "../../../Shared/color";
+import { zubgmid, zubgshadow, zubgtext } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
 import user from "../../../assets/check.png";
 import dot from "../../../assets/images/circle-arrow.png";
@@ -79,7 +75,6 @@ function WalletRecharge() {
 
   React.useEffect(() => {
     handlePlaySound();
-
   }, []);
 
   // React.useEffect(() => {
@@ -114,7 +109,6 @@ function WalletRecharge() {
   React.useEffect(() => {
     walletamountFn();
   }, []);
-
 
   const initialValues = {
     amount: deposit_amount || 0,
@@ -151,7 +145,6 @@ function WalletRecharge() {
     if (!amnt) {
       toast("Please Enter the amount");
       return;
-
     }
     const reqbody = {
       user_id: user_id,
@@ -160,7 +153,8 @@ function WalletRecharge() {
     };
     const fdata = new FormData();
     fdata.append("user_id", reqbody.user_id);
-    fdata.append("type_gateway", selectedGateway === "Gateway1" ? "1" : "2");
+    fdata.append("type_gateway", "1");
+    // fdata.append("type_gateway", selectedGateway === "Gateway1" ? "1" : "2");
     fdata.append("amount", reqbody.amount);
     fdata.append("transection_id", reqbody.transection_id);
     fdata.append("Deposit_type", deposit_amount ? Deposit_type : "Null");
@@ -243,7 +237,7 @@ function WalletRecharge() {
           <Typography
             variant="body1"
             color="initial"
-            sx={{ fontSize: "15px ", color: 'white !important', ml: "10px" }}
+            sx={{ fontSize: "15px ", color: "white !important", ml: "10px" }}
           >
             {" "}
             Recharge instructions
@@ -257,29 +251,61 @@ function WalletRecharge() {
           }}
         >
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
+            <Box
+              component="img"
+              src={dot}
+              width={15}
+              sx={{ filter: "grayscale(1)" }}
+            ></Box>
+            <Typography
+              variant="body1"
+              sx={{ color: "white !important", fontSize: "12px" }}
+            >
               If the transfer time is up, please fill out the deposit form
               again.
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
+            <Box
+              component="img"
+              src={dot}
+              width={15}
+              sx={{ filter: "grayscale(1)" }}
+            ></Box>
+            <Typography
+              variant="body1"
+              sx={{ color: "white !important", fontSize: "12px" }}
+            >
               The transfer amount must match the order you created, otherwise
               the money cannot be credited successfully.
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
+            <Box
+              component="img"
+              src={dot}
+              width={15}
+              sx={{ filter: "grayscale(1)" }}
+            ></Box>
+            <Typography
+              variant="body1"
+              sx={{ color: "white !important", fontSize: "12px" }}
+            >
               If you transfer the wrong amount, our company will not be
               responsible for the lost amount!
             </Typography>
           </Stack>
           <Stack direction="row" sx={style.rechargeinstext}>
-            <Box component="img" src={dot} width={15} sx={{ filter: 'grayscale(1)' }}></Box>
-            <Typography variant="body1" sx={{ color: 'white !important', fontSize: '12px' }}>
+            <Box
+              component="img"
+              src={dot}
+              width={15}
+              sx={{ filter: "grayscale(1)" }}
+            ></Box>
+            <Typography
+              variant="body1"
+              sx={{ color: "white !important", fontSize: "12px" }}
+            >
               Note: do not cancel the deposit order after the money has been
               transferred.
             </Typography>
@@ -293,10 +319,15 @@ function WalletRecharge() {
     return (
       <>
         <Stack direction="row" sx={{ alignItems: "center", mb: "20px" }}>
-          <Box component="img" src={pay} width={30} sx={{ filter: 'saturate(-1)' }}></Box>
+          <Box
+            component="img"
+            src={pay}
+            width={30}
+            sx={{ filter: "saturate(-1)" }}
+          ></Box>
           <Typography
             variant="body1"
-            sx={{ fontSize: "15px ", color: 'white !important', ml: "10px" }}
+            sx={{ fontSize: "15px ", color: "white !important", ml: "10px" }}
           >
             Deposit amount
           </Typography>
@@ -324,9 +355,8 @@ function WalletRecharge() {
             sx={style.paytmbtn}
             onClick={() => {
               setDeposit_req_data(null);
-              fk.setFieldValue("amount", 1000)
-            }
-            }
+              fk.setFieldValue("amount", 1000);
+            }}
           >
             {" "}
             ₹ 1K
@@ -335,9 +365,8 @@ function WalletRecharge() {
             sx={style.paytmbtn}
             onClick={() => {
               setDeposit_req_data(null);
-              fk.setFieldValue("amount", 5000)
-            }
-            }
+              fk.setFieldValue("amount", 5000);
+            }}
           >
             {" "}
             ₹ 5K
@@ -346,10 +375,8 @@ function WalletRecharge() {
             sx={style.paytmbtn}
             onClick={() => {
               setDeposit_req_data(null);
-              fk.setFieldValue("amount", 10000)
-            }
-            }
-
+              fk.setFieldValue("amount", 10000);
+            }}
           >
             {" "}
             ₹ 10K
@@ -358,9 +385,8 @@ function WalletRecharge() {
             sx={style.paytmbtn}
             onClick={() => {
               setDeposit_req_data(null);
-              fk.setFieldValue("amount", 15000)
-            }
-            }
+              fk.setFieldValue("amount", 15000);
+            }}
           >
             {" "}
             ₹ 15K
@@ -369,9 +395,8 @@ function WalletRecharge() {
             sx={style.paytmbtn}
             onClick={() => {
               setDeposit_req_data(null);
-              fk.setFieldValue("amount", 20000)
-            }
-            }
+              fk.setFieldValue("amount", 20000);
+            }}
           >
             {" "}
             ₹ 20K
@@ -388,7 +413,7 @@ function WalletRecharge() {
           <Typography
             variant="body1"
             color="initial"
-            sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
+            sx={{ fontSize: "15px ", color: "white", ml: "10px" }}
           >
             Select amount of USDT
           </Typography>
@@ -411,9 +436,7 @@ function WalletRecharge() {
           </Button>
           <Button
             sx={style.paytmbtn}
-
-            onClick={() =>
-              formik.setFieldValue("amount", 50)}
+            onClick={() => formik.setFieldValue("amount", 50)}
           >
             {" "}
             $ 50
@@ -459,11 +482,11 @@ function WalletRecharge() {
     //     show_time={show_time}
     //   />
     // );
-  } React.useEffect(() => {
+  }
+  React.useEffect(() => {
     if (paymentType === "UPI" && fk.values.amount > 1000) {
       setSelectedGateway("Gateway1");
-    }
-    else {
+    } else {
       setSelectedGateway("Gateway2");
     }
   }, [fk.values.amount, paymentType]);
@@ -483,7 +506,7 @@ function WalletRecharge() {
       <Container
         className="no-scrollbar"
         sx={{
-          background: '#0E0435',
+          background: "#0E0435",
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -508,7 +531,7 @@ function WalletRecharge() {
             width: "95%",
             margin: "auto",
             position: "relative",
-            background: 'white',
+            background: "white",
           }}
         >
           <Stack direction="row" sx={{ alignItems: "center" }}>
@@ -519,7 +542,7 @@ function WalletRecharge() {
               sx={{
                 position: "relative",
                 zIndex: 10,
-                filter: 'invert(1)',
+                filter: "invert(1)",
               }}
             ></Box>
             <Typography
@@ -564,8 +587,8 @@ function WalletRecharge() {
               {deposit_amount
                 ? Number(amount?.cricket_wallet || 0)?.toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -575,12 +598,21 @@ function WalletRecharge() {
               }}
             />
           </Stack>
-          <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} sx={{ width: '100%', padding: '10px 0px 0px 0px' }}>
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+            sx={{ width: "100%", padding: "10px 0px 0px 0px" }}
+          >
             <div class="visa_info">
-              <img style={{ width: '50px' }} src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" alt="" />
+              <img
+                style={{ width: "50px" }}
+                src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png"
+                alt=""
+              />
             </div>
             <div class="visa_logo">
-              <Box component={'img'} src={logo1} sx={{ width: '90px' }}></Box>
+              <Box component={"img"} src={logo1} sx={{ width: "90px" }}></Box>
             </div>
           </Stack>
         </Box>
@@ -590,7 +622,6 @@ function WalletRecharge() {
             sx={{
               background: zubgtext,
               border: zubgtext,
-
             }}
             className="!cursor-pointer px-8 py-3 !rounded-lg !my-10 "
             onClick={() => setPaymentType("UPI")}
@@ -639,15 +670,52 @@ function WalletRecharge() {
                 alignItems: "center",
                 mx: 2,
                 background: theme.palette.secondary.light,
-                borderRadius: '10px',
-                width: '100%'
+                borderRadius: "10px",
+                width: "100%",
               }}
             >
-            {/* contained */}
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '10px 20px' }}>
-                <Button variant="" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', background: '#0D0335' }} className={`${Number(fk.values.amount || 0) < 2000  ? "!bg-[#63ba0e]":"contained"}`}>Flex</Button>
-                <Button variant="" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', }} className={`${Number(fk.values.amount || 0) >= 2000 ? "!bg-[#63ba0e]":"contained"} `}>PYT-PAY</Button> 
-              </Box>
+              {/* contained */}
+              {/* <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  padding: "10px 20px",
+                }}
+              >
+                <Button
+                  variant=""
+                  sx={{
+                    color: "white",
+                    fontWeight: "500",
+                    borderRadius: "30px",
+                    background: "#0D0335",
+                  }}
+                  className={`${
+                    Number(fk.values.amount || 0) < 2000
+                      ? "!bg-[#63ba0e]"
+                      : "contained"
+                  }`}
+                >
+                  Flex
+                </Button>
+                <Button
+                  variant=""
+                  sx={{
+                    color: "white",
+                    fontWeight: "500",
+                    borderRadius: "30px",
+                  }}
+                  className={`${
+                    Number(fk.values.amount || 0) >= 2000
+                      ? "!bg-[#63ba0e]"
+                      : "contained"
+                  } `}
+                >
+                  PYT-PAY
+                </Button>
+              </Box> */}
               {/* <RadioGroup
                 row
                 value={selectedGateway}
@@ -894,7 +962,7 @@ const style = {
     width: "31%",
     // border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: theme.palette.primary.dark, },
+    "&:hover": { background: theme.palette.primary.dark },
   },
   paytmbtntwo: {
     borderRadius: "5px",
@@ -906,7 +974,7 @@ const style = {
     mt: "20px",
     // border: "1px solid white",
     padding: "10px",
-    "&:hover": { background: theme.palette.secondary.dark, },
+    "&:hover": { background: theme.palette.secondary.dark },
   },
   rechargeinstext: {
     mb: "10px",
