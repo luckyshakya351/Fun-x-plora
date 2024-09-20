@@ -159,12 +159,12 @@ function WalletRecharge() {
     fdata.append("transection_id", reqbody.transection_id);
     fdata.append("Deposit_type", deposit_amount ? Deposit_type : "Null");
     fdata.append("server_provider", deposit_amount ? server_provider : "Null");
-
-    if (deposit_amount) {
-      fdata.append("game_type", "1");
-    } else {
-      fdata.append("game_type", "2");
-    }
+    fdata.append("game_type", "1");
+    // if (deposit_amount) {
+    //   fdata.append("game_type", "1");
+    // } else {
+    //   fdata.append("game_type", "2");
+    // }
     try {
       const res = await axios.post(`${endpoint.payment_request}`, fdata);
       const qr_url =
