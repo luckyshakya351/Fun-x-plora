@@ -6,9 +6,12 @@ import {
   Box,
   Button,
   Container,
+  FormControlLabel,
   IconButton,
   InputAdornment,
   OutlinedInput,
+  Radio,
+  RadioGroup,
   Stack,
   Typography,
 } from "@mui/material";
@@ -18,7 +21,7 @@ import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
 import logo1 from "../../../assets/images/logotred.png";
@@ -31,9 +34,10 @@ import pay from "../../../assets/images/wallet.png";
 import usdt from "../../../assets/payNameIcon1.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
-import { endpoint } from "../../../services/urls";
+import { baseUrl, endpoint, fron_end_main_domain } from "../../../services/urls";
 import theme from "../../../utils/theme";
 import UsdtQR from "./UsdtQR";
+import { useQueryClient } from "react-query";
 // payment 2000 or 2000 se upr hoga to indian pay, or moon lottery par jayega, accorgin to akash sir --> THAT MEANS PYT-PAY
 
 function WalletRecharge() {
@@ -61,7 +65,10 @@ function WalletRecharge() {
   const [deposit_req_data_usdt, setDeposit_req_data_usdt] = React.useState();
   const [address, setAddress] = React.useState("");
   const [selectedGateway, setSelectedGateway] = React.useState("");
-
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const transactionId = searchParams?.get("order_id");
+  const client = useQueryClient();
   const [amount, setAmount] = React.useState({
     wallet: 0,
     winning: 0,
@@ -153,8 +160,8 @@ function WalletRecharge() {
     };
     const fdata = new FormData();
     fdata.append("user_id", reqbody.user_id);
-    fdata.append("type_gateway", "1");
-    // fdata.append("type_gateway", selectedGateway === "Gateway1" ? "1" : "2");
+    // fdata.append("type_gateway", "1");
+    fdata.append("type_gateway", selectedGateway === "Gateway1" ? "1" : "3");
     fdata.append("amount", reqbody.amount);
     fdata.append("transection_id", reqbody.transection_id);
     fdata.append("Deposit_type", deposit_amount ? Deposit_type : "Null");
@@ -170,7 +177,7 @@ function WalletRecharge() {
       const qr_url =
         (res?.data?.data && JSON.parse(res?.data?.data)?.upi_deep_link) || "";
       // const qr_url = JSON.parse(res?.data?.data) || "";
-      console.log(res);
+      // console.log(qr_url);
       if (qr_url) {
         setDeposit_req_data(qr_url);
       } else {
@@ -473,6 +480,26 @@ function WalletRecharge() {
     );
   }, []);
 
+  async function sendUrlCallBackToBackend(transactionId) {
+    try {
+      const res = await axios.get(
+        `${baseUrl}/api/deposit-collback?order_id=${transactionId}`
+      );
+      if (res?.data?.status === "200") {
+        window.location.href = `${fron_end_main_domain}/account`;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  React.useEffect(() => {
+    client.removeQueries("myprofile");
+    client.refetchQueries("walletamount");
+    if (transactionId) {
+      sendUrlCallBackToBackend(transactionId);
+    }
+  }, []);
+
   if (deposit_req_data) {
     window.open(deposit_req_data);
     // return (
@@ -483,13 +510,13 @@ function WalletRecharge() {
     //   />
     // );
   }
-  React.useEffect(() => {
-    if (paymentType === "UPI" && fk.values.amount > 1000) {
-      setSelectedGateway("Gateway1");
-    } else {
-      setSelectedGateway("Gateway2");
-    }
-  }, [fk.values.amount, paymentType]);
+  // React.useEffect(() => {
+  //   if (paymentType === "UPI" && fk.values.amount > 1000) {
+  //     setSelectedGateway("Gateway1");
+  //   } else {
+  //     setSelectedGateway("Gateway2");
+  //   }
+  // }, [fk.values.amount, paymentType]);
 
   if (paymentType !== "UPI" && deposit_req_data_usdt && address) {
     return (
@@ -716,29 +743,29 @@ function WalletRecharge() {
                   PYT-PAY
                 </Button>
               </Box> */}
-              {/* <RadioGroup
+              <RadioGroup
                 row
                 value={selectedGateway}
-                // onChange={(e) => {
-                //   setDeposit_req_data(null);
-                //   setSelectedGateway(e.target.value);
-                // }}
+                onChange={(e) => {
+                  setDeposit_req_data(null);
+                  setSelectedGateway(e.target.value);
+                }}
               >
                 <Typography className="!mt-2 !mr-5  !font-bold" sx={{ color: 'white !important' }}>Select :</Typography>
                 <FormControlLabel
                   sx={{ color: 'white !important' }}
-                  value="Gateway2"
+                  value="Gateway1"
                   control={<Radio sx={{ color: 'white !important' }} />}
                   label="Flex"
                 />
 
                 <FormControlLabel
                   sx={{ color: 'white !important' }}
-                  value="Gateway1"
+                  value="Gateway2"
                   control={<Radio sx={{ color: 'white !important' }} />}
-                  label="PYT-PAY"
+                  label="JIO PAY"
                 />
-              </RadioGroup> */}
+              </RadioGroup>
             </Box>
           </Box>
         ) : (
