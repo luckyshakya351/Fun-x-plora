@@ -1,9 +1,7 @@
-import AddIcon from "@mui/icons-material/Add";
 import CachedIcon from "@mui/icons-material/Cached";
 import CloseIcon from "@mui/icons-material/Close";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import RemoveIcon from "@mui/icons-material/Remove";
 import {
   Box,
   Button,
@@ -38,6 +36,8 @@ function Account() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const transactionId = searchParams?.get("order_id");
+  const client_txn_id = searchParams?.get("client_txn_id");
+  console.log(client_txn_id);
   const client = useQueryClient();
   const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -69,8 +69,8 @@ function Account() {
   useEffect(() => {
     client.removeQueries("myprofile");
     client.refetchQueries("walletamount");
-    if (transactionId) {
-      sendUrlCallBackToBackend(transactionId);
+    if (transactionId || client_txn_id) {
+      sendUrlCallBackToBackend(transactionId || client_txn_id);
     }
   }, []);
 
@@ -116,10 +116,20 @@ function Account() {
               justifyContent: "space-between",
             }}
           >
-            <Typography variant="body1" color="initial" sx={style.balanceText} className={"!text-[#110738]"}>
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={style.balanceText}
+              className={"!text-[#110738]"}
+            >
               Total Balance
             </Typography>
-            <Typography variant="body1" color="initial" sx={style.totalBalance} className={"!text-[#110738]"}>
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={style.totalBalance}
+              className={"!text-[#110738]"}
+            >
               ₹
               {(
                 Number(
@@ -133,10 +143,19 @@ function Account() {
             direction="row"
             sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
-            <Typography variant="body1" color="initial" sx={style.balanceText1} className={"!text-[#110738]"}>
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={style.balanceText1}
+              className={"!text-[#110738]"}
+            >
               Yesterday total deposit
             </Typography>
-            <Typography variant="body1" color="initial" className="!text-white" className={"!text-[#110738]"}>
+            <Typography
+              variant="body1"
+              color="initial"
+              className={"!text-[#110738]"}
+            >
               ₹{Number(wallet?.total_payin || 0)?.toFixed(0)}{" "}
               <CachedIcon sx={style.cachedIcon} />
             </Typography>
@@ -145,10 +164,19 @@ function Account() {
             direction="row"
             sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
-            <Typography variant="body1" color="initial" sx={style.balanceText1} className={"!text-[#110738]"}>
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={style.balanceText1}
+              className={"!text-[#110738]"}
+            >
               Yesterday total withdrawal
             </Typography>
-            <Typography variant="body1" color="initial" className="!text-white" className={"!text-[#110738]"}>
+            <Typography
+              variant="body1"
+              color="initial"
+              className={"!text-[#110738]"}
+            >
               ₹{Number(wallet?.total_payout || 0)?.toFixed(0)}{" "}
               <CachedIcon sx={style.cachedIcon} />
             </Typography>
@@ -162,7 +190,12 @@ function Account() {
             }}
           >
             <Box component="img" src={cip} sx={style.cardImage} />
-            <Typography variant="body1" color="initial" sx={style.cardNumber} className={"!text-[#110738]"}>
+            <Typography
+              variant="body1"
+              color="initial"
+              sx={style.cardNumber}
+              className={"!text-[#110738]"}
+            >
               Rererral Code: {wallet?.referral_code}
             </Typography>
           </Stack>
