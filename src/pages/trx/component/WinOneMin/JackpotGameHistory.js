@@ -1,5 +1,5 @@
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,7 +12,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
-
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const JackpotGameHistory = ({ gid }) => {
   const navigate = useNavigate();
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -175,39 +176,47 @@ const JackpotGameHistory = ({ gid }) => {
                       borderBottom: `1px solid ${lightblue}`,
                     }}
                   >
-                    <span
-                      className={`slot-id ${
-                        String(i?.tr41_slot_id)?.slice(0, 3) === "300"
-                          ? "bg-gradient-to-tl from-red-400 to-red-900"
-                          : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
-                          ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                          : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                          ? "bg-gradient-to-t from-green-400 to-green-900"
-                          : ""
-                      } transparentColor font-bold  text-lg !px-1`}
+                    <div
+                      className="grid !grid-cols-2  !place-items-center !pl-3"
+                      // style={{ color: "white" }}
                     >
-                      {`${i?.tr41_slot_id?.toString()?.slice(-1) || ""}`}
-                    </span>
-
-                    <span
-                      className={`slot-id ${
-                        String(i?.tr41_slot_id)?.slice(0, 3) === "300"
-                          ? "bg-gradient-to-tl from-red-400 to-red-900"
-                          : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
-                          ? "!bg-gradient-to-t from-violet-400 to-violet-900"
-                          : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                          ? "bg-gradient-to-t from-green-400 to-green-900"
-                          : ""
-                      } transparentColor font-bold  text-lg !px-1`}
-                    >
-                      {String(i?.tr41_slot_id)?.slice(0, 3) === "300"
-                        ? "R"
-                        : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
-                        ? "V"
-                        : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                        ? "G"
-                        : ""}
-                    </span>
+                      <p
+                        className={`
+                ${
+                  (String(parseInt(Number(i?.tr41_slot_id) / 1000)) === "1" &&
+                    "bg-gradient-to-t from-[#18b680] 50% to-[#18b680] 50%") ||
+                  (String(parseInt(Number(i?.tr41_slot_id) / 1000)) === "2" &&
+                    "bg-gradient-to-tl from-[#8217a2] 50% to-[#8217a2] 50%") ||
+                  (String(parseInt(Number(i?.tr41_slot_id) / 1000)) === "3" &&
+                    "bg-gradient-to-tl from-[#fb6161] 50% to-[#fb6161] 50%")
+                }
+                   !text-white !rounded-full !w-[15px] !h-[15px] !text-center !text-[10px] !bg-green-500
+                `}
+                      >
+                        {" "}
+                        {parseInt(Number(Number(i?.tr41_slot_id) % 10))}
+                      </p>
+                      <p
+                        className={`
+                ${
+                  (String(parseInt(Number(i?.tr41_slot_id) / 1000)) === "1" &&
+                    "!text-[#18b680]") ||
+                  (String(parseInt(Number(i?.tr41_slot_id) / 1000)) === "2" &&
+                    "!text-[#8217a2]") ||
+                  (String(parseInt(Number(i?.tr41_slot_id) / 1000)) === "3" &&
+                    "!text-[#fb6161]")
+                }
+                   !text-white !rounded-full !w-[15px] !h-[15px] !text-center !text-[10px] !font-semibold
+                `}
+                      >
+                        {parseInt(Number(Number(i?.tr41_slot_id) / 1000)) === 1
+                          ? "G"
+                          : parseInt(Number(Number(i?.tr41_slot_id) / 1000)) ===
+                            2
+                          ? "V"
+                          : "R"}
+                      </p>
+                    </div>
                   </TableCell>
                 </TableRow>
               );
@@ -216,17 +225,53 @@ const JackpotGameHistory = ({ gid }) => {
         </Table>
 
         <Box className="paginationTable !w-full " mb={4}>
-          <TablePagination
-            sx={{ background: zubgtext, color: "white", width: "100%" }}
-            rowsPerPageOptions={[5, 10]}
-            component="div"
-            count={game_history_data?.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Rows"
-          />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              borderRadius: "10px",
+              marginTop: "5px",
+              mb: 3,
+            }}
+          >
+            <IconButton
+              onClick={() => handleChangePage(null, Math.max(0, page - 1))}
+              className={`${
+                page === 0 ? "!text-gray-400" : "!text-white"
+              } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+
+            <Typography sx={{ margin: "0 10px" }}>
+              {page + 1} / {Math.ceil(game_history_data?.length / rowsPerPage)}
+            </Typography>
+
+            <IconButton
+              onClick={() =>
+                handleChangePage(
+                  null,
+                  Math.min(
+                    Math.ceil(game_history_data?.length / rowsPerPage) - 1,
+                    page + 1
+                  )
+                )
+              }
+              sx={{
+                marginLeft: "10px",
+                color: "white",
+              }}
+              className={`${
+                page + 1 >= Math.ceil(game_history_data?.length / rowsPerPage)
+                  ? "!text-gray-400"
+                  : "!text-white"
+              } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+            >
+              <ArrowForwardIosIcon />
+            </IconButton>
+          </Box>
         </Box>
       </TableContainer>
       {/* <CustomCircularProgress isLoading={isLoading}/> */}

@@ -395,7 +395,9 @@ const Chart = ({ gid }) => {
         >
           <IconButton
             onClick={() => handleChangePage(null, Math.max(0, page - 1))}
-            className={`${page === 0 ? "!text-gray-400" : "!text-white"} !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+            className={`${
+              page === 0 ? "!text-gray-400" : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
           >
             <ArrowBackIosIcon />
           </IconButton>

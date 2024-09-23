@@ -1,13 +1,12 @@
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import { Box, IconButton, Pagination, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { zubgback, zubgtext } from "../../../../Shared/color";
-import history from "../../../../assets/images/list.png";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { zubgback } from "../../../../Shared/color";
 const GameHistory = ({ gid }) => {
   const navigate = useNavigate();
   const [rowsPerPage, setRowsPerPage] = React.useState(10);

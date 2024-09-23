@@ -84,18 +84,19 @@ function Jackpot({ gid }) {
               position: "relative",
             }}
           >
+           
             {fk.values.openTimerDialogBoxOneMin && (
-              <div className="!w-full !z-50 !h-full  !absolute px-5 flex justify-center items-center">
+              <div className="!w-[95%] rounded-lg !z-50 !h-[95%] !bg-black !bg-opacity-40 !absolute  flex justify-center items-center">
                 <div
                   className="flex gap-2 justify-cente !bg-opacity-5"
                   sx={{ width: "100%" }}
                 >
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
                       fontWeight: 700,
-                      width: 150,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -103,16 +104,21 @@ function Jackpot({ gid }) {
                       color: "white !important",
                     }}
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])
-                      ?.padStart(2, "0")
-                      ?.substring(0, 1)}
+                    <Typography
+                      variant="body1"
+                      sx={{ color: "white", fontSize: 95, fontWeight: 600 }}
+                    >
+                      {String(fk.values.show_this_one_min_time?.split("_")?.[1])
+                        ?.padStart(2, "0")
+                        ?.substring(0, 1)}
+                    </Typography>
                   </div>
                   <div
                     style={{
-                      fontSize: 200,
                       borderRadius: 20,
                       fontWeight: 700,
-                      width: 150,
+                      width: 120,
+                      height: 150,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -120,9 +126,14 @@ function Jackpot({ gid }) {
                       color: "white !important",
                     }}
                   >
-                    {String(fk.values.show_this_one_min_time?.split("_")?.[1])
-                      ?.padStart(2, "0")
-                      ?.substring(1, 2)}
+                    <Typography
+                      variant="body1"
+                      sx={{ color: "white", fontSize: 95, fontWeight: 600 }}
+                    >
+                      {String(fk.values.show_this_one_min_time?.split("_")?.[1])
+                        ?.padStart(2, "0")
+                        ?.substring(1, 2)}
+                    </Typography>
                   </div>
                 </div>
               </div>
@@ -147,15 +158,15 @@ function Jackpot({ gid }) {
               sx={{
                 width: "100%",
                 mt: "20px",
-                background: '#8bc34a5e',
+                background: "#8bc34a5e",
                 borderRadius: "10px",
                 position: "relative",
                 padding: "10px",
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
-            // className=" grid grid-cols-3 "
+              // className=" grid grid-cols-3 "
             >
               <Box
                 sx={{
@@ -163,7 +174,6 @@ function Jackpot({ gid }) {
                   alignItems: "center",
                   justifyContent: "space-around",
                   width: "33%",
-
                 }}
                 className=""
               >
@@ -178,7 +188,7 @@ function Jackpot({ gid }) {
                     return (
                       <div className="">
                         <img
-                          style={{ width: '40px', marginBottom: '10px', }}
+                          style={{ width: "40px", marginBottom: "10px" }}
                           className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
@@ -202,7 +212,7 @@ function Jackpot({ gid }) {
                     return (
                       <div className="">
                         <img
-                          style={{ width: '40px', marginBottom: '10px', }}
+                          style={{ width: "40px", marginBottom: "10px" }}
                           className="!cursor-pointer object-cover"
                           src={i?.img}
                           onClick={() => {
@@ -223,11 +233,10 @@ function Jackpot({ gid }) {
                   alignItems: "center",
                   justifyContent: "space-around",
                   width: "33%",
-
                 }}
                 className=""
               >
-                <div >
+                <div>
                   {[
                     { noviolet: 0, img: v0 },
                     { noviolet: 1, img: v1 },
@@ -238,7 +247,7 @@ function Jackpot({ gid }) {
                     return (
                       <div className="">
                         <img
-                          style={{ width: '40px', marginBottom: '10px', }}
+                          style={{ width: "40px", marginBottom: "10px" }}
                           className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
@@ -251,7 +260,7 @@ function Jackpot({ gid }) {
                     );
                   })}
                 </div>
-                <div >
+                <div>
                   {[
                     { noviolet: 5, img: v5 },
                     { noviolet: 6, img: v6 },
@@ -262,7 +271,7 @@ function Jackpot({ gid }) {
                     return (
                       <div className="">
                         <img
-                          style={{ width: '40px', marginBottom: '10px', }}
+                          style={{ width: "40px", marginBottom: "10px" }}
                           className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
@@ -283,11 +292,10 @@ function Jackpot({ gid }) {
                   alignItems: "center",
                   justifyContent: "space-around",
                   width: "33%",
-
                 }}
                 className=""
               >
-                <div >
+                <div>
                   {[
                     { nored: 0, img: r0 },
                     { nored: 1, img: r1 },
@@ -298,7 +306,7 @@ function Jackpot({ gid }) {
                     return (
                       <div className="">
                         <img
-                          style={{ width: '40px', marginBottom: '10px', }}
+                          style={{ width: "40px", marginBottom: "10px" }}
                           className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
@@ -322,7 +330,7 @@ function Jackpot({ gid }) {
                     return (
                       <div className="">
                         <img
-                          style={{ width: '40px', marginBottom: '10px', }}
+                          style={{ width: "40px", marginBottom: "10px" }}
                           className="!cursor-pointer  object-cover"
                           src={i?.img}
                           onClick={() => {
