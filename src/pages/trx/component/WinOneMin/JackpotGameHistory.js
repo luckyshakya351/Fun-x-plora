@@ -1,5 +1,5 @@
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,66 +7,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import axios from "axios";
 import * as React from "react";
-import toast from "react-hot-toast";
-import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { lightblue, zubgback, zubgtext } from "../../../../Shared/color";
 import history from "../../../../assets/images/list.png";
-import { endpoint } from "../../../../services/urls";
-import {
-  trx_game_image_index_function,
-  updateNextCounter,
-} from "../../../../redux/slices/counterSlice";
 
 const JackpotGameHistory = ({ gid }) => {
   const navigate = useNavigate();
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
-  const dispatch = useDispatch();
-  const { isLoading, data: game_history } = useQuery(
-    ["jackpod_gamehistory"],
-    () => GameHistoryFn(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
+  const game_history_data = useSelector(
+    (state) => state.aviator.trx_game_history_data
   );
-
-  const GameHistoryFn = async () => {
-    try {
-      const response = await axios.get(`${endpoint.jackpod_game_history}`);
-      return response;
-    } catch (e) {
-      toast(e?.message);
-      console.log(e);
-    }
-  };
-
-  React.useEffect(() => {
-    dispatch(
-      updateNextCounter(
-        game_history?.data?.data
-          ? Number(game_history?.data?.data?.[0]?.tr_transaction_id) + 1
-          : 1
-      )
-    );
-    const tr_digit =
-      game_history?.data?.data && game_history?.data?.data?.tr_digits;
-    let array = [];
-    for (let i = 0; i < tr_digit?.length; i++) {
-      if (/[a-zA-Z]/.test(tr_digit[i])) {
-        array.push(tr_digit[i].toUpperCase());
-      } else {
-        array.push(tr_digit[i]);
-      }
-    }
-    dispatch(trx_game_image_index_function(array));
-  }, [game_history?.data?.data]);
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -78,19 +31,19 @@ const JackpotGameHistory = ({ gid }) => {
 
   const visibleRows = React.useMemo(
     () =>
-      game_history?.data?.data?.slice(
+      game_history_data?.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [page, rowsPerPage, game_history?.data?.data]
+    [page, rowsPerPage, game_history_data]
   );
 
-  if (isLoading)
-    return (
-      <div className="!w-full  flex justify-center">
-        <CircularProgress />
-      </div>
-    );
+  // if (isLoading)
+  //   return (
+  //     <div className="!w-full  flex justify-center">
+  //       <CircularProgress />
+  //     </div>
+  //   );
   return (
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
@@ -99,13 +52,13 @@ const JackpotGameHistory = ({ gid }) => {
             component="img"
             src={history}
             width={25}
-            sx={{ marginRight: "10px", filter: 'grayscale(1)' }}
+            sx={{ marginRight: "10px", filter: "grayscale(1)" }}
           ></Box>
           {gid === "1"
             ? "One GO Record"
             : gid === "2"
-              ? "Three Go Record"
-              : "Five Go Record"}
+            ? "Three Go Record"
+            : "Five Go Record"}
         </Typography>
       </Stack>
       <TableContainer sx={{ borderRadius: "7px" }}>
@@ -150,7 +103,10 @@ const JackpotGameHistory = ({ gid }) => {
           <TableBody>
             {visibleRows?.map((i) => {
               return (
-                <TableRow className="!w-[95%]" style={{ background: '#0D0335' }}>
+                <TableRow
+                  className="!w-[95%]"
+                  style={{ background: "#0D0335" }}
+                >
                   <TableCell
                     className="!text-white"
                     sx={{
@@ -178,7 +134,7 @@ const JackpotGameHistory = ({ gid }) => {
                   >
                     <span>
                       <LiveHelpIcon
-                        sx={{ width: '20px' }}
+                        sx={{ width: "20px" }}
                         className="!text-[#FBA343] cursor-pointer"
                         onClick={() =>
                           navigate("/trx/tron-scan", {
@@ -189,7 +145,7 @@ const JackpotGameHistory = ({ gid }) => {
                         }
                       />
                     </span>
-                    <span style={{ fontsize: '12px' }}>{i?.tr_number}</span>
+                    <span style={{ fontsize: "12px" }}>{i?.tr_number}</span>
                   </TableCell>
                   <TableCell
                     className="!text-white"
@@ -198,7 +154,9 @@ const JackpotGameHistory = ({ gid }) => {
                       borderBottom: `1px solid ${lightblue}`,
                     }}
                   >
-                    <span style={{ fontsize: '12px !important' }}>{i?.tr_block_time}</span>
+                    <span style={{ fontsize: "12px !important" }}>
+                      {i?.tr_block_time}
+                    </span>
                   </TableCell>
                   <TableCell
                     className="!text-white"
@@ -218,35 +176,37 @@ const JackpotGameHistory = ({ gid }) => {
                     }}
                   >
                     <span
-                      className={`slot-id ${String(i?.tr41_slot_id)?.slice(0, 3) === "300"
-                        ? "bg-gradient-to-tl from-red-400 to-red-900"
-                        : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
+                      className={`slot-id ${
+                        String(i?.tr41_slot_id)?.slice(0, 3) === "300"
+                          ? "bg-gradient-to-tl from-red-400 to-red-900"
+                          : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
                           ? "!bg-gradient-to-t from-violet-400 to-violet-900"
                           : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                            ? "bg-gradient-to-t from-green-400 to-green-900"
-                            : ""
-                        } transparentColor font-bold  text-lg !px-1`}
+                          ? "bg-gradient-to-t from-green-400 to-green-900"
+                          : ""
+                      } transparentColor font-bold  text-lg !px-1`}
                     >
                       {`${i?.tr41_slot_id?.toString()?.slice(-1) || ""}`}
                     </span>
 
                     <span
-                      className={`slot-id ${String(i?.tr41_slot_id)?.slice(0, 3) === "300"
-                        ? "bg-gradient-to-tl from-red-400 to-red-900"
-                        : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
+                      className={`slot-id ${
+                        String(i?.tr41_slot_id)?.slice(0, 3) === "300"
+                          ? "bg-gradient-to-tl from-red-400 to-red-900"
+                          : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
                           ? "!bg-gradient-to-t from-violet-400 to-violet-900"
                           : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                            ? "bg-gradient-to-t from-green-400 to-green-900"
-                            : ""
-                        } transparentColor font-bold  text-lg !px-1`}
+                          ? "bg-gradient-to-t from-green-400 to-green-900"
+                          : ""
+                      } transparentColor font-bold  text-lg !px-1`}
                     >
                       {String(i?.tr41_slot_id)?.slice(0, 3) === "300"
                         ? "R"
                         : String(i?.tr41_slot_id)?.slice(0, 3) === "200"
-                          ? "V"
-                          : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
-                            ? "G"
-                            : ""}
+                        ? "V"
+                        : String(i?.tr41_slot_id)?.slice(0, 3) === "100"
+                        ? "G"
+                        : ""}
                     </span>
                   </TableCell>
                 </TableRow>
@@ -260,7 +220,7 @@ const JackpotGameHistory = ({ gid }) => {
             sx={{ background: zubgtext, color: "white", width: "100%" }}
             rowsPerPageOptions={[5, 10]}
             component="div"
-            count={game_history?.data?.data?.length}
+            count={game_history_data?.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

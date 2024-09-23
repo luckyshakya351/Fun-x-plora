@@ -16,6 +16,7 @@ import ShowImages from "./ShowImages";
 import {
   dummycounterFun,
   net_wallet_amount_function,
+  trx_game_history_data_function,
   trx_game_image_index_function,
   updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
@@ -162,7 +163,8 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
         array.push(tr_digit[i]);
       }
     }
-
+    console.log(array);
+    dispatch(trx_game_history_data_function(game_history?.data?.data));
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.data]);
 
