@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
@@ -29,7 +29,7 @@ import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import s from "../../assets/wdhistory.png";
 import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
-import { walletamount } from "../../services/apicalling";
+import { BankListDetails, walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 import theme from "../../utils/theme";
 function Account() {
@@ -37,7 +37,6 @@ function Account() {
   const searchParams = new URLSearchParams(location.search);
   const transactionId = searchParams?.get("order_id");
   const client_txn_id = searchParams?.get("client_txn_id");
-  console.log(client_txn_id);
   const client = useQueryClient();
   const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -73,6 +72,13 @@ function Account() {
       sendUrlCallBackToBackend(transactionId || client_txn_id);
     }
   }, []);
+
+  const { data } = useQuery(["bank_list_details"], () => BankListDetails(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
+  const result = React.useMemo(() => data?.data?.data, [data]);
 
   return (
     <Layout>
@@ -219,12 +225,18 @@ function Account() {
               Withdraw
             </Typography>
           </Box>
-          <Box sx={style.actionBox} component={NavLink} to="/add-bank-details">
-            <Box component="img" src={edit} sx={style.actionImage} />
-            <Typography variant="body1" color="initial" sx={style.actionText}>
-              Add Bank
-            </Typography>
-          </Box>
+          {result?.length <= 0 && (
+            <Box
+              sx={style.actionBox}
+              component={NavLink}
+              to="/add-bank-details"
+            >
+              <Box component="img" src={edit} sx={style.actionImage} />
+              <Typography variant="body1" color="initial" sx={style.actionText}>
+                Add Bank
+              </Typography>
+            </Box>
+          )}
         </Box>
         <Box sx={style.actionContainer}>
           {/* <Box

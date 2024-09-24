@@ -20,24 +20,28 @@ import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useQueryClient } from "react-query";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
-import logo1 from "../../../assets/images/logotred.png";
 import { zubgmid, zubgshadow, zubgtext } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
 import user from "../../../assets/check.png";
 import dot from "../../../assets/images/circle-arrow.png";
+import logo1 from "../../../assets/images/logotred.png";
 import balance from "../../../assets/images/send.png";
 import pay from "../../../assets/images/wallet.png";
 import usdt from "../../../assets/payNameIcon1.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
-import { baseUrl, endpoint, fron_end_main_domain } from "../../../services/urls";
+import {
+  baseUrl,
+  endpoint,
+  fron_end_main_domain,
+} from "../../../services/urls";
 import theme from "../../../utils/theme";
 import UsdtQR from "./UsdtQR";
-import { useQueryClient } from "react-query";
 // payment 2000 or 2000 se upr hoga to indian pay, or moon lottery par jayega, accorgin to akash sir --> THAT MEANS PYT-PAY
 
 function WalletRecharge() {
@@ -751,18 +755,23 @@ function WalletRecharge() {
                   setSelectedGateway(e.target.value);
                 }}
               >
-                <Typography className="!mt-2 !mr-5  !font-bold" sx={{ color: 'white !important' }}>Select :</Typography>
+                <Typography
+                  className="!mt-2 !mr-5  !font-bold"
+                  sx={{ color: "white !important" }}
+                >
+                  Select :
+                </Typography>
                 <FormControlLabel
-                  sx={{ color: 'white !important' }}
+                  sx={{ color: "white !important" }}
                   value="Gateway1"
-                  control={<Radio sx={{ color: 'white !important' }} />}
+                  control={<Radio sx={{ color: "white !important" }} />}
                   label="Flex"
                 />
 
                 <FormControlLabel
-                  sx={{ color: 'white !important' }}
+                  sx={{ color: "white !important" }}
                   value="Gateway2"
-                  control={<Radio sx={{ color: 'white !important' }} />}
+                  control={<Radio sx={{ color: "white !important" }} />}
                   label="JIO PAY"
                 />
               </RadioGroup>

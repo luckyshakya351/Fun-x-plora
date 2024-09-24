@@ -223,7 +223,6 @@ const JackpotCountdown = ({ fk, setBetNumber }) => {
           }}
           className="win-banner"
         >
-        
           {React.useMemo(() => {
             return (
               <>

@@ -47,7 +47,7 @@ const JackpotGameHistory = ({ gid }) => {
   //   );
   return (
     <Box sx={{ pb: 4 }}>
-      <Stack direction="row" className="onegotextbox">
+      {/* <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
             component="img"
@@ -61,11 +61,11 @@ const JackpotGameHistory = ({ gid }) => {
             ? "Three Go Record"
             : "Five Go Record"}
         </Typography>
-      </Stack>
-      <TableContainer sx={{ borderRadius: "7px" }}>
+      </Stack> */}
+      <TableContainer sx={{ borderRadius: "7px" }} className="!mt-3">
         <Table
           sx={{
-            background: zubgback,
+            background: "white",
             color: "white",
             borderRadius: "10px  10px 0px 0px",
           }}
@@ -104,10 +104,7 @@ const JackpotGameHistory = ({ gid }) => {
           <TableBody>
             {visibleRows?.map((i) => {
               return (
-                <TableRow
-                  className="!w-[95%]"
-                  style={{ background: "#0D0335" }}
-                >
+                <TableRow className="!w-[95%]" style={{ background: "white" }}>
                   <TableCell
                     className="!text-white"
                     sx={{
@@ -127,7 +124,7 @@ const JackpotGameHistory = ({ gid }) => {
                     </p>
                   </TableCell>
                   <TableCell
-                    className="!text-white"
+                    className="!text-[#0D0335]"
                     sx={{
                       padding: " 10px 5px",
                       borderBottom: `1px solid ${lightblue}`,
@@ -149,7 +146,7 @@ const JackpotGameHistory = ({ gid }) => {
                     <span style={{ fontsize: "12px" }}>{i?.tr_number}</span>
                   </TableCell>
                   <TableCell
-                    className="!text-white"
+                    className="!text-[#0D0335]"
                     sx={{
                       padding: " 10px 5px",
                       borderBottom: `1px solid ${lightblue}`,
@@ -160,7 +157,7 @@ const JackpotGameHistory = ({ gid }) => {
                     </span>
                   </TableCell>
                   <TableCell
-                    className="!text-white"
+                    className="!text-[#0D0335]"
                     sx={{
                       padding: " 10px 5px",
                       fontsize: " 13px",
@@ -206,7 +203,7 @@ const JackpotGameHistory = ({ gid }) => {
                   (String(parseInt(Number(i?.tr41_slot_id) / 1000)) === "3" &&
                     "!text-[#fb6161]")
                 }
-                   !text-white !rounded-full !w-[15px] !h-[15px] !text-center !text-[10px] !font-semibold
+                   !text-[#0D0335] !rounded-full !w-[15px] !h-[15px] !text-center !text-[10px] !font-semibold
                 `}
                       >
                         {parseInt(Number(Number(i?.tr41_slot_id) / 1000)) === 1

@@ -64,7 +64,7 @@ const Jackpotmyhistory = ({ gid }) => {
   return (
     <Box>
       <Stack direction="row" className="onegotextbox">
-        <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
+        {/* <Typography variant="body1" color="initial" sx={{ color: zubgtext }}>
           <Box
             component="img"
             src={history}
@@ -76,7 +76,7 @@ const Jackpotmyhistory = ({ gid }) => {
             : gid === "2"
             ? " My Three GO Record"
             : " My Five GO Record"}
-        </Typography>
+        </Typography> */}
       </Stack>
       <div className="flex flex-col gap-[2px]">
         {visibleRows?.map((i) => {

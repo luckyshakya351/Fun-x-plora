@@ -7,12 +7,17 @@ import {
   Divider,
   IconButton,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import * as React from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
-import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../../Shared/color";
+import {
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgtext,
+} from "../../../Shared/color";
 import deposit from "../../../assets/images/banking.png";
 import Layout from "../../../component/Layout/Layout";
 import { BankListDetails } from "../../../services/apicalling";
@@ -32,11 +37,10 @@ function AddedBankDetailList() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
-
 
   return (
     <Layout>
@@ -54,7 +58,7 @@ function AddedBankDetailList() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <Typography variant="body1" sx={{ color: 'white' }} >
+          <Typography variant="body1" sx={{ color: "white" }}>
             Added Bank Details
           </Typography>
           <Box></Box>
@@ -71,13 +75,20 @@ function AddedBankDetailList() {
               mb: 5,
             }}
           >
-            <div className="!flex !w-full !justify-between !align-center" style={{ alignItems: 'center', marginBottom: "20px" }}>
-              <Stack direction="row" sx={{ alignItems: "center", }}>
-                <Box component="img" src={deposit} width={30} sx={{ filter: 'hue-rotate(136deg)' }}></Box>
+            <div
+              className="!flex !w-full !justify-between !align-center"
+              style={{ alignItems: "center", marginBottom: "20px" }}
+            >
+              <Stack direction="row" sx={{ alignItems: "center" }}>
+                <Box
+                  component="img"
+                  src={deposit}
+                  width={30}
+                  sx={{ filter: "hue-rotate(136deg)" }}
+                ></Box>
                 <Typography
                   variant="body1"
-
-                  sx={{ fontSize: "15px ", color: 'white', ml: "10px" }}
+                  sx={{ fontSize: "15px ", color: "white", ml: "10px" }}
                 >
                   Pre Added Banks
                 </Typography>
@@ -86,7 +97,7 @@ function AddedBankDetailList() {
                 className="!flex !items-center !cursor-pointer"
                 onClick={() => navigate("/add-bank-details")}
               >
-                <span style={{ color: 'white' }}>Add New</span>
+                <span style={{ color: "white" }}>Add New</span>
                 <IconButton>
                   <Add sx={{ color: zubgtext }} />
                 </IconButton>
@@ -105,10 +116,10 @@ function AddedBankDetailList() {
                 >
                   <div className="flex !justify-between">
                     <IconButton>
-                      <AccountBalanceIcon sx={{ color: 'white' }} />
+                      <AccountBalanceIcon sx={{ color: "white" }} />
                     </IconButton>
                     <IconButton onClick={() => navigate("/add-bank-details")}>
-                      <Edit sx={{ color: 'white' }} />
+                      <Edit sx={{ color: "white" }} />
                     </IconButton>
                   </div>
                   <Divider className="!bg-red-100 !text-red-100 !bg-opacity-20" />
@@ -118,13 +129,13 @@ function AddedBankDetailList() {
                       marginTop: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: 'white' },
+                      "&>p": { color: "white" },
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       Account Holder Name
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       {i?.holder_name}
                     </Typography>
                   </Stack>
@@ -133,13 +144,13 @@ function AddedBankDetailList() {
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: 'white' },
+                      "&>p": { color: "white" },
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       Email
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       {i?.email}
                     </Typography>
                   </Stack>
@@ -148,13 +159,13 @@ function AddedBankDetailList() {
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: 'white' },
+                      "&>p": { color: "white" },
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       Bank Name
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       {i?.bank_name}
                     </Typography>
                   </Stack>
@@ -163,13 +174,13 @@ function AddedBankDetailList() {
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: 'white' },
+                      "&>p": { color: "white" },
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       Mobile No
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       {i?.mobile}
                     </Typography>
                   </Stack>
@@ -178,13 +189,13 @@ function AddedBankDetailList() {
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: 'white' },
+                      "&>p": { color: "white" },
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       IFSC Code
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       {i?.ifsc}
                     </Typography>
                   </Stack>
@@ -193,13 +204,13 @@ function AddedBankDetailList() {
                     sx={{
                       alignItems: "center",
                       justifyContent: "space-between",
-                      "&>p": { color: 'white' },
+                      "&>p": { color: "white" },
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       Account Number
                     </Typography>
-                    <Typography variant="body1" sx={{ color: 'white' }} >
+                    <Typography variant="body1" sx={{ color: "white" }}>
                       {i?.account}
                     </Typography>
                   </Stack>
@@ -226,10 +237,10 @@ const style = {
       fontSize: "20px",
       fontWeight: "600",
       textAlign: "center",
-      color: 'white',
+      color: "white",
     },
     "& > a > svg": {
-      color: 'white',
+      color: "white",
       fontSize: "35px",
     },
   },

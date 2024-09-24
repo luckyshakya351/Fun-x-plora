@@ -1,17 +1,25 @@
 import { Diversity2Outlined } from "@mui/icons-material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import RedeemIcon from "@mui/icons-material/Redeem";
 import StoreIcon from "@mui/icons-material/Store";
-import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import { Box, Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import {
+  Box,
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
-import theme from "../../utils/theme";
-
+import MoneyIcon from "@mui/icons-material/Money";
 function MainPageOFIncome() {
   const data_array = [
     {
@@ -27,7 +35,9 @@ function MainPageOFIncome() {
     {
       to: "/account/income-main/daily-salary-bonus",
       name: "Daily Salary",
-      logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />,
+      logo: (
+        <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />
+      ),
     },
     {
       to: "/account/income-main/self-trading-bonus",
@@ -37,7 +47,9 @@ function MainPageOFIncome() {
     {
       to: "/account/income-main/weekly-bonus",
       name: "Weekly Salary Income",
-      logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
+      logo: (
+        <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />
+      ),
     },
     {
       to: "/account/income-main/team-trading-bonus",
@@ -47,7 +59,7 @@ function MainPageOFIncome() {
     {
       to: "/account/income-main/cash_back_report",
       name: "Cashback Income",
-      logo: <StoreIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" />,
+      logo: <MoneyIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
   ];
 
@@ -55,7 +67,7 @@ function MainPageOFIncome() {
     <Layout>
       <Container
         sx={{
-          background: 'white',
+          background: "white",
           width: "100%",
           height: "100vh",
           overflow: "auto",
@@ -67,43 +79,76 @@ function MainPageOFIncome() {
             width: "100%",
             borderRadius: "10px",
             // background: zubgtext,
-
           }}
         >
           <Typography
-            variant="body1" color="initial" sx={{ color: "black !important", fontSize: "20px", fontWeight: "600", background: zubgtext, textAlign: 'center', padding: '10px' }}>
+            variant="body1"
+            color="initial"
+            sx={{
+              color: "black !important",
+              fontSize: "20px",
+              fontWeight: "600",
+              background: zubgtext,
+              textAlign: "center",
+              padding: "10px",
+            }}
+          >
             Income
           </Typography>
 
-
-          <TableContainer sx={{ background: 'white' }}>
-            <Table >
+          <TableContainer sx={{ background: "white" }}>
+            <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>S.No</TableCell>
-                  <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>Icon</TableCell>
-                  <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>Name</TableCell>
+                  <TableCell
+                    className="!border !text-xs !border-r !border-black  !text-center"
+                    sx={{ color: "black !important", fontWeight: "600" }}
+                  >
+                    S.No
+                  </TableCell>
+                  <TableCell
+                    className="!border !text-xs !border-r !border-black  !text-center"
+                    sx={{ color: "black !important", fontWeight: "600" }}
+                  >
+                    Icon
+                  </TableCell>
+                  <TableCell
+                    className="!border !text-xs !border-r !border-black  !text-center"
+                    sx={{ color: "black !important", fontWeight: "600" }}
+                  >
+                    Name
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {data_array.map((item, index) => (
                   <TableRow key={item.name}>
                     <TableCell className="!border !text-xs !border-r !border-black  !text-center">
-                      <NavLink style={{ textDecoration: 'none', color: 'black' }}>
+                      <NavLink
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
                         {index + 1}
                       </NavLink>
                     </TableCell>
                     <TableCell className="!border !text-xs !border-r !border-black  !text-center">
-                      <NavLink to={item.to} style={{ textDecoration: '', color: 'black' }}>
+                      <NavLink
+                        to={item.to}
+                        style={{ textDecoration: "", color: "black" }}
+                      >
                         {item.name}
                       </NavLink>
                     </TableCell>
                     <TableCell className="!border !text-xs !border-r !border-black  !text-center">
-                      <NavLink to={item.to} style={{ textDecoration: '', color: 'black !important' }}>
+                      <NavLink
+                        to={item.to}
+                        style={{
+                          textDecoration: "",
+                          color: "black !important",
+                        }}
+                      >
                         {item.logo}
                       </NavLink>
                     </TableCell>
-
                   </TableRow>
                 ))}
               </TableBody>
@@ -116,7 +161,6 @@ function MainPageOFIncome() {
 }
 
 export default MainPageOFIncome;
-
 
 const style = {
   header: {

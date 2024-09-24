@@ -312,9 +312,11 @@ const GameHistory = ({ gid }) => {
         >
           <IconButton
             onClick={() => handleChangePage(null, Math.max(0, page - 1))}
-            className={`${page === 0 ? "!text-gray-400" : "!text-white"} !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
+            className={`${
+              page === 0 ? "!text-gray-400" : "!text-white"
+            } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
           >
-            <ArrowBackIosIcon  />
+            <ArrowBackIosIcon />
           </IconButton>
 
           <Typography sx={{ margin: "0 10px" }}>
@@ -341,7 +343,7 @@ const GameHistory = ({ gid }) => {
                 : "!text-white"
             } !bg-[#63ba0e] !p-2 !rounded-md !flex !items-center !justify-center pr-1`}
           >
-            <ArrowForwardIosIcon  />
+            <ArrowForwardIosIcon />
           </IconButton>
         </Box>
       </Box>
