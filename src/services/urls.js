@@ -5,8 +5,8 @@ export const fron_end_main_domain = "https://funxplora.com";
 
 export const newdomain1 = "https://api.funxplora.com";
 export const newdomain = "https://api.funxplora.com";
-// export const newdomain1 = "http://192.168.170.149:9000";
-// export const newdomain = "http://192.168.170.149:9000";
+// export const newdomain1 = "http://192.168.139.150:9000";
+// export const newdomain = "http://192.168.139.150:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 // export const domain = "http://192.168.32.149:9000";
@@ -18,6 +18,9 @@ export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 
 export const endpoint = {
   //node login api
+  add_fund_to_user: `${newdomain}/api/v1/fn_add_fun_to_user`,
+  change_user_pass: `${newdomain}/api/v1/change-user-pass`,
+  get_user_id: `${newdomain}/api/v1/get-user-id`,
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,

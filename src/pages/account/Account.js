@@ -32,12 +32,23 @@ import Layout from "../../component/Layout/Layout";
 import { BankListDetails, walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 import theme from "../../utils/theme";
+import CryptoJS from "crypto-js";
+
 function Account() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const transactionId = searchParams?.get("order_id");
   const client_txn_id = searchParams?.get("client_txn_id");
   const client = useQueryClient();
+  const login_data =
+    (localStorage.getItem("logindataen") &&
+      CryptoJS.AES.decrypt(
+        localStorage.getItem("logindataen"),
+        "anand"
+      )?.toString(CryptoJS.enc.Utf8)) ||
+    null;
+  const user_id = login_data && JSON.parse(login_data)?.UserID;
+
   const navigate = useNavigate();
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
@@ -239,37 +250,6 @@ function Account() {
           )}
         </Box>
         <Box sx={style.actionContainer}>
-          {/* <Box
-            sx={{
-              width: "50%",
-              height: "100%",
-            }}
-          >
-            <Stack direction="row" sx={{ alignItems: "center" }} component={NavLink} to={"/bathistory"}>
-              <Box
-                component="img"
-                src={casino}
-                sx={{ width: "40px", height: "40px", marginRight: "20px" }}
-              ></Box>
-              <Box
-                sx={{
-                  "&>:nth-child(1)": {
-                    fontSize: "15px",
-                    fontWeight: "500",
-                    color: zubgtext,
-                  },
-                  "&>:nth-child(2)": {
-                    fontSize: "12px",
-                    fontWeight: "500",
-                    color: zubgtext,
-                  },
-                }}
-              >
-                <p className="!text-sm">Bet</p>
-                <p className="!text-[10px]">My betting history</p>
-              </Box>
-            </Stack>
-          </Box> */}
           <Box
             sx={{
               width: "100%%",
@@ -307,6 +287,84 @@ function Account() {
             </Stack>
           </Box>
         </Box>
+        {Number(user_id) === 1169 && (
+          <Box sx={style.actionContainer}>
+            <Box
+              sx={{
+                width: "100%%",
+                height: "100%",
+              }}
+            >
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center" }}
+                component={NavLink}
+                to={"/add-fund-to-user"}
+              >
+                <Box
+                  component="img"
+                  src={card}
+                  sx={{ width: "40px", height: "40px", marginRight: "20px" }}
+                ></Box>
+                <Box
+                  sx={{
+                    "&>:nth-child(1)": {
+                      fontSize: "15px",
+                      fontWeight: "500",
+                      color: zubgtext,
+                    },
+                    "&>:nth-child(2)": {
+                      fontSize: "10px",
+                      fontWeight: "500",
+                      color: zubgtext,
+                    },
+                  }}
+                >
+                  <p className="!text-sm">Add Fund</p>
+                </Box>
+              </Stack>
+            </Box>
+          </Box>
+        )}
+        {Number(user_id) === 1169 && (
+          <Box sx={style.actionContainer}>
+            <Box
+              sx={{
+                width: "100%%",
+                height: "100%",
+              }}
+            >
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center" }}
+                component={NavLink}
+                to={"/block-user"}
+              >
+                <Box
+                  component="img"
+                  src={card}
+                  sx={{ width: "40px", height: "40px", marginRight: "20px" }}
+                ></Box>
+                <Box
+                  sx={{
+                    "&>:nth-child(1)": {
+                      fontSize: "15px",
+                      fontWeight: "500",
+                      color: zubgtext,
+                    },
+                    "&>:nth-child(2)": {
+                      fontSize: "10px",
+                      fontWeight: "500",
+                      color: zubgtext,
+                    },
+                  }}
+                >
+                  <p className="!text-sm">Change Password</p>
+                </Box>
+              </Stack>
+            </Box>
+          </Box>
+        )}
         <Box sx={style.actionContainertwo}>
           <Stack
             sx={{

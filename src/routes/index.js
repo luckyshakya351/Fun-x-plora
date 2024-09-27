@@ -5,7 +5,9 @@ import Account from "../pages/account/Account";
 import AddBankDetails from "../pages/account/Component/AddBankDetails";
 import AddedBankDetailList from "../pages/account/Component/AddedBankDetailList";
 import BatHistorys from "../pages/account/Component/BatHistory";
+import BlockUser from "../pages/account/Component/BlockUser";
 import Feedback from "../pages/account/Component/Feedback";
+import FundAddToUser from "../pages/account/Component/FundAddToUser";
 import GameNotification from "../pages/account/Component/GameNotification";
 import Gamestaticks from "../pages/account/Component/Gamestaticks";
 import Gift from "../pages/account/Component/Gift";
@@ -61,6 +63,14 @@ export const routes = [
   {
     path: "/win-los",
     component: <WinLossPopup />,
+  },
+  {
+    path: "/block-user",
+    component: <BlockUser />,
+  },
+  {
+    path: "/add-fund-to-user",
+    component: <FundAddToUser />,
   },
   {
     path: "/account",
