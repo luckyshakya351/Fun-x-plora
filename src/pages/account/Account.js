@@ -287,6 +287,7 @@ function Account() {
             </Stack>
           </Box>
         </Box>
+       
         {Number(user_id) === 1169 && (
           <Box sx={style.actionContainer}>
             <Box
@@ -299,7 +300,7 @@ function Account() {
                 direction="row"
                 sx={{ alignItems: "center" }}
                 component={NavLink}
-                to={"/add-fund-to-user"}
+                to={"/update-user"}
               >
                 <Box
                   component="img"
@@ -320,46 +321,7 @@ function Account() {
                     },
                   }}
                 >
-                  <p className="!text-sm">Add Fund</p>
-                </Box>
-              </Stack>
-            </Box>
-          </Box>
-        )}
-        {Number(user_id) === 1169 && (
-          <Box sx={style.actionContainer}>
-            <Box
-              sx={{
-                width: "100%%",
-                height: "100%",
-              }}
-            >
-              <Stack
-                direction="row"
-                sx={{ alignItems: "center" }}
-                component={NavLink}
-                to={"/block-user"}
-              >
-                <Box
-                  component="img"
-                  src={card}
-                  sx={{ width: "40px", height: "40px", marginRight: "20px" }}
-                ></Box>
-                <Box
-                  sx={{
-                    "&>:nth-child(1)": {
-                      fontSize: "15px",
-                      fontWeight: "500",
-                      color: zubgtext,
-                    },
-                    "&>:nth-child(2)": {
-                      fontSize: "10px",
-                      fontWeight: "500",
-                      color: zubgtext,
-                    },
-                  }}
-                >
-                  <p className="!text-sm">Change Password</p>
+                  <p className="!text-sm">Update User</p>
                 </Box>
               </Stack>
             </Box>
@@ -479,6 +441,43 @@ function Account() {
                 >
                   English
                 </Typography>
+              </Box>
+            </Stack>
+            <Stack
+              component={NavLink}
+              to="/ticket-raised"
+              direction="row"
+              sx={{
+                borderBottom: `1px solid ${zubgtext}`,
+                padding: " 10px 10px 10px 5px",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Stack direction="row" sx={{ alignItems: "center" }}>
+                <Box
+                  component="img"
+                  src={trans}
+                  sx={{
+                    width: "25px",
+                    height: "25px",
+                    marginRight: "10px",
+                    filter: "hue-rotate(135deg)",
+                  }}
+                ></Box>
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  sx={{ color: "white", fontSize: "13px", fontWeight: "600" }}
+                >
+                  Ticket Raised
+                </Typography>
+              </Stack>
+              <Box>
+                <Typography
+                  sx={{ color: "white", fontSize: "13px", fontWeight: "500" }}
+                ></Typography>
               </Box>
             </Stack>
           </Stack>

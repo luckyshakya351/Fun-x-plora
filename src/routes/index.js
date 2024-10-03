@@ -10,12 +10,16 @@ import Feedback from "../pages/account/Component/Feedback";
 import FundAddToUser from "../pages/account/Component/FundAddToUser";
 import GameNotification from "../pages/account/Component/GameNotification";
 import Gamestaticks from "../pages/account/Component/Gamestaticks";
+import GetDetails from "../pages/account/Component/GetDetails";
 import Gift from "../pages/account/Component/Gift";
 import Languages from "../pages/account/Component/Language";
 import LoginPassword from "../pages/account/Component/LoginPassword";
 import Mail from "../pages/account/Component/Mail";
 import Notification from "../pages/account/Component/Notification";
 import SettingCenter from "../pages/account/Component/SettingCenter";
+import TicketRaised from "../pages/account/Component/TicketRaised";
+import UserTickets from "../pages/account/Component/UserTickets";
+import UserUpdates from "../pages/account/Component/UserUpdates";
 import Activity from "../pages/activity/Activity";
 import Register from "../pages/auth/register/Register";
 import AddAddressUsdt from "../pages/dashboard/AddAddressUsdt";
@@ -63,6 +67,18 @@ export const routes = [
   {
     path: "/win-los",
     component: <WinLossPopup />,
+  },
+  {
+    path: "/user-tickets-rep",
+    component: <UserTickets />,
+  },
+  {
+    path: "/get-details",
+    component: <GetDetails />,
+  },
+  {
+    path: "/update-user",
+    component: <UserUpdates />,
   },
   {
     path: "/block-user",
@@ -156,6 +172,10 @@ export const routes = [
   {
     path: "/feedback",
     component: <Feedback />,
+  },
+  {
+    path: "/ticket-raised",
+    component: <TicketRaised />,
   },
   {
     path: "/gameNotification",

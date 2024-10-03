@@ -1,14 +1,13 @@
 export const rupees = "₹";
-
+export const domain = "https://funxplora-timer.onrender.com";
 export const baseUrl = "https://admin.funxplora.com";
 export const fron_end_main_domain = "https://funxplora.com";
 
 export const newdomain1 = "https://api.funxplora.com";
 export const newdomain = "https://api.funxplora.com";
-// export const newdomain1 = "http://192.168.139.150:9000";
-// export const newdomain = "http://192.168.139.150:9000";
+// export const newdomain1 = "http://192.168.182.149:9000"
+// export const newdomain = "http://192.168.182.149:9000"
 
-export const domain = "https://funxplora-timer.onrender.com";
 // export const domain = "http://192.168.32.149:9000";
 export const support_mail = "";
 export const telegram_url = "https://t.me/+9c__nUH79PtiYzBl";
@@ -92,6 +91,8 @@ export const endpoint = {
   jackpod_game_history: `${newdomain}/api/v1/game-history-jackpod`,
   change_password: `${newdomain}/api/v1/change-password`,
   deposit_bonus: `${newdomain}/api/v1/self-deposit-bonus`,
+  ticket_hist_admin: `${newdomain}/api/v1/ticket-raised-history-admin`,
+  ticket_issue_update_admin: `${newdomain}/api/v1/ticket-resolve-history-admin`,
   referral_bonus: `${newdomain}/api/v1/sponsor-income`,
   need_to_bet: `${newdomain}/api/v1/need-to-bet`,
   need_to_bet_larawel: `${baseUrl}/api/get-user-remaining-amount`,
@@ -101,4 +102,6 @@ export const endpoint = {
   tranfer_wallet: `${newdomain1}/api/v1/transfer-amount-from-working-wallet-to-main-wallet`,
   transfer_wallet_history: `${newdomain1}/api/v1/transfer-history-from-working-wallet-to-main-wallet`,
   yesterday_income: `${newdomain}/api/v1/get-total-betA-ad-income-yesterday`,
+  ticket_raised: `${newdomain}/api/v1/ticket-raised`,
+  ticket_raised_history: `${newdomain}/api/v1/ticket-raised-history`,
 };

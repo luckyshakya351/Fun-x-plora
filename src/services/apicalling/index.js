@@ -403,7 +403,18 @@ export const teamRewartBonus = async () => {
     console.log(e);
   }
 };
-
+export const getTicketRaisedHistory = async () => {
+  const id = user_id
+  try {
+    const response = await axios.get(
+      `${endpoint.ticket_raised_history}?user_id=${id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const BankListDetails = async () => {
   try {
     const response = await axios.get(
