@@ -62,6 +62,7 @@ import theme from "../../utils/theme";
 import Lottery from "./DashboadSubcomponent/Lottery";
 import Original from "./DashboadSubcomponent/Original";
 import Sports from "./DashboadSubcomponent/Sports";
+import pogi from "../../assets/anandloginlogo.png";
 
 const imageSources = [
   "https://mui.com/static/images/avatar/2.jpg",
@@ -269,10 +270,11 @@ function Dashboard() {
               <SwiperSlide>
                 <Box
                   component="img"
-                  src={one}
+                  src={pogi}
+                  // src={one}
                   alt="Slide 1"
                   sx={styles.swiperImage}
-                  className="!rounded-lg"
+                  className="!rounded-lg !bg-white !h-[21vh]"
                 />
               </SwiperSlide>
               <SwiperSlide>

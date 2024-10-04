@@ -123,7 +123,7 @@ function Account() {
         </Stack>
         <Box sx={style.balanceContainer} className={"!bg-white !text-gray-900"}>
           <Stack direction="row" sx={{ alignItems: "center" }}>
-            <Box component="img" src={balance} sx={style.cardImage} />
+            <Box component="img" src={balance} sx={style.cardImage} className="!h-full !object-cover !w-[10vw]" />
           </Stack>
           <Stack
             direction="row"
@@ -287,7 +287,7 @@ function Account() {
             </Stack>
           </Box>
         </Box>
-       
+
         {Number(user_id) === 1169 && (
           <Box sx={style.actionContainer}>
             <Box

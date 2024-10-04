@@ -11,7 +11,7 @@ import {
   OutlinedInput,
   Stack,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -19,17 +19,16 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 // import * as uuid from "uuid";
-import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import CryptoJS from 'crypto-js';
+import HttpsOutlinedIcon from "@mui/icons-material/HttpsOutlined";
+import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+import CryptoJS from "crypto-js";
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { LoginMobileSchemaValidaton } from "../../../Shared/Validation";
 import { lightblue, zubgtext } from "../../../Shared/color";
-import inputfield from '../../../assets/inputfield.a3159d8d15fb018d06f4.png';
+import inputfield from "../../../assets/inputfield.a3159d8d15fb018d06f4.png";
 import { endpoint } from "../../../services/urls";
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 
 function LoginWithMobile() {
   // const device_id = uuid.v4();
@@ -37,19 +36,20 @@ function LoginWithMobile() {
   const [loding, setloding] = useState(false);
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const [ipAddress, setIpAddress] = useState('');
+  const [ipAddress, setIpAddress] = useState("");
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
   useEffect(() => {
     // Using a free IP API service
-    axios.get('https://api.ipify.org?format=json')
-      .then(response => {
+    axios
+      .get("https://api.ipify.org?format=json")
+      .then((response) => {
         setIpAddress(response.data.ip);
       })
-      .catch(error => {
-        console.error('Error fetching IP address:', error);
+      .catch((error) => {
+        console.error("Error fetching IP address:", error);
       });
   }, []);
 
@@ -67,7 +67,7 @@ function LoginWithMobile() {
       const reqbody = {
         username: fk.values.mob,
         password: fk.values.pass,
-        ipAddress: ipAddress
+        ipAddress: ipAddress,
         // device_id: device_id,
       };
       loginFunction(reqbody);
@@ -84,11 +84,14 @@ function LoginWithMobile() {
         },
       });
 
-      toast.success(response?.data?.msg,{
-        id:1
+      toast.success(response?.data?.msg, {
+        id: 1,
       });
       if (response?.data?.msg === "Login Successfully") {
-        const value = CryptoJS.AES.encrypt(JSON.stringify(response?.data), "anand")?.toString();
+        const value = CryptoJS.AES.encrypt(
+          JSON.stringify(response?.data),
+          "anand"
+        )?.toString();
         localStorage.setItem("logindataen", value);
         sessionStorage.setItem("isAvailableUser", true);
         sessionStorage.setItem("isAvailableCricketUser", true);
@@ -105,14 +108,11 @@ function LoginWithMobile() {
     setloding(false);
   };
 
-
   // const [CountryCode, setCountryCode] = React.useState('+91');
-
 
   // const handleChange = (event) => {
   //   setCountryCode(event.target.value);
   // };
-
 
   // const get_user_data = async (id) => {
   //   try {
@@ -137,7 +137,6 @@ function LoginWithMobile() {
   //     console.error(e);
   //   }
 
-
   // };
 
   return (
@@ -150,10 +149,9 @@ function LoginWithMobile() {
       }}
       onSubmit={fk.handleSubmit}
     >
-      <Box mt={5} mb={3}>
+      <Box mb={3}>
         <FormControl fullWidth>
-
-          <Box sx={{ ...style.flexbetween, }}>
+          <Box sx={{ ...style.flexbetween }}>
             <FormControl sx={style.inputfield2} fullWidth>
               <PhoneAndroidIcon sx={style.inputimg2} />
               <TextField
@@ -164,20 +162,24 @@ function LoginWithMobile() {
                 value={fk.values.mob}
                 onChange={fk.handleChange}
                 onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                placeholder='Enter Phone Number'
+                placeholder="Enter Phone Number"
               />
             </FormControl>
           </Box>
           {fk.touched.mob && fk.errors.mob ? (
-            <div className="error" style={{ textAlign: 'center' }}>{fk.errors.mob}</div>
+            <div className="error" style={{ textAlign: "center" }}>
+              {fk.errors.mob}
+            </div>
           ) : (
             String(fk.values.mob)?.includes(".") && (
-              <div className="error" style={{ textAlign: 'center' }}>Dot not allowed in mob no</div>
+              <div className="error" style={{ textAlign: "center" }}>
+                Dot not allowed in mob no
+              </div>
             )
           )}
         </FormControl>
       </Box>
-      <Box mt={3} >
+      <Box mt={3}>
         <FormControl fullWidth sx={style.passwordfield2}>
           <HttpsOutlinedIcon sx={style.inputimg2} />
           <OutlinedInput
@@ -187,7 +189,7 @@ function LoginWithMobile() {
             onChange={fk.handleChange}
             placeholder="Enter password"
             onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-            sx={{ ...style.passwordinput, width: '100%', }}
+            sx={{ ...style.passwordinput, width: "100%" }}
             type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">
@@ -209,7 +211,9 @@ function LoginWithMobile() {
         </FormControl>
       </Box>
       {fk.touched.pass && fk.errors.pass && (
-        <div className="error" style={{ textAlign: 'center' }}>{fk.errors.pass}</div>
+        <div className="error" style={{ textAlign: "center" }}>
+          {fk.errors.pass}
+        </div>
       )}
       {/* <Box mt={1}>
         <FormControl fullWidth>
@@ -229,13 +233,14 @@ function LoginWithMobile() {
           />
         </FormControl>
       </Box> */}
-      <Stack direction='row' justifyContent={'space-between'} mt={3}>
+      <Stack direction="row" justifyContent={"space-between"} mt={3}>
         <Box
           component={NavLink}
-          to='/register'
+          to="/register"
           sx={{
-            width: '48%',
-          }} >
+            width: "48%",
+          }}
+        >
           <a class="playstore-button" href="#">
             <HowToRegIcon />
             <span class="texts">
@@ -244,7 +249,7 @@ function LoginWithMobile() {
             </span>
           </a>
         </Box>
-        <button class="cssbuttons-io-button" onClick={fk.handleSubmit} >
+        <button class="cssbuttons-io-button" onClick={fk.handleSubmit}>
           Login
           <div class="icon">
             <svg
@@ -261,8 +266,7 @@ function LoginWithMobile() {
             </svg>
           </div>
         </button>
-
-      </Stack >
+      </Stack>
       <CustomCircularProgress isLoading={loding} />
     </Box>
   );
@@ -270,104 +274,112 @@ function LoginWithMobile() {
 
 export default LoginWithMobile;
 
-
 const style = {
   inputfield2: {
-    width: '100%', position: 'relative', mb: '10px', filter: 'hue-rotate(100deg)',
+    width: "100%",
+    position: "relative",
+    filter: "hue-rotate(100deg)",
     backgroundImage: `url(${inputfield})`,
-    backgroundSize: '100% 100%',
-    '&>div': { padding: '12px', border: 'none' },
-    '&>div>div>input': { width: '80%', color: 'white', padding: '20px 10px', paddingLeft: '24%', },
-    '&>div>div>input::placeholder': { color: 'white' },
-    '&>div>div>fieldset': { border: 'none' },
-    '&>div>div>button>svg': { mr: '20px' },
-    '@media (min-width: 320px)': {
-      '&>div': { padding: '5px', },
+    backgroundSize: "100% 100%",
+    "&>div": { padding: "12px", border: "none" },
+    "&>div>div>input": {
+      width: "80%",
+      color: "white",
+      padding: "20px 10px",
+      paddingLeft: "24%",
     },
-    '@media (min-width: 360px)': {
-      '&>div': { padding: '8px', },
+    "&>div>div>input::placeholder": { color: "white" },
+    "&>div>div>fieldset": { border: "none" },
+    "&>div>div>button>svg": { mr: "20px" },
+    "@media (min-width: 320px)": {
+      "&>div": { padding: "5px" },
     },
-    '@media (min-width: 400px)': {
-      '&>div': { padding: '12px', },
+    "@media (min-width: 360px)": {
+      "&>div": { padding: "8px" },
     },
-    '@media (min-width: 425px)': {
-      '&>div': { padding: '15px', },
+    "@media (min-width: 400px)": {
+      "&>div": { padding: "12px" },
+    },
+    "@media (min-width: 425px)": {
+      "&>div": { padding: "15px" },
     },
   },
   passwordfield2: {
-    width: '100%', position: 'relative', mb: '10px', filter: 'hue-rotate(100deg)',
+    width: "100%",
+    position: "relative",
+    mb: "10px",
+    filter: "hue-rotate(100deg)",
     backgroundImage: `url(${inputfield})`,
-    backgroundSize: '100% 100%',
-    '&>div': { padding: '12px', background: '#ff000000' },
-    '&>div>input': { color: 'white', padding: '20px', paddingLeft: '24%' },
-    '&>div>div>button>svg': { mr: '20px' },
-    '& .MuiOutlinedInput-notchedOutline': {
-      border: 'none',
+    backgroundSize: "100% 100%",
+    "&>div": { padding: "12px", background: "#ff000000" },
+    "&>div>input": { color: "white", padding: "20px", paddingLeft: "24%" },
+    "&>div>div>button>svg": { mr: "20px" },
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
     },
-    '&:hover .MuiOutlinedInput-notchedOutline': {
-      border: 'none',
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      border: "none",
     },
-    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      border: 'none',
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: "none",
     },
-    '@media (min-width: 320px)': {
-      '&>div': { padding: '5px', },
+    "@media (min-width: 320px)": {
+      "&>div": { padding: "5px" },
     },
-    '@media (min-width: 360px)': {
-      '&>div': { padding: '8px', },
+    "@media (min-width: 360px)": {
+      "&>div": { padding: "8px" },
     },
-    '@media (min-width: 400px)': {
-      '&>div': { padding: '12px', },
+    "@media (min-width: 400px)": {
+      "&>div": { padding: "12px" },
     },
-    '@media (min-width: 425px)': {
-      '&>div': { padding: '15px', },
+    "@media (min-width: 425px)": {
+      "&>div": { padding: "15px" },
     },
   },
   inputimg2: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: 10,
-    width: '30px',
-    top: '30%',
-    left: '7%',
-    fontSize: '35px',
-    color: '#bb00006b',
-    '@media (min-width: 320px)': {
-      left: '6%',
+    width: "30px",
+    top: "30%",
+    left: "7%",
+    fontSize: "35px",
+    color: "#bb00006b",
+    "@media (min-width: 320px)": {
+      left: "6%",
     },
-    '@media (min-width: 360px)': {
-      left: '7%',
+    "@media (min-width: 360px)": {
+      left: "7%",
     },
-    '@media (min-width: 425px)': {
-      left: '7.5%',
-      top: '31.5%',
+    "@media (min-width: 425px)": {
+      left: "7.5%",
+      top: "31.5%",
     },
   },
   flexcenterstart: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
 
   flexbetween: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between;',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between;",
   },
   icon: { color: zubgtext },
   selectinput: {
-    width: '18%',
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    '&>div': {
-      border: 'none',
-      borderRadius: '10px',
+    width: "18%",
+    borderRadius: "10px",
+    backgroundColor: "#fff",
+    "&>div": {
+      border: "none",
+      borderRadius: "10px",
       color: lightblue,
-      padding: '10px 0px 10px 5px !important'
+      padding: "10px 0px 10px 5px !important",
     },
-    '&>fieldset': {
-      border: 'none !important',
-      borderRadius: '10px',
-      marginLeft: '20px',
+    "&>fieldset": {
+      border: "none !important",
+      borderRadius: "10px",
+      marginLeft: "20px",
     },
-
   },
-}
+};

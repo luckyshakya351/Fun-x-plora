@@ -131,43 +131,32 @@ function Wallet() {
                 justifyContent: "center",
                 width: "100%",
               }}
-              className="walletBox !bg-white"
+              className="walletBox !bg-white "
             >
-              <Stack
-                direction={"row"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-                sx={{ width: "100%", padding: "0px 16px 16px" }}
-              >
-                <div class="visa_info"></div>
-                <div class="visa_logo">
-                  <Box
-                    component={"img"}
-                    src={balance}
-                    sx={{ width: "50px" }}
-                  ></Box>
-                </div>
-              </Stack>
+              <div className=" w-full flex h-full p-1"><Box
+                component={"img"}
+                src={balance}
+                sx={{ width: "120px", height: "80px" }}
+                className="!h-[15vh] !w-[40%]  "
+              ></Box></div>
               <Box
                 component="img"
                 src={wallet}
                 width={50}
                 sx={{ filter: "brightness(0.1)" }}
               ></Box>
-              <Typography variant="h2" color="initial" sx={{ color: "white" }} className={"!text-[#110738]"}>
+              <Typography
+                variant="h2"
+                color="initial"
+                sx={{ color: "white" }}
+                className={"!text-[#110738]"}
+              >
                 ₹{" "}
                 {Number(
                   Number(amount?.wallet || 0) +
                     Number(amount?.winning || 0) +
                     Number(amount?.working_wallet || 0)
                 )?.toFixed(2)}
-              </Typography>
-              <Typography
-                variant="body1"
-                color="initial"
-                sx={{ color: "white", marginBottom: "10px" }}
-              >
-                Total balance
               </Typography>
             </Box>
           </Box>

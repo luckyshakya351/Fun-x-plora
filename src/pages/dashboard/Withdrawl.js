@@ -44,6 +44,9 @@ import { BankListDetails, NeedToBet } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
 import theme from "../../utils/theme";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import AccountBalanceWalletTwoToneIcon from '@mui/icons-material/AccountBalanceWalletTwoTone';
+import redlogo from "../../assets/images/logotred.png";
+
 function Withdrawl() {
   const location = useLocation();
   const [showoldPassword, setShowoldPassword] = React.useState(false);
@@ -237,7 +240,8 @@ function Withdrawl() {
             margin: "auto",
             position: "relative",
             mt: 3,
-            background: theme.palette.secondary.dark,
+            background: "white",
+            color: "green",
           }}
         >
           <Stack
@@ -248,13 +252,16 @@ function Withdrawl() {
               zIndex: 10,
             }}
           >
-            <Box component="img" src={balance} width={50}></Box>
+            {/* <Box component="img" src={balance} width={50}></Box> */}
+            <IconButton className="!bg-green-500">
+              <AccountBalanceWalletTwoToneIcon/>
+            </IconButton>
             <Typography
               variant="body1"
               sx={{
                 fontSize: "16px ",
                 fontWeight: 500,
-                color: "white",
+                color: "green",
                 ml: "10px",
               }}
             >
@@ -268,7 +275,7 @@ function Withdrawl() {
               sx={{
                 fontSize: "30px ",
                 fontWeight: "600",
-                color: "white",
+                color: "green",
                 mr: "10px",
                 position: "relative",
                 zIndex: 10,
@@ -318,7 +325,7 @@ function Withdrawl() {
                 zIndex: 10,
               }}
             >
-              <Box component={"img"} src={logo1} sx={{ width: "90px" }}></Box>
+              <Box component={"img"} src={redlogo} className=" !h-[15vh]  !w-[15vw] "  sx={{ width: "100px", height:"10vh" }}></Box>
             </Typography>
           </Stack>
         </Box>

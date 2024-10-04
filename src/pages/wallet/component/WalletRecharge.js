@@ -643,7 +643,7 @@ function WalletRecharge() {
               />
             </div>
             <div class="visa_logo">
-              <Box component={"img"} src={logo1} sx={{ width: "90px" }}></Box>
+              <Box component={"img"} src={logo1} sx={{ width: "100px", height:"10vh" }}></Box>
             </div>
           </Stack>
         </Box>

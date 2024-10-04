@@ -23,12 +23,6 @@ function Login() {
     logindata && navigate("/dashboard");
   }, []);
 
-  const [value, setValue] = React.useState("two");
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
-
   return (
     <Container
       sx={{
@@ -46,7 +40,7 @@ function Login() {
         }}
       >
         <Box sx={{ width: "100%" }}>
-          <Box component="img" src={logo} sx={style.logocss}></Box>
+          <Box component="img" className="!w-[120%] !h-[120%]" src={logo} sx={style.logocss}></Box>
         </Box>
         {/* <Tab value="two" sx={{ width: "100% !important", }} label={
                 <Box sx={{ ...style.flexcoloumcenter, ...style.tabs, }}>
