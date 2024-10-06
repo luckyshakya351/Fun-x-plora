@@ -5,8 +5,8 @@ export const fron_end_main_domain = "https://funxplora.com";
 
 export const newdomain1 = "https://api.funxplora.com";
 export const newdomain = "https://api.funxplora.com";
-// export const newdomain1 = "http://192.168.182.149:9000"
-// export const newdomain = "http://192.168.182.149:9000"
+// export const newdomain1 = "http://192.168.198.149:9000"
+// export const newdomain = "http://192.168.198.149:9000"
 
 // export const domain = "http://192.168.32.149:9000";
 export const support_mail = "";
@@ -17,6 +17,12 @@ export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
 
 export const endpoint = {
   //node login api
+  payment_deposite: `${newdomain}/api/v1/payin-request`,
+  approve_request_ad: `${newdomain}/api/v1/payin-request-approve`,
+  approve_request_ad_withdrawal: `${newdomain}/api/v1/payout-request-approve`,
+  reject_request_ad: `${newdomain}/api/v1/payin-request-reject`,
+  reject_request_ad_withdrawal: `${newdomain}/api/v1/payout-request-reject`,
+  Qr_address: `${newdomain}/api/v1/admin-qr-address`,
   add_fund_to_user: `${newdomain}/api/v1/fn_add_fun_to_user`,
   change_user_pass: `${newdomain}/api/v1/change-user-pass`,
   get_user_id: `${newdomain}/api/v1/get-user-id`,
@@ -92,6 +98,8 @@ export const endpoint = {
   change_password: `${newdomain}/api/v1/change-password`,
   deposit_bonus: `${newdomain}/api/v1/self-deposit-bonus`,
   ticket_hist_admin: `${newdomain}/api/v1/ticket-raised-history-admin`,
+  usdt_payin_requst_admin: `${newdomain}/api/v1/usdt-payin-requst-admin`,
+  usdt_payout_requst_admin: `${newdomain}/api/v1/usdt-payout-request-admin`,
   ticket_issue_update_admin: `${newdomain}/api/v1/ticket-resolve-history-admin`,
   referral_bonus: `${newdomain}/api/v1/sponsor-income`,
   need_to_bet: `${newdomain}/api/v1/need-to-bet`,

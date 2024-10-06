@@ -99,7 +99,7 @@ function Account() {
             <Box component="img" src={dp1} sx={style.profileImage} />
           </Box>
           <Box sx={style.userInfo} className={"!flex !flex-col-reverse"}>
-            <Stack direction="column" alignItems="start">
+            {/* <Stack direction="column" alignItems="start">
               <Typography variant="" sx={{ ml: 2, color: "white" }}>
                 {wallet?.full_name}
               </Typography>
@@ -110,7 +110,7 @@ function Account() {
                   <span className="!text-red-500">NEGATIVE</span>
                 )}
               </Box>
-            </Stack>
+            </Stack> */}
 
             <Typography variant="body1" color="initia nl" sx={{ mt: 1 }}>
               UID | {wallet?.username || 0}{" "}

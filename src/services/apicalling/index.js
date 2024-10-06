@@ -312,6 +312,17 @@ export const team_trading_bonus_functoin = async () => {
     console.log(e);
   }
 };
+export const getQraddress = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.Qr_address}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 export const depositBonusFn = async () => {
   try {
     const response = await axios.get(

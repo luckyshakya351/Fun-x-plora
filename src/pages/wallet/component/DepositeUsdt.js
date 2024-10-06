@@ -38,8 +38,6 @@ function DepositeUsdt() {
         }
     );
     const res = data?.data?.data || []
-
-    console.log(res);
     return (
         <Layout>
             <Container
@@ -157,6 +155,22 @@ function DepositeUsdt() {
                                         }}
                                     >
                                         <Typography variant="body1" color="initial">
+                                            Coin Type
+                                        </Typography>
+                                        <Typography variant="body1" color="initial">
+                                            {i?.to_coin}
+                                        </Typography>
+                                    </Stack>
+                                    <Stack
+                                        direction="row"
+                                        sx={{
+                                            mb: "10px",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                            "&>p": { color: zubgtext },
+                                        }}
+                                    >
+                                        <Typography variant="body1" color="initial">
                                             Date/Time
                                         </Typography>
                                         <Typography variant="body1" color="initial">
@@ -164,7 +178,7 @@ function DepositeUsdt() {
                                             {moment(i?.created_at)?.format("HH:mm:ss")}
                                         </Typography>
                                     </Stack>
-                                    {i?.success_date !== "NUll" && <Stack
+                                    {i?.success_date  && <Stack
                                         direction="row"
                                         sx={{
                                             mb: "10px",

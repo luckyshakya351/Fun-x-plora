@@ -6,13 +6,16 @@ import {
   Box,
   Button,
   Container,
+  FormControl,
   FormControlLabel,
   IconButton,
   InputAdornment,
+  MenuItem,
   OutlinedInput,
   Radio,
   RadioGroup,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -20,7 +23,7 @@ import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
@@ -35,6 +38,7 @@ import pay from "../../../assets/images/wallet.png";
 import usdt from "../../../assets/payNameIcon1.png";
 import payNameIcon2 from "../../../assets/payNameIcon2.png";
 import Layout from "../../../component/Layout/Layout";
+import copy from "clipboard-copy";
 import {
   baseUrl,
   endpoint,
@@ -42,12 +46,14 @@ import {
 } from "../../../services/urls";
 import theme from "../../../utils/theme";
 import UsdtQR from "./UsdtQR";
+import { getQraddress } from "../../../services/apicalling";
 // payment 2000 or 2000 se upr hoga to indian pay, or moon lottery par jayega, accorgin to akash sir --> THAT MEANS PYT-PAY
 
 function WalletRecharge() {
   const aviator_login_data = useSelector(
     (state) => state.aviator.aviator_login_data
   );
+  const [receipt, setReceipt] = React.useState();
   const [paymentType, setPaymentType] = React.useState("UPI");
   const deposit_amount = localStorage.getItem("amount_set");
   const Deposit_type = localStorage.getItem("Deposit_type");
@@ -88,9 +94,27 @@ function WalletRecharge() {
     handlePlaySound();
   }, []);
 
-  // React.useEffect(() => {
-  //   !aviator_login_data && get_user_data_fn(dispatch);
-  // }, []);
+  const { data } = useQuery(["qr"], () => getQraddress(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
+  const res = data?.data?.data || 0;
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setReceipt(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  const functionTOCopy = (value) => {
+    copy(value);
+    toast.success("Copied to clipboard!");
+  };
 
   const handlePlaySound = async () => {
     try {
@@ -193,35 +217,73 @@ function WalletRecharge() {
     setloding(false);
   }
 
-  const initialValuesss = {
-    amount: deposit_amount || 10,
-  };
+  // const initialValuesss = {
+  //   amount: deposit_amount || 10,
+  // };
 
-  const formik = useFormik({
-    initialValues: initialValuesss,
+  // const formik = useFormik({
+  //   initialValues: initialValuesss,
+  //   onSubmit: () => {
+  //     const fd = new FormData();
+  //     payment(formik.values.amount);
+  //   },
+  // });
+  // async function payment(amnt) {
+  //   setloding(true);
+  //   if (!amnt) {
+  //     toast("Please Enter the amount");
+  //     return;
+  //   }
+  //   const formdata = {
+  //     userid: Number(user_id),
+  //     amount: Number(amnt),
+  //   };
+  //   const response = await axios.post(`${endpoint.payment}`, formdata);
+  //   setDeposit_req_data_usdt(response?.data?.data?.qrcode_url);
+  //   setAddress(response?.data?.data?.address);
+  //   setAmount(response?.data?.data?.amount);
+  //   // console.log(response?.data?.data?.amount)
+  //   setloding(false);
+  // }
+  const initialValuess = {
+    deposit_type: 1,
+    req_amount: "",
+    bank_upi_table_id: "",
+    receipt_image: "",
+    utr_no: "",
+  };
+  const fkk = useFormik({
+    initialValues: initialValuess,
+    enableReinitialize: true,
     onSubmit: () => {
-      const fd = new FormData();
-      payment(formik.values.amount);
+      const reqBody = {
+        userid: user_id,
+        deposit_type: fkk.values.deposit_type,
+        req_amount: fkk.values.req_amount,
+        bank_upi_table_id: fkk.values.deposit_type,
+        receipt_image: receipt,
+        utr_no: fkk.values.utr_no,
+      };
+      insertFundFn(reqBody);
     },
   });
-  async function payment(amnt) {
+  async function insertFundFn(reqBody) {
     setloding(true);
-    if (!amnt) {
-      toast("Please Enter the amount");
-      return;
+    try {
+      const res = await axios.post(endpoint?.payment_deposite, reqBody);
+      toast(res?.data?.msg);
+      setloding(false);
+      if ("Request Successfully Accepted." === res?.data?.msg) {
+        fkk.handleReset();
+        setReceipt(null);
+        client.refetchQueries("deposit_history_usdt");
+      }
+    } catch (e) {
+      console.log(e);
     }
-    const formdata = {
-      userid: Number(user_id),
-      amount: Number(amnt),
-    };
-    const response = await axios.post(`${endpoint.payment}`, formdata);
-    setDeposit_req_data_usdt(response?.data?.data?.qrcode_url);
-    setAddress(response?.data?.data?.address);
-    setAmount(response?.data?.data?.amount);
-    // console.log(response?.data?.data?.amount)
-    setloding(false);
+    // client.refetchQueries("wallet_amount");
+    // client.refetchQueries("withdrawl_history");
   }
-
   const audio = React.useMemo(() => {
     return (
       <audio ref={audioRefMusic} hidden>
@@ -229,7 +291,9 @@ function WalletRecharge() {
       </audio>
     );
   }, []);
-
+  const selectedUPIDetails = Array.isArray(res)
+    ? res.find((item) => item?.id === fkk.values.deposit_type)
+    : null;
   const rechargeInstruction = React.useMemo(() => {
     return (
       <Box
@@ -440,42 +504,42 @@ function WalletRecharge() {
         >
           <Button
             sx={style.paytmbtn}
-            onClick={() => formik.setFieldValue("amount", 10)}
+            onClick={() => fkk.setFieldValue("amount", 10)}
           >
             {" "}
             $ 10
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => formik.setFieldValue("amount", 50)}
+            onClick={() => fkk.setFieldValue("amount", 50)}
           >
             {" "}
             $ 50
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => formik.setFieldValue("amount", 100)}
+            onClick={() => fkk.setFieldValue("amount", 100)}
           >
             {" "}
             $ 100
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => formik.setFieldValue("amount", 500)}
+            onClick={() => fkk.setFieldValue("amount", 500)}
           >
             {" "}
             $ 500
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => formik.setFieldValue("amount", 1000)}
+            onClick={() => fkk.setFieldValue("amount", 1000)}
           >
             {" "}
             $ 1K
           </Button>
           <Button
             sx={style.paytmbtn}
-            onClick={() => formik.setFieldValue("amount", 5000)}
+            onClick={() => fkk.setFieldValue("amount", 5000)}
           >
             $ 5K
           </Button>
@@ -643,7 +707,11 @@ function WalletRecharge() {
               />
             </div>
             <div class="visa_logo">
-              <Box component={"img"} src={logo1} sx={{ width: "100px", height:"10vh" }}></Box>
+              <Box
+                component={"img"}
+                src={logo1}
+                sx={{ width: "100px", height: "10vh" }}
+              ></Box>
             </div>
           </Stack>
         </Box>
@@ -705,48 +773,6 @@ function WalletRecharge() {
                 width: "100%",
               }}
             >
-              {/* contained */}
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  padding: "10px 20px",
-                }}
-              >
-                <Button
-                  variant=""
-                  sx={{
-                    color: "white",
-                    fontWeight: "500",
-                    borderRadius: "30px",
-                    background: "#0D0335",
-                  }}
-                  className={`${
-                    Number(fk.values.amount || 0) < 2000
-                      ? "!bg-[#63ba0e]"
-                      : "contained"
-                  }`}
-                >
-                  Flex
-                </Button>
-                <Button
-                  variant=""
-                  sx={{
-                    color: "white",
-                    fontWeight: "500",
-                    borderRadius: "30px",
-                  }}
-                  className={`${
-                    Number(fk.values.amount || 0) >= 2000
-                      ? "!bg-[#63ba0e]"
-                      : "contained"
-                  } `}
-                >
-                  PYT-PAY
-                </Button>
-              </Box> */}
               <RadioGroup
                 row
                 value={selectedGateway}
@@ -847,6 +873,80 @@ function WalletRecharge() {
               }}
             >
               {payment_button2}
+              <FormControl fullWidth sx={{ my: "10px" }}>
+                <Stack direction="row" className="loginlabel">
+                  <Typography variant="h3" sx={{ color: "white" }}>
+                    Select Network
+                  </Typography>
+                </Stack>
+                <TextField
+                  id="deposit_type"
+                  name="deposit_type"
+                  value={fkk.values.deposit_type}
+                  onChange={fkk.handleChange}
+                  placeholder="Select UPI"
+                  className="!w-[100%] !bg-white !text-black !mt-5"
+                  select
+                  size="small"
+                >
+                  {Array.isArray(res) &&
+                    res.map((i) => (
+                      <MenuItem
+                        className="!text-[#8f5206] "
+                        key={i.id}
+                        value={i.id}
+                      >
+                        {i.usdt_type === "USDT.BEP20"
+                          ? "USDT Bep20"
+                          : "USDT Trc20"}
+                      </MenuItem>
+                    ))}
+                </TextField>
+                {selectedUPIDetails && (
+                  <div className="col-span-2 !h-full !w-full flex items-center mt-10 flex-col">
+                    <div className="w-72">
+                      <img src={selectedUPIDetails?.qr_code} alt="" />
+                    </div>
+                    <div className="pt-4 gap-2">
+                      <p className="!bg-white !text-xs font-bold px-1 !text-[#8f5206]">
+                        {selectedUPIDetails?.usdt_address}
+                      </p>
+                      <div className="w-full flex justify-center mt-5">
+                        <Button
+                          size="small !py-1"
+                          className="!bg-[#8f5206]  !text-white place-items-center"
+                          onClick={() =>
+                            functionTOCopy(selectedUPIDetails?.usdt_address)
+                          }
+                        >
+                          Copy
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </FormControl>
+              <span className="!text-white !text-lg ">Receipt*</span>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                className="!text-xl !my-2 !text-[#8f5206]"
+                onChange={handleFileChange}
+                required
+              />
+              <span className="text-white text-lg !mt-5">
+                Transaction hash{" "}
+              </span>
+              <TextField
+                id="utr_no"
+                name="utr_no"
+                value={fkk.values.utr_no}
+                onChange={fkk.handleChange}
+                placeholder="Enter Transaction hash"
+                className="!w-[100%] !bg-white !text-[#8f5206] !mt-2"
+                size="small"
+              ></TextField>
               <Stack
                 direction="row"
                 sx={{
@@ -861,10 +961,10 @@ function WalletRecharge() {
                   placeholder="Enter USDT "
                   className="wallet-textfield"
                   type="number"
-                  id="amount"
-                  name="amount"
-                  value={formik.values.amount}
-                  onChange={formik.handleChange}
+                  id="req_amount"
+                  name="req_amount"
+                  value={fkk.values.req_amount}
+                  onChange={fkk.handleChange}
                   endAdornment={
                     <InputAdornment position="end">
                       <div style={{ display: "flex", alignItems: "right" }}>
@@ -891,9 +991,9 @@ function WalletRecharge() {
                   placeholder="Enter Amount "
                   className="wallet-textfield   mt-4"
                   type="number"
-                  id="amount"
-                  name="amount"
-                  value={Number(formik.values.amount || 0) * 92}
+                  id="req_amount"
+                  name="req_amount"
+                  value={Number(fkk.values.req_amount || 0) * 92}
                   endAdornment={
                     <InputAdornment position="end">
                       <div style={{ display: "flex", alignItems: "center" }}>
@@ -915,7 +1015,7 @@ function WalletRecharge() {
                     </InputAdornment>
                   }
                 />
-                <Button sx={style.paytmbtntwo} onClick={formik.handleSubmit}>
+                <Button sx={style.paytmbtntwo} onClick={fkk.handleSubmit}>
                   Deposit
                 </Button>
               </Stack>

@@ -18,6 +18,8 @@ import Mail from "../pages/account/Component/Mail";
 import Notification from "../pages/account/Component/Notification";
 import SettingCenter from "../pages/account/Component/SettingCenter";
 import TicketRaised from "../pages/account/Component/TicketRaised";
+import USDTPayInRequest from "../pages/account/Component/USDTPayInRequest";
+import USDTPayoutRequestAdmin from "../pages/account/Component/USDTPayoutRequestAdmin";
 import UserTickets from "../pages/account/Component/UserTickets";
 import UserUpdates from "../pages/account/Component/UserUpdates";
 import Activity from "../pages/activity/Activity";
@@ -67,6 +69,14 @@ export const routes = [
   {
     path: "/win-los",
     component: <WinLossPopup />,
+  },
+  {
+    path: "/usdt-payin-req-admin",
+    component: <USDTPayInRequest />,
+  },
+  {
+    path: "/usdt-payout-req-admin",
+    component: <USDTPayoutRequestAdmin />,
   },
   {
     path: "/user-tickets-rep",

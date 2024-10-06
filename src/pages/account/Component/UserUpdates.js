@@ -7,6 +7,7 @@ import { Box, Container, IconButton, Typography } from "@mui/material";
 import * as React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {
   zubgback,
   zubgbackgrad,
@@ -54,7 +55,7 @@ function UserUpdates() {
               borderRadius: "10px",
               mb: 5,
             }}
-            className={"!flex flex-wrap justify-evenly"}
+            className={"!grid !grid-cols-4 !place-items-center !gap-y-2"}
           >
             <div className="!flex flex-col !w-[40px] items-center">
               <IconButton
@@ -91,6 +92,24 @@ function UserUpdates() {
                 <ConfirmationNumberIcon className="!text-white" />
               </IconButton>
               <span className="!text-white !text-[12px]">Tickets</span>
+            </div>
+            <div className="!flex flex-col !w-[40px] items-center">
+              <IconButton
+                className="!bg-blue-500"
+                onClick={() => navigate("/usdt-payin-req-admin")}
+              >
+                <CurrencyExchangeIcon className="!text-white" />
+              </IconButton>
+              <span className="!text-white !text-[12px]">USDT Deposit</span>
+            </div>
+            <div className="!flex flex-col !w-[40px] items-center">
+              <IconButton
+                className="!bg-blue-500"
+                onClick={() => navigate("/usdt-payout-req-admin")}
+              >
+                <CurrencyExchangeIcon className="!text-white" />
+              </IconButton>
+              <span className="!text-white !text-[12px]">USDT Withdrawal</span>
             </div>
           </Box>
         </Box>
